@@ -1,0 +1,64 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>거래 내역 없음 - 감자와 토끼가 함께 있는 평온한 장면</title>
+  
+  <!-- 배경 (선택적) -->
+  <rect width="120" height="120" fill="none" opacity="0.05" rx="8"/>
+  
+  <!-- 바닥 라인 -->
+  <path d="M10 90 Q60 85 110 90" stroke="#E0E0E0" stroke-width="2" fill="none"/>
+  
+  <!-- 감자 캐릭터 -->
+  <g transform="translate(35, 30)">
+    <!-- 감자 몸체 -->
+    <ellipse cx="0" cy="15" rx="18" ry="22" fill="#D4A574" stroke="#8B4513" stroke-width="2"/>
+    
+    <!-- 감자 표면 점들 -->
+    <circle cx="-8" cy="8" r="1.5" fill="#8B4513" opacity="0.3"/>
+    <circle cx="8" cy="10" r="1.2" fill="#8B4513" opacity="0.3"/>
+    <circle cx="-5" cy="25" r="1.3" fill="#8B4513" opacity="0.3"/>
+    
+    <!-- 평온한 눈 -->
+    <circle cx="-6" cy="12" r="2.5" fill="white"/>
+    <circle cx="6" cy="12" r="2.5" fill="white"/>
+    <circle cx="-6" cy="12" r="1.3" fill="#333"/>
+    <circle cx="6" cy="12" r="1.3" fill="#333"/>
+    
+    <!-- 평온한 입 -->
+    <path d="M-5 20 Q0 22 5 20" stroke="#8B4513" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+  
+  <!-- 토끼 캐릭터 -->
+  <g transform="translate(75, 25)">
+    <!-- 토끼 귀 -->
+    <ellipse cx="-8" cy="-5" rx="3" ry="8" fill="#E0E0E0" stroke="#808080" stroke-width="1.5"/>
+    <ellipse cx="8" cy="-5" rx="3" ry="8" fill="#E0E0E0" stroke="#808080" stroke-width="1.5"/>
+    <ellipse cx="-8" cy="-5" rx="1.5" ry="5" fill="#FFB6C1" opacity="0.5"/>
+    <ellipse cx="8" cy="-5" rx="1.5" ry="5" fill="#FFB6C1" opacity="0.5"/>
+    
+    <!-- 토끼 얼굴 -->
+    <circle cx="0" cy="15" r="15" fill="#E0E0E0" stroke="#808080" stroke-width="1.5"/>
+    
+    <!-- 평온한 눈 -->
+    <circle cx="-5" cy="10" r="2.5" fill="white"/>
+    <circle cx="5" cy="10" r="2.5" fill="white"/>
+    <circle cx="-5" cy="10" r="1.3" fill="#333"/>
+    <circle cx="5" cy="10" r="1.3" fill="#333"/>
+    
+    <!-- 코 -->
+    <path d="M0 15 L-2 18 M0 15 L2 18" stroke="#808080" stroke-width="2" stroke-linecap="round"/>
+    
+    <!-- 평온한 입 -->
+    <path d="M-3 21 Q0 23 3 21" stroke="#808080" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+  
+  <!-- 하트 (우정/평온함을 나타냄) -->
+  <g transform="translate(60, 65)" opacity="0.6">
+    <path d="M0 5 C-5 0, -10 2, -10 7 C-10 12, 0 18, 0 18 C0 18, 10 12, 10 7 C10 2, 5 0, 0 5 Z" 
+          fill="#FFB6C1" stroke="#FF69B4" stroke-width="1"/>
+  </g>
+  
+  <!-- 텍스트 영역 (선택적) -->
+  <text x="60" y="105" text-anchor="middle" font-family="system-ui" font-size="12" fill="#888">
+    아직 거래 내역이 없어요
+  </text>
+</svg>

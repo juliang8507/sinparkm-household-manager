@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>감자·토끼 캐릭터 SVG 아이콘 데모</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Apple SD Gothic Neo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 3rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #333;
+            border-bottom: 3px solid #ff9a9e;
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .icon-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .icon-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-color: #ff9a9e;
+        }
+
+        .icon-card svg {
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .icon-card:hover svg {
+            transform: scale(1.1);
+        }
+
+        .icon-card h3 {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+            text-transform: capitalize;
+        }
+
+        .icon-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .empty-state-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .empty-state-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .empty-state-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .size-demo {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .size-demo div {
+            text-align: center;
+        }
+
+        .size-demo span {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .color-item {
+            text-align: center;
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .color-swatch {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 0.5rem;
+            border: 3px solid white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .potato-primary { background-color: #D4A574; }
+        .potato-secondary { background-color: #8B4513; }
+        .rabbit-primary { background-color: #E0E0E0; }
+        .rabbit-secondary { background-color: #808080; }
+        .rabbit-accent { background-color: #FFB6C1; }
+
+        .usage-example {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 5px solid #ff9a9e;
+        }
+
+        .code-block {
+            background: #2d3748;
+            color: #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .highlight {
+            color: #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .header {
+                padding: 2rem 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 2rem 1rem;
+            }
+
+            .icon-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 1rem;
+            }
+
+            .size-demo {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🥔🐰 감자·토끼 아이콘 시스템</h1>
+            <p>감정이 풍부한 캐릭터 기반 SVG 아이콘 컬렉션</p>
+        </div>
+
+        <div class="content">
+            <!-- 감자 캐릭터 섹션 -->
+            <div class="section">
+                <h2>🥔 감자 캐릭터</h2>
+                <p style="margin-bottom: 2rem; color: #666;">온화하고 안정적인 성격의 감자 캐릭터입니다. 신뢰감과 안정성을 나타내는 상황에 적합합니다.</p>
+                <div class="icon-grid">
+                    <div class="icon-card">
+                        <img src="potato-neutral.svg" width="64" height="64" alt="평온한 감자">
+                        <h3>neutral</h3>
+                        <p>평온한 상태</p>
+                    </div>
+                    <div class="icon-card">
+                        <img src="potato-success.svg" width="64" height="64" alt="기쁜 감자">
+                        <h3>success</h3>
+                        <p>성공, 완료</p>
+                    </div>
+                    <div class="icon-card">
+                        <img src="potato-warning.svg" width="64" height="64" alt="걱정하는 감자">
+                        <h3>warning</h3>
+                        <p>주의, 경고</p>
+                    </div>
+                    <div class="icon-card">
+                        <img src="potato-info.svg" width="64" height="64" alt="호기심 많은 감자">
+                        <h3>info</h3>
+                        <p>정보, 팁</p>
+                    </div>
+                    <div class="icon-card">
+                        <img src="potato-error.svg" width="64" height="64" alt="당황한 감자">
+                        <h3>error</h3>
+                        <p>오류, 실패</p>
+                    </div>
+                    <div class="icon-card">
+                        <img src="potato-loading.svg" width="64" height="64" alt="졸린 감자">
+                        <h3>loading</h3>
+                        <p>로딩, 처리 중</p>
+                    </div>
+                </div>
+
+                <!-- 크기 데모 -->
+                <div class="size-demo">
+                    <div>
+                        <img src="potato-success.svg" width="16" height="16" alt="작은 감자">
+                        <span>16px</span>
+                    </div>
+                    <div>
+                        <img src="potato-success.svg" width="24" height="24" alt="기본 감자">
+                        <span>24px (기본)</span>
+                    </div>
+                    <div>
+                        <img src="potato-success.svg" width="32" height="32" alt="중간 감자">
+                        <span>32px</span>
+                    </div>
+                    <div>
+                        <img src="potato-success.svg" width="48" height="48" alt="큰 감자">
+                        <span>48px</span>
+                    </div>
+                    <div>
+                        <img src="potato-success.svg" width="64" height="64" alt="매우 큰 감자">
+                        <span>64px</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 토끼 캐릭터 섹션 -->
+            <div class="section">
+                <h2>🐰 토끼 캐릭터</h2>
+                <p style="margin-bottom: 2rem; color: #666;">활발하고 호기심 많은 성격의 토끼 캐릭터입니다. 동적인 액션과 빠른 반응이 필요한 상황에 적합합니다.</p>
+                <div class="icon-grid">
+                    <div class="icon-card">
+                        <img src="rabbit-neutral.svg" width="64" height="64" alt="평온한 토끼">
+                        <h3>neutral</h3>
+                        <p>평온한 상태</p>
+                    </div>
+                    <div class="icon-card">
+                        <img src="rabbit-success.svg" width="64" height="64" alt="활기찬 토끼">
+                        <h3>success</h3>
+                        <p>성공, 완료</p>
+                    </div>
+                    <div class="icon-card">
+                        <img src="rabbit-warning.svg" width="64" height="64" alt="경계하는 토끼">
+                        <h3>warning</h3>
+                        <p>주의, 경고</p>
+                    </div>
+                    <div class="icon-card">
+                        <img src="rabbit-info.svg" width="64" height="64" alt="궁금한 토끼">
+                        <h3>info</h3>
+                        <p>정보, 팁</p>
+                    </div>
+                    <div class="icon-card">
+                        <img src="rabbit-error.svg" width="64" height="64" alt="놀란 토끼">
+                        <h3>error</h3>
+                        <p>오류, 실패</p>
+                    </div>
+                    <div class="icon-card">
+                        <img src="rabbit-loading.svg" width="64" height="64" alt="사색하는 토끼">
+                        <h3>loading</h3>
+                        <p>로딩, 처리 중</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 색상 팔레트 -->
+            <div class="section">
+                <h2>🎨 색상 팔레트</h2>
+                <div class="color-palette">
+                    <div class="color-item">
+                        <div class="color-swatch potato-primary"></div>
+                        <h4>감자 Primary</h4>
+                        <p>#D4A574</p>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch potato-secondary"></div>
+                        <h4>감자 Secondary</h4>
+                        <p>#8B4513</p>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch rabbit-primary"></div>
+                        <h4>토끼 Primary</h4>
+                        <p>#E0E0E0</p>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch rabbit-secondary"></div>
+                        <h4>토끼 Secondary</h4>
+                        <p>#808080</p>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch rabbit-accent"></div>
+                        <h4>토끼 Accent</h4>
+                        <p>#FFB6C1</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 빈 상태 일러스트 -->
+            <div class="section">
+                <h2>📭 빈 상태 일러스트</h2>
+                <div class="empty-state-grid">
+                    <div class="empty-state-card">
+                        <img src="empty-transactions.svg" width="120" height="120" alt="거래 내역 없음">
+                        <h3>거래 내역 없음</h3>
+                        <p>아직 거래 내역이 없을 때</p>
+                    </div>
+                    <div class="empty-state-card">
+                        <img src="empty-meals.svg" width="120" height="120" alt="식사 기록 없음">
+                        <h3>식사 기록 없음</h3>
+                        <p>아직 식사 기록이 없을 때</p>
+                    </div>
+                    <div class="empty-state-card">
+                        <img src="loading-state.svg" width="120" height="120" alt="로딩 중">
+                        <h3>로딩 중</h3>
+                        <p>데이터를 불러오는 중일 때</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 사용 예시 -->
+            <div class="section">
+                <h2>💻 사용 예시</h2>
+                
+                <div class="usage-example">
+                    <h3>HTML에서 직접 사용</h3>
+                    <div class="code-block">
+<span class="highlight">&lt;img</span> src="./potato-success.svg" alt="성공" width="24" height="24"<span class="highlight">&gt;</span>
+<span class="highlight">&lt;img</span> src="./rabbit-warning.svg" alt="주의" width="32" height="32"<span class="highlight">&gt;</span>
+                    </div>
+                </div>
+
+                <div class="usage-example">
+                    <h3>React 컴포넌트 사용</h3>
+                    <div class="code-block">
+<span class="highlight">import</span> { PotatoIcon, RabbitIcon } <span class="highlight">from</span> './PotatoRabbitIcons';
+
+<span class="highlight">&lt;PotatoIcon</span> emotion="success" size={32} <span class="highlight">/&gt;</span>
+<span class="highlight">&lt;RabbitIcon</span> emotion="warning" size={24} <span class="highlight">/&gt;</span>
+                    </div>
+                </div>
+
+                <div class="usage-example">
+                    <h3>CSS 스타일링</h3>
+                    <div class="code-block">
+<span class="highlight">.icon</span> {
+  width: 1.5rem;
+  height: 1.5rem;
+  transition: transform 0.2s ease;
+}
+
+<span class="highlight">.icon:hover</span> {
+  transform: scale(1.1);
+}
+                    </div>
+                </div>
+            </div>
+
+            <!-- 상황별 사용 가이드 -->
+            <div class="section">
+                <h2>📋 상황별 사용 가이드</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div class="usage-example">
+                        <h3>🥔 감자 캐릭터 추천</h3>
+                        <ul style="margin: 1rem 0; padding-left: 1.5rem; color: #555;">
+                            <li>저축 목표 달성</li>
+                            <li>예산 관리 완료</li>
+                            <li>안정적인 거래 완료</li>
+                            <li>신뢰성 있는 정보 제공</li>
+                        </ul>
+                    </div>
+                    <div class="usage-example">
+                        <h3>🐰 토끼 캐릭터 추천</h3>
+                        <ul style="margin: 1rem 0; padding-left: 1.5rem; color: #555;">
+                            <li>새로운 거래 입력</li>
+                            <li>빠른 알림 메시지</li>
+                            <li>사용자 액션 유도</li>
+                            <li>동적인 상태 변화</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 간단한 인터랙션 추가
+        document.querySelectorAll('.icon-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const emotion = card.querySelector('h3').textContent;
+                alert(`${emotion} 감정 아이콘을 선택했습니다!`);
+            });
+        });
+
+        // 로딩 애니메이션 시연
+        const loadingIcons = document.querySelectorAll('img[src*="loading"]');
+        loadingIcons.forEach(icon => {
+            icon.addEventListener('mouseenter', () => {
+                icon.style.animation = 'pulse 1.5s infinite';
+            });
+            icon.addEventListener('mouseleave', () => {
+                icon.style.animation = '';
+            });
+        });
+
+        // CSS 애니메이션 추가
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0.5; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

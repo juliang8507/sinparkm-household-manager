@@ -1,0 +1,297 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <defs>
+    <!-- Potato Character Icons -->
+    <symbol id="potato-success" viewBox="0 0 24 24" fill="none">
+      <title>기쁜 감자</title>
+      <!-- 감자 몸체 -->
+      <ellipse cx="12" cy="13" rx="7" ry="8" fill="currentColor" opacity="0.8" stroke="currentColor" stroke-width="1.5"/>
+      
+      <!-- 감자 표면 점들 -->
+      <circle cx="8" cy="10" r="0.8" fill="currentColor" opacity="0.3"/>
+      <circle cx="16" cy="11" r="0.6" fill="currentColor" opacity="0.3"/>
+      <circle cx="10" cy="18" r="0.7" fill="currentColor" opacity="0.3"/>
+      
+      <!-- 기쁜 눈 (반달 모양) -->
+      <path d="M8.5 10.5 Q9.5 9.5 10.5 10.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <path d="M13.5 10.5 Q14.5 9.5 15.5 10.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      
+      <!-- 큰 미소 -->
+      <path d="M9 14.5 Q12 17 15 14.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="potato-warning" viewBox="0 0 24 24" fill="none">
+      <title>걱정하는 감자</title>
+      <!-- 감자 몸체 -->
+      <ellipse cx="12" cy="13" rx="7" ry="8" fill="currentColor" opacity="0.8" stroke="currentColor" stroke-width="1.5"/>
+      
+      <!-- 감자 표면 점들 -->
+      <circle cx="8" cy="10" r="0.8" fill="currentColor" opacity="0.3"/>
+      <circle cx="16" cy="11" r="0.6" fill="currentColor" opacity="0.3"/>
+      <circle cx="10" cy="18" r="0.7" fill="currentColor" opacity="0.3"/>
+      
+      <!-- 걱정하는 눈썹 -->
+      <path d="M8 9 L10.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M16 9 L13.5 9.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      
+      <!-- 눈 -->
+      <circle cx="9.5" cy="11" r="1.2" fill="white"/>
+      <circle cx="14.5" cy="11" r="1.2" fill="white"/>
+      <circle cx="9.5" cy="11" r="0.6" fill="currentColor"/>
+      <circle cx="14.5" cy="11" r="0.6" fill="currentColor"/>
+      
+      <!-- 걱정스러운 입 -->
+      <path d="M10.5 15.5 Q12 14.5 13.5 15.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="potato-info" viewBox="0 0 24 24" fill="none">
+      <title>궁금한 감자</title>
+      <!-- 감자 몸체 -->
+      <ellipse cx="12" cy="13" rx="7" ry="8" fill="currentColor" opacity="0.8" stroke="currentColor" stroke-width="1.5"/>
+      
+      <!-- 감자 표면 점들 -->
+      <circle cx="8" cy="10" r="0.8" fill="currentColor" opacity="0.3"/>
+      <circle cx="16" cy="11" r="0.6" fill="currentColor" opacity="0.3"/>
+      <circle cx="10" cy="18" r="0.7" fill="currentColor" opacity="0.3"/>
+      
+      <!-- 관심있는 눈 -->
+      <circle cx="9.5" cy="10.5" r="1.2" fill="white"/>
+      <circle cx="14.5" cy="10.5" r="1.2" fill="white"/>
+      <circle cx="9.5" cy="10.5" r="0.7" fill="currentColor"/>
+      <circle cx="14.5" cy="10.5" r="0.7" fill="currentColor"/>
+      
+      <!-- 중립적인 입 -->
+      <path d="M10.5 15 Q12 15.5 13.5 15" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="potato-error" viewBox="0 0 24 24" fill="none">
+      <title>당황한 감자</title>
+      <!-- 감자 몸체 -->
+      <ellipse cx="12" cy="13" rx="7" ry="8" fill="currentColor" opacity="0.8" stroke="currentColor" stroke-width="1.5"/>
+      
+      <!-- 감자 표면 점들 -->
+      <circle cx="8" cy="10" r="0.8" fill="currentColor" opacity="0.3"/>
+      <circle cx="16" cy="11" r="0.6" fill="currentColor" opacity="0.3"/>
+      <circle cx="10" cy="18" r="0.7" fill="currentColor" opacity="0.3"/>
+      
+      <!-- 놀란 눈 (크게) -->
+      <circle cx="9.5" cy="10.5" r="1.5" fill="white" stroke="currentColor" stroke-width="0.5"/>
+      <circle cx="14.5" cy="10.5" r="1.5" fill="white" stroke="currentColor" stroke-width="0.5"/>
+      <circle cx="9.5" cy="10.5" r="0.8" fill="currentColor"/>
+      <circle cx="14.5" cy="10.5" r="0.8" fill="currentColor"/>
+      
+      <!-- 당황한 입 (타원형으로 벌어짐) -->
+      <ellipse cx="12" cy="15.5" rx="1.5" ry="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    </symbol>
+
+    <symbol id="potato-neutral" viewBox="0 0 24 24" fill="none">
+      <title>평범한 감자</title>
+      <!-- 감자 몸체 -->
+      <ellipse cx="12" cy="13" rx="7" ry="8" fill="currentColor" opacity="0.8" stroke="currentColor" stroke-width="1.5"/>
+      
+      <!-- 감자 표면 점들 -->
+      <circle cx="8" cy="10" r="0.8" fill="currentColor" opacity="0.3"/>
+      <circle cx="16" cy="11" r="0.6" fill="currentColor" opacity="0.3"/>
+      <circle cx="10" cy="18" r="0.7" fill="currentColor" opacity="0.3"/>
+      
+      <!-- 보통 눈 -->
+      <circle cx="9.5" cy="10.5" r="1" fill="white"/>
+      <circle cx="14.5" cy="10.5" r="1" fill="white"/>
+      <circle cx="9.5" cy="10.5" r="0.5" fill="currentColor"/>
+      <circle cx="14.5" cy="10.5" r="0.5" fill="currentColor"/>
+      
+      <!-- 중성적인 입 -->
+      <line x1="10.5" y1="15" x2="13.5" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="potato-loading" viewBox="0 0 24 24" fill="none">
+      <title>로딩중인 감자</title>
+      <!-- 감자 몸체 -->
+      <ellipse cx="12" cy="13" rx="7" ry="8" fill="currentColor" opacity="0.8" stroke="currentColor" stroke-width="1.5"/>
+      
+      <!-- 감자 표면 점들 -->
+      <circle cx="8" cy="10" r="0.8" fill="currentColor" opacity="0.3"/>
+      <circle cx="16" cy="11" r="0.6" fill="currentColor" opacity="0.3"/>
+      <circle cx="10" cy="18" r="0.7" fill="currentColor" opacity="0.3"/>
+      
+      <!-- 졸린 눈 -->
+      <path d="M8 10.5 L11 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M13 10.5 L16 10.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      
+      <!-- 작은 입 -->
+      <circle cx="12" cy="15" r="1" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    </symbol>
+
+    <!-- Rabbit Character Icons -->
+    <symbol id="rabbit-success" viewBox="0 0 24 24" fill="none">
+      <title>활기찬 토끼</title>
+      <!-- 토끼 귀 (위로 쫑긋) -->
+      <ellipse cx="9" cy="4.5" rx="1.5" ry="4" fill="currentColor" opacity="0.6" stroke="currentColor" stroke-width="1"/>
+      <ellipse cx="15" cy="4.5" rx="1.5" ry="4" fill="currentColor" opacity="0.6" stroke="currentColor" stroke-width="1"/>
+      <ellipse cx="9" cy="4.5" rx="0.8" ry="2.5" fill="currentColor" opacity="0.3"/>
+      <ellipse cx="15" cy="4.5" rx="0.8" ry="2.5" fill="currentColor" opacity="0.3"/>
+      
+      <!-- 토끼 얼굴 -->
+      <circle cx="12" cy="14" r="6.5" fill="currentColor" opacity="0.8" stroke="currentColor" stroke-width="1"/>
+      
+      <!-- 기쁜 눈 (반달 모양) -->
+      <path d="M8.5 11.5 Q9.5 10.5 10.5 11.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <path d="M13.5 11.5 Q14.5 10.5 15.5 11.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      
+      <!-- 코 -->
+      <path d="M12 14.5 L11.5 15.5 M12 14.5 L12.5 15.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      
+      <!-- 활짝 웃는 입 -->
+      <path d="M9.5 16 Q12 18.5 14.5 16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="rabbit-warning" viewBox="0 0 24 24" fill="none">
+      <title>조심스러운 토끼</title>
+      <!-- 토끼 귀 (약간 뒤로) -->
+      <ellipse cx="8.5" cy="5" rx="1.5" ry="4" fill="currentColor" opacity="0.6" stroke="currentColor" stroke-width="1" transform="rotate(-10 8.5 5)"/>
+      <ellipse cx="15.5" cy="5" rx="1.5" ry="4" fill="currentColor" opacity="0.6" stroke="currentColor" stroke-width="1" transform="rotate(10 15.5 5)"/>
+      <ellipse cx="8.5" cy="5" rx="0.8" ry="2.5" fill="currentColor" opacity="0.3" transform="rotate(-10 8.5 5)"/>
+      <ellipse cx="15.5" cy="5" rx="0.8" ry="2.5" fill="currentColor" opacity="0.3" transform="rotate(10 15.5 5)"/>
+      
+      <!-- 토끼 얼굴 -->
+      <circle cx="12" cy="14" r="6.5" fill="currentColor" opacity="0.8" stroke="currentColor" stroke-width="1"/>
+      
+      <!-- 걱정하는 눈썹 -->
+      <path d="M8 10.5 L10.5 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M16 10.5 L13.5 11" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      
+      <!-- 눈 -->
+      <circle cx="9.5" cy="12" r="1.2" fill="white"/>
+      <circle cx="14.5" cy="12" r="1.2" fill="white"/>
+      <circle cx="9.5" cy="12" r="0.6" fill="currentColor"/>
+      <circle cx="14.5" cy="12" r="0.6" fill="currentColor"/>
+      
+      <!-- 코 -->
+      <path d="M12 14.5 L11.5 15.5 M12 14.5 L12.5 15.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      
+      <!-- 걱정스러운 입 -->
+      <path d="M10.5 16.5 Q12 15.5 13.5 16.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="rabbit-info" viewBox="0 0 24 24" fill="none">
+      <title>호기심 많은 토끼</title>
+      <!-- 토끼 귀 (한쪽만 쫑긋) -->
+      <ellipse cx="9" cy="4.5" rx="1.5" ry="4" fill="currentColor" opacity="0.6" stroke="currentColor" stroke-width="1"/>
+      <ellipse cx="15" cy="5.5" rx="1.5" ry="4" fill="currentColor" opacity="0.6" stroke="currentColor" stroke-width="1" transform="rotate(20 15 5.5)"/>
+      <ellipse cx="9" cy="4.5" rx="0.8" ry="2.5" fill="currentColor" opacity="0.3"/>
+      <ellipse cx="15" cy="5.5" rx="0.8" ry="2.5" fill="currentColor" opacity="0.3" transform="rotate(20 15 5.5)"/>
+      
+      <!-- 토끼 얼굴 -->
+      <circle cx="12" cy="14" r="6.5" fill="currentColor" opacity="0.8" stroke="currentColor" stroke-width="1"/>
+      
+      <!-- 관심있는 눈 -->
+      <circle cx="9.5" cy="11.5" r="1.3" fill="white"/>
+      <circle cx="14.5" cy="11.5" r="1.3" fill="white"/>
+      <circle cx="9.5" cy="11.5" r="0.8" fill="currentColor"/>
+      <circle cx="14.5" cy="11.5" r="0.8" fill="currentColor"/>
+      
+      <!-- 코 -->
+      <path d="M12 14.5 L11.5 15.5 M12 14.5 L12.5 15.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      
+      <!-- 중립적인 입 -->
+      <path d="M10.5 16 Q12 16.5 13.5 16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="rabbit-error" viewBox="0 0 24 24" fill="none">
+      <title>놀란 토끼</title>
+      <!-- 토끼 귀 (뒤로 눕힘) -->
+      <ellipse cx="8" cy="7" rx="1.5" ry="4" fill="currentColor" opacity="0.6" stroke="currentColor" stroke-width="1" transform="rotate(-45 8 7)"/>
+      <ellipse cx="16" cy="7" rx="1.5" ry="4" fill="currentColor" opacity="0.6" stroke="currentColor" stroke-width="1" transform="rotate(45 16 7)"/>
+      <ellipse cx="8" cy="7" rx="0.8" ry="2.5" fill="currentColor" opacity="0.3" transform="rotate(-45 8 7)"/>
+      <ellipse cx="16" cy="7" rx="0.8" ry="2.5" fill="currentColor" opacity="0.3" transform="rotate(45 16 7)"/>
+      
+      <!-- 토끼 얼굴 -->
+      <circle cx="12" cy="14" r="6.5" fill="currentColor" opacity="0.8" stroke="currentColor" stroke-width="1"/>
+      
+      <!-- 놀란 눈 (크게) -->
+      <circle cx="9.5" cy="11.5" r="1.5" fill="white" stroke="currentColor" stroke-width="0.5"/>
+      <circle cx="14.5" cy="11.5" r="1.5" fill="white" stroke="currentColor" stroke-width="0.5"/>
+      <circle cx="9.5" cy="11.5" r="0.8" fill="currentColor"/>
+      <circle cx="14.5" cy="11.5" r="0.8" fill="currentColor"/>
+      
+      <!-- 코 -->
+      <path d="M12 14.5 L11.5 15.5 M12 14.5 L12.5 15.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      
+      <!-- 놀란 입 -->
+      <ellipse cx="12" cy="16.5" rx="1.2" ry="1.8" fill="none" stroke="currentColor" stroke-width="1.5"/>
+    </symbol>
+
+    <symbol id="rabbit-neutral" viewBox="0 0 24 24" fill="none">
+      <title>평범한 토끼</title>
+      <!-- 토끼 귀 (보통) -->
+      <ellipse cx="9.5" cy="5" rx="1.5" ry="4" fill="currentColor" opacity="0.6" stroke="currentColor" stroke-width="1"/>
+      <ellipse cx="14.5" cy="5" rx="1.5" ry="4" fill="currentColor" opacity="0.6" stroke="currentColor" stroke-width="1"/>
+      <ellipse cx="9.5" cy="5" rx="0.8" ry="2.5" fill="currentColor" opacity="0.3"/>
+      <ellipse cx="14.5" cy="5" rx="0.8" ry="2.5" fill="currentColor" opacity="0.3"/>
+      
+      <!-- 토끼 얼굴 -->
+      <circle cx="12" cy="14" r="6.5" fill="currentColor" opacity="0.8" stroke="currentColor" stroke-width="1"/>
+      
+      <!-- 보통 눈 -->
+      <circle cx="9.5" cy="11.5" r="1" fill="white"/>
+      <circle cx="14.5" cy="11.5" r="1" fill="white"/>
+      <circle cx="9.5" cy="11.5" r="0.5" fill="currentColor"/>
+      <circle cx="14.5" cy="11.5" r="0.5" fill="currentColor"/>
+      
+      <!-- 코 -->
+      <path d="M12 14.5 L11.5 15.5 M12 14.5 L12.5 15.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      
+      <!-- 중성적인 입 -->
+      <line x1="10.5" y1="16" x2="13.5" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="rabbit-loading" viewBox="0 0 24 24" fill="none">
+      <title>졸린 토끼</title>
+      <!-- 토끼 귀 (축 늘어짐) -->
+      <ellipse cx="9" cy="6" rx="1.5" ry="4" fill="currentColor" opacity="0.6" stroke="currentColor" stroke-width="1" transform="rotate(-20 9 6)"/>
+      <ellipse cx="15" cy="6" rx="1.5" ry="4" fill="currentColor" opacity="0.6" stroke="currentColor" stroke-width="1" transform="rotate(20 15 6)"/>
+      <ellipse cx="9" cy="6" rx="0.8" ry="2.5" fill="currentColor" opacity="0.3" transform="rotate(-20 9 6)"/>
+      <ellipse cx="15" cy="6" rx="0.8" ry="2.5" fill="currentColor" opacity="0.3" transform="rotate(20 15 6)"/>
+      
+      <!-- 토끼 얼굴 -->
+      <circle cx="12" cy="14" r="6.5" fill="currentColor" opacity="0.8" stroke="currentColor" stroke-width="1"/>
+      
+      <!-- 졸린 눈 -->
+      <path d="M8 11.5 L11 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M13 11.5 L16 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      
+      <!-- 코 -->
+      <path d="M12 14.5 L11.5 15.5 M12 14.5 L12.5 15.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+      
+      <!-- 작은 입 -->
+      <circle cx="12" cy="16" r="0.8" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    </symbol>
+
+    <!-- State Icons -->
+    <symbol id="empty-transactions" viewBox="0 0 48 48" fill="none">
+      <title>거래 내역 없음</title>
+      <!-- 빈 지갑 -->
+      <rect x="12" y="18" width="24" height="16" rx="2" fill="currentColor" opacity="0.1" stroke="currentColor" stroke-width="2"/>
+      <circle cx="30" cy="26" r="2" fill="currentColor" opacity="0.3"/>
+      <!-- 빈 상태 표시선 -->
+      <path d="M16 26 L32 26" stroke="currentColor" stroke-width="1" stroke-dasharray="2 2" opacity="0.5"/>
+    </symbol>
+
+    <symbol id="empty-meals" viewBox="0 0 48 48" fill="none">
+      <title>식사 계획 없음</title>
+      <!-- 빈 접시 -->
+      <ellipse cx="24" cy="28" rx="14" ry="8" fill="currentColor" opacity="0.1" stroke="currentColor" stroke-width="2"/>
+      <!-- 포크와 나이프 -->
+      <path d="M14 20 L14 16 M12 20 L12 16 M16 20 L16 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M34 16 L34 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M32 18 L36 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </symbol>
+
+    <symbol id="loading-state" viewBox="0 0 24 24" fill="none">
+      <title>로딩 중</title>
+      <!-- 회전하는 원 -->
+      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="14 6" stroke-linecap="round">
+        <animateTransform attributeName="transform" type="rotate" values="0 12 12;360 12 12" dur="1s" repeatCount="indefinite"/>
+      </circle>
+    </symbol>
+  </defs>
+</svg>

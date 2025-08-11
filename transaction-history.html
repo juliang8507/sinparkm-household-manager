@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1FC7D4">
+    <meta name="color-scheme" content="light dark">
+    <title>거래 내역 - 감자토끼 가계부</title>
+    <meta name="description" content="감자와 토끼 테마의 친근한 거래 내역 페이지">
+    
+    <!-- Performance Hints -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preload" href="icons.svg" as="image" type="image/svg+xml">
+    <link rel="preload" href="transaction-history.css" as="style">
+    <link rel="preload" href="transaction-history.js" as="script">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Comic+Neue:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Comic+Neue:wght@400;700&display=swap"></noscript>
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/accessibility.css">
+    <link rel="stylesheet" href="css/token-integration.css">
+    <link rel="stylesheet" href="css/icon-system.css">
+    <link rel="stylesheet" href="css/svg-sprite-animations.css">
+    <link rel="stylesheet" href="css/theme-switcher.css">
+    <link rel="stylesheet" href="transaction-history.css">
+</head>
+<body>
+    <!-- Skip to Content -->
+    <a href="#main-content" class="skip-to-content">메인 콘텐츠로 건너뛰기</a>
+    <!-- Header Section -->
+    <header class="page-header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="page-title">
+                    <span class="icon icon-sm title-icon">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#potato-neutral"></use>
+                        </svg>
+                    </span>
+                    거래 내역
+                    <span class="icon icon-sm title-icon">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#rabbit-neutral"></use>
+                        </svg>
+                    </span>
+                </h1>
+            </div>
+            
+            <!-- Filter Toggle Buttons -->
+            <div class="filter-section" role="group" aria-label="거래 필터">
+                <div class="filter-toggle-group">
+                    <button class="filter-button active btn btn-sm transition-button" data-filter="all" aria-pressed="true">
+                        <span class="icon icon-xs filter-icon">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#empty-transactions"></use>
+                            </svg>
+                        </span>
+                        전체
+                    </button>
+                    <button class="filter-button btn btn-sm transition-button" data-filter="income" aria-pressed="false">
+                        <span class="icon icon-xs filter-icon">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#rabbit-success"></use>
+                            </svg>
+                        </span>
+                        수입
+                    </button>
+                    <button class="filter-button btn btn-sm transition-button" data-filter="expense" aria-pressed="false">
+                        <span class="icon icon-xs filter-icon">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#potato-warning"></use>
+                            </svg>
+                        </span>
+                        지출
+                    </button>
+                </div>
+                
+                <!-- User Filter Buttons -->
+                <div class="user-filter-group">
+                    <button class="user-filter-button active btn btn-sm transition-button" data-user="all" aria-pressed="true">
+                        <span class="user-icon">👫</span>
+                        모두
+                    </button>
+                    <button class="user-filter-button btn btn-sm transition-button" data-user="husband" aria-pressed="false">
+                        <span class="user-icon">👨</span>
+                        남편
+                    </button>
+                    <button class="user-filter-button btn btn-sm transition-button" data-user="wife" aria-pressed="false">
+                        <span class="user-icon">👩</span>
+                        아내
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-content" role="main">
+        <div class="container">
+            <!-- Loading State (hidden by default) -->
+            <div class="loading-state" aria-hidden="true" id="loadingState">
+                <div class="loading-illustration">
+                    <div class="loading-characters">
+                        <span class="icon icon-lg loading-potato icon-loading">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#potato-loading"></use>
+                            </svg>
+                        </span>
+                        <span class="icon icon-lg loading-rabbit icon-loading">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#rabbit-loading"></use>
+                            </svg>
+                        </span>
+                    </div>
+                    <p class="loading-text">거래 내역을 불러오는 중...</p>
+                </div>
+            </div>
+
+            <!-- Empty State (hidden by default) -->
+            <div class="empty-state" aria-hidden="true" id="emptyState">
+                <div class="empty-state-illustration">
+                    <div class="empty-characters">
+                        <span class="icon icon-xl empty-potato">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#potato-info"></use>
+                            </svg>
+                        </span>
+                        <span class="icon icon-xl empty-rabbit">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#rabbit-info"></use>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <h2 class="empty-state-title">아직 거래 내역이 없어요!</h2>
+                <p class="empty-state-description">
+                    첫 번째 거래를 추가해서<br>
+                    감자토끼와 함께 가계부를 시작해보세요
+                </p>
+                <button class="add-transaction-button">
+                    <span class="icon icon-sm button-icon">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#rabbit-success"></use>
+                        </svg>
+                    </span>
+                    첫 거래 추가하기
+                </button>
+            </div>
+
+            <!-- Error State (hidden by default) -->
+            <div class="error-state" aria-hidden="true" id="errorState">
+                <div class="error-illustration">
+                    <div class="error-characters">
+                        <span class="icon icon-xl error-potato">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#potato-error"></use>
+                            </svg>
+                        </span>
+                        <span class="icon icon-xl error-rabbit">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#rabbit-error"></use>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <h2 class="error-state-title">앗! 문제가 생겼어요</h2>
+                <p class="error-state-description">
+                    거래 내역을 불러오는 중 오류가 발생했습니다<br>
+                    잠시 후 다시 시도해주세요
+                </p>
+                <button class="retry-button">
+                    <span class="icon icon-sm button-icon">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#rabbit-warning"></use>
+                        </svg>
+                    </span>
+                    다시 시도하기
+                </button>
+            </div>
+
+            <!-- Transaction List -->
+            <div class="transaction-list" id="transactionList">
+                <!-- Today's Transactions -->
+                <section class="date-group" aria-labelledby="today-header">
+                    <header class="date-group-header">
+                        <h2 class="date-group-title" id="today-header">오늘</h2>
+                        <div class="daily-total positive" aria-label="오늘 총 수입지출">
+                            +₩15,000
+                        </div>
+                    </header>
+                    
+                    <div class="transaction-items">
+                        <!-- Income Transaction -->
+                        <article class="transaction-card income" tabindex="0" role="button" aria-label="용돈 수입 50000원">
+                            <div class="transaction-icon income-icon" aria-hidden="true">
+                                <span class="icon icon-md icon-character">
+                                    <svg aria-hidden="true">
+                                        <use xlink:href="#rabbit-success"></use>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="transaction-details">
+                                <h3 class="transaction-description">용돈</h3>
+                                <p class="transaction-category">수입 • 기타</p>
+                            </div>
+                            <div class="transaction-amount-section">
+                                <div class="transaction-amount income">+₩50,000</div>
+                                <div class="transaction-time">오후 2:30</div>
+                            </div>
+                        </article>
+
+                        <!-- Expense Transaction -->
+                        <article class="transaction-card expense" tabindex="0" role="button" aria-label="점심 지출 15000원">
+                            <div class="transaction-icon expense-icon" aria-hidden="true">
+                                <span class="icon icon-md icon-character">
+                                    <svg aria-hidden="true">
+                                        <use xlink:href="#potato-neutral"></use>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="transaction-details">
+                                <h3 class="transaction-description">점심 식사</h3>
+                                <p class="transaction-category">지출 • 식비</p>
+                            </div>
+                            <div class="transaction-amount-section">
+                                <div class="transaction-amount expense">-₩15,000</div>
+                                <div class="transaction-time">오후 1:00</div>
+                            </div>
+                        </article>
+
+                        <!-- More Expense Transaction -->
+                        <article class="transaction-card expense" tabindex="0" role="button" aria-label="커피 지출 5500원">
+                            <div class="transaction-icon expense-icon" aria-hidden="true">
+                                <span class="icon icon-md icon-character">
+                                    <svg aria-hidden="true">
+                                        <use xlink:href="#potato-neutral"></use>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="transaction-details">
+                                <h3 class="transaction-description">아메리카노</h3>
+                                <p class="transaction-category">지출 • 카페</p>
+                            </div>
+                            <div class="transaction-amount-section">
+                                <div class="transaction-amount expense">-₩5,500</div>
+                                <div class="transaction-time">오전 10:30</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Yesterday's Transactions -->
+                <section class="date-group" aria-labelledby="yesterday-header">
+                    <header class="date-group-header">
+                        <h2 class="date-group-title" id="yesterday-header">어제</h2>
+                        <div class="daily-total negative" aria-label="어제 총 수입지출">
+                            -₩45,000
+                        </div>
+                    </header>
+                    
+                    <div class="transaction-items">
+                        <!-- Expense Transaction -->
+                        <article class="transaction-card expense" tabindex="0" role="button" aria-label="마트 지출 32000원">
+                            <div class="transaction-icon expense-icon" aria-hidden="true">
+                                <span class="icon icon-md icon-character">
+                                    <svg aria-hidden="true">
+                                        <use xlink:href="#potato-neutral"></use>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="transaction-details">
+                                <h3 class="transaction-description">생필품 구매</h3>
+                                <p class="transaction-category">지출 • 생활용품</p>
+                            </div>
+                            <div class="transaction-amount-section">
+                                <div class="transaction-amount expense">-₩32,000</div>
+                                <div class="transaction-time">오후 7:20</div>
+                            </div>
+                        </article>
+
+                        <!-- Transportation Expense -->
+                        <article class="transaction-card expense" tabindex="0" role="button" aria-label="지하철 지출 1300원">
+                            <div class="transaction-icon expense-icon" aria-hidden="true">
+                                <span class="icon icon-md icon-character">
+                                    <svg aria-hidden="true">
+                                        <use xlink:href="#potato-neutral"></use>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="transaction-details">
+                                <h3 class="transaction-description">지하철</h3>
+                                <p class="transaction-category">지출 • 교통비</p>
+                            </div>
+                            <div class="transaction-amount-section">
+                                <div class="transaction-amount expense">-₩1,300</div>
+                                <div class="transaction-time">오전 9:00</div>
+                            </div>
+                        </article>
+
+                        <!-- Dinner Expense -->
+                        <article class="transaction-card expense" tabindex="0" role="button" aria-label="저녁 지출 12000원">
+                            <div class="transaction-icon expense-icon" aria-hidden="true">
+                                <span class="icon icon-md icon-character">
+                                    <svg aria-hidden="true">
+                                        <use xlink:href="#potato-neutral"></use>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="transaction-details">
+                                <h3 class="transaction-description">치킨</h3>
+                                <p class="transaction-category">지출 • 배달음식</p>
+                            </div>
+                            <div class="transaction-amount-section">
+                                <div class="transaction-amount expense">-₩12,000</div>
+                                <div class="transaction-time">오후 8:30</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Older Date Group -->
+                <section class="date-group" aria-labelledby="december15-header">
+                    <header class="date-group-header">
+                        <h2 class="date-group-title" id="december15-header">12월 15일 (일)</h2>
+                        <div class="daily-total positive" aria-label="12월 15일 총 수입지출">
+                            +₩180,000
+                        </div>
+                    </header>
+                    
+                    <div class="transaction-items">
+                        <!-- Large Income -->
+                        <article class="transaction-card income" tabindex="0" role="button" aria-label="급여 수입 200000원">
+                            <div class="transaction-icon income-icon" aria-hidden="true">
+                                <span class="icon icon-md icon-character">
+                                    <svg aria-hidden="true">
+                                        <use xlink:href="#rabbit-success"></use>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="transaction-details">
+                                <h3 class="transaction-description">프리랜서 급여</h3>
+                                <p class="transaction-category">수입 • 급여</p>
+                            </div>
+                            <div class="transaction-amount-section">
+                                <div class="transaction-amount income">+₩200,000</div>
+                                <div class="transaction-time">오전 11:00</div>
+                            </div>
+                        </article>
+
+                        <!-- Bills Expense -->
+                        <article class="transaction-card expense" tabindex="0" role="button" aria-label="전기요금 지출 20000원">
+                            <div class="transaction-icon expense-icon" aria-hidden="true">
+                                <span class="icon icon-md icon-character">
+                                    <svg aria-hidden="true">
+                                        <use xlink:href="#potato-neutral"></use>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="transaction-details">
+                                <h3 class="transaction-description">전기요금</h3>
+                                <p class="transaction-category">지출 • 공과금</p>
+                            </div>
+                            <div class="transaction-amount-section">
+                                <div class="transaction-amount expense">-₩20,000</div>
+                                <div class="transaction-time">오전 10:00</div>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="load-more-section">
+                <button class="load-more-button">
+                    <span class="icon icon-sm button-icon">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#empty-transactions"></use>
+                        </svg>
+                    </span>
+                    더 많은 거래 내역 보기
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Floating Action Button -->
+    <button class="floating-add-button" aria-label="새 거래 추가" title="새 거래 추가">
+        <span class="icon icon-sm fab-icon">
+            <svg aria-hidden="true">
+                <use xlink:href="#rabbit-success"></use>
+            </svg>
+        </span>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="js/icon-helpers.js"></script>
+    <script src="js/sprite-animation-helpers.js"></script>
+    <script src="js/theme-switcher.js"></script>
+    <script src="transaction-history.js"></script>
+    
+    <!-- PWA Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('✅ SW registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.log('❌ SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+</body>
+</html>

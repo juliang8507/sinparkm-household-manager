@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1FC7D4">
+    <meta name="color-scheme" content="light dark">
+    <title>거래 등록 - 감자토끼 가계부</title>
+    <meta name="description" content="감자와 토끼 테마의 친근한 거래 등록 페이지">
+    
+    <!-- Performance Hints -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preload" href="icons.svg" as="image" type="image/svg+xml">
+    <link rel="preload" href="transaction-form.css" as="style">
+    <link rel="preload" href="transaction-form.js" as="script">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Comic+Neue:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Comic+Neue:wght@400;700&display=swap"></noscript>
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/accessibility.css">
+    <link rel="stylesheet" href="css/token-integration.css">
+    <link rel="stylesheet" href="css/icon-system.css">
+    <link rel="stylesheet" href="css/svg-sprite-animations.css">
+    <link rel="stylesheet" href="css/theme-switcher.css">
+    <link rel="stylesheet" href="transaction-form.css">
+</head>
+<body>
+    <!-- Skip to Content -->
+    <a href="#main-content" class="skip-to-content">메인 콘텐츠로 건너뛰기</a>
+    <!-- Navigation Header -->
+    <header class="page-header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <button class="back-button" aria-label="뒤로 가기" title="뒤로 가기">
+                    <span class="icon icon-sm back-icon">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#rabbit-neutral"></use>
+                        </svg>
+                    </span>
+                </button>
+                
+                <h1 class="page-title">
+                    <span class="icon icon-sm title-icon">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#potato-neutral"></use>
+                        </svg>
+                    </span>
+                    거래 등록
+                </h1>
+            </div>
+            
+            <!-- User Toggle -->
+            <div class="user-toggle" role="group" aria-label="사용자 선택">
+                <button class="toggle-button active btn btn-sm transition-button" data-user="husband" aria-pressed="true">
+                    <span class="user-icon">👨</span>
+                    <span class="user-label">남편</span>
+                </button>
+                <button class="toggle-button btn btn-sm transition-button" data-user="wife" aria-pressed="false">
+                    <span class="user-icon">👩</span>
+                    <span class="user-label">아내</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-content" role="main">
+        <div class="container">
+            <form class="transaction-form" id="transactionForm" novalidate>
+                
+                <!-- Character Section -->
+                <section class="character-section" aria-label="캐릭터 안내">
+                    <div class="character-container">
+                        <div class="character neutral" id="formCharacter">
+                            <span class="icon icon-2xl character-icon">
+                                <svg aria-hidden="true">
+                                    <use xlink:href="#potato-neutral"></use>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="speech-bubble" id="speechBubble">
+                            <span class="bubble-text">어떤 거래를 추가할까요?</span>
+                            <div class="bubble-tail"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Transaction Type Toggle -->
+                <section class="transaction-toggle-section">
+                    <h2 class="visually-hidden">거래 유형 선택</h2>
+                    <div class="transaction-toggle" role="group" aria-label="수입 또는 지출 선택">
+                        <button type="button" class="toggle-option expense active btn btn-md transition-button" data-type="expense" aria-pressed="true">
+                            <span class="icon icon-md toggle-icon character-icon">
+                                <svg aria-hidden="true">
+                                    <use xlink:href="#potato-warning"></use>
+                                </svg>
+                            </span>
+                            <span class="toggle-label">지출</span>
+                        </button>
+                        <button type="button" class="toggle-option income btn btn-md transition-button" data-type="income" aria-pressed="false">
+                            <span class="icon icon-md toggle-icon character-icon">
+                                <svg aria-hidden="true">
+                                    <use xlink:href="#rabbit-success"></use>
+                                </svg>
+                            </span>
+                            <span class="toggle-label">수입</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Amount Input Section -->
+                <section class="amount-section">
+                    <h2 class="section-title visually-hidden">금액 입력</h2>
+                    <div class="amount-container">
+                        <label class="currency-symbol" for="amountInput" aria-label="원">₩</label>
+                        <input 
+                            type="number" 
+                            id="amountInput" 
+                            class="amount-input input" 
+                            placeholder="0" 
+                            min="0" 
+                            max="999999999"
+                            step="1"
+                            aria-label="거래 금액"
+                            aria-describedby="amountError"
+                            aria-required="true"
+                            autocomplete="off"
+                        >
+                        <div class="amount-underline expense"></div>
+                    </div>
+                    <div class="error-message" id="amountError" role="alert" aria-live="polite"></div>
+                </section>
+
+                <!-- Category Selection -->
+                <section class="category-section">
+                    <h2 class="section-title">카테고리 선택</h2>
+                    <div class="category-grid" role="group" aria-label="카테고리 선택" aria-describedby="categoryError">
+                        <!-- Expense Categories -->
+                        <div class="category-group expense-categories">
+                            <button type="button" class="category-item" data-category="food" aria-pressed="false">
+                                <span class="category-icon">🍽️</span>
+                                <span class="category-label">식비</span>
+                            </button>
+                            <button type="button" class="category-item" data-category="transport" aria-pressed="false">
+                                <span class="category-icon">🚗</span>
+                                <span class="category-label">교통</span>
+                            </button>
+                            <button type="button" class="category-item" data-category="shopping" aria-pressed="false">
+                                <span class="category-icon">🛒</span>
+                                <span class="category-label">쇼핑</span>
+                            </button>
+                            <button type="button" class="category-item" data-category="bills" aria-pressed="false">
+                                <span class="category-icon">📄</span>
+                                <span class="category-label">공과금</span>
+                            </button>
+                            <button type="button" class="category-item" data-category="entertainment" aria-pressed="false">
+                                <span class="category-icon">🎪</span>
+                                <span class="category-label">오락</span>
+                            </button>
+                            <button type="button" class="category-item" data-category="healthcare" aria-pressed="false">
+                                <span class="category-icon">🏥</span>
+                                <span class="category-label">의료</span>
+                            </button>
+                            <button type="button" class="category-item" data-category="education" aria-pressed="false">
+                                <span class="category-icon">📚</span>
+                                <span class="category-label">교육</span>
+                            </button>
+                            <button type="button" class="category-item" data-category="other-expense" aria-pressed="false">
+                                <span class="category-icon">🏷️</span>
+                                <span class="category-label">기타</span>
+                            </button>
+                        </div>
+
+                        <!-- Income Categories (hidden by default) -->
+                        <div class="category-group income-categories" hidden>
+                            <button type="button" class="category-item" data-category="salary" aria-pressed="false">
+                                <span class="category-icon">💼</span>
+                                <span class="category-label">급여</span>
+                            </button>
+                            <button type="button" class="category-item" data-category="freelance" aria-pressed="false">
+                                <span class="category-icon">💻</span>
+                                <span class="category-label">부업</span>
+                            </button>
+                            <button type="button" class="category-item" data-category="investment" aria-pressed="false">
+                                <span class="category-icon">📈</span>
+                                <span class="category-label">투자</span>
+                            </button>
+                            <button type="button" class="category-item" data-category="gift" aria-pressed="false">
+                                <span class="category-icon">🎁</span>
+                                <span class="category-label">용돈</span>
+                            </button>
+                            <button type="button" class="category-item" data-category="refund" aria-pressed="false">
+                                <span class="category-icon">💰</span>
+                                <span class="category-label">환급</span>
+                            </button>
+                            <button type="button" class="category-item" data-category="bonus" aria-pressed="false">
+                                <span class="category-icon">🎊</span>
+                                <span class="category-label">보너스</span>
+                            </button>
+                            <button type="button" class="category-item" data-category="other-income" aria-pressed="false">
+                                <span class="category-icon">💸</span>
+                                <span class="category-label">기타</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="error-message" id="categoryError" role="alert" aria-live="polite"></div>
+                </section>
+
+                <!-- Date Selection -->
+                <section class="date-section">
+                    <h2 class="section-title">날짜 선택</h2>
+                    <div class="date-input-wrapper">
+                        <input 
+                            type="date" 
+                            id="dateInput" 
+                            class="date-input" 
+                            aria-label="거래 날짜"
+                            aria-describedby="dateError"
+                            aria-required="true"
+                        >
+                        <span class="icon icon-sm calendar-icon" aria-hidden="true">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#rabbit-info"></use>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="error-message" id="dateError" role="alert" aria-live="polite"></div>
+                </section>
+
+                <!-- Description Input -->
+                <section class="description-section">
+                    <h2 class="section-title">상세 내용 (선택사항)</h2>
+                    <div class="description-wrapper">
+                        <textarea 
+                            id="descriptionInput" 
+                            class="description-input" 
+                            placeholder="거래에 대한 메모를 남겨보세요 (예: 점심 식사, 마트 장보기)"
+                            maxlength="200"
+                            rows="3"
+                            aria-label="거래 상세 내용"
+                            aria-describedby="descriptionCounter"
+                        ></textarea>
+                        <div class="character-counter">
+                            <span id="descriptionCounter">0/200</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Action Buttons -->
+                <section class="action-section">
+                    <div class="button-group">
+                        <button type="button" class="secondary-button btn btn-secondary btn-md" id="cancelButton">
+                            <span class="icon icon-sm button-icon">
+                                <svg aria-hidden="true">
+                                    <use xlink:href="#potato-error"></use>
+                                </svg>
+                            </span>
+                            <span class="button-text">취소</span>
+                        </button>
+                        
+                        <button type="submit" class="save-button btn btn-primary btn-md" id="saveButton">
+                            <span class="icon icon-sm button-icon">
+                                <svg aria-hidden="true">
+                                    <use xlink:href="#rabbit-success"></use>
+                                </svg>
+                            </span>
+                            <span class="button-text">저장하기</span>
+                        </button>
+                    </div>
+                </section>
+
+            </form>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div class="modal-overlay" id="successModal" role="dialog" aria-labelledby="successTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="success-animation">
+                <span class="icon icon-xl success-character">
+                    <svg aria-hidden="true">
+                        <use xlink:href="#potato-success"></use>
+                    </svg>
+                </span>
+                <span class="icon icon-xl success-character">
+                    <svg aria-hidden="true">
+                        <use xlink:href="#rabbit-success"></use>
+                    </svg>
+                </span>
+            </div>
+            <h2 class="success-title" id="successTitle">거래가 저장되었어요!</h2>
+            <p class="success-message">감자토끼 가계부에 성공적으로 추가되었습니다</p>
+            <div class="success-actions">
+                <button class="success-button primary" id="continueButton">
+                    <span class="icon icon-sm button-icon">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#rabbit-success"></use>
+                        </svg>
+                    </span>
+                    계속 등록하기
+                </button>
+                <button class="success-button secondary" id="viewButton">
+                    <span class="icon icon-sm button-icon">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#potato-info"></use>
+                        </svg>
+                    </span>
+                    내역 보기
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Toast -->
+    <div class="toast error-toast" id="errorToast" role="alert" aria-live="assertive" aria-hidden="true">
+        <div class="toast-content">
+            <span class="icon icon-sm toast-icon">
+                <svg aria-hidden="true">
+                    <use xlink:href="#potato-error"></use>
+                </svg>
+            </span>
+            <span class="toast-message" id="errorToastMessage">오류가 발생했습니다</span>
+        </div>
+        <button class="toast-close" aria-label="토스트 닫기">✕</button>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay" aria-hidden="true">
+        <div class="loading-spinner">
+            <span class="icon icon-md spinner-character icon-loading">
+                <svg aria-hidden="true">
+                    <use xlink:href="#potato-loading"></use>
+                </svg>
+            </span>
+            <span class="icon icon-md spinner-character icon-loading">
+                <svg aria-hidden="true">
+                    <use xlink:href="#rabbit-loading"></use>
+                </svg>
+            </span>
+        </div>
+        <p class="loading-text">거래를 저장하고 있어요...</p>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/icon-helpers.js"></script>
+    <script src="js/sprite-animation-helpers.js"></script>
+    <script src="js/theme-switcher.js"></script>
+    <script src="transaction-form.js"></script>
+    
+    <!-- PWA Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('✅ SW registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.log('❌ SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+</body>
+</html>

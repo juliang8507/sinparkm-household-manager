@@ -1,0 +1,257 @@
+{
+  "metadata": {
+    "auditDate": "2025-08-11T07:06:00.000Z",
+    "version": "1.0",
+    "auditor": "Claude Layout Auditor",
+    "projectName": "감자토끼 가계부 (Potato Rabbit Household Budget)"
+  },
+  "summary": {
+    "totalIssues": 8,
+    "critical": 2,
+    "high": 3,
+    "medium": 2,
+    "low": 1,
+    "overallScore": 72
+  },
+  "detectedIssues": [
+    {
+      "id": "CRITICAL-001",
+      "priority": "CRITICAL",
+      "category": "Safe Area Violation",
+      "title": "Bottom Navigation Content Collision",
+      "description": "Content in .recent-transactions section collides with fixed bottom navigation on mobile devices",
+      "location": {
+        "file": "index.html",
+        "elements": [".recent-transactions", ".bottom-navigation"],
+        "lines": ["241-345", "347-383"]
+      },
+      "impact": "High - Content becomes inaccessible on mobile devices, especially with notched screens",
+      "evidence": {
+        "bottomNavTop": 656,
+        "lastContentBottom": 1258,
+        "collision": true
+      },
+      "recommendation": {
+        "fix": "Add safe area padding to bottom of main content and implement proper content spacing",
+        "code": ".main-content { padding-bottom: calc(64px + var(--mobile-safe-area-bottom, 0px) + var(--spacing-lg)); }",
+        "files": ["index.css", "css/accessibility.css"]
+      }
+    },
+    {
+      "id": "CRITICAL-002", 
+      "priority": "CRITICAL",
+      "category": "Viewport Height Issues",
+      "title": "Use of 100vh instead of 100dvh",
+      "description": "Multiple CSS files use 100vh which causes issues on mobile browsers with dynamic viewports",
+      "location": {
+        "file": "transaction-form.css",
+        "lines": ["27", "188"]
+      },
+      "impact": "High - Layout breaks on mobile browsers with address bar collapse/expand",
+      "recommendation": {
+        "fix": "Replace all instances of 100vh with 100dvh for dynamic viewport support",
+        "code": "body { min-height: 100dvh; /* instead of 100vh */ }",
+        "files": ["transaction-form.css", "meal-planning.css"]
+      }
+    },
+    {
+      "id": "HIGH-001",
+      "priority": "HIGH", 
+      "category": "Fixed Pixel Widths",
+      "title": "Hardcoded Pixel Widths in Components",
+      "description": "Several elements use fixed pixel widths that may break responsive design",
+      "location": {
+        "elements": [
+          { "element": "SPAN.icon", "width": "24px" },
+          { "element": "svg", "width": "24px" },
+          { "element": "H1.app-title", "width": "223.484px" },
+          { "element": "A.skip-to-content", "width": "186.094px" }
+        ]
+      },
+      "impact": "Medium - May cause layout issues on smaller screens or different zoom levels",
+      "recommendation": {
+        "fix": "Use relative units (rem, em) or CSS custom properties for better scalability",
+        "code": ".icon { width: 1.5rem; height: 1.5rem; } /* instead of 24px */",
+        "files": ["css/icon-system.css", "index.css"]
+      }
+    },
+    {
+      "id": "HIGH-002",
+      "priority": "HIGH",
+      "category": "Z-Index Stacking",
+      "title": "Potential Z-Index Conflicts", 
+      "description": "Multiple elements use overlapping z-index values which could cause stacking issues",
+      "location": {
+        "elements": [
+          { "element": "A.skip-to-content", "zIndex": 9999 },
+          { "element": "DIV.theme-dropdown", "zIndex": 1000 },
+          { "element": "HEADER.app-header", "zIndex": 20 },
+          { "element": "NAV.bottom-navigation", "zIndex": 20 }
+        ]
+      },
+      "impact": "Medium - UI elements may overlap incorrectly",
+      "recommendation": {
+        "fix": "Implement a consistent z-index scale using CSS custom properties",
+        "code": ":root { --z-overlay: 1000; --z-modal: 2000; --z-tooltip: 3000; --z-skip-link: 10000; }",
+        "files": ["css/tokens.css"]
+      }
+    },
+    {
+      "id": "HIGH-003",
+      "priority": "HIGH",
+      "category": "Performance - CLS Risk",
+      "title": "Layout Shift Triggers Detected",
+      "description": "Elements with dynamic loading states and animations may cause Cumulative Layout Shift",
+      "location": {
+        "elements": [".loading-characters", ".character-emoji", ".progress-fill"]
+      },
+      "impact": "High - Poor Core Web Vitals score, bad user experience",
+      "recommendation": {
+        "fix": "Reserve space for dynamic content and use transform-based animations",
+        "code": ".loading-characters { min-height: 80px; } .character-emoji { will-change: transform; }",
+        "files": ["index.css", "meal-planning.css", "css/accessibility.css"]
+      }
+    },
+    {
+      "id": "MEDIUM-001",
+      "priority": "MEDIUM",
+      "category": "Touch Target Sizes",
+      "title": "Inconsistent Touch Target Implementation",
+      "description": "While mobile tap target size is defined, not all interactive elements consistently apply it",
+      "location": {
+        "file": "css/accessibility.css",
+        "lines": ["100-113"]
+      },
+      "impact": "Medium - Accessibility and usability issues on touch devices",
+      "recommendation": {
+        "fix": "Audit all interactive elements to ensure consistent touch target sizing",
+        "code": "All interactive elements should have min-height: var(--mobile-tap-target-size);",
+        "files": ["All CSS files"]
+      }
+    },
+    {
+      "id": "MEDIUM-002",
+      "priority": "MEDIUM", 
+      "category": "Font Loading",
+      "title": "Font Loading May Cause Layout Shift",
+      "description": "External Google Fonts loading may cause FOUT (Flash of Unstyled Text)",
+      "location": {
+        "file": "index.html",
+        "lines": ["18-22"]
+      },
+      "impact": "Medium - Potential layout shifts during font loading",
+      "recommendation": {
+        "fix": "Implement font-display: swap and consider using font loading API",
+        "code": "@font-face { font-display: swap; } or use font-display=swap in Google Fonts URL",
+        "files": ["index.html", "css/tokens.css"]
+      }
+    },
+    {
+      "id": "LOW-001",
+      "priority": "LOW",
+      "category": "Container Queries", 
+      "title": "Missing Container Query Support",
+      "description": "Layout relies solely on viewport media queries, missing container-based responsive design",
+      "location": {
+        "files": ["All CSS files"]
+      },
+      "impact": "Low - Missed opportunity for more robust responsive design",
+      "recommendation": {
+        "fix": "Consider implementing container queries for component-level responsiveness",
+        "code": "@container (max-width: 400px) { .card { padding: 0.5rem; } }",
+        "files": ["Future enhancement"]
+      }
+    }
+  ],
+  "responsive_breakpoints": {
+    "mobile": {
+      "width": "375px",
+      "status": "⚠️ Issues Detected",
+      "issues": [
+        "Safe area collision with bottom navigation",
+        "Content scrolls behind fixed navigation"
+      ]
+    },
+    "tablet": {
+      "width": "768px", 
+      "status": "✅ Good",
+      "issues": []
+    },
+    "desktop": {
+      "width": "1024px",
+      "status": "✅ Good", 
+      "issues": []
+    },
+    "large_desktop": {
+      "width": "1920px",
+      "status": "✅ Good",
+      "issues": []
+    }
+  },
+  "core_web_vitals": {
+    "notes": "Performance monitoring is implemented in index.html with proper budgets",
+    "budgets": {
+      "css_critical": "15KB",
+      "css_total": "60KB",
+      "lcp": "2500ms",
+      "cls": "0.1",
+      "fid": "100ms",
+      "fcp": "1500ms"
+    }
+  },
+  "accessibility_score": {
+    "overall": 85,
+    "strengths": [
+      "Skip to content link implemented",
+      "Semantic HTML structure",
+      "ARIA labels and landmarks present", 
+      "Focus management implemented",
+      "Reduced motion preferences respected",
+      "High contrast mode support"
+    ],
+    "improvements": [
+      "Touch target consistency",
+      "Safe area handling",
+      "Dynamic viewport support"
+    ]
+  },
+  "recommendations": {
+    "immediate": [
+      "Fix safe area collision with bottom navigation",
+      "Replace 100vh with 100dvh",
+      "Implement consistent z-index scale"
+    ],
+    "short_term": [
+      "Audit and fix fixed pixel widths", 
+      "Implement CLS prevention measures",
+      "Improve font loading strategy"
+    ],
+    "long_term": [
+      "Consider container query implementation",
+      "Implement more advanced performance monitoring",
+      "Consider implementing CSS subgrid for complex layouts"
+    ]
+  },
+  "files_analyzed": [
+    "index.html",
+    "index.css", 
+    "css/tokens.css",
+    "css/accessibility.css",
+    "css/theme-switcher.css",
+    "css/token-integration.css",
+    "transaction-form.css",
+    "meal-planning.css"
+  ],
+  "testing_methodology": {
+    "tools": "Playwright for visual testing and DOM analysis",
+    "viewports": ["375x667", "768x1024", "1024x768", "1920x1080"],
+    "checks": [
+      "Horizontal scrolling detection",
+      "Fixed width element identification", 
+      "Z-index conflict analysis",
+      "Safe area compliance",
+      "Touch target verification",
+      "Core Web Vitals assessment"
+    ]
+  }
+}

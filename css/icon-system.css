@@ -1,0 +1,552 @@
+/* 감자·토끼 가계부 - SVG Icon System */
+/* Integrated with Animation Token System */
+
+/* === SVG SPRITE PRELOAD === */
+/* Preload the icon sprite for better performance */
+@supports (display: block) {
+  html::before {
+    content: '';
+    display: none;
+    /* This ensures the sprite is loaded early */
+    background-image: url('../icons.svg');
+  }
+}
+
+/* === BASE ICON SYSTEM === */
+
+/* Icon container base styles */
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  fill: currentColor;
+  color: inherit;
+  /* Performance optimizations */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  /* Layout stability with aspect ratio */
+  aspect-ratio: var(--image-aspect-square);
+}
+
+/* Icon SVG element */
+.icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  fill: inherit;
+  color: inherit;
+  /* Ensure proper scaling */
+  object-fit: var(--image-fit-contain);
+  object-position: var(--image-position-center);
+}
+
+/* === ICON SIZES === */
+
+/* Extra small icons - 12px */
+.icon-xs {
+  width: 0.75rem;
+  height: 0.75rem;
+  aspect-ratio: var(--image-aspect-square);
+}
+
+/* Small icons - 16px */
+.icon-sm {
+  width: 1rem;
+  height: 1rem;
+  aspect-ratio: var(--image-aspect-square);
+}
+
+/* Medium icons - 24px (default) */
+.icon-md,
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  aspect-ratio: var(--image-aspect-square);
+}
+
+/* Large icons - 32px */
+.icon-lg {
+  width: 2rem;
+  height: 2rem;
+  aspect-ratio: var(--image-aspect-square);
+}
+
+/* Extra large icons - 48px */
+.icon-xl {
+  width: 3rem;
+  height: 3rem;
+}
+
+/* 2X large icons - 64px */
+.icon-2xl {
+  width: 4rem;
+  height: 4rem;
+}
+
+/* 3X large icons - 96px */
+.icon-3xl {
+  width: 6rem;
+  height: 6rem;
+}
+
+/* === CHARACTER ICON COLORS === */
+
+/* Potato character colors */
+.icon-potato {
+  color: var(--color-potato, #DEB887);
+}
+
+.icon-potato.success {
+  color: var(--color-success);
+}
+
+.icon-potato.warning {
+  color: var(--color-warning);
+}
+
+.icon-potato.error {
+  color: var(--color-error);
+}
+
+.icon-potato.info {
+  color: var(--color-primary);
+}
+
+/* Rabbit character colors */
+.icon-rabbit {
+  color: var(--color-rabbit, #F8F8FF);
+}
+
+.icon-rabbit.success {
+  color: var(--color-success);
+}
+
+.icon-rabbit.warning {
+  color: var(--color-warning);
+}
+
+.icon-rabbit.error {
+  color: var(--color-error);
+}
+
+.icon-rabbit.info {
+  color: var(--color-primary);
+}
+
+/* === REACTION ANIMATION UTILITIES === */
+
+/* Success reaction - bouncy happiness */
+.react-success {
+  animation: success-bounce var(--reaction-success-duration) var(--reaction-success-ease);
+  color: var(--color-success);
+  filter: drop-shadow(0 var(--icon-dropdown-shadow) var(--border-width-heavy) var(--color-hardcoded-income-shadow));
+}
+
+/* Warning reaction - gentle shake */
+.react-warning {
+  animation: warning-shake var(--reaction-warning-duration) var(--reaction-warning-ease);
+  color: var(--color-warning);
+  filter: drop-shadow(0 var(--icon-dropdown-shadow) var(--border-width-heavy) var(--color-hardcoded-warning-shadow));
+}
+
+/* Info reaction - soft pulse */
+.react-info {
+  animation: info-pulse var(--reaction-info-duration) var(--reaction-info-ease) var(--reaction-info-iterations);
+  color: var(--color-primary);
+  filter: drop-shadow(0 var(--icon-dropdown-shadow) var(--border-width-heavy) var(--color-hardcoded-primary-shadow));
+}
+
+/* Error reaction - attention shake */
+.react-error {
+  animation: error-shake var(--reaction-error-duration) var(--reaction-error-ease);
+  color: var(--color-error);
+  filter: drop-shadow(0 var(--icon-dropdown-shadow) var(--border-width-heavy) var(--color-hardcoded-error-shadow));
+}
+
+/* === CHARACTER SPECIFIC ANIMATIONS === */
+
+/* Potato character animations */
+.animate-potato-bounce {
+  animation: potato-gentle-bounce var(--dur-lg) var(--ease-potato) infinite;
+}
+
+.animate-potato-wiggle {
+  animation: potato-happy-wiggle var(--dur-md) var(--ease-bouncy);
+}
+
+/* Rabbit character animations */
+.animate-rabbit-hop {
+  animation: rabbit-quick-hop var(--dur-md) var(--ease-rabbit);
+}
+
+.animate-rabbit-twitch {
+  animation: rabbit-ear-twitch var(--dur-xs) var(--ease-sharp) 3;
+}
+
+/* === INTERACTIVE STATES === */
+
+/* Hover effects for clickable icons */
+.icon-interactive {
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.icon-interactive:hover {
+  transform: scale(var(--btn-hover-scale));
+  filter: brightness(1.1);
+}
+
+.icon-interactive:active {
+  transform: scale(var(--btn-active-scale));
+}
+
+.icon-interactive:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* === LOADING STATES === */
+
+/* Spinning loader animation */
+.icon-loading {
+  animation: spin var(--dur-xl) linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Pulsing loader animation */
+.icon-loading-pulse {
+  animation: loading-pulse var(--dur-lg) var(--ease-smooth) infinite;
+}
+
+@keyframes loading-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+}
+
+/* === CONTEXTUAL ICON UTILITIES === */
+
+/* Success context */
+.context-success .icon {
+  color: var(--color-success);
+}
+
+/* Warning context */
+.context-warning .icon {
+  color: var(--color-warning);
+}
+
+/* Error context */
+.context-error .icon {
+  color: var(--color-error);
+}
+
+/* Info context */
+.context-info .icon {
+  color: var(--color-primary);
+}
+
+/* === ICON BADGE SYSTEM === */
+
+/* Icon with badge container */
+.icon-with-badge {
+  position: relative;
+  display: inline-block;
+}
+
+/* Badge positioning */
+.icon-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  background: var(--color-error);
+  color: white;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  line-height: 16px;
+  text-align: center;
+  border: 2px solid var(--color-background-paper);
+  z-index: 1;
+}
+
+/* === ACCESSIBILITY ENHANCEMENTS === */
+
+/* High contrast theme adjustments */
+:root[data-theme='hc'] .icon {
+  filter: contrast(1.2);
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .react-success,
+  .react-warning,
+  .react-info,
+  .react-error,
+  .animate-potato-bounce,
+  .animate-potato-wiggle,
+  .animate-rabbit-hop,
+  .animate-rabbit-twitch {
+    animation: none;
+  }
+  
+  .icon-loading {
+    animation: none;
+  }
+  
+  .icon-loading-pulse {
+    animation: loading-pulse-reduced 2s ease-in-out infinite;
+  }
+}
+
+@keyframes loading-pulse-reduced {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Screen reader support */
+.icon[aria-hidden="true"] {
+  pointer-events: none;
+}
+
+/* === THEME SUPPORT === */
+
+/* Dark theme adjustments */
+:root[data-theme='dark'] .icon-potato {
+  color: var(--color-potato, #F4D03F);
+}
+
+:root[data-theme='dark'] .icon-rabbit {
+  color: var(--color-rabbit, #E8E8E8);
+}
+
+/* Light theme (default) */
+:root[data-theme='light'] .icon-potato,
+:root:not([data-theme]) .icon-potato {
+  color: var(--color-potato, #DEB887);
+}
+
+:root[data-theme='light'] .icon-rabbit,
+:root:not([data-theme]) .icon-rabbit {
+  color: var(--color-rabbit, #F8F8FF);
+}
+
+/* High contrast theme */
+:root[data-theme='hc'] .icon-potato {
+  color: var(--color-hardcoded-potato-brown);
+}
+
+:root[data-theme='hc'] .icon-rabbit {
+  color: var(--color-hardcoded-rabbit-gray);
+}
+
+/* === UTILITY CLASSES === */
+
+/* Icon alignment utilities */
+.icon-align-top {
+  vertical-align: top;
+}
+
+.icon-align-middle {
+  vertical-align: middle;
+}
+
+.icon-align-bottom {
+  vertical-align: bottom;
+}
+
+.icon-align-text-top {
+  vertical-align: text-top;
+}
+
+.icon-align-text-bottom {
+  vertical-align: text-bottom;
+}
+
+/* Icon spacing utilities */
+.icon-mr-xs {
+  margin-right: var(--spacing-xs);
+}
+
+.icon-mr-sm {
+  margin-right: var(--spacing-sm);
+}
+
+.icon-mr-md {
+  margin-right: var(--spacing-md);
+}
+
+.icon-ml-xs {
+  margin-left: var(--spacing-xs);
+}
+
+.icon-ml-sm {
+  margin-left: var(--spacing-sm);
+}
+
+.icon-ml-md {
+  margin-left: var(--spacing-md);
+}
+
+/* Icon rotation utilities */
+.icon-rotate-90 {
+  transform: rotate(90deg);
+}
+
+.icon-rotate-180 {
+  transform: rotate(180deg);
+}
+
+.icon-rotate-270 {
+  transform: rotate(270deg);
+}
+
+/* Icon flip utilities */
+.icon-flip-horizontal {
+  transform: scaleX(-1);
+}
+
+.icon-flip-vertical {
+  transform: scaleY(-1);
+}
+
+/* === PERFORMANCE OPTIMIZATIONS === */
+
+/* GPU acceleration for animated icons */
+.react-success,
+.react-warning,
+.react-info,
+.react-error,
+.animate-potato-bounce,
+.animate-potato-wiggle,
+.animate-rabbit-hop,
+.animate-rabbit-twitch,
+.icon-loading,
+.icon-loading-pulse {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Contain paint for icon containers */
+.icon-container {
+  contain: layout style paint;
+}
+
+/* === RESPONSIVE ICON SIZES === */
+
+/* Mobile: smaller icons for better touch targets */
+@media (max-width: 576px) {
+  .icon-responsive {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .icon-responsive.icon-lg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .icon-responsive.icon-xl {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Desktop: larger icons for better visibility */
+@media (min-width: 968px) {
+  .icon-responsive {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .icon-responsive.icon-lg {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .icon-responsive.icon-xl {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+/* === ICON COMBINATION PATTERNS === */
+
+/* Icon + text combinations */
+.icon-text {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.icon-text.vertical {
+  flex-direction: column;
+  text-align: center;
+}
+
+/* Icon button pattern */
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xs);
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+  transition: var(--transition-fast);
+}
+
+.icon-button:hover {
+  background: var(--color-background-alternative);
+  transform: scale(var(--btn-hover-scale));
+}
+
+.icon-button:active {
+  transform: scale(var(--btn-active-scale));
+}
+
+.icon-button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+/* === DEBUG UTILITIES (Development Only) === */
+.icon-debug {
+  outline: 1px dashed red;
+  outline-offset: 2px;
+}
+
+.icon-debug::before {
+  content: attr(data-icon-name);
+  position: absolute;
+  top: -20px;
+  left: 0;
+  font-size: 10px;
+  color: red;
+  background: white;
+  padding: 2px 4px;
+  border-radius: 2px;
+  z-index: 999;
+  pointer-events: none;
+}

@@ -1,0 +1,420 @@
+/* 토큰 시스템 통합 CSS */
+/* 모든 HTML 파일에서 토큰 기반 스타일을 적용하는 유틸리티 클래스 */
+
+/* === 토큰 기반 유틸리티 클래스 === */
+
+/* 색상 유틸리티 */
+.text-primary { color: var(--color-text-primary); }
+.text-secondary { color: var(--color-text-secondary); }
+.text-success { color: var(--color-success); }
+.text-warning { color: var(--color-warning); }
+.text-error { color: var(--color-error); }
+.text-income { color: var(--color-income); }
+.text-expense { color: var(--color-expense); }
+
+.bg-primary { background-color: var(--color-primary); }
+.bg-success { background-color: var(--color-success); }
+.bg-warning { background-color: var(--color-warning); }
+.bg-error { background-color: var(--color-error); }
+.bg-paper { background-color: var(--color-background-paper); }
+.bg-alternative { background-color: var(--color-background-alternative); }
+
+/* 간격 유틸리티 */
+.p-xs { padding: var(--spacing-xs); }
+.p-sm { padding: var(--spacing-sm); }
+.p-md { padding: var(--spacing-md); }
+.p-lg { padding: var(--spacing-lg); }
+.p-xl { padding: var(--spacing-xl); }
+
+.m-xs { margin: var(--spacing-xs); }
+.m-sm { margin: var(--spacing-sm); }
+.m-md { margin: var(--spacing-md); }
+.m-lg { margin: var(--spacing-lg); }
+.m-xl { margin: var(--spacing-xl); }
+
+.mt-xs { margin-top: var(--spacing-xs); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+
+.mb-xs { margin-bottom: var(--spacing-xs); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+
+/* 테두리 반지름 유틸리티 */
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-xl { border-radius: var(--radius-xl); }
+.rounded-2xl { border-radius: var(--radius-2xl); }
+.rounded-full { border-radius: var(--radius-pill); }
+
+/* 그림자 유틸리티 */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-card { box-shadow: var(--shadow-card); }
+.shadow-transaction { box-shadow: var(--shadow-transaction); }
+
+/* 폰트 크기 유틸리티 */
+.text-xs { font-size: var(--font-size-xs); }
+.text-sm { font-size: var(--font-size-sm); }
+.text-md { font-size: var(--font-size-md); }
+.text-lg { font-size: var(--font-size-lg); }
+.text-xl { font-size: var(--font-size-xl); }
+.text-2xl { font-size: var(--font-size-2xl); }
+
+/* 폰트 굵기 유틸리티 */
+.font-regular { font-weight: var(--font-weight-regular); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+
+/* 트랜지션 유틸리티 */
+.transition-fast { transition: var(--transition-fast); }
+.transition-normal { transition: var(--transition-normal); }
+.transition-slow { transition: var(--transition-slow); }
+.transition-default { transition: var(--transition-default); }
+.transition-button { transition: var(--transition-button); }
+.transition-card { transition: var(--transition-card); }
+
+/* === 토큰 기반 컴포넌트 스타일 개선 === */
+
+/* 버튼 스타일 개선 */
+.btn {
+  font-family: var(--font-family-primary);
+  border-radius: var(--button-border-radius);
+  font-weight: var(--font-weight-semibold);
+  transition: var(--transition-button);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  text-decoration: none;
+  min-height: var(--mobile-tap-target-size);
+}
+
+.btn-sm {
+  height: var(--button-height-sm);
+  padding: var(--button-padding-sm);
+  font-size: var(--font-size-sm);
+}
+
+.btn-md {
+  height: var(--button-height-md);
+  padding: var(--button-padding-md);
+  font-size: var(--font-size-md);
+}
+
+.btn-lg {
+  height: var(--button-height-lg);
+  padding: var(--button-padding-lg);
+  font-size: var(--font-size-lg);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+  box-shadow: var(--shadow-button);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: var(--color-background-alternative);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border-default);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-background-paper);
+  border-color: var(--color-primary);
+}
+
+.btn-success {
+  background-color: var(--color-success);
+  color: var(--color-primary-contrast);
+}
+
+.btn-success:hover {
+  background-color: var(--color-success-dark);
+}
+
+.btn-warning {
+  background-color: var(--color-warning);
+  color: var(--color-primary-contrast);
+}
+
+.btn-error {
+  background-color: var(--color-error);
+  color: var(--color-primary-contrast);
+}
+
+/* 카드 스타일 개선 */
+.card {
+  background-color: var(--card-background);
+  border: var(--card-border);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-card);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+.card-compact {
+  padding: var(--spacing-md);
+}
+
+/* 입력 필드 스타일 개선 */
+.input {
+  height: var(--input-height);
+  padding: var(--input-padding);
+  background-color: var(--input-background);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--input-border-radius);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-md);
+  transition: var(--transition-input);
+  width: 100%;
+}
+
+.input:focus {
+  background-color: var(--input-background-focus);
+  border-color: var(--input-border-focus);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(31, 199, 212, 0.1);
+}
+
+.input.error {
+  border-color: var(--input-border-error);
+}
+
+.input.error:focus {
+  box-shadow: 0 0 0 3px rgba(237, 75, 158, 0.1);
+}
+
+/* 배지 스타일 개선 */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--badge-padding);
+  border-radius: var(--badge-border-radius);
+  font-size: var(--badge-font-size);
+  font-weight: var(--badge-font-weight);
+  line-height: 1;
+}
+
+.badge-success {
+  background-color: var(--transaction-income-bg);
+  color: var(--color-success);
+  border: 1px solid var(--transaction-income-border);
+}
+
+.badge-error {
+  background-color: var(--transaction-expense-bg);
+  color: var(--color-expense);
+  border: 1px solid var(--transaction-expense-border);
+}
+
+.badge-warning {
+  background-color: var(--category-food-bg);
+  color: var(--color-warning);
+}
+
+/* 모달 스타일 개선 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--modal-overlay-background);
+  backdrop-filter: var(--modal-overlay-backdrop-filter);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-index-modal);
+  padding: var(--spacing-md);
+}
+
+.modal-content {
+  background-color: var(--modal-content-background);
+  border-radius: var(--modal-content-border-radius);
+  padding: var(--modal-content-padding);
+  max-width: var(--modal-content-max-width);
+  width: 100%;
+  max-height: 90dvh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+}
+
+/* 네비게이션 스타일 개선 */
+.nav {
+  height: var(--nav-height);
+  padding: var(--nav-padding);
+  background-color: var(--nav-background);
+  border-bottom: var(--nav-border-bottom);
+}
+
+.nav-item {
+  min-height: var(--mobile-tap-target-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--color-text-secondary);
+  transition: var(--transition-default);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+.nav-item.active,
+.nav-item[aria-current="page"] {
+  color: var(--color-primary);
+  background-color: rgba(31, 199, 212, 0.1);
+}
+
+.nav-item:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-background-alternative);
+}
+
+/* 토스트 스타일 개선 */
+.toast {
+  position: fixed;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  background-color: var(--color-background-paper);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--spacing-md);
+  z-index: var(--z-index-tooltip);
+  max-width: 320px;
+  transform: translateX(400px);
+  transition: var(--transition-normal);
+}
+
+.toast.show {
+  transform: translateX(0);
+}
+
+.toast-success {
+  border-left: 4px solid var(--color-success);
+}
+
+.toast-error {
+  border-left: 4px solid var(--color-error);
+}
+
+.toast-warning {
+  border-left: 4px solid var(--color-warning);
+}
+
+/* === 거래 관련 토큰 스타일 === */
+.transaction-amount.income {
+  color: var(--color-income);
+}
+
+.transaction-amount.expense {
+  color: var(--color-expense);
+}
+
+.transaction-card.income {
+  border-left: 3px solid var(--color-income);
+  background-color: var(--transaction-income-bg);
+}
+
+.transaction-card.expense {
+  border-left: 3px solid var(--color-expense);
+  background-color: var(--transaction-expense-bg);
+}
+
+/* === 캐릭터 관련 토큰 스타일 === */
+.character-potato {
+  color: var(--color-potato);
+  text-shadow: var(--character-potato-shadow);
+}
+
+.character-rabbit {
+  color: var(--color-rabbit);
+  text-shadow: var(--character-rabbit-shadow);
+}
+
+/* === 프로그레스 바 토큰 스타일 === */
+.progress-bar {
+  height: var(--progress-track-height);
+  background-color: var(--progress-track-background);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--progress-fill-background);
+  border-radius: var(--radius-pill);
+  transition: width var(--transition-normal);
+}
+
+/* === 상태 표시기 토큰 스타일 === */
+.status-positive {
+  color: var(--status-positive);
+}
+
+.status-negative {
+  color: var(--status-negative);
+}
+
+.status-neutral {
+  color: var(--status-neutral);
+}
+
+.status-warning {
+  color: var(--status-warning);
+}
+
+/* === 반응형 토큰 스타일 === */
+@media (max-width: 576px) {
+  .card {
+    padding: var(--responsive-card-padding, var(--card-padding));
+  }
+  
+  .modal-content {
+    padding: var(--responsive-content-padding, var(--modal-content-padding));
+  }
+  
+  .btn {
+    font-size: var(--responsive-font-size-sm, var(--font-size-sm));
+  }
+}
+
+/* === 다크 모드 토큰 스타일 === */
+@media (prefers-color-scheme: dark) {
+  .card {
+    border-color: var(--color-border-default);
+  }
+  
+  .input {
+    background-color: var(--color-background-alternative);
+    border-color: var(--color-border-default);
+    color: var(--color-text-primary);
+  }
+  
+  .toast {
+    background-color: var(--color-background-paper);
+    color: var(--color-text-primary);
+  }
+}

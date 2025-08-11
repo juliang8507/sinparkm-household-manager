@@ -1,0 +1,408 @@
+/* 감자·토끼 가계부 - Animation Utilities */
+/* 실용적인 애니메이션 유틸리티 클래스들 */
+
+/* === BUTTON INTERACTION UTILITIES === */
+
+/* Standard button hover effects */
+.btn-lift {
+  transition: var(--transition-button);
+}
+
+.btn-lift:hover {
+  transform: translateY(var(--btn-hover-lift)) scale(var(--btn-hover-scale));
+  box-shadow: var(--shadow-card-hover);
+}
+
+.btn-lift:active {
+  transform: translateY(0) scale(var(--btn-active-scale));
+}
+
+.btn-lift:focus-visible {
+  outline: var(--btn-focus-ring-size) solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Gentle button bounce */
+.btn-bounce {
+  transition: var(--transition-button);
+}
+
+.btn-bounce:hover {
+  animation: success-bounce var(--dur-sm) var(--ease-bouncy);
+}
+
+.btn-bounce:active {
+  transform: scale(var(--btn-active-scale));
+}
+
+/* Ripple effect button */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-button);
+}
+
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width var(--dur-lg), height var(--dur-lg);
+}
+
+.btn-ripple:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* === CARD INTERACTION UTILITIES === */
+
+/* Gentle card hover lift */
+.card-hover {
+  transition: var(--transition-card);
+  cursor: pointer;
+}
+
+.card-hover:hover {
+  transform: translateY(var(--card-hover-lift)) scale(var(--card-hover-scale));
+  box-shadow: var(--shadow-card-hover);
+}
+
+.card-hover:active {
+  transform: scale(var(--card-press-scale));
+}
+
+/* Card with subtle float animation */
+.card-float {
+  animation: float var(--dur-2xl) var(--ease-smooth) infinite;
+}
+
+/* Expandable card */
+.card-expand {
+  transition: var(--transition-card);
+  cursor: pointer;
+}
+
+.card-expand:hover {
+  transform: scale(var(--card-expand-scale));
+}
+
+/* === CHARACTER INTERACTION UTILITIES === */
+
+/* Potato character interactions */
+.potato-idle {
+  transition: var(--transition-slow);
+}
+
+.potato-idle:hover {
+  animation: potato-gentle-bounce var(--dur-lg) var(--ease-potato) 2;
+}
+
+.potato-happy {
+  animation: potato-happy-wiggle var(--dur-md) var(--ease-bouncy) 3;
+}
+
+/* Rabbit character interactions */
+.rabbit-idle {
+  transition: var(--transition-slow);
+}
+
+.rabbit-idle:hover {
+  animation: rabbit-quick-hop var(--dur-md) var(--ease-rabbit);
+}
+
+.rabbit-alert {
+  animation: rabbit-ear-twitch var(--dur-xs) var(--ease-sharp) 5;
+}
+
+/* === TOAST NOTIFICATION UTILITIES === */
+
+/* Toast container positioning */
+.toast-container {
+  position: fixed;
+  z-index: var(--z-index-overlay);
+  pointer-events: none;
+}
+
+.toast-container.top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.toast-container.top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.toast-container.bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+.toast-container.bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+.toast-container.top-center {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Toast animation states */
+.toast {
+  pointer-events: auto;
+  margin-bottom: 12px;
+  max-width: 320px;
+  padding: 16px;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  background: var(--color-background-paper);
+  border: 1px solid var(--color-border-default);
+}
+
+.toast.success {
+  border-color: var(--color-success);
+  background: var(--transaction-income-bg);
+}
+
+.toast.error {
+  border-color: var(--color-error);
+  background: var(--transaction-expense-bg);
+}
+
+.toast.warning {
+  border-color: var(--color-warning);
+  background: var(--category-food-bg);
+}
+
+.toast.info {
+  border-color: var(--color-primary);
+  background: var(--color-background-alternative);
+}
+
+/* === MODAL UTILITIES === */
+
+/* Modal backdrop */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100dvh;
+  background: var(--modal-overlay-background);
+  backdrop-filter: var(--modal-overlay-backdrop-filter);
+  z-index: var(--z-index-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-backdrop.entering {
+  animation: modal-fade-in var(--dur-md) var(--ease-smooth);
+}
+
+/* Modal content */
+.modal-content {
+  background: var(--modal-content-background);
+  border-radius: var(--modal-content-border-radius);
+  padding: var(--modal-content-padding);
+  max-width: var(--modal-content-max-width);
+  width: 90vw;
+  max-height: 90dvh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-xl);
+}
+
+.modal-content.entering {
+  animation: modal-scale-in var(--dur-md) var(--ease-bouncy);
+}
+
+.modal-content.bounce {
+  animation: modal-bounce-in var(--dur-lg) var(--ease-bouncy);
+}
+
+/* === INPUT INTERACTION UTILITIES === */
+
+/* Enhanced input focus effects */
+.input-enhanced {
+  transition: var(--transition-input);
+  position: relative;
+}
+
+.input-enhanced:focus {
+  transform: scale(1.01);
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 3px rgba(var(--color-primary), 0.1);
+}
+
+.input-enhanced.error {
+  border-color: var(--input-border-error);
+  animation: warning-shake var(--dur-sm) var(--ease-sharp);
+}
+
+.input-enhanced.success {
+  border-color: var(--color-success);
+  animation: success-bounce var(--dur-sm) var(--ease-bouncy);
+}
+
+/* === LOADING STATES === */
+
+/* Subtle loading shimmer */
+.loading-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: shimmer var(--dur-xl) ease-in-out infinite;
+}
+
+/* Gentle pulse loading */
+.loading-pulse {
+  animation: info-pulse var(--dur-lg) var(--ease-smooth) infinite;
+}
+
+/* === FEEDBACK STATES === */
+
+/* Success feedback */
+.feedback-success {
+  color: var(--color-success);
+  animation: success-bounce var(--dur-md) var(--ease-bouncy);
+}
+
+/* Warning feedback */
+.feedback-warning {
+  color: var(--color-warning);
+  animation: warning-shake var(--dur-sm) var(--ease-sharp);
+}
+
+/* Error feedback */
+.feedback-error {
+  color: var(--color-error);
+  animation: error-shake var(--dur-xs) var(--ease-sharp);
+}
+
+/* Info feedback */
+.feedback-info {
+  color: var(--color-primary);
+  animation: info-pulse var(--dur-lg) var(--ease-smooth) 2;
+}
+
+/* === SPECIAL EFFECTS === */
+
+/* Glow effect for important elements */
+.glow-primary {
+  animation: glow var(--dur-xl) var(--ease-smooth) infinite;
+}
+
+/* Gentle floating for decorative elements */
+.float-gentle {
+  animation: float var(--dur-2xl) var(--ease-smooth) infinite;
+}
+
+/* Shimmer effect for premium features */
+.shimmer-premium {
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-secondary),
+    var(--color-primary)
+  );
+  background-size: 200% 100%;
+  animation: shimmer var(--dur-xl) linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === STAGGER ANIMATIONS === */
+
+/* Staggered entry animations for lists */
+.stagger-item:nth-child(1) { animation-delay: 0ms; }
+.stagger-item:nth-child(2) { animation-delay: 50ms; }
+.stagger-item:nth-child(3) { animation-delay: 100ms; }
+.stagger-item:nth-child(4) { animation-delay: 150ms; }
+.stagger-item:nth-child(5) { animation-delay: 200ms; }
+.stagger-item:nth-child(6) { animation-delay: 250ms; }
+.stagger-item:nth-child(7) { animation-delay: 300ms; }
+.stagger-item:nth-child(8) { animation-delay: 350ms; }
+.stagger-item:nth-child(9) { animation-delay: 400ms; }
+.stagger-item:nth-child(10) { animation-delay: 450ms; }
+
+/* === THEME-AWARE ANIMATIONS === */
+
+/* Dark theme adjustments */
+:root[data-theme='dark'] .loading-shimmer::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.05),
+    transparent
+  );
+}
+
+:root[data-theme='dark'] .btn-ripple::after {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* High contrast theme adjustments */
+:root[data-theme='hc'] .btn-ripple::after {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+:root[data-theme='hc'] .loading-shimmer::after {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 0, 0, 0.1),
+    transparent
+  );
+}
+
+/* === ACCESSIBILITY ENHANCEMENTS === */
+
+/* Focus indicators with animations */
+*:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  animation: info-pulse var(--dur-sm) var(--ease-smooth);
+}
+
+/* Skip unnecessary animations for screen readers */
+@media (prefers-reduced-motion: reduce) {
+  .animate-success,
+  .animate-warning,
+  .animate-info,
+  .animate-error,
+  .feedback-success,
+  .feedback-warning,
+  .feedback-error,
+  .feedback-info {
+    animation: none;
+  }
+  
+  /* Keep essential feedback animations but make them minimal */
+  .animate-error,
+  .feedback-error {
+    animation: error-shake 50ms linear;
+  }
+}

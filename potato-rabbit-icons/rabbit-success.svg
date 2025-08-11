@@ -1,0 +1,21 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>활기찬 토끼</title>
+  <!-- 토끼 귀 (위로 쫑긋) -->
+  <ellipse cx="9" cy="4.5" rx="1.5" ry="4" fill="#E0E0E0" stroke="#808080" stroke-width="1"/>
+  <ellipse cx="15" cy="4.5" rx="1.5" ry="4" fill="#E0E0E0" stroke="#808080" stroke-width="1"/>
+  <ellipse cx="9" cy="4.5" rx="0.8" ry="2.5" fill="#FFB6C1" opacity="0.5"/>
+  <ellipse cx="15" cy="4.5" rx="0.8" ry="2.5" fill="#FFB6C1" opacity="0.5"/>
+  
+  <!-- 토끼 얼굴 -->
+  <circle cx="12" cy="14" r="6.5" fill="#E0E0E0" stroke="#808080" stroke-width="1"/>
+  
+  <!-- 기쁜 눈 (반달 모양) -->
+  <path d="M8.5 11.5 Q9.5 10.5 10.5 11.5" stroke="#333" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <path d="M13.5 11.5 Q14.5 10.5 15.5 11.5" stroke="#333" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  
+  <!-- 코 -->
+  <path d="M12 14.5 L11.5 15.5 M12 14.5 L12.5 15.5" stroke="#808080" stroke-width="1.2" stroke-linecap="round"/>
+  
+  <!-- 활짝 웃는 입 -->
+  <path d="M9.5 16 Q12 18.5 14.5 16" stroke="#808080" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>

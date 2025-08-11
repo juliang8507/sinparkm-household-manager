@@ -1,0 +1,28 @@
+{
+  "name": "potato-rabbit-budget-pwa-generator",
+  "version": "1.0.0",
+  "description": "감자토끼 가계부 PWA 아이콘 및 스플래시 스크린 생성기",
+  "main": "generate-pwa-assets.js",
+  "scripts": {
+    "generate": "node generate-pwa-assets.js",
+    "install-deps": "npm install canvas sharp",
+    "setup": "npm run install-deps && npm run generate"
+  },
+  "keywords": [
+    "pwa",
+    "icon-generator", 
+    "splash-screen",
+    "budget-app",
+    "korean"
+  ],
+  "author": "감자토끼 팀",
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "^2.11.2",
+    "sharp": "^0.32.6"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

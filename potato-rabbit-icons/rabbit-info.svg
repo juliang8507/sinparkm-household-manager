@@ -1,0 +1,27 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>궁금한 토끼</title>
+  <!-- 토끼 귀 (한쪽으로 기울어짐) -->
+  <ellipse cx="8.5" cy="6" rx="1.5" ry="4" fill="#E0E0E0" stroke="#808080" stroke-width="1" transform="rotate(-15 8.5 6)"/>
+  <ellipse cx="15.5" cy="6" rx="1.5" ry="4" fill="#E0E0E0" stroke="#808080" stroke-width="1" transform="rotate(5 15.5 6)"/>
+  <ellipse cx="8.5" cy="6" rx="0.8" ry="2.5" fill="#FFB6C1" opacity="0.5" transform="rotate(-15 8.5 6)"/>
+  <ellipse cx="15.5" cy="6" rx="0.8" ry="2.5" fill="#FFB6C1" opacity="0.5" transform="rotate(5 15.5 6)"/>
+  
+  <!-- 토끼 얼굴 (머리 기울임) -->
+  <circle cx="12" cy="14" r="6.5" fill="#E0E0E0" stroke="#808080" stroke-width="1" transform="rotate(-5 12 14)"/>
+  
+  <!-- 궁금한 눈 -->
+  <circle cx="9.5" cy="12" r="1.4" fill="white"/>
+  <circle cx="14.5" cy="12" r="1.4" fill="white"/>
+  <circle cx="9.5" cy="12" r="0.7" fill="#333"/>
+  <circle cx="14.5" cy="12" r="0.7" fill="#333"/>
+  
+  <!-- 하이라이트 (호기심) -->
+  <circle cx="9.8" cy="11.7" r="0.3" fill="white"/>
+  <circle cx="14.8" cy="11.7" r="0.3" fill="white"/>
+  
+  <!-- 코 -->
+  <path d="M12 14.5 L11.5 15.5 M12 14.5 L12.5 15.5" stroke="#808080" stroke-width="1.2" stroke-linecap="round"/>
+  
+  <!-- 궁금한 입 -->
+  <circle cx="12" cy="17" r="1" fill="none" stroke="#808080" stroke-width="1.2"/>
+</svg>

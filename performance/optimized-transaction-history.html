@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1FC7D4">
+    <meta name="color-scheme" content="light dark">
+    <title>거래 내역 - 감자토끼 가계부</title>
+    <meta name="description" content="감자와 토끼 부부의 친근한 가계부 앱">
+    
+    
+    <!-- 최적화된 폰트 preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Kanit Regular (400) - 가장 많이 사용 -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/kanit/v15/nKKZ-Go6G5tXcoaSEQGodLxA.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Inter Regular (400) - 보조 폰트 -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeAmM.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- 최적화된 폰트 CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit%3Awght%40400%3B500%3B600%3B700%2CInter%3Awght%40400%3B500%3B600&display=swap&subset=korean%2Clatin" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit%3Awght%40400%3B500%3B600%3B700%2CInter%3Awght%40400%3B500%3B600&display=swap&subset=korean%2Clatin"></noscript>
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- 🚀 Critical CSS (인라인) -->
+    <style>
+:root { --color-primary: #1FC7D4; --color-primary-light: #33E1ED; --color-primary-dark: #0098A1; --color-primary-contrast: #FFFFFF; --color-secondary: #7645D9; --color-secondary-light: #9A6AFF; --color-secondary-dark: #5D21B6; --color-secondary-contrast: #FFFFFF; --color-success: #31D0AA; --color-success-light: #68FFDA; --color-success-dark: #0E7A5D; --color-warning: #FFB237; --color-warning-light: #FFD67E; --color-warning-dark: #D67E0A; --color-error: #ED4B9E; --color-error-light: #FF65B8; --color-error-dark: #C42878; --color-background-default: #FAF9FA; --color-background-paper: #FFFFFF; --color-background-alternative: #EFF4F5; --color-background-gradient: linear-gradient(139.73deg, #E5FDFF 0%, #F3EFFF 100%); --color-text-primary: #280D5F; --color-text-secondary: #7A6EAA; --color-text-disabled: #BDC2C4; --color-text-inverse: #FFFFFF; --color-border-default: #E7E3EB; --color-border-light: #F4F5F6; --color-income: #31D0AA; --color-expense: #ED4B9E; --color-savings: #1FC7D4; --color-food: #FFB237; --color-transport: #7645D9; --color-entertainment: #FF6B9D; --color-utilities: #4ECDC4; --color-healthcare: #45B7D1; --color-shopping: #FFA07A; --color-education: #9B59B6; --color-potato: #DEB887; --color-rabbit: #F8F8FF; --color-potato-accent: #CD853F; --color-rabbit-accent: #FFB6C1; --font-family-primary: 'Kanit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; --font-family-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; --font-size-xs: 12px; --font-size-sm: 14px; --font-size-md: 16px; --font-size-lg: 20px; --font-size-xl: 24px; --font-size-2xl: 32px; --font-size-3xl: 40px; --font-size-4xl: 48px; --font-size-5xl: 64px; --font-size-6xl: 88px; --font-weight-regular: 400; --font-weight-medium: 500; --font-weight-semibold: 600; --font-weight-bold: 700; --line-height-tight: 1.1; --line-height-normal: 1.5; --line-height-relaxed: 1.75; --spacing-unit: 8px; --spacing-xs: 4px; --spacing-sm: 8px; --spacing-md: 16px; --spacing-lg: 24px; --spacing-xl: 32px; --spacing-2xl: 48px; --spacing-3xl: 64px; --radius-none: 0px; --radius-sm: 4px; --radius-md: 8px; --radius-lg: 12px; --radius-xl: 16px; --radius-2xl: 24px; --radius-3xl: 32px; --radius-pill: 9999px; --radius-circle: 50%; --shadow-sm: 0px 2px 12px -8px rgba(25, 19, 38, 0.1), 0px 1px 1px rgba(25, 19, 38, 0.05); --shadow-md: 0px 4px 16px rgba(25, 19, 38, 0.1); --shadow-lg: 0px 8px 32px rgba(25, 19, 38, 0.12); --shadow-xl: 0px 20px 36px -8px rgba(14, 14, 44, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.05); --shadow-inset: inset 0px -1px 0px rgba(14, 14, 44, 0.4); --shadow-focus: 0 0 0 1px #7645D9; --shadow-warning: 0px 0px 0px 1px #ED4B9E, 0px 0px 0px 4px rgba(237, 75, 158, 0.2); --shadow-button: rgba(0, 0, 0, 0.1) 0px -2px 0px 0px inset; --shadow-subtle: rgba(74, 74, 104, 0.1) 0px 2px 2px -1px inset; --shadow-card: 0px 4px 12px rgba(25, 19, 38, 0.08); --shadow-card-hover: 0px 8px 24px rgba(25, 19, 38, 0.12); --shadow-transaction: 0px 2px 8px rgba(25, 19, 38, 0.06); --dur-xxs: 100ms; --dur-xs: 150ms; --dur-sm: 250ms; --dur-md: 400ms; --dur-lg: 600ms; --dur-xl: 800ms; --dur-2xl: 1200ms; --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); --ease-bouncy: cubic-bezier(0.68, -0.55, 0.265, 1.55); --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94); --ease-sharp: cubic-bezier(0.4, 0, 1, 1); --ease-potato: cubic-bezier(0.34, 1.56, 0.64, 1); --ease-rabbit: cubic-bezier(0.175, 0.885, 0.32, 1.275); --transition-fast: var(--dur-xxs) var(--ease-standard); --transition-normal: var(--dur-sm) var(--ease-standard); --transition-slow: var(--dur-lg) var(--ease-smooth); --transition-very-slow: var(--dur-xl) var(--ease-smooth); --transition-default: all var(--dur-sm) var(--ease-standard); --transition-button: background-color var(--dur-sm) var(--ease-standard), transform var(--dur-xs) var(--ease-sharp), box-shadow var(--dur-sm) var(--ease-standard); --transition-card: transform var(--dur-lg) var(--ease-smooth), box-shadow var(--dur-lg) var(--ease-smooth); --transition-input: border-color var(--dur-sm) var(--ease-standard), box-shadow var(--dur-sm) var(--ease-standard); --reaction-success-scale: 1.05; --reaction-success-duration: var(--dur-md); --reaction-success-ease: var(--ease-bouncy); --reaction-success-delay: 0ms; --reaction-warning-distance: 4px; --reaction-warning-duration: var(--dur-sm); --reaction-warning-ease: var(--ease-sharp); --reaction-warning-cycles: 2; --reaction-info-scale: 1.02; --reaction-info-duration: var(--dur-lg); --reaction-info-ease: var(--ease-smooth); --reaction-info-iterations: 2; --reaction-error-distance: 6px; --reaction-error-duration: var(--dur-xs); --reaction-error-ease: var(--ease-sharp); --reaction-error-cycles: 3; --btn-hover-lift: -2px; --btn-hover-scale: 1.02; --btn-active-scale: 0.98; --btn-focus-ring-size: 2px; --card-hover-lift: -3px; --card-hover-scale: 1.01; --card-press-scale: 0.99; --card-expand-scale: 1.03; transform: translateY(-8px) scale(var(--reaction-success-scale)); transform: translateX(calc(-1 * var(--reaction-warning-distance))); transform: translateX(var(--reaction-warning-distance)); transform: scale(var(--reaction-info-scale)); transform: translateX(calc(-1 * var(--reaction-error-distance))) rotate(-1deg); transform: translateX(var(--reaction-error-distance)) rotate(1deg); box-shadow: 0 0 5px var(--color-primary); box-shadow: 0 0 20px var(--color-primary), 0 0 30px var(--color-primary); --reaction-error-duration: var(--dur-xs); --reaction-error-ease: var(--ease-sharp); --reaction-error-cycles: 3; --btn-hover-scale: 1.02; --btn-hover-lift: -2px; --btn-hover-shadow-grow: 1.2; --btn-active-scale: 0.98; --btn-focus-ring-size: 3px; --toast-enter-distance: 20px; --toast-enter-duration: var(--dur-md); --toast-enter-ease: var(--ease-bouncy); --toast-exit-duration: var(--dur-sm); --toast-exit-ease: var(--ease-sharp); --toast-shake-distance: 3px; --card-hover-lift: -4px; --card-hover-scale: 1.01; --card-press-scale: 0.99; --card-expand-scale: 1.05; --modal-backdrop-opacity: 0.6; --modal-scale-from: 0.9; --modal-scale-to: 1; --modal-bounce-overshoot: 1.02; --breakpoint-xs: 370px; --breakpoint-sm: 576px; --breakpoint-md: 852px; --breakpoint-lg: 968px; --breakpoint-xl: 1080px; --breakpoint-xxl: 1200px; --z-index-dropdown: 10; --z-index-sticky: 20; --z-index-modal: 100; --z-index-popover: 200; --z-index-tooltip: 300; --z-index-overlay: 9999; --button-height-sm: 32px; --button-height-md: 48px; --button-height-lg: 56px; --button-padding-sm: 0 16px; --button-padding-md: 0 24px; --button-padding-lg: 0 32px; --button-border-radius: var(--radius-xl); --input-height: 48px; --input-padding: 12px 16px; --input-border-radius: var(--radius-xl); --input-background: var(--color-background-alternative); --input-background-focus: var(--color-background-paper); --input-border-focus: var(--color-primary); --input-border-error: var(--color-error); --card-padding: 24px; --card-border-radius: var(--radius-2xl); --card-background: var(--color-background-paper); --card-border: 1px solid var(--color-border-default); --nav-height: 56px; --nav-padding: 0 16px; --nav-background: var(--color-background-paper); --nav-border-bottom: 1px solid var(--color-border-default); --modal-overlay-background: rgba(0, 0, 0, 0.5); --modal-overlay-backdrop-filter: blur(4px); --modal-content-background: var(--color-background-paper); --modal-content-border-radius: var(--radius-3xl); --modal-content-padding: 32px; --modal-content-max-width: 420px; --badge-padding: 4px 8px; --badge-border-radius: var(--radius-lg); --badge-font-size: var(--font-size-xs); --badge-font-weight: var(--font-weight-semibold); --blur-sm: blur(4px); --blur-md: blur(8px); --blur-lg: blur(16px); --opacity-disabled: 0.5; --opacity-hover: 0.8; --opacity-focus: 1; --container-max-width: 1200px; --container-padding: 0 16px; --grid-gap: 16px; --section-spacing: 48px; --app-max-width: 480px; --app-padding: 16px; --content-padding: 20px; --bottom-nav-height: 64px; --header-height: 60px; --transaction-income-bg: rgba(49, 208, 170, 0.1); --transaction-expense-bg: rgba(237, 75, 158, 0.1); --transaction-income-border: rgba(49, 208, 170, 0.3); --transaction-expense-border: rgba(237, 75, 158, 0.3); --category-food-bg: rgba(255, 178, 55, 0.1); --category-transport-bg: rgba(118, 69, 217, 0.1); --category-entertainment-bg: rgba(255, 107, 157, 0.1); --category-utilities-bg: rgba(78, 205, 196, 0.1); --category-healthcare-bg: rgba(69, 183, 209, 0.1); --category-shopping-bg: rgba(255, 160, 122, 0.1); --category-education-bg: rgba(155, 89, 182, 0.1); --character-potato-shadow: 0px 4px 12px rgba(205, 133, 63, 0.3); --character-rabbit-shadow: 0px 4px 12px rgba(255, 182, 193, 0.3); --progress-track-height: 8px; --progress-track-background: var(--color-border-default); --progress-fill-background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%); --status-positive: var(--color-success); --status-negative: var(--color-error); --status-neutral: var(--color-text-secondary); --status-warning: var(--color-warning); --mobile-tap-target-size: 44px; --mobile-scroll-padding: 20px; --mobile-safe-area-bottom: env(safe-area-inset-bottom, 0px); --mobile-safe-area-top: env(safe-area-inset-top, 0px); :root { --responsive-font-size-xs: 11px; --responsive-font-size-sm: 13px; --responsive-font-size-md: 15px; --responsive-font-size-lg: 18px; --responsive-font-size-xl: 22px; --responsive-spacing-sm: 6px; --responsive-spacing-md: 12px; --responsive-spacing-lg: 18px; --responsive-spacing-xl: 24px; --responsive-card-padding: 16px; --responsive-content-padding: 16px; :root { --responsive-card-padding: 20px; --responsive-content-padding: 18px; :root { --responsive-card-padding: 24px; --responsive-content-padding: 20px; --responsive-container-padding: 24px; :root[data-theme='dark'] { --color-primary: #33E1ED; --color-primary-light: #5CEBF4; --color-primary-dark: #1FC7D4; --color-primary-contrast: #0E0E0E; --color-secondary: #9A6AFF; --color-secondary-light: #B891FF; --color-secondary-dark: #7645D9; --color-secondary-contrast: #0E0E0E; --color-success: #68FFDA; --color-success-light: #8AFFE6; --color-success-dark: #31D0AA; --color-warning: #FFD67E; --color-warning-light: #FFE4A3; --color-warning-dark: #FFB237; --color-error: #FF65B8; --color-error-light: #FF8AC9; --color-error-dark: #ED4B9E; --color-background-default: #0E0E0E; --color-background-paper: #1A1A1A; --color-background-alternative: #262626; --color-background-gradient: linear-gradient(139.73deg, #0F1B1C 0%, #1A0F1F 100%); --color-text-primary: #FFFFFF; --color-text-secondary: #B0B0B0; --color-text-disabled: #666666; --color-text-inverse: #0E0E0E; --color-border-default: #333333; --color-border-light: #404040; --color-income: #68FFDA; --color-expense: #FF65B8; --color-savings: #33E1ED; --color-food: #FFD67E; --color-transport: #9A6AFF; --color-entertainment: #FF8AC9; --color-utilities: #7DFFF0; --color-healthcare: #66D1F7; --color-shopping: #FFB89A; --color-education: #C593E8; --color-potato: #F4D03F; --color-rabbit: #E8E8E8; --color-potato-accent: #E67E22; --color-rabbit-accent: #F1948A; --shadow-sm: 0px 2px 12px -8px rgba(0, 0, 0, 0.6), 0px 1px 1px rgba(0, 0, 0, 0.4); --shadow-md: 0px 4px 16px rgba(0, 0, 0, 0.5); --shadow-lg: 0px 8px 32px rgba(0, 0, 0, 0.6); --shadow-xl: 0px 20px 36px -8px rgba(0, 0, 0, 0.4), 0px 1px 1px rgba(0, 0, 0, 0.2); --shadow-inset: inset 0px -1px 0px rgba(255, 255, 255, 0.1); --shadow-focus: 0 0 0 1px #9A6AFF; --shadow-warning: 0px 0px 0px 1px #FF65B8, 0px 0px 0px 4px rgba(255, 101, 184, 0.3); --shadow-button: rgba(0, 0, 0, 0.4) 0px -2px 0px 0px inset; --shadow-subtle: rgba(255, 255, 255, 0.05) 0px 2px 2px -1px inset; --shadow-card: 0px 4px 12px rgba(0, 0, 0, 0.4); --shadow-card-hover: 0px 8px 24px rgba(0, 0, 0, 0.5); --shadow-transaction: 0px 2px 8px rgba(0, 0, 0, 0.3); --transaction-income-bg: rgba(104, 255, 218, 0.15); --transaction-expense-bg: rgba(255, 101, 184, 0.15); --transaction-income-border: rgba(104, 255, 218, 0.4); --transaction-expense-border: rgba(255, 101, 184, 0.4); --category-food-bg: rgba(255, 214, 126, 0.15); --category-transport-bg: rgba(154, 106, 255, 0.15); --category-entertainment-bg: rgba(255, 138, 201, 0.15); --category-utilities-bg: rgba(125, 255, 240, 0.15); --category-healthcare-bg: rgba(102, 209, 247, 0.15); --category-shopping-bg: rgba(255, 184, 154, 0.15); --category-education-bg: rgba(197, 147, 232, 0.15); --character-potato-shadow: 0px 4px 12px rgba(230, 126, 34, 0.4); --character-rabbit-shadow: 0px 4px 12px rgba(241, 148, 138, 0.4); --progress-track-background: #404040; --progress-fill-background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%); --input-background: #262626; --input-background-focus: #333333; --input-border-focus: var(--color-primary); --input-border-error: var(--color-error); :root { --color-background-default: #FFFFFF; --color-background-paper: #FFFFFF; --color-text-primary: #000000; --color-text-secondary: #333333; --shadow-sm: none; --shadow-md: none; --shadow-lg: none; :root { --dur-xxs: 1ms; --dur-xs: 1ms; --dur-sm: 1ms; --dur-md: 1ms; --dur-lg: 1ms; --dur-xl: 1ms; --dur-2xl: 1ms; --transition-fast: none; --transition-normal: none; --transition-slow: none; --transition-very-slow: none; --transition-default: none; --transition-button: none; --transition-card: none; --transition-input: none; --reaction-success-scale: 1; --reaction-warning-distance: 0px; --reaction-info-scale: 1; --reaction-error-distance: 0px; --btn-hover-scale: 1; --btn-hover-lift: 0px; --btn-active-scale: 1; --card-hover-lift: 0px; --card-hover-scale: 1; --card-press-scale: 1; --toast-enter-distance: 0px; --toast-shake-distance: 0px; *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important} :root[data-theme='hc'] { --color-primary: #0066CC; --color-primary-light: #0080FF; --color-primary-dark: #004499; --color-primary-contrast: #FFFFFF; --color-secondary: #6600CC; --color-secondary-light: #7700FF; --color-secondary-dark: #440099; --color-secondary-contrast: #FFFFFF; --color-success: #006600; --color-success-light: #008800; --color-success-dark: #004400; --color-warning: #CC6600; --color-warning-light: #FF8800; --color-warning-dark: #994400; --color-error: #CC0000; --color-error-light: #FF0000; --color-error-dark: #990000; --color-background-default: #FFFFFF; --color-background-paper: #FFFFFF; --color-background-alternative: #F0F0F0; --color-background-gradient: linear-gradient(139.73deg, #FFFFFF 0%, #F0F0F0 100%); --color-text-primary: #000000; --color-text-secondary: #000000; --color-text-disabled: #666666; --color-text-inverse: #FFFFFF; --color-border-default: #000000; --color-border-light: #333333; --color-income: #006600; --color-expense: #CC0000; --color-savings: #0066CC; --color-food: #CC6600; --color-transport: #6600CC; --color-entertainment: #CC0066; --color-utilities: #006666; --color-healthcare: #0099CC; --color-shopping: #CC3300; --color-education: #9900CC; --color-potato: #996633; --color-rabbit: #CCCCCC; --color-potato-accent: #663300; --color-rabbit-accent: #999999; --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.8); --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.8); --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.8); --shadow-xl: 0px 16px 32px rgba(0, 0, 0, 0.8); --shadow-inset: inset 0px -1px 0px rgba(0, 0, 0, 1); --shadow-focus: 0 0 0 3px #000000; --shadow-warning: 0px 0px 0px 2px #CC0000, 0px 0px 0px 5px rgba(204, 0, 0, 0.3); --shadow-button: rgba(0, 0, 0, 0.8) 0px -3px 0px 0px inset; --shadow-subtle: rgba(0, 0, 0, 0.3) 0px 2px 2px -1px inset; --shadow-card: 0px 4px 8px rgba(0, 0, 0, 0.8); --shadow-card-hover: 0px 8px 16px rgba(0, 0, 0, 0.8); --shadow-transaction: 0px 2px 4px rgba(0, 0, 0, 0.6); --transaction-income-bg: rgba(0, 102, 0, 0.1); --transaction-expense-bg: rgba(204, 0, 0, 0.1); --transaction-income-border: rgba(0, 102, 0, 1); --transaction-expense-border: rgba(204, 0, 0, 1); --category-food-bg: rgba(204, 102, 0, 0.1); --category-transport-bg: rgba(102, 0, 204, 0.1); --category-entertainment-bg: rgba(204, 0, 102, 0.1); --category-utilities-bg: rgba(0, 102, 102, 0.1); --category-healthcare-bg: rgba(0, 153, 204, 0.1); --category-shopping-bg: rgba(204, 51, 0, 0.1); --category-education-bg: rgba(153, 0, 204, 0.1); --character-potato-shadow: 0px 4px 8px rgba(102, 51, 0, 0.8); --character-rabbit-shadow: 0px 4px 8px rgba(153, 153, 153, 0.8); --progress-track-background: #CCCCCC; --progress-fill-background: linear-gradient(90deg, #0066CC 0%, #6600CC 100%); --input-background: #FFFFFF; --input-background-focus: #FFFFFF; --input-border-focus: #000000; --input-border-error: #CC0000; :root:not([data-theme]) { --color-primary: #33E1ED; --color-primary-light: #5CEBF4; --color-primary-dark: #1FC7D4; --color-primary-contrast: #0E0E0E; --color-secondary: #9A6AFF; --color-secondary-light: #B891FF; --color-secondary-dark: #7645D9; --color-secondary-contrast: #0E0E0E; --color-success: #68FFDA; --color-success-light: #8AFFE6; --color-success-dark: #31D0AA; --color-warning: #FFD67E; --color-warning-light: #FFE4A3; --color-warning-dark: #FFB237; --color-error: #FF65B8; --color-error-light: #FF8AC9; --color-error-dark: #ED4B9E; --color-background-default: #0E0E0E; --color-background-paper: #1A1A1A; --color-background-alternative: #262626; --color-background-gradient: linear-gradient(139.73deg, #0F1B1C 0%, #1A0F1F 100%); --color-text-primary: #FFFFFF; --color-text-secondary: #B0B0B0; --color-text-disabled: #666666; --color-text-inverse: #0E0E0E; --color-border-default: #333333; --color-border-light: #404040; --color-income: #68FFDA; --color-expense: #FF65B8; --color-savings: #33E1ED; --color-food: #FFD67E; --color-transport: #9A6AFF; --color-entertainment: #FF8AC9; --color-utilities: #7DFFF0; --color-healthcare: #66D1F7; --color-shopping: #FFB89A; --color-education: #C593E8; --color-potato: #F4D03F; --color-rabbit: #E8E8E8; --color-potato-accent: #E67E22; --color-rabbit-accent: #F1948A; --shadow-sm: 0px 2px 12px -8px rgba(0, 0, 0, 0.6), 0px 1px 1px rgba(0, 0, 0, 0.4); --shadow-md: 0px 4px 16px rgba(0, 0, 0, 0.5); --shadow-lg: 0px 8px 32px rgba(0, 0, 0, 0.6); --shadow-xl: 0px 20px 36px -8px rgba(0, 0, 0, 0.4), 0px 1px 1px rgba(0, 0, 0, 0.2); --shadow-inset: inset 0px -1px 0px rgba(255, 255, 255, 0.1); --shadow-focus: 0 0 0 1px #9A6AFF; --shadow-warning: 0px 0px 0px 1px #FF65B8, 0px 0px 0px 4px rgba(255, 101, 184, 0.3); --shadow-button: rgba(0, 0, 0, 0.4) 0px -2px 0px 0px inset; --shadow-subtle: rgba(255, 255, 255, 0.05) 0px 2px 2px -1px inset; --shadow-card: 0px 4px 12px rgba(0, 0, 0, 0.4); --shadow-card-hover: 0px 8px 24px rgba(0, 0, 0, 0.5); --shadow-transaction: 0px 2px 8px rgba(0, 0, 0, 0.3); --transaction-income-bg: rgba(104, 255, 218, 0.15); --transaction-expense-bg: rgba(255, 101, 184, 0.15); --transaction-income-border: rgba(104, 255, 218, 0.4); --transaction-expense-border: rgba(255, 101, 184, 0.4); --category-food-bg: rgba(255, 214, 126, 0.15); --category-transport-bg: rgba(154, 106, 255, 0.15); --category-entertainment-bg: rgba(255, 138, 201, 0.15); --category-utilities-bg: rgba(125, 255, 240, 0.15); --category-healthcare-bg: rgba(102, 209, 247, 0.15); --category-shopping-bg: rgba(255, 184, 154, 0.15); --category-education-bg: rgba(197, 147, 232, 0.15); --character-potato-shadow: 0px 4px 12px rgba(230, 126, 34, 0.4); --character-rabbit-shadow: 0px 4px 12px rgba(241, 148, 138, 0.4); --progress-track-background: #404040; --progress-fill-background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%); --input-background: #262626; --input-background-focus: #333333; --input-border-focus: var(--color-primary); --input-border-error: var(--color-error); :root:not([data-theme]) { --color-primary: #0066CC; --color-primary-light: #0080FF; --color-primary-dark: #004499; --color-primary-contrast: #FFFFFF; --color-secondary: #6600CC; --color-secondary-light: #7700FF; --color-secondary-dark: #440099; --color-secondary-contrast: #FFFFFF; --color-success: #006600; --color-success-light: #008800; --color-success-dark: #004400; --color-warning: #CC6600; --color-warning-light: #FF8800; --color-warning-dark: #994400; --color-error: #CC0000; --color-error-light: #FF0000; --color-error-dark: #990000; --color-background-default: #FFFFFF; --color-background-paper: #FFFFFF; --color-background-alternative: #F0F0F0; --color-background-gradient: linear-gradient(139.73deg, #FFFFFF 0%, #F0F0F0 100%); --color-text-primary: #000000; --color-text-secondary: #000000; --color-text-disabled: #666666; --color-text-inverse: #FFFFFF; --color-border-default: #000000; --color-border-light: #333333; --color-income: #006600; --color-expense: #CC0000; --color-savings: #0066CC; --color-food: #CC6600; --color-transport: #6600CC; --color-entertainment: #CC0066; --color-utilities: #006666; --color-healthcare: #0099CC; --color-shopping: #CC3300; --color-education: #9900CC; --color-potato: #996633; --color-rabbit: #CCCCCC; --color-potato-accent: #663300; --color-rabbit-accent: #999999; --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.8); --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.8); --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.8); --shadow-xl: 0px 16px 32px rgba(0, 0, 0, 0.8); --shadow-inset: inset 0px -1px 0px rgba(0, 0, 0, 1); --shadow-focus: 0 0 0 3px #000000; --shadow-warning: 0px 0px 0px 2px #CC0000, 0px 0px 0px 5px rgba(204, 0, 0, 0.3); --shadow-button: rgba(0, 0, 0, 0.8) 0px -3px 0px 0px inset; --shadow-subtle: rgba(0, 0, 0, 0.3) 0px 2px 2px -1px inset; --shadow-card: 0px 4px 8px rgba(0, 0, 0, 0.8); --shadow-card-hover: 0px 8px 16px rgba(0, 0, 0, 0.8); --shadow-transaction: 0px 2px 4px rgba(0, 0, 0, 0.6); --transaction-income-bg: rgba(0, 102, 0, 0.1); --transaction-expense-bg: rgba(204, 0, 0, 0.1); --transaction-income-border: rgba(0, 102, 0, 1); --transaction-expense-border: rgba(204, 0, 0, 1); --category-food-bg: rgba(204, 102, 0, 0.1); --category-transport-bg: rgba(102, 0, 204, 0.1); --category-entertainment-bg: rgba(204, 0, 102, 0.1); --category-utilities-bg: rgba(0, 102, 102, 0.1); --category-healthcare-bg: rgba(0, 153, 204, 0.1); --category-shopping-bg: rgba(204, 51, 0, 0.1); --category-education-bg: rgba(153, 0, 204, 0.1); --character-potato-shadow: 0px 4px 8px rgba(102, 51, 0, 0.8); --character-rabbit-shadow: 0px 4px 8px rgba(153, 153, 153, 0.8); --progress-track-background: #CCCCCC; --progress-fill-background: linear-gradient(90deg, #0066CC 0%, #6600CC 100%); --input-background: #FFFFFF; --input-background-focus: #FFFFFF; --input-border-focus: #000000; --input-border-error: #CC0000; :root[data-theme='light'] *:focus-visible, :root:not([data-theme]) *:focus-visible { outline: 2px solid var(--color-primary); :root[data-theme='dark'] *:focus-visible { outline: 2px solid var(--color-primary-light); :root[data-theme='hc'] *:focus-visible { outline: 3px solid var(--color-text-primary); :root { --theme-transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; transition: var(--theme-transition); * { } :root[data-theme-initializing] * { 50% { transform: scale(var(--reaction-success-scale))} 25% { transform: translateX(var(--reaction-warning-distance))} 75% { transform: translateX(calc(var(--reaction-warning-distance) * -1))} transform: scale(var(--reaction-info-scale)); 16.66% { transform: translateX(var(--reaction-error-distance))} 33.33% { transform: translateX(calc(var(--reaction-error-distance) * -1))} 50% { transform: translateX(var(--reaction-error-distance))} 66.66% { transform: translateX(calc(var(--reaction-error-distance) * -1))} 83.33% { transform: translateX(var(--reaction-error-distance))} transform: translateX(var(--toast-enter-distance)); transform: translateX(calc(var(--toast-enter-distance) * -1)); transform: translateX(var(--toast-enter-distance)); transform: translateY(calc(var(--toast-enter-distance) * -1)); opacity: var(--modal-backdrop-opacity); transform: scale(var(--modal-scale-from)); transform: scale(var(--modal-bounce-overshoot)); transform: scale(var(--modal-scale-to)); transform: scale(var(--modal-scale-from)); transform: scale(var(--modal-bounce-overshoot)); transform: scale(var(--modal-scale-to)); box-shadow: 0 0 5px var(--color-primary); box-shadow: 0 0 20px var(--color-primary), 0 0 30px var(--color-primary); animation: success-bounce var(--reaction-success-duration) var(--reaction-success-ease); animation: warning-shake var(--reaction-warning-duration) var(--reaction-warning-ease); animation: info-pulse var(--reaction-info-duration) var(--reaction-info-ease) var(--reaction-info-iterations); animation: error-shake var(--reaction-error-duration) var(--reaction-error-ease); animation: potato-gentle-bounce var(--dur-lg) var(--ease-potato) infinite; animation: potato-happy-wiggle var(--dur-md) var(--ease-bouncy); animation: rabbit-quick-hop var(--dur-md) var(--ease-rabbit); animation: rabbit-ear-twitch var(--dur-xs) var(--ease-sharp) 3; animation: toast-slide-in-right var(--toast-enter-duration) var(--toast-enter-ease); animation: toast-slide-in-left var(--toast-enter-duration) var(--toast-enter-ease); animation: toast-slide-in-top var(--toast-enter-duration) var(--toast-enter-ease); animation: toast-slide-out-right var(--toast-exit-duration) var(--toast-exit-ease); animation: error-shake var(--dur-sm) var(--ease-sharp); animation: modal-fade-in var(--dur-md) var(--ease-smooth); animation: modal-scale-in var(--dur-md) var(--ease-bouncy); animation: modal-bounce-in var(--dur-lg) var(--ease-bouncy); animation: float var(--dur-2xl) var(--ease-smooth) infinite; animation: glow var(--dur-xl) var(--ease-smooth) infinite; animation: shimmer var(--dur-xl) linear infinite; :root { --animation-fill-mode: both; --animation-play-state: running; animation-play-state: var(--animation-play-state, running); :root[data-theme='light']::before { background: var(--color-background-paper); color: var(--color-text-primary); :root[data-theme='dark']::before { background: var(--color-background-paper); color: var(--color-text-primary); :root[data-theme='hc']::before { background: var(--color-background-paper); color: var(--color-text-primary); border: 2px solid var(--color-text-primary); .visually-hidden { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important} background: var(--color-primary); color: var(--color-primary-contrast); padding: var(--spacing-sm) var(--spacing-md); border-radius: var(--radius-md); font-weight: var(--font-weight-semibold); z-index: var(--z-index-overlay); transition: var(--transition-default); .skip-to-content { position: absolute; top: -40px; left: 6px; text-decoration: none} .skip-to-content:focus { top: 6px} outline: 2px solid var(--color-primary); *:focus { outline-offset: 2px} outline: 2px solid var(--color-primary); box-shadow: var(--shadow-focus); border-radius: var(--radius-sm); *:focus-visible { outline-offset: 2px} outline: 2px solid var(--color-primary); *:focus, *:focus-visible { outline: 3px solid currentColor; outline-offset: 2px} *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important} min-height: var(--mobile-tap-target-size); min-width: var(--mobile-tap-target-size); color: var(--color-text-secondary); color: var(--color-text-primary); color: var(--color-text-primary); * { animation: none !important; transition: none !important} * { background: white !important; color: black !important; box-shadow: none !important} *:focus-visible { box-shadow: 0 0 0 4px rgba(31, 199, 212, 0.3)} color: var(--color-text-secondary); padding: var(--spacing-xl); margin-top: var(--spacing-md); color: var(--color-text-secondary); color: var(--color-error); font-weight: var(--font-weight-medium); margin-top: var(--spacing-xs); gap: var(--spacing-xs); font-size: var(--font-size-sm); box-shadow: var(--shadow-card-hover); font-size: var(--responsive-font-size-md, var(--font-size-md)); body { } font-size: var(--responsive-font-size-xl, var(--font-size-xl)); font-size: var(--responsive-font-size-lg, var(--font-size-lg)); padding-bottom: calc(var(--spacing-md) + var(--mobile-safe-area-bottom)); padding-top: calc(var(--spacing-md) + var(--mobile-safe-area-top)); opacity: var(--opacity-hover); opacity: var(--opacity-hover); .text-primary { color: var(--color-text-primary)} .text-secondary { color: var(--color-text-secondary)} .text-success { color: var(--color-success)} .text-warning { color: var(--color-warning)} .text-error { color: var(--color-error)} .text-income { color: var(--color-income)} .text-expense { color: var(--color-expense)} .bg-primary { background-color: var(--color-primary)} .bg-success { background-color: var(--color-success)} .bg-warning { background-color: var(--color-warning)} .bg-error { background-color: var(--color-error)} .bg-paper { background-color: var(--color-background-paper)} .bg-alternative { background-color: var(--color-background-alternative)} .p-xs { padding: var(--spacing-xs)} .p-sm { padding: var(--spacing-sm)} .p-md { padding: var(--spacing-md)} .p-lg { padding: var(--spacing-lg)} .p-xl { padding: var(--spacing-xl)} .m-xs { margin: var(--spacing-xs)} .m-sm { margin: var(--spacing-sm)} .m-md { margin: var(--spacing-md)} .m-lg { margin: var(--spacing-lg)} .m-xl { margin: var(--spacing-xl)} .mt-xs { margin-top: var(--spacing-xs)} .mt-sm { margin-top: var(--spacing-sm)} .mt-md { margin-top: var(--spacing-md)} .mt-lg { margin-top: var(--spacing-lg)} .mb-xs { margin-bottom: var(--spacing-xs)} .mb-sm { margin-bottom: var(--spacing-sm)} .mb-md { margin-bottom: var(--spacing-md)} .mb-lg { margin-bottom: var(--spacing-lg)} .rounded-sm { border-radius: var(--radius-sm)} .rounded-md { border-radius: var(--radius-md)} .rounded-lg { border-radius: var(--radius-lg)} .rounded-xl { border-radius: var(--radius-xl)} .rounded-2xl { border-radius: var(--radius-2xl)} .rounded-full { border-radius: var(--radius-pill)} .shadow-sm { box-shadow: var(--shadow-sm)} .shadow-md { box-shadow: var(--shadow-md)} .shadow-lg { box-shadow: var(--shadow-lg)} .shadow-card { box-shadow: var(--shadow-card)} .shadow-transaction { box-shadow: var(--shadow-transaction)} .text-xs { font-size: var(--font-size-xs)} .text-sm { font-size: var(--font-size-sm)} .text-md { font-size: var(--font-size-md)} .text-lg { font-size: var(--font-size-lg)} .text-xl { font-size: var(--font-size-xl)} .text-2xl { font-size: var(--font-size-2xl)} .font-regular { font-weight: var(--font-weight-regular)} .font-medium { font-weight: var(--font-weight-medium)} .font-semibold { font-weight: var(--font-weight-semibold)} .font-bold { font-weight: var(--font-weight-bold)} .transition-fast { transition: var(--transition-fast)} .transition-normal { transition: var(--transition-normal)} .transition-slow { transition: var(--transition-slow)} .transition-default { transition: var(--transition-default)} .transition-button { transition: var(--transition-button)} .transition-card { transition: var(--transition-card)} font-family: var(--font-family-primary); border-radius: var(--button-border-radius); font-weight: var(--font-weight-semibold); transition: var(--transition-button); gap: var(--spacing-xs); min-height: var(--mobile-tap-target-size); height: var(--button-height-sm); padding: var(--button-padding-sm); font-size: var(--font-size-sm); height: var(--button-height-md); padding: var(--button-padding-md); font-size: var(--font-size-md); height: var(--button-height-lg); padding: var(--button-padding-lg); font-size: var(--font-size-lg); background-color: var(--color-primary); color: var(--color-primary-contrast); box-shadow: var(--shadow-button); background-color: var(--color-primary-dark); background-color: var(--color-background-alternative); color: var(--color-text-primary); border: 1px solid var(--color-border-default); background-color: var(--color-background-paper); border-color: var(--color-primary); background-color: var(--color-success); color: var(--color-primary-contrast); background-color: var(--color-success-dark); background-color: var(--color-warning); color: var(--color-primary-contrast); background-color: var(--color-error); color: var(--color-primary-contrast); background-color: var(--card-background); border: var(--card-border); border-radius: var(--card-border-radius); padding: var(--card-padding); box-shadow: var(--shadow-card); transition: var(--transition-card); box-shadow: var(--shadow-card-hover); padding: var(--spacing-md); height: var(--input-height); padding: var(--input-padding); background-color: var(--input-background); border: 1px solid var(--color-border-default); border-radius: var(--input-border-radius); font-family: var(--font-family-primary); font-size: var(--font-size-md); transition: var(--transition-input); background-color: var(--input-background-focus); border-color: var(--input-border-focus); border-color: var(--input-border-error); padding: var(--badge-padding); border-radius: var(--badge-border-radius); font-size: var(--badge-font-size); font-weight: var(--badge-font-weight); background-color: var(--transaction-income-bg); color: var(--color-success); border: 1px solid var(--transaction-income-border); background-color: var(--transaction-expense-bg); color: var(--color-expense); border: 1px solid var(--transaction-expense-border); background-color: var(--category-food-bg); color: var(--color-warning); background-color: var(--modal-overlay-background); backdrop-filter: var(--modal-overlay-backdrop-filter); z-index: var(--z-index-modal); padding: var(--spacing-md); background-color: var(--modal-content-background); border-radius: var(--modal-content-border-radius); padding: var(--modal-content-padding); max-width: var(--modal-content-max-width); box-shadow: var(--shadow-xl); height: var(--nav-height); padding: var(--nav-padding); background-color: var(--nav-background); border-bottom: var(--nav-border-bottom); min-height: var(--mobile-tap-target-size); color: var(--color-text-secondary); transition: var(--transition-default); border-radius: var(--radius-md); padding: var(--spacing-xs) var(--spacing-sm); color: var(--color-primary); color: var(--color-text-primary); background-color: var(--color-background-alternative); top: var(--spacing-lg); right: var(--spacing-lg); background-color: var(--color-background-paper); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); padding: var(--spacing-md); z-index: var(--z-index-tooltip); transition: var(--transition-normal); border-left: 4px solid var(--color-success); border-left: 4px solid var(--color-error); border-left: 4px solid var(--color-warning); color: var(--color-income); color: var(--color-expense); border-left: 3px solid var(--color-income); background-color: var(--transaction-income-bg); border-left: 3px solid var(--color-expense); background-color: var(--transaction-expense-bg); color: var(--color-potato); text-shadow: var(--character-potato-shadow); color: var(--color-rabbit); text-shadow: var(--character-rabbit-shadow); height: var(--progress-track-height); background-color: var(--progress-track-background); border-radius: var(--radius-pill); background: var(--progress-fill-background); border-radius: var(--radius-pill); transition: width var(--transition-normal); color: var(--status-positive); color: var(--status-negative); color: var(--status-neutral); color: var(--status-warning); padding: var(--responsive-card-padding, var(--card-padding)); padding: var(--responsive-content-padding, var(--modal-content-padding)); font-size: var(--responsive-font-size-sm, var(--font-size-sm)); border-color: var(--color-border-default); background-color: var(--color-background-alternative); border-color: var(--color-border-default); color: var(--color-text-primary); background-color: var(--color-background-paper); color: var(--color-text-primary); html::before { content: ''; display: none; background-image: url('../icons.svg')} .icon { display: inline-block; vertical-align: middle; fill: currentColor; color: inherit; transform: translateZ(0); backface-visibility: hidden} .icon svg { display: block; width: 100%; height: 100%; fill: inherit; color: inherit} .icon-xs { width: 12px; height: 12px} .icon-sm { width: 16px; height: 16px} .icon-md, .icon { width: 24px; height: 24px} .icon-lg { width: 32px; height: 32px} .icon-xl { width: 48px; height: 48px} .icon-2xl { width: 64px; height: 64px} .icon-3xl { width: 96px; height: 96px} color: var(--color-potato, #DEB887); .icon-potato { } color: var(--color-success); .icon-potato.success { } color: var(--color-warning); .icon-potato.warning { } color: var(--color-error); .icon-potato.error { } color: var(--color-primary); .icon-potato.info { } color: var(--color-rabbit, #F8F8FF); .icon-rabbit { } color: var(--color-success); .icon-rabbit.success { } color: var(--color-warning); .icon-rabbit.warning { } color: var(--color-error); .icon-rabbit.error { } color: var(--color-primary); .icon-rabbit.info { } animation: success-bounce var(--reaction-success-duration) var(--reaction-success-ease); color: var(--color-success); animation: warning-shake var(--reaction-warning-duration) var(--reaction-warning-ease); color: var(--color-warning); animation: info-pulse var(--reaction-info-duration) var(--reaction-info-ease) var(--reaction-info-iterations); color: var(--color-primary); animation: error-shake var(--reaction-error-duration) var(--reaction-error-ease); color: var(--color-error); animation: potato-gentle-bounce var(--dur-lg) var(--ease-potato) infinite; animation: potato-happy-wiggle var(--dur-md) var(--ease-bouncy); animation: rabbit-quick-hop var(--dur-md) var(--ease-rabbit); animation: rabbit-ear-twitch var(--dur-xs) var(--ease-sharp) 3; transition: var(--transition-fast); .icon-interactive { cursor: pointer} transform: scale(var(--btn-hover-scale)); .icon-interactive:hover { filter: brightness(1.1)} transform: scale(var(--btn-active-scale)); .icon-interactive:active { } outline: 2px solid var(--color-primary); .icon-interactive:focus-visible { outline-offset: 2px} animation: spin var(--dur-xl) linear infinite; .icon-loading { } animation: loading-pulse var(--dur-lg) var(--ease-smooth) infinite; .icon-loading-pulse { } color: var(--color-success); .context-success .icon { } color: var(--color-warning); .context-warning .icon { } color: var(--color-error); .context-error .icon { } color: var(--color-primary); .context-info .icon { } .icon-with-badge { position: relative; display: inline-block} background: var(--color-error); border-radius: var(--radius-pill); font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); border: 2px solid var(--color-background-paper); .icon-badge { position: absolute; top: -4px; right: -4px; min-width: 16px; height: 16px; padding: 0 4px; color: white; line-height: 16px; text-align: center; z-index: 1} :root[data-theme='hc'] .icon { .icon-loading { animation: none} .icon-loading-pulse { animation: loading-pulse-reduced 2s ease-in-out infinite} .icon[aria-hidden="true"] { pointer-events: none} :root[data-theme='dark'] .icon-potato { color: var(--color-potato, #F4D03F); :root[data-theme='dark'] .icon-rabbit { color: var(--color-rabbit, #E8E8E8); :root[data-theme='light'] .icon-potato, :root:not([data-theme]) .icon-potato { color: var(--color-potato, #DEB887); :root[data-theme='light'] .icon-rabbit, :root:not([data-theme]) .icon-rabbit { color: var(--color-rabbit, #F8F8FF); :root[data-theme='hc'] .icon-potato { :root[data-theme='hc'] .icon-rabbit { .icon-align-top { vertical-align: top} .icon-align-middle { vertical-align: middle} .icon-align-bottom { vertical-align: bottom} .icon-align-text-top { vertical-align: text-top} .icon-align-text-bottom { vertical-align: text-bottom} margin-right: var(--spacing-xs); .icon-mr-xs { } margin-right: var(--spacing-sm); .icon-mr-sm { } margin-right: var(--spacing-md); .icon-mr-md { } margin-left: var(--spacing-xs); .icon-ml-xs { } margin-left: var(--spacing-sm); .icon-ml-sm { } margin-left: var(--spacing-md); .icon-ml-md { } .icon-rotate-90 { transform: rotate(90deg)} .icon-rotate-180 { transform: rotate(180deg)} .icon-rotate-270 { transform: rotate(270deg)} .icon-flip-horizontal { transform: scaleX(-1)} .icon-flip-vertical { transform: scaleY(-1)} .icon-loading, .icon-loading-pulse { will-change: transform; transform: translateZ(0); backface-visibility: hidden} .icon-container { contain: layout style paint} .icon-responsive { width: 20px; height: 20px} .icon-responsive.icon-lg { width: 28px; height: 28px} .icon-responsive.icon-xl { width: 40px; height: 40px} .icon-responsive { width: 28px; height: 28px} .icon-responsive.icon-lg { width: 36px; height: 36px} .icon-responsive.icon-xl { width: 56px; height: 56px} gap: var(--spacing-xs); .icon-text { display: inline-flex; align-items: center} .icon-text.vertical { flex-direction: column; text-align: center} padding: var(--spacing-xs); border-radius: var(--radius-md); transition: var(--transition-fast); .icon-button { display: inline-flex; align-items: center; justify-content: center; border: none; background: none; cursor: pointer} background: var(--color-background-alternative); transform: scale(var(--btn-hover-scale)); .icon-button:hover { } transform: scale(var(--btn-active-scale)); .icon-button:active { } outline: 2px solid var(--color-primary); .icon-button:focus-visible { outline-offset: 1px} .icon-debug { outline: 1px dashed red; outline-offset: 2px} .icon-debug::before { content: attr(data-icon-name); position: absolute; top: -20px; left: 0; font-size: 10px; color: red; background: white; padding: 2px 4px; border-radius: 2px; z-index: 999; pointer-events: none} html::after { content: ''; display: none; background-image: url('../icons.svg')} success-bounce var(--reaction-success-duration) var(--reaction-success-ease), success-glow var(--dur-lg) var(--ease-smooth); color: var(--color-success); drop-shadow(0 0 var(--spacing-xs) rgba(49, 208, 170, 0.4)) animation: warning-shake var(--reaction-warning-duration) var(--reaction-warning-ease); animation-iteration-count: var(--reaction-warning-cycles); color: var(--color-warning); drop-shadow(0 0 var(--spacing-xs) rgba(255, 178, 55, 0.4)) animation: info-pulse var(--reaction-info-duration) var(--reaction-info-ease); animation-iteration-count: var(--reaction-info-iterations); color: var(--color-primary); drop-shadow(0 0 var(--spacing-xs) rgba(31, 199, 212, 0.3)) animation: error-shake var(--reaction-error-duration) var(--reaction-error-ease); animation-iteration-count: var(--reaction-error-cycles); color: var(--color-error); drop-shadow(0 0 var(--spacing-xs) rgba(237, 75, 158, 0.5)) potato-happy-wiggle var(--dur-md) var(--ease-potato), success-glow var(--dur-lg) var(--ease-smooth); color: var(--color-potato); filter: drop-shadow(var(--character-potato-shadow)); animation: potato-gentle-bounce var(--dur-lg) var(--ease-potato) infinite; color: var(--color-potato); filter: drop-shadow(var(--character-potato-shadow)); potato-gentle-bounce var(--dur-2xl) var(--ease-smooth) infinite, float var(--dur-2xl) var(--ease-smooth) infinite; animation-delay: 0s, calc(var(--dur-2xl) / 2); color: var(--color-potato); animation: rabbit-quick-hop var(--dur-md) var(--ease-rabbit); color: var(--color-rabbit); filter: drop-shadow(var(--character-rabbit-shadow)); animation: rabbit-ear-twitch var(--dur-xs) var(--ease-sharp); color: var(--color-rabbit); filter: drop-shadow(var(--character-rabbit-shadow)); rabbit-quick-hop var(--dur-sm) var(--ease-rabbit) 3, success-glow var(--dur-lg) var(--ease-smooth); color: var(--color-rabbit); filter: drop-shadow(var(--character-rabbit-shadow)) brightness(1.1); success-bounce var(--dur-md) var(--ease-bouncy), shimmer var(--dur-xl) linear; color: var(--color-income); drop-shadow(0 var(--spacing-xs) var(--spacing-lg) rgba(49, 208, 170, 0.3)) warning-shake var(--dur-sm) var(--ease-sharp) 2, error-glow var(--dur-lg) var(--ease-smooth); color: var(--color-expense); drop-shadow(0 var(--spacing-xs) var(--spacing-lg) rgba(237, 75, 158, 0.4)) info-pulse var(--dur-lg) var(--ease-smooth) infinite, spin var(--dur-2xl) linear infinite; color: var(--color-primary); float var(--dur-2xl) var(--ease-smooth) infinite, empty-fade var(--dur-xl) var(--ease-smooth) infinite alternate; color: var(--color-text-disabled); filter: drop-shadow(0 0 var(--spacing-xs) rgba(49, 208, 170, 0.3)); filter: drop-shadow(0 0 var(--spacing-lg) rgba(49, 208, 170, 0.6)); filter: drop-shadow(0 0 var(--spacing-xs) rgba(49, 208, 170, 0.3)); filter: drop-shadow(0 0 var(--spacing-xs) rgba(237, 75, 158, 0.4)); filter: drop-shadow(0 0 var(--spacing-lg) rgba(237, 75, 158, 0.7)); filter: drop-shadow(0 0 var(--spacing-xs) rgba(237, 75, 158, 0.4)); animation: attention-wobble var(--dur-lg) var(--ease-bouncy) 3; color: var(--color-warning); celebration-burst var(--dur-xl) var(--ease-bouncy), success-glow var(--dur-2xl) var(--ease-smooth); color: var(--color-success); modal-scale-in var(--dur-md) var(--ease-bouncy), success-glow var(--dur-lg) var(--ease-smooth); animation: modal-fade-out var(--dur-sm) var(--ease-sharp); .stagger-enter:nth-child(1) { animation-delay: calc(var(--dur-xxs) * 0)} .stagger-enter:nth-child(2) { animation-delay: calc(var(--dur-xxs) * 1)} .stagger-enter:nth-child(3) { animation-delay: calc(var(--dur-xxs) * 2)} .stagger-enter:nth-child(4) { animation-delay: calc(var(--dur-xxs) * 3)} .stagger-enter:nth-child(5) { animation-delay: calc(var(--dur-xxs) * 4)} .stagger-enter:nth-child(6) { animation-delay: calc(var(--dur-xxs) * 5)} .stagger-enter:nth-child(7) { animation-delay: calc(var(--dur-xxs) * 6)} .stagger-enter:nth-child(8) { animation-delay: calc(var(--dur-xxs) * 7)} .stagger-enter:nth-child(9) { animation-delay: calc(var(--dur-xxs) * 8)} .stagger-enter:nth-child(10) { animation-delay: calc(var(--dur-xxs) * 9)} animation: react-enter var(--dur-md) var(--ease-smooth); animation: success-bounce var(--dur-sm) var(--ease-bouncy); .icon-hover-bounce:hover { } animation: info-pulse var(--dur-md) var(--ease-smooth) 2; .icon-hover-pulse:hover { } animation: potato-happy-wiggle var(--dur-sm) var(--ease-potato); .icon-hover-wiggle:hover { } transform: scale(var(--btn-active-scale)); transition: transform var(--dur-xxs) var(--ease-sharp); .icon-click-scale:active { animation: none} animation: info-pulse var(--dur-md) var(--ease-smooth) infinite; outline: var(--spacing-xs) solid var(--color-primary); outline-offset: var(--spacing-xs); .icon-focus-glow:focus-visible { } :root[data-theme='dark'] .react-success { drop-shadow(0 0 var(--spacing-sm) rgba(104, 255, 218, 0.5)) :root[data-theme='dark'] .react-error { drop-shadow(0 0 var(--spacing-sm) rgba(255, 101, 184, 0.6)) :root[data-theme='dark'] .react-info { drop-shadow(0 0 var(--spacing-sm) rgba(51, 225, 237, 0.4)) :root[data-theme='hc'] .react-success, :root[data-theme='hc'] .react-error, :root[data-theme='hc'] .react-info, :root[data-theme='hc'] .react-warn { animation-duration: calc(var(--dur-sm) * 0.7); [class*="react-"], [class*="animate-"], .icon-hover-bounce, .icon-hover-pulse, .icon-hover-wiggle, [class*="react-"]:not(.react-loading):not(.react-potato-bounce):not(.react-potato-idle) { animation-fill-mode: forwards} [class*="react-"].animation-ended { will-change: auto; transform: none} .react-success { color: var(--color-success)} .react-error { color: var(--color-error)} .react-warn { color: var(--color-warning)} .react-info { color: var(--color-primary)} font-weight: var(--font-weight-bold); [class*="react-"], [class*="animate-"], .icon-hover-bounce:hover, .icon-hover-pulse:hover, .icon-hover-wiggle:hover, [class*="react-"] { filter: contrast(1.5) !important} .debug-animations [class*="react-"]::before { content: attr(class); position: absolute; top: -20px; left: 0; font-size: 10px; background: rgba(255, 255, 255, 0.9); color: #000; padding: 2px 4px; border-radius: 2px; z-index: 999; pointer-events: none; font-family: monospace} .debug-animations [class*="react-"] { outline: 1px dashed rgba(255, 0, 255, 0.5); outline-offset: 2px} border-radius: var(--border-radius-lg); background: var(--color-background-paper); color: var(--color-text-primary); box-shadow: var(--shadow-sm); background: var(--color-background-alternative); box-shadow: var(--shadow-md); box-shadow: var(--shadow-sm); outline: 2px solid var(--color-primary); .theme-switcher-icon { font-size: 1.2rem; transition: transform 0.2s ease-in-out} .theme-switcher-button:hover .theme-switcher-icon { transform: rotate(360deg)} background: var(--color-background-paper); border: 1px solid var(--color-border); border-radius: var(--border-radius-lg); box-shadow: var(--shadow-lg); background: var(--color-background-paper); border: 1px solid var(--color-border); color: var(--color-text-primary); background: var(--color-background-alternative); color: var(--color-primary); outline: 2px solid var(--color-primary); background: var(--color-background-alternative); background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary)); color: var(--color-primary-contrast); .theme-option-icon { font-size: 1.1rem; width: 1.5rem; text-align: center; flex-shrink: 0} .theme-option-icon { font-size: 1.25rem; width: 1.75rem} background: var(--color-background-paper); background: var(--color-background-paper); border: 2px solid var(--color-text-primary); background: var(--color-background-paper); border-bottom: 1px solid var(--color-border); body.theme-transitioning * { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important} .theme-switcher.loading .theme-switcher-icon { animation: spin 1s linear infinite} .theme-switcher-icon { transition: none !important; animation: none !important} .theme-switcher-button:hover .theme-switcher-icon { transform: none} background: var(--color-background-alternative); color: var(--color-primary); color: var(--color-text-primary); background: var(--color-background-alternative); color: var(--color-primary);
+    </style>
+    
+    <!-- 📊 성능 모니터링 -->
+    <script>
+        /**
+ * 감자토끼 가계부 - Performance Monitor
+ * 실시간 성능 모니터링 및 예산 검증
+ */
+
+class PerformanceMonitor {
+    constructor() {
+        this.budgets = {
+            css: {
+                critical: 15,      // KB
+                total: 60,         // KB
+                fonts: 120         // KB
+            },
+            lcp: 2500,            // ms
+            cls: 0.1,             // score
+            fid: 100,             // ms
+            fcp: 1500             // ms
+        };
+
+        this.metrics = {};
+        this.observers = [];
+    }
+
+    /**
+     * Core Web Vitals 모니터링 초기화
+     */
+    initializeCoreWebVitals() {
+        // LCP (Largest Contentful Paint) 모니터링
+        this.observeLCP();
+        
+        // CLS (Cumulative Layout Shift) 모니터링
+        this.observeCLS();
+        
+        // FID (First Input Delay) 모니터링  
+        this.observeFID();
+        
+        // FCP (First Contentful Paint) 모니터링
+        this.observeFCP();
+    }
+
+    /**
+     * LCP 모니터링
+     */
+    observeLCP() {
+        if (!window.PerformanceObserver) return;
+
+        const observer = new PerformanceObserver((entryList) => {
+            const entries = entryList.getEntries();
+            const lastEntry = entries[entries.length - 1];
+            
+            this.metrics.lcp = {
+                value: lastEntry.startTime,
+                element: lastEntry.element?.tagName || 'unknown',
+                withinBudget: lastEntry.startTime <= this.budgets.lcp,
+                timestamp: Date.now()
+            };
+
+            this.reportMetric('LCP', this.metrics.lcp);
+        });
+
+        try {
+            observer.observe({ type: 'largest-contentful-paint', buffered: true });
+            this.observers.push(observer);
+        } catch (e) {
+            console.warn('LCP 모니터링 실패:', e);
+        }
+    }
+
+    /**
+     * CLS 모니터링
+     */
+    observeCLS() {
+        if (!window.PerformanceObserver) return;
+
+        let clsValue = 0;
+        let clsEntries = [];
+
+        const observer = new PerformanceObserver((entryList) => {
+            for (const entry of entryList.getEntries()) {
+                if (!entry.hadRecentInput) {
+                    clsValue += entry.value;
+                    clsEntries.push(entry);
+                }
+            }
+
+            this.metrics.cls = {
+                value: clsValue,
+                withinBudget: clsValue <= this.budgets.cls,
+                entries: clsEntries.length,
+                timestamp: Date.now()
+            };
+
+            this.reportMetric('CLS', this.metrics.cls);
+        });
+
+        try {
+            observer.observe({ type: 'layout-shift', buffered: true });
+            this.observers.push(observer);
+        } catch (e) {
+            console.warn('CLS 모니터링 실패:', e);
+        }
+    }
+
+    /**
+     * FID 모니터링
+     */
+    observeFID() {
+        if (!window.PerformanceObserver) return;
+
+        const observer = new PerformanceObserver((entryList) => {
+            for (const entry of entryList.getEntries()) {
+                this.metrics.fid = {
+                    value: entry.processingStart - entry.startTime,
+                    withinBudget: (entry.processingStart - entry.startTime) <= this.budgets.fid,
+                    timestamp: Date.now()
+                };
+
+                this.reportMetric('FID', this.metrics.fid);
+            }
+        });
+
+        try {
+            observer.observe({ type: 'first-input', buffered: true });
+            this.observers.push(observer);
+        } catch (e) {
+            console.warn('FID 모니터링 실패:', e);
+        }
+    }
+
+    /**
+     * FCP 모니터링
+     */
+    observeFCP() {
+        if (!window.PerformanceObserver) return;
+
+        const observer = new PerformanceObserver((entryList) => {
+            const entries = entryList.getEntries();
+            for (const entry of entries) {
+                if (entry.name === 'first-contentful-paint') {
+                    this.metrics.fcp = {
+                        value: entry.startTime,
+                        withinBudget: entry.startTime <= this.budgets.fcp,
+                        timestamp: Date.now()
+                    };
+
+                    this.reportMetric('FCP', this.metrics.fcp);
+                }
+            }
+        });
+
+        try {
+            observer.observe({ type: 'paint', buffered: true });
+            this.observers.push(observer);
+        } catch (e) {
+            console.warn('FCP 모니터링 실패:', e);
+        }
+    }
+
+    /**
+     * 리소스 로딩 모니터링
+     */
+    monitorResourceLoading() {
+        if (!window.PerformanceObserver) return;
+
+        const observer = new PerformanceObserver((list) => {
+            list.getEntries().forEach((entry) => {
+                if (entry.initiatorType === 'css' || entry.name.includes('.css')) {
+                    this.trackCSSLoading(entry);
+                } else if (entry.name.includes('font')) {
+                    this.trackFontLoading(entry);
+                }
+            });
+        });
+
+        try {
+            observer.observe({ type: 'resource', buffered: true });
+            this.observers.push(observer);
+        } catch (e) {
+            console.warn('리소스 모니터링 실패:', e);
+        }
+    }
+
+    /**
+     * CSS 로딩 추적
+     */
+    trackCSSLoading(entry) {
+        const sizeKB = entry.transferSize ? (entry.transferSize / 1024).toFixed(2) : 'unknown';
+        const isWithinBudget = entry.transferSize ? (entry.transferSize / 1024) <= this.budgets.css.total : true;
+
+        console.log(`📄 CSS 로딩: ${entry.name}`, {
+            size: `${sizeKB}KB`,
+            duration: `${entry.duration.toFixed(2)}ms`,
+            withinBudget: isWithinBudget
+        });
+
+        // 예산 초과 경고
+        if (!isWithinBudget) {
+            console.warn(`⚠️ CSS 예산 초과: ${sizeKB}KB > ${this.budgets.css.total}KB`);
+        }
+    }
+
+    /**
+     * 폰트 로딩 추적
+     */
+    trackFontLoading(entry) {
+        const sizeKB = entry.transferSize ? (entry.transferSize / 1024).toFixed(2) : 'unknown';
+        
+        console.log(`🔤 폰트 로딩: ${entry.name}`, {
+            size: `${sizeKB}KB`,
+            duration: `${entry.duration.toFixed(2)}ms`
+        });
+    }
+
+    /**
+     * 성능 메트릭 리포트
+     */
+    reportMetric(name, metric) {
+        const status = metric.withinBudget ? '✅' : '❌';
+        const unit = name === 'CLS' ? '' : 'ms';
+        
+        console.log(`${status} ${name}: ${metric.value.toFixed(2)}${unit}`, metric);
+
+        // 예산 초과 시 개선 제안
+        if (!metric.withinBudget) {
+            this.suggestImprovement(name, metric);
+        }
+    }
+
+    /**
+     * 성능 개선 제안
+     */
+    suggestImprovement(metricName, metric) {
+        const suggestions = {
+            LCP: [
+                '🖼️ 이미지 최적화 (WebP 형식 사용)',
+                '📄 Critical CSS 인라인화',
+                '🔤 폰트 preload 추가',
+                '⚡ 서버 응답 시간 개선'
+            ],
+            CLS: [
+                '📐 이미지에 width/height 속성 추가',
+                '🔤 폰트 로딩 최적화 (font-display: swap)',
+                '📦 동적 콘텐츠 공간 미리 확보',
+                '🎨 광고/임베드 콘텐츠 크기 고정'
+            ],
+            FID: [
+                '⚡ JavaScript 실행 시간 최적화',
+                '🔄 코드 스플리팅 적용',
+                '⏱️ 긴 작업을 작은 청크로 분할',
+                '🎯 이벤트 리스너 최적화'
+            ],
+            FCP: [
+                '📄 Critical CSS 인라인화',
+                '🔤 폰트 preload',
+                '⚡ 서버 응답 시간 개선',
+                '📦 리소스 우선순위 최적화'
+            ]
+        };
+
+        console.group(`💡 ${metricName} 개선 제안:`);
+        suggestions[metricName]?.forEach(suggestion => {
+            console.log(suggestion);
+        });
+        console.groupEnd();
+    }
+
+    /**
+     * 성능 예산 검증
+     */
+    validatePerformanceBudgets() {
+        const results = {
+            passed: 0,
+            failed: 0,
+            total: 0,
+            details: {}
+        };
+
+        Object.keys(this.budgets).forEach(metric => {
+            if (this.metrics[metric]) {
+                const withinBudget = this.metrics[metric].withinBudget;
+                results.details[metric] = {
+                    value: this.metrics[metric].value,
+                    budget: this.budgets[metric],
+                    withinBudget: withinBudget
+                };
+                
+                if (withinBudget) {
+                    results.passed++;
+                } else {
+                    results.failed++;
+                }
+                results.total++;
+            }
+        });
+
+        return results;
+    }
+
+    /**
+     * 성능 대시보드 표시
+     */
+    displayPerformanceDashboard() {
+        if (!document.getElementById('performance-dashboard')) {
+            this.createPerformanceDashboard();
+        }
+
+        const dashboard = document.getElementById('performance-dashboard');
+        const validation = this.validatePerformanceBudgets();
+
+        dashboard.innerHTML = `
+            <div class="perf-summary">
+                <h3>⚡ 성능 대시보드</h3>
+                <div class="perf-score">${validation.passed}/${validation.total} 통과</div>
+            </div>
+            <div class="perf-metrics">
+                ${Object.entries(validation.details).map(([metric, data]) => `
+                    <div class="perf-metric ${data.withinBudget ? 'pass' : 'fail'}">
+                        <span class="metric-name">${metric.toUpperCase()}</span>
+                        <span class="metric-value">${data.value.toFixed(2)}</span>
+                        <span class="metric-budget">/${data.budget}</span>
+                    </div>
+                `).join('')}
+            </div>
+        `;
+    }
+
+    /**
+     * 성능 대시보드 UI 생성
+     */
+    createPerformanceDashboard() {
+        const dashboard = document.createElement('div');
+        dashboard.id = 'performance-dashboard';
+        dashboard.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: 2px solid #1FC7D4;
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 12px;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            min-width: 200px;
+        `;
+
+        // 개발 환경에서만 표시
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            document.body.appendChild(dashboard);
+        }
+    }
+
+    /**
+     * 모니터링 시작
+     */
+    start() {
+        console.log('🚀 성능 모니터링 시작');
+        
+        this.initializeCoreWebVitals();
+        this.monitorResourceLoading();
+
+        // 3초 후 대시보드 표시
+        setTimeout(() => {
+            this.displayPerformanceDashboard();
+        }, 3000);
+
+        // 30초마다 업데이트
+        setInterval(() => {
+            this.displayPerformanceDashboard();
+        }, 30000);
+    }
+
+    /**
+     * 정리
+     */
+    cleanup() {
+        this.observers.forEach(observer => observer.disconnect());
+        this.observers = [];
+        
+        const dashboard = document.getElementById('performance-dashboard');
+        if (dashboard) {
+            dashboard.remove();
+        }
+    }
+}
+
+// 자동 초기화 (개발 환경)
+if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+    const monitor = new PerformanceMonitor();
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => monitor.start());
+    } else {
+        monitor.start();
+    }
+}
+
+module.exports = PerformanceMonitor;
+    </script>
+</head>
+<body>
+    <!-- 🎨 Critical SVG (인라인) -->
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;"><defs><symbol id="potato-success" viewBox="0 0 24 24" fill="none"><title>기쁜 감자</title><ellipse cx="12" cy="13" rx="7" ry="8" fill="currentColor" opacity="0.8" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="10" r="0.8" fill="currentColor" opacity="0.3"/><circle cx="16" cy="11" r="0.6" fill="currentColor" opacity="0.3"/><circle cx="10" cy="18" r="0.7" fill="currentColor" opacity="0.3"/><path d="M8.5 10.5 Q9.5 9.5 10.5 10.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M13.5 10.5 Q14.5 9.5 15.5 10.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M9 14.5 Q12 17 15 14.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></symbol><symbol id="potato-neutral" viewBox="0 0 24 24" fill="none"><title>평범한 감자</title><ellipse cx="12" cy="13" rx="7" ry="8" fill="currentColor" opacity="0.8" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="10" r="0.8" fill="currentColor" opacity="0.3"/><circle cx="16" cy="11" r="0.6" fill="currentColor" opacity="0.3"/><circle cx="10" cy="18" r="0.7" fill="currentColor" opacity="0.3"/><circle cx="9.5" cy="10.5" r="1" fill="white"/><circle cx="14.5" cy="10.5" r="1" fill="white"/><circle cx="9.5" cy="10.5" r="0.5" fill="currentColor"/><circle cx="14.5" cy="10.5" r="0.5" fill="currentColor"/><line x1="10.5" y1="15" x2="13.5" y2="15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol><symbol id="rabbit-success" viewBox="0 0 24 24" fill="none"><title>활기찬 토끼</title><ellipse cx="9" cy="4.5" rx="1.5" ry="4" fill="currentColor" opacity="0.6" stroke="currentColor" stroke-width="1"/><ellipse cx="15" cy="4.5" rx="1.5" ry="4" fill="currentColor" opacity="0.6" stroke="currentColor" stroke-width="1"/><ellipse cx="9" cy="4.5" rx="0.8" ry="2.5" fill="currentColor" opacity="0.3"/><ellipse cx="15" cy="4.5" rx="0.8" ry="2.5" fill="currentColor" opacity="0.3"/><circle cx="12" cy="14" r="6.5" fill="currentColor" opacity="0.8" stroke="currentColor" stroke-width="1"/><path d="M8.5 11.5 Q9.5 10.5 10.5 11.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M13.5 11.5 Q14.5 10.5 15.5 11.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M12 14.5 L11.5 15.5 M12 14.5 L12.5 15.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><path d="M9.5 16 Q12 18.5 14.5 16" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></symbol><symbol id="rabbit-neutral" viewBox="0 0 24 24" fill="none"><title>평범한 토끼</title><ellipse cx="9.5" cy="5" rx="1.5" ry="4" fill="currentColor" opacity="0.6" stroke="currentColor" stroke-width="1"/><ellipse cx="14.5" cy="5" rx="1.5" ry="4" fill="currentColor" opacity="0.6" stroke="currentColor" stroke-width="1"/><ellipse cx="9.5" cy="5" rx="0.8" ry="2.5" fill="currentColor" opacity="0.3"/><ellipse cx="14.5" cy="5" rx="0.8" ry="2.5" fill="currentColor" opacity="0.3"/><circle cx="12" cy="14" r="6.5" fill="currentColor" opacity="0.8" stroke="currentColor" stroke-width="1"/><circle cx="9.5" cy="11.5" r="1" fill="white"/><circle cx="14.5" cy="11.5" r="1" fill="white"/><circle cx="9.5" cy="11.5" r="0.5" fill="currentColor"/><circle cx="14.5" cy="11.5" r="0.5" fill="currentColor"/><path d="M12 14.5 L11.5 15.5 M12 14.5 L12.5 15.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/><line x1="10.5" y1="16" x2="13.5" y2="16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol></defs></svg>
+    
+    <!-- 페이지 콘텐츠는 기존 HTML에서 복사 -->
+    <!-- ... -->
+    
+    
+    <script>
+    // 🚀 고성능 CSS 지연 로딩
+    (function() {
+        const cssFiles = [
+            'css/animation-utilities.css',
+            'css/styleguide.css',
+            'css/theme-controls.css'
+        ];
+        
+        function loadCSS(href) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = href;
+            link.media = 'print';
+            link.onload = function() { this.media = 'all'; };
+            document.head.appendChild(link);
+        }
+        
+        // 페이지 로드 완료 후 지연 CSS 로딩
+        if (document.readyState === 'complete') {
+            cssFiles.forEach(loadCSS);
+        } else {
+            window.addEventListener('load', () => cssFiles.forEach(loadCSS));
+        }
+    })();
+    </script>
+    
+    <script>
+    // 🎨 SVG 스프라이트 지연 로딩
+    (function() {
+        function loadDeferredSVG() {
+            if (document.querySelector('#deferred-svg-loaded')) return;
+            
+            fetch('icons-deferred.svg')
+                .then(response => response.text())
+                .then(svg => {
+                    const container = document.createElement('div');
+                    container.id = 'deferred-svg-loaded';
+                    container.innerHTML = svg;
+                    document.body.appendChild(container);
+                })
+                .catch(err => console.warn('SVG 지연 로딩 실패:', err));
+        }
+
+        // 인터랙션 이벤트 후 로딩
+        const events = ['scroll', 'click', 'touchstart'];
+        const loadOnce = () => {
+            events.forEach(event => 
+                document.removeEventListener(event, loadOnce));
+            loadDeferredSVG();
+        };
+
+        events.forEach(event => 
+            document.addEventListener(event, loadOnce, { passive: true }));
+
+        // 3초 후 자동 로딩 (fallback)
+        setTimeout(loadDeferredSVG, 3000);
+    })();
+    </script>
+    
+    <script>
+    // 🔤 폰트 로딩 최적화
+    (function() {
+        // 폰트 로딩 상태 추적
+        const fontPromises = [];
+        
+        // Kanit 폰트 로딩
+        if (document.fonts && document.fonts.load) {
+            fontPromises.push(document.fonts.load('1em Kanit'));
+            fontPromises.push(document.fonts.load('500 1em Kanit'));
+        }
+        
+        // 모든 폰트 로딩 완료 후 클래스 추가
+        Promise.allSettled(fontPromises).then(() => {
+            document.documentElement.classList.add('fonts-loaded');
+        });
+        
+        // 3초 타임아웃 (폰트 로딩 실패 시 fallback)
+        setTimeout(() => {
+            if (!document.documentElement.classList.contains('fonts-loaded')) {
+                document.documentElement.classList.add('fonts-timeout');
+            }
+        }, 3000);
+    })();
+    </script>
+    
+</body>
+</html>

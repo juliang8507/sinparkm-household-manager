@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>감자토끼 가계부 스타일 가이드</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        // Primary - 감자토끼 브랜드 컬러
+                        potato: {
+                            50: '#fef7ed',
+                            100: '#fdedd6',
+                            200: '#fbd8ad',
+                            300: '#f8bb79',
+                            400: '#f59e54',
+                            500: '#f17316',
+                            600: '#e2590c',
+                            700: '#bb430c',
+                            800: '#943711',
+                            900: '#772f12'
+                        },
+                        rabbit: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e'
+                        },
+                        // Semantic colors
+                        success: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a'
+                        },
+                        warning: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#f59e0b',
+                            600: '#d97706'
+                        },
+                        danger: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            500: '#ef4444',
+                            600: '#dc2626'
+                        },
+                        info: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb'
+                        }
+                    },
+                    fontFamily: {
+                        'pretendard': ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif']
+                    },
+                    spacing: {
+                        '18': '4.5rem',
+                        '88': '22rem'
+                    },
+                    animation: {
+                        'shimmer': 'shimmer 3s linear infinite',
+                        'ripple': 'ripple 0.6s linear',
+                        'pulse-character': 'pulse-character 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+                    },
+                    keyframes: {
+                        shimmer: {
+                            from: { backgroundPosition: '200% 0' },
+                            to: { backgroundPosition: '-200% 0' }
+                        },
+                        ripple: {
+                            to: { transform: 'scale(4)', opacity: '0' }
+                        },
+                        'pulse-character': {
+                            '0%, 100%': { transform: 'scale(1)', opacity: '1' },
+                            '50%': { transform: 'scale(1.1)', opacity: '0.8' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/styleguide.css">
+</head>
+<body class="font-pretendard bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-gradient-to-br from-potato-400 to-potato-600 rounded-full flex items-center justify-center">
+                        <span class="text-2xl">🥔🐰</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-gray-900 dark:text-white">감자토끼 가계부</h1>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">디자인 시스템 & 스타일 가이드</p>
+                    </div>
+                </div>
+                
+                <!-- Theme & Controls -->
+                <div class="flex items-center gap-4">
+                    <button id="themeToggle" class="sg-button sg-button--secondary sg-button--sm" aria-label="테마 전환 (Ctrl+Shift+T)">
+                        <i class="fas fa-sun mr-2"></i>
+                        <span class="hidden sm:inline">테마</span>
+                    </button>
+                    <button id="motionToggle" class="sg-button sg-button--secondary sg-button--sm" aria-label="애니메이션 토글 (Ctrl+Shift+M)">
+                        <i class="fas fa-play mr-2"></i>
+                        <span class="hidden sm:inline">모션</span>
+                    </button>
+                    <button class="sg-button sg-button--ghost sg-button--sm" data-modal-trigger>
+                        <i class="fas fa-info-circle mr-2"></i>
+                        <span class="hidden sm:inline">도움말</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex space-x-8">
+                <button class="nav-tab py-4 border-b-2 border-potato-500 text-potato-600 dark:text-potato-400 font-medium" data-tab="tokens">
+                    디자인 토큰
+                </button>
+                <button class="nav-tab py-4 border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 font-medium" data-tab="components">
+                    컴포넌트
+                </button>
+                <button class="nav-tab py-4 border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 font-medium" data-tab="states">
+                    상태 시연
+                </button>
+                <button class="nav-tab py-4 border-b-2 border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 font-medium" data-tab="characters">
+                    캐릭터 시스템
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Design Tokens Section -->
+        <div id="tokens" class="tab-content">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">디자인 토큰</h2>
+            
+            <!-- Color Palette -->
+            <section class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">컬러 팔레트</h3>
+                
+                <!-- Primary Colors -->
+                <div class="mb-8">
+                    <h4 class="text-lg font-medium text-gray-700 dark:text-gray-300 mb-4">Primary Colors</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <!-- Potato Colors -->
+                        <div class="sg-color-swatch">
+                            <div class="sg-color-swatch__color bg-potato-50"></div>
+                            <div class="sg-color-swatch__info">
+                                <div class="sg-color-swatch__name">potato-50</div>
+                                <div class="sg-color-swatch__value">#fef7ed</div>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="bg-potato-200 h-16 rounded-lg border border-gray-200 dark:border-gray-600"></div>
+                            <div class="text-sm">
+                                <div class="font-mono text-xs text-gray-500">potato-200</div>
+                                <div class="font-mono text-xs">#fbd8ad</div>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="bg-potato-400 h-16 rounded-lg border border-gray-200 dark:border-gray-600"></div>
+                            <div class="text-sm">
+                                <div class="font-mono text-xs text-gray-500">potato-400</div>
+                                <div class="font-mono text-xs">#f59e54</div>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="bg-potato-600 h-16 rounded-lg border border-gray-200 dark:border-gray-600"></div>
+                            <div class="text-sm">
+                                <div class="font-mono text-xs text-gray-500">potato-600</div>
+                                <div class="font-mono text-xs">#e2590c</div>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="bg-potato-800 h-16 rounded-lg border border-gray-200 dark:border-gray-600"></div>
+                            <div class="text-sm">
+                                <div class="font-mono text-xs text-gray-500">potato-800</div>
+                                <div class="font-mono text-xs">#943711</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Semantic Colors -->
+                <div class="mb-8">
+                    <h4 class="text-lg font-medium text-gray-700 dark:text-gray-300 mb-4">Semantic Colors</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="space-y-2">
+                            <div class="bg-success-500 h-16 rounded-lg"></div>
+                            <div class="text-sm">
+                                <div class="font-mono text-xs text-gray-500">success-500</div>
+                                <div class="font-mono text-xs">#22c55e</div>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="bg-warning-500 h-16 rounded-lg"></div>
+                            <div class="text-sm">
+                                <div class="font-mono text-xs text-gray-500">warning-500</div>
+                                <div class="font-mono text-xs">#f59e0b</div>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="bg-danger-500 h-16 rounded-lg"></div>
+                            <div class="text-sm">
+                                <div class="font-mono text-xs text-gray-500">danger-500</div>
+                                <div class="font-mono text-xs">#ef4444</div>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="bg-info-500 h-16 rounded-lg"></div>
+                            <div class="text-sm">
+                                <div class="font-mono text-xs text-gray-500">info-500</div>
+                                <div class="font-mono text-xs">#3b82f6</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Typography -->
+            <section class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">타이포그래피</h3>
+                <div class="space-y-6">
+                    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="text-4xl font-bold text-gray-900 dark:text-white mb-2">Heading 1</div>
+                        <div class="text-sm text-gray-500 font-mono">text-4xl font-bold (36px)</div>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="text-2xl font-semibold text-gray-900 dark:text-white mb-2">Heading 2</div>
+                        <div class="text-sm text-gray-500 font-mono">text-2xl font-semibold (24px)</div>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="text-base text-gray-900 dark:text-white mb-2">Body Text</div>
+                        <div class="text-sm text-gray-500 font-mono">text-base (16px)</div>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="text-sm text-gray-600 dark:text-gray-400 mb-2">Small Text</div>
+                        <div class="text-sm text-gray-500 font-mono">text-sm (14px)</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Spacing -->
+            <section class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">스페이싱 시스템</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="bg-potato-200 h-2 mb-2 rounded"></div>
+                        <div class="text-sm font-mono">2 (8px)</div>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="bg-potato-300 h-4 mb-2 rounded"></div>
+                        <div class="text-sm font-mono">4 (16px)</div>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="bg-potato-400 h-6 mb-2 rounded"></div>
+                        <div class="text-sm font-mono">6 (24px)</div>
+                    </div>
+                    <div class="p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="bg-potato-500 h-8 mb-2 rounded"></div>
+                        <div class="text-sm font-mono">8 (32px)</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Shadows -->
+            <section class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">그림자 레벨</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+                        <div class="font-medium text-gray-900 dark:text-white mb-2">Small Shadow</div>
+                        <div class="text-sm text-gray-500 font-mono">shadow-sm</div>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                        <div class="font-medium text-gray-900 dark:text-white mb-2">Medium Shadow</div>
+                        <div class="text-sm text-gray-500 font-mono">shadow-md</div>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+                        <div class="font-medium text-gray-900 dark:text-white mb-2">Large Shadow</div>
+                        <div class="text-sm text-gray-500 font-mono">shadow-lg</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Components Section -->
+        <div id="components" class="tab-content hidden">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">UI 컴포넌트 라이브러리</h2>
+            
+            <!-- Buttons -->
+            <section class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">버튼</h3>
+                <div class="space-y-6">
+                    <div class="sg-card">
+                        <h4 class="font-medium text-gray-900 dark:text-white mb-4">Primary Buttons</h4>
+                        <div class="sg-demo-states">
+                            <div class="sg-demo-state">
+                                <button class="sg-button sg-button--primary sg-button--md" data-demo-state="default">
+                                    Primary Button
+                                </button>
+                                <div class="sg-demo-state__label">기본 상태 (클릭하여 상태 변경)</div>
+                            </div>
+                            <div class="sg-demo-state">
+                                <button class="sg-button sg-button--primary sg-button--md sg-button--shimmer">
+                                    <span>Shimmer Effect</span>
+                                </button>
+                                <div class="sg-demo-state__label">호버 시 Shimmer</div>
+                            </div>
+                            <div class="sg-demo-state">
+                                <button class="sg-button sg-button--primary sg-button--md sg-button--ripple">
+                                    Ripple Effect
+                                </button>
+                                <div class="sg-demo-state__label">클릭 시 Ripple</div>
+                            </div>
+                            <div class="sg-demo-state">
+                                <button class="sg-button sg-button--primary sg-button--md" data-loading-demo>
+                                    Loading Demo
+                                </button>
+                                <div class="sg-demo-state__label">로딩 상태 시연</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sg-card">
+                        <h4 class="font-medium text-gray-900 dark:text-white mb-4">Button Variants</h4>
+                        <div class="sg-demo-states">
+                            <div class="sg-demo-state">
+                                <button class="sg-button sg-button--secondary sg-button--md">
+                                    Secondary
+                                </button>
+                                <div class="sg-demo-state__label">Secondary Button</div>
+                            </div>
+                            <div class="sg-demo-state">
+                                <button class="sg-button sg-button--ghost sg-button--md">
+                                    Ghost
+                                </button>
+                                <div class="sg-demo-state__label">Ghost Button</div>
+                            </div>
+                            <div class="sg-demo-state">
+                                <button class="sg-button sg-button--success sg-button--md">
+                                    Success
+                                </button>
+                                <div class="sg-demo-state__label">Success Button</div>
+                            </div>
+                            <div class="sg-demo-state">
+                                <button class="sg-button sg-button--warning sg-button--md">
+                                    Warning
+                                </button>
+                                <div class="sg-demo-state__label">Warning Button</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Magic UI Button Examples -->
+                    <div class="p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <h4 class="font-medium text-gray-900 dark:text-white mb-4">Special Effect Buttons</h4>
+                        <div class="flex flex-wrap gap-4">
+                            <button class="shimmer-button px-6 py-3 bg-gradient-to-r from-potato-500 to-potato-600 text-white rounded-lg font-medium relative overflow-hidden">
+                                <span class="relative z-10">Shimmer Button</span>
+                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+                            </button>
+                            <button class="ripple-button px-6 py-3 bg-rabbit-500 hover:bg-rabbit-600 text-white rounded-lg font-medium transition-colors duration-200">
+                                Ripple Button
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Cards -->
+            <section class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">카드</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-success-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-plus text-white text-sm"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 dark:text-white">수입</h4>
+                        </div>
+                        <div class="text-2xl font-bold text-success-600 dark:text-success-400 mb-2">+150,000원</div>
+                        <div class="text-sm text-gray-500">이번 달 수입</div>
+                    </div>
+
+                    <div class="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-danger-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-minus text-white text-sm"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 dark:text-white">지출</h4>
+                        </div>
+                        <div class="text-2xl font-bold text-danger-600 dark:text-danger-400 mb-2">-85,000원</div>
+                        <div class="text-sm text-gray-500">이번 달 지출</div>
+                    </div>
+
+                    <div class="p-6 bg-gradient-to-br from-potato-100 to-potato-200 dark:from-potato-800/20 dark:to-potato-700/20 rounded-lg border border-potato-300 dark:border-potato-600 cursor-pointer hover:scale-105 transition-transform duration-300">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-8 h-8 bg-potato-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-wallet text-white text-sm"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 dark:text-white">잔액</h4>
+                        </div>
+                        <div class="text-2xl font-bold text-potato-700 dark:text-potato-400 mb-2">65,000원</div>
+                        <div class="text-sm text-potato-600 dark:text-potato-500">현재 잔액</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Form Elements -->
+            <section class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">폼 요소</h3>
+                <div class="space-y-6">
+                    <div class="p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    텍스트 입력
+                                </label>
+                                <input type="text" 
+                                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-potato-500 focus:border-transparent dark:bg-gray-700 dark:text-white" 
+                                       placeholder="입력하세요">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    금액 입력
+                                </label>
+                                <input type="number" 
+                                       class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-potato-500 focus:border-transparent dark:bg-gray-700 dark:text-white" 
+                                       placeholder="0">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    카테고리 선택
+                                </label>
+                                <select class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-potato-500 focus:border-transparent dark:bg-gray-700 dark:text-white">
+                                    <option>식비</option>
+                                    <option>교통비</option>
+                                    <option>문화생활</option>
+                                    <option>기타</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    메모
+                                </label>
+                                <textarea class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-potato-500 focus:border-transparent dark:bg-gray-700 dark:text-white" 
+                                          rows="2" 
+                                          placeholder="메모를 입력하세요"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Navigation -->
+            <section class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">네비게이션</h3>
+                <div class="space-y-6">
+                    <!-- Bottom Navigation -->
+                    <div class="p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                        <h4 class="font-medium text-gray-900 dark:text-white mb-4">Bottom Navigation</h4>
+                        <div class="flex justify-center">
+                            <div class="flex bg-gray-100 dark:bg-gray-700 rounded-full p-1">
+                                <button class="px-4 py-2 bg-potato-500 text-white rounded-full font-medium">
+                                    <i class="fas fa-home mr-2"></i>홈
+                                </button>
+                                <button class="px-4 py-2 text-gray-600 dark:text-gray-400 rounded-full font-medium hover:bg-white dark:hover:bg-gray-600 transition-colors">
+                                    <i class="fas fa-chart-bar mr-2"></i>통계
+                                </button>
+                                <button class="px-4 py-2 text-gray-600 dark:text-gray-400 rounded-full font-medium hover:bg-white dark:hover:bg-gray-600 transition-colors">
+                                    <i class="fas fa-cog mr-2"></i>설정
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Toast Messages -->
+            <section class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">토스트 메시지</h3>
+                <div class="space-y-4" data-demo="toast">
+                    <div class="sg-toast sg-toast--success">
+                        <div class="sg-toast__icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="sg-toast__content">
+                            <div class="sg-toast__title">성공!</div>
+                            <div class="sg-toast__message">가계부 항목이 성공적으로 저장되었습니다.</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3 p-4 bg-warning-50 dark:bg-warning-900/20 border border-warning-200 dark:border-warning-800 rounded-lg">
+                        <div class="w-5 h-5 bg-warning-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-exclamation text-white text-xs"></i>
+                        </div>
+                        <div>
+                            <div class="font-medium text-warning-800 dark:text-warning-200">주의!</div>
+                            <div class="text-sm text-warning-700 dark:text-warning-300">이번 달 예산을 초과했습니다.</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3 p-4 bg-danger-50 dark:bg-danger-900/20 border border-danger-200 dark:border-danger-800 rounded-lg">
+                        <div class="w-5 h-5 bg-danger-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-times text-white text-xs"></i>
+                        </div>
+                        <div>
+                            <div class="font-medium text-danger-800 dark:text-danger-200">오류!</div>
+                            <div class="text-sm text-danger-700 dark:text-danger-300">저장 중 문제가 발생했습니다. 다시 시도해주세요.</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3 p-4 bg-info-50 dark:bg-info-900/20 border border-info-200 dark:border-info-800 rounded-lg">
+                        <div class="w-5 h-5 bg-info-500 rounded-full flex items-center justify-center">
+                            <i class="fas fa-info text-white text-xs"></i>
+                        </div>
+                        <div>
+                            <div class="font-medium text-info-800 dark:text-info-200">정보</div>
+                            <div class="text-sm text-info-700 dark:text-info-300">새로운 기능이 추가되었습니다.</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- States Section -->
+        <div id="states" class="tab-content hidden">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">컴포넌트 상태 시연</h2>
+            
+            <section class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">버튼 상태</h3>
+                <div class="p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="text-center">
+                            <button class="w-full px-4 py-2 bg-potato-500 text-white rounded-lg font-medium mb-2">
+                                Default
+                            </button>
+                            <div class="text-sm text-gray-500">기본 상태</div>
+                        </div>
+                        <div class="text-center">
+                            <button class="w-full px-4 py-2 bg-potato-600 text-white rounded-lg font-medium mb-2 transform scale-95">
+                                Hover
+                            </button>
+                            <div class="text-sm text-gray-500">호버 상태</div>
+                        </div>
+                        <div class="text-center">
+                            <button class="w-full px-4 py-2 bg-potato-700 text-white rounded-lg font-medium mb-2 ring-2 ring-potato-300">
+                                Active
+                            </button>
+                            <div class="text-sm text-gray-500">활성 상태</div>
+                        </div>
+                        <div class="text-center">
+                            <button class="w-full px-4 py-2 bg-gray-300 dark:bg-gray-600 text-gray-500 dark:text-gray-400 rounded-lg font-medium mb-2 cursor-not-allowed">
+                                Disabled
+                            </button>
+                            <div class="text-sm text-gray-500">비활성 상태</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">입력 필드 상태</h3>
+                <div class="p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">기본 상태</label>
+                            <input type="text" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg dark:bg-gray-700 dark:text-white" placeholder="입력하세요">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">포커스 상태</label>
+                            <input type="text" class="w-full px-3 py-2 border-2 border-potato-500 rounded-lg dark:bg-gray-700 dark:text-white ring-2 ring-potato-200 dark:ring-potato-800" placeholder="입력하세요" value="포커스됨">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">에러 상태</label>
+                            <input type="text" class="w-full px-3 py-2 border-2 border-danger-500 rounded-lg dark:bg-gray-700 dark:text-white" placeholder="입력하세요" value="잘못된 값">
+                            <div class="text-sm text-danger-600 dark:text-danger-400 mt-1">올바른 값을 입력해주세요</div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-500 mb-1">비활성 상태</label>
+                            <input type="text" class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-100 dark:bg-gray-800 text-gray-500 cursor-not-allowed" placeholder="비활성" disabled>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">로딩 상태</h3>
+                <div class="p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <button class="w-full px-4 py-2 bg-potato-500 text-white rounded-lg font-medium flex items-center justify-center">
+                                <div class="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2"></div>
+                                로딩 중...
+                            </button>
+                            <div class="text-sm text-gray-500 mt-2">버튼 로딩</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-full h-20 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                                <div class="animate-pulse flex space-x-2">
+                                    <div class="rounded-full bg-gray-300 dark:bg-gray-600 h-3 w-3"></div>
+                                    <div class="rounded-full bg-gray-300 dark:bg-gray-600 h-3 w-3"></div>
+                                    <div class="rounded-full bg-gray-300 dark:bg-gray-600 h-3 w-3"></div>
+                                </div>
+                            </div>
+                            <div class="text-sm text-gray-500 mt-2">펄스 로딩</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-full h-20 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center">
+                                <div class="w-8 h-8 border-4 border-potato-200 border-t-potato-500 rounded-full animate-spin"></div>
+                            </div>
+                            <div class="text-sm text-gray-500 mt-2">스피너 로딩</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Characters Section -->
+        <div id="characters" class="tab-content hidden">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">캐릭터 시스템</h2>
+            
+            <section class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">감자토끼 배지</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-potato-400 to-potato-600 rounded-full flex items-center justify-center mx-auto mb-3 animate-pulse-character">
+                            <span class="text-2xl">🥔</span>
+                        </div>
+                        <div class="font-medium text-gray-900 dark:text-white">감자</div>
+                        <div class="text-sm text-gray-500">절약 전문</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-rabbit-400 to-rabbit-600 rounded-full flex items-center justify-center mx-auto mb-3 animate-pulse-character">
+                            <span class="text-2xl">🐰</span>
+                        </div>
+                        <div class="font-medium text-gray-900 dark:text-white">토끼</div>
+                        <div class="text-sm text-gray-500">가계 관리</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-success-400 to-success-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <span class="text-2xl">💚</span>
+                        </div>
+                        <div class="font-medium text-gray-900 dark:text-white">성공</div>
+                        <div class="text-sm text-gray-500">목표 달성</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-br from-warning-400 to-warning-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <span class="text-2xl">⚠️</span>
+                        </div>
+                        <div class="font-medium text-gray-900 dark:text-white">주의</div>
+                        <div class="text-sm text-gray-500">예산 초과</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">캐릭터 토스트</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-3 p-4 bg-potato-50 dark:bg-potato-900/20 border border-potato-200 dark:border-potato-800 rounded-lg">
+                        <div class="w-8 h-8 bg-gradient-to-br from-potato-400 to-potato-600 rounded-full flex items-center justify-center">
+                            <span class="text-lg">🥔</span>
+                        </div>
+                        <div>
+                            <div class="font-medium text-potato-800 dark:text-potato-200">감자가 말해요!</div>
+                            <div class="text-sm text-potato-700 dark:text-potato-300">"이번 달 절약 목표를 달성했어요! 정말 잘했어요 🎉"</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3 p-4 bg-rabbit-50 dark:bg-rabbit-900/20 border border-rabbit-200 dark:border-rabbit-800 rounded-lg">
+                        <div class="w-8 h-8 bg-gradient-to-br from-rabbit-400 to-rabbit-600 rounded-full flex items-center justify-center">
+                            <span class="text-lg">🐰</span>
+                        </div>
+                        <div>
+                            <div class="font-medium text-rabbit-800 dark:text-rabbit-200">토끼가 알려줘요!</div>
+                            <div class="text-sm text-rabbit-700 dark:text-rabbit-300">"새로운 가계부 기능이 추가되었어요. 확인해보세요!"</div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3 p-4 bg-warning-50 dark:bg-warning-900/20 border border-warning-200 dark:border-warning-800 rounded-lg">
+                        <div class="w-8 h-8 bg-gradient-to-br from-warning-400 to-warning-600 rounded-full flex items-center justify-center">
+                            <span class="text-lg">🥔</span>
+                        </div>
+                        <div>
+                            <div class="font-medium text-warning-800 dark:text-warning-200">감자의 조언</div>
+                            <div class="text-sm text-warning-700 dark:text-warning-300">"식비 지출이 많아지고 있어요. 집밥을 늘려보는 건 어떨까요?"</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-12">
+                <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-6">리액션 애니메이션</h3>
+                <div class="p-6 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+                    <div class="text-center space-y-6">
+                        <div>
+                            <button class="character-reaction mb-4 sg-character sg-character--xl sg-character--potato sg-character--animated" 
+                                    data-character="🥔" 
+                                    data-message="절약 성공!" 
+                                    aria-label="감자 캐릭터 - 절약 성공 반응">
+                                <span class="text-3xl">🥔</span>
+                            </button>
+                            <div class="text-sm text-gray-500">감자 클릭해보세요!</div>
+                        </div>
+
+                        <div>
+                            <button class="character-reaction mb-4 sg-character sg-character--xl sg-character--rabbit" 
+                                    data-character="🐰" 
+                                    data-message="잘했어요!" 
+                                    aria-label="토끼 캐릭터 - 잘했어요 반응">
+                                <span class="text-3xl">🐰</span>
+                            </button>
+                            <div class="text-sm text-gray-500">토끼 클릭해보세요!</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Reaction Message -->
+                    <div id="reactionMessage" class="hidden mt-6 p-4 bg-gradient-to-r from-potato-100 to-rabbit-100 dark:from-potato-900/20 dark:to-rabbit-900/20 rounded-lg border-2 border-potato-300 dark:border-potato-600 text-center">
+                        <div class="text-lg font-medium text-gray-900 dark:text-white" id="reactionText"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal Example -->
+    <div id="modal" class="hidden sg-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="sg-modal">
+            <div class="sg-modal__header">
+                <div class="sg-character sg-character--sm sg-character--potato">
+                    <span>🥔</span>
+                </div>
+                <h3 id="modal-title" class="sg-modal__title">스타일 가이드 도움말</h3>
+            </div>
+            <div class="sg-modal__content">
+                <h4 class="font-medium mb-3">키보드 단축키:</h4>
+                <ul class="space-y-2 text-sm mb-4">
+                    <li><kbd class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-xs">Ctrl+Shift+T</kbd> : 테마 전환</li>
+                    <li><kbd class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-xs">Ctrl+Shift+M</kbd> : 애니메이션 토글</li>
+                    <li><kbd class="px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded text-xs">ESC</kbd> : 모달 닫기</li>
+                </ul>
+                <p>컬러 코드를 클릭하면 클립보드에 복사됩니다. 버튼과 캐릭터를 클릭하여 다양한 인터랙션을 체험해보세요!</p>
+            </div>
+            <div class="sg-modal__actions">
+                <button id="cancelModal" class="sg-button sg-button--secondary">
+                    닫기
+                </button>
+                <button id="confirmModal" class="sg-button sg-button--primary">
+                    이해했어요
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark') {
+            html.classList.add('dark');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const newTheme = html.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Motion Toggle
+        const motionToggle = document.getElementById('motionToggle');
+        let motionEnabled = true;
+        
+        motionToggle.addEventListener('click', () => {
+            motionEnabled = !motionEnabled;
+            const icon = motionToggle.querySelector('i');
+            if (motionEnabled) {
+                icon.className = 'fas fa-play';
+                document.body.style.setProperty('animation-play-state', 'running');
+            } else {
+                icon.className = 'fas fa-pause';
+                document.body.style.setProperty('animation-play-state', 'paused');
+            }
+        });
+
+        // Tab Navigation
+        const navTabs = document.querySelectorAll('.nav-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        navTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active states
+                navTabs.forEach(t => {
+                    t.classList.remove('border-potato-500', 'text-potato-600', 'dark:text-potato-400');
+                    t.classList.add('border-transparent', 'text-gray-500', 'dark:text-gray-400');
+                });
+                
+                // Add active state to clicked tab
+                tab.classList.add('border-potato-500', 'text-potato-600', 'dark:text-potato-400');
+                tab.classList.remove('border-transparent', 'text-gray-500', 'dark:text-gray-400');
+                
+                // Hide all tab contents
+                tabContents.forEach(content => content.classList.add('hidden'));
+                
+                // Show selected tab content
+                const targetTab = tab.getAttribute('data-tab');
+                document.getElementById(targetTab).classList.remove('hidden');
+            });
+        });
+
+        // Character Reactions
+        document.querySelectorAll('.character-reaction').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const character = e.currentTarget.getAttribute('data-character');
+                const message = e.currentTarget.getAttribute('data-message');
+                
+                // Show reaction message
+                const reactionMessage = document.getElementById('reactionMessage');
+                const reactionText = document.getElementById('reactionText');
+                
+                reactionText.textContent = `${character} ${message}`;
+                reactionMessage.classList.remove('hidden');
+                
+                // Add bounce animation to character
+                const characterEl = e.currentTarget.querySelector('.w-20');
+                characterEl.classList.add('animate-bounce');
+                
+                // Remove animation and message after 3 seconds
+                setTimeout(() => {
+                    characterEl.classList.remove('animate-bounce');
+                    reactionMessage.classList.add('hidden');
+                }, 3000);
+            });
+        });
+
+        // Ripple Effect for Buttons
+        document.querySelectorAll('.ripple-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('absolute', 'bg-white', 'rounded-full', 'opacity-30', 'animate-ripple', 'pointer-events-none');
+                
+                this.style.position = 'relative';
+                this.style.overflow = 'hidden';
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Shimmer Animation for Buttons
+        setInterval(() => {
+            document.querySelectorAll('.shimmer-button .animate-shimmer').forEach(shimmer => {
+                shimmer.style.animation = 'none';
+                shimmer.offsetHeight; // Trigger reflow
+                shimmer.style.animation = 'shimmer 3s linear infinite';
+            });
+        }, 3000);
+
+        // Copy color codes on click
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('font-mono') && e.target.textContent.includes('#')) {
+                const colorCode = e.target.textContent;
+                navigator.clipboard.writeText(colorCode).then(() => {
+                    // Show temporary feedback
+                    const originalText = e.target.textContent;
+                    e.target.textContent = 'Copied!';
+                    setTimeout(() => {
+                        e.target.textContent = originalText;
+                    }, 1000);
+                });
+            }
+        });
+    </script>
+
+    <style>
+        @keyframes shimmer {
+            from { background-position: 200% 0; }
+            to { background-position: -200% 0; }
+        }
+        
+        @keyframes ripple {
+            to { transform: scale(4); opacity: 0; }
+        }
+        
+        @keyframes pulse-character {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .shimmer-button .animate-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s linear infinite;
+        }
+        
+        .animate-ripple {
+            animation: ripple 0.6s linear forwards;
+        }
+        
+        .animate-pulse-character {
+            animation: pulse-character 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        
+        .dark ::-webkit-scrollbar-track {
+            background: #374151;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #f59e54;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e2590c;
+        }
+    </style>
+</body>
+</html>

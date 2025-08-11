@@ -1,0 +1,327 @@
+/* 테마 스위처 컴포넌트 스타일 */
+/* 감자토끼 디자인 시스템과 일관성 유지 */
+
+.theme-switcher {
+  position: relative;
+  display: inline-block;
+}
+
+/* 테마 스위처 버튼 */
+.theme-switcher-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  border-radius: var(--border-radius-lg);
+  background: var(--color-background-paper);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease-in-out;
+  
+  /* 접근성 */
+  position: relative;
+  outline: none;
+  
+  /* 호버 효과 */
+}
+
+.theme-switcher-button:hover {
+  background: var(--color-background-alternative);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.theme-switcher-button:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-switcher-button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* 버튼 아이콘 */
+.theme-switcher-icon {
+  font-size: 1.2rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.theme-switcher-button:hover .theme-switcher-icon {
+  transform: rotate(360deg);
+}
+
+/* 확장된 버튼 (데스크톱) */
+@media (min-width: 768px) {
+  .theme-switcher-button.expanded {
+    width: auto;
+    padding: 0.5rem 1rem;
+  }
+  
+  .theme-switcher-label {
+    display: inline;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+}
+
+/* 드롭다운 메뉴 */
+.theme-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  z-index: 1000;
+  
+  min-width: 12rem;
+  background: var(--color-background-paper);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+  
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px) scale(0.95);
+  transition: all 0.2s ease-in-out;
+  
+  /* 화살표 */
+}
+
+.theme-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 1rem;
+  width: 12px;
+  height: 12px;
+  background: var(--color-background-paper);
+  border: 1px solid var(--color-border);
+  border-right: none;
+  border-bottom: none;
+  transform: rotate(45deg);
+}
+
+.theme-dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+/* 드롭다운 리스트 */
+.theme-options {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+}
+
+/* 테마 옵션 아이템 */
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text-primary);
+  text-align: left;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  
+  transition: all 0.15s ease-in-out;
+  position: relative;
+}
+
+.theme-option:hover {
+  background: var(--color-background-alternative);
+  color: var(--color-primary);
+}
+
+.theme-option:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+  background: var(--color-background-alternative);
+}
+
+/* 활성 상태 */
+.theme-option.active {
+  background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+  color: var(--color-primary-contrast);
+}
+
+.theme-option.active::after {
+  content: '✓';
+  position: absolute;
+  right: 1rem;
+  font-weight: 700;
+}
+
+/* 테마 아이콘 */
+.theme-option-icon {
+  font-size: 1.1rem;
+  width: 1.5rem;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* 테마 정보 */
+.theme-option-info {
+  flex: 1;
+}
+
+.theme-option-name {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.theme-option-description {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-top: 0.125rem;
+  line-height: 1.2;
+}
+
+.theme-option.active .theme-option-description {
+  opacity: 0.9;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 767px) {
+  .theme-dropdown {
+    right: -0.5rem;
+    left: auto;
+    min-width: 14rem;
+    max-width: 16rem;
+    width: auto;
+  }
+  
+  .theme-dropdown::before {
+    right: 1.5rem;
+  }
+  
+  .theme-option {
+    padding: 1rem;
+    min-height: 3rem;
+  }
+  
+  .theme-option-icon {
+    font-size: 1.25rem;
+    width: 1.75rem;
+  }
+  
+  .theme-switcher-button {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+}
+
+/* 데스크톱에서 더 큰 터치 영역 */
+@media (min-width: 768px) {
+  .theme-switcher-button:hover .theme-switcher-label {
+    opacity: 1;
+  }
+  
+  .theme-switcher-label {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    margin-left: 0.5rem;
+  }
+}
+
+/* 다크 테마 특별 스타일 */
+[data-theme="dark"] .theme-switcher-button {
+  background: var(--color-hardcoded-white-backdrop);
+  border: var(--border-width-thin) solid var(--color-hardcoded-white-border);
+}
+
+[data-theme="dark"] .theme-switcher-button:hover {
+  background: var(--color-hardcoded-white-hover);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="dark"] .theme-dropdown {
+  background: var(--color-background-paper);
+  border-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="dark"] .theme-dropdown::before {
+  background: var(--color-background-paper);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* 고대비 테마 */
+[data-theme="hc"] .theme-switcher-button {
+  border: 2px solid var(--color-text-primary);
+  background: var(--color-background-paper);
+}
+
+[data-theme="hc"] .theme-option {
+  border-bottom: 1px solid var(--color-border);
+}
+
+[data-theme="hc"] .theme-option:last-child {
+  border-bottom: none;
+}
+
+/* 부드러운 애니메이션 */
+.theme-switch-animation {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 테마 전환 효과 */
+body.theme-transitioning * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
+
+/* 로딩 상태 */
+.theme-switcher.loading .theme-switcher-icon {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 접근성 개선 */
+@media (prefers-reduced-motion: reduce) {
+  .theme-switcher-button,
+  .theme-dropdown,
+  .theme-option,
+  .theme-switcher-icon {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .theme-switcher-button:hover .theme-switcher-icon {
+    transform: none;
+  }
+}
+
+/* 키보드 네비게이션 개선 */
+.theme-option:focus {
+  background: var(--color-background-alternative);
+  color: var(--color-primary);
+}
+
+/* 터치 디바이스 최적화 */
+@media (hover: none) {
+  .theme-option:hover {
+    background: transparent;
+    color: var(--color-text-primary);
+  }
+  
+  .theme-option:active {
+    background: var(--color-background-alternative);
+    color: var(--color-primary);
+  }
+}

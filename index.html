@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1FC7D4">
+    <meta name="color-scheme" content="light dark">
+    <title>홈 - 감자토끼 가계부</title>
+    <meta name="description" content="감자와 토끼 부부의 친근한 가계부 홈 대시보드">
+    
+    <!-- Performance Hints -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preload" href="icons.svg" as="image" type="image/svg+xml">
+    <link rel="preload" href="index.css" as="style">
+    <link rel="preload" href="index.js" as="script">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Comic+Neue:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Comic+Neue:wght@400;700&display=swap"></noscript>
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- 🚀 Critical CSS (인라인) - 1.75KB -->
+    <style>
+:root{--color-primary:#1FC7D4;--color-background-default:#FAF9FA;--color-background-paper:#FFF;--color-text-primary:#280D5F;--color-potato:#DEB887;--color-rabbit:#F8F8FF;--font-family-primary:'Kanit',system-ui,sans-serif;--font-size-md:16px;--font-size-lg:20px} *{box-sizing:border-box;margin:0;padding:0} body{font-family:var(--font-family-primary);font-size:var(--font-size-md);line-height:1.5;color:var(--color-text-primary);background:var(--color-background-default)} .container{max-width:1200px;margin:0 auto;padding:0 1rem} .app-header{background:var(--color-background-paper);padding:1rem 0;box-shadow:0 2px 4px rgba(0,0,0,.1)} .header-content{display:flex;align-items:center;justify-content:space-between} .app-title{font-size:var(--font-size-lg);font-weight:600;display:flex;align-items:center;gap:.5rem} .character-greeting{padding:2rem 0} .character-card{background:var(--color-background-paper);border-radius:16px;padding:1.5rem;display:flex;align-items:center;gap:1rem;box-shadow:0 4px 12px rgba(0,0,0,.1)} .greeting-bubble{background:var(--color-primary);color:white;padding:1rem 1.5rem;border-radius:20px;position:relative;margin:1rem 0} .todays-summary{padding:1rem 0} .summary-card{background:var(--color-background-paper);border-radius:12px;padding:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,.1)} .icon{display:inline-flex;align-items:center;justify-content:center} .icon-sm{width:1.25rem;height:1.25rem} .icon-2xl{width:3rem;height:3rem} .skip-to-content{position:absolute;top:-40px;left:6px;background:#000;color:#fff;padding:8px;text-decoration:none;z-index:100} .skip-to-content:focus{top:6px} @media(max-width:768px){.container{padding:0 .75rem} .app-title{font-size:18px} .character-card{padding:1rem;flex-direction:column;text-align:center} .summary-card{padding:1rem} }
+    </style>
+    
+    <!-- CSS 지연 로딩 스크립트 -->
+    <script>
+(function() {
+  const cssFiles = [
+    'css/tokens.css',
+    'css/accessibility.css',
+    'css/token-integration.css',
+    'css/icon-system.css',
+    'css/svg-sprite-animations.css',
+    'css/theme-switcher.css',
+    'index.css'
+  ];
+  
+  function loadCSS(href) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.media = 'print';
+    link.onload = function() { this.media = 'all'; };
+    document.head.appendChild(link);
+  }
+  
+  window.addEventListener('load', () => cssFiles.forEach(loadCSS));
+})();
+    </script>
+</head>
+<body>
+    <!-- Skip to Content -->
+    <a href="#main-content" class="skip-to-content">메인 콘텐츠로 건너뛰기</a>
+    <!-- App Header -->
+    <header class="app-header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="app-title">
+                    <span class="icon icon-sm icon-potato title-icon">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#potato-neutral"></use>
+                        </svg>
+                    </span>
+                    감자토끼 가계부
+                    <span class="icon icon-sm icon-rabbit title-icon">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#rabbit-neutral"></use>
+                        </svg>
+                    </span>
+                </h1>
+                <button class="settings-button" aria-label="설정" title="설정">
+                    <span class="settings-icon">⚙️</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Character Greeting Section -->
+    <section class="character-greeting" aria-labelledby="greeting-heading">
+        <div class="container">
+            <h2 id="greeting-heading" class="visually-hidden">캐릭터 인사</h2>
+            
+            <div class="greeting-container">
+                <div class="character-section">
+                    <div class="character-card potato-card">
+                        <div class="character-emoji" id="potatoCharacter" role="img" aria-label="감자 캐릭터" tabindex="0">
+                            <span class="icon icon-2xl icon-potato">
+                                <svg aria-hidden="true">
+                                    <use xlink:href="#potato-neutral"></use>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="character-info">
+                            <span class="character-name">감자</span>
+                            <p class="character-message" id="potatoMessage">든든한 하루 시작이에요!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="greeting-bubble" id="greetingBubble" aria-live="polite">
+                        <p class="greeting-text" id="greetingText">좋은 아침이에요! 오늘도 알뜰하게 관리해보세요 💪</p>
+                        <div class="bubble-tail"></div>
+                    </div>
+                    
+                    <div class="character-card rabbit-card">
+                        <div class="character-emoji" id="rabbitCharacter" role="img" aria-label="토끼 캐릭터" tabindex="0">
+                            <span class="icon icon-2xl icon-rabbit">
+                                <svg aria-hidden="true">
+                                    <use xlink:href="#rabbit-neutral"></use>
+                                </svg>
+                            </span>
+                        </div>
+                        <div class="character-info">
+                            <span class="character-name">토끼</span>
+                            <p class="character-message" id="rabbitMessage">건강한 소비 습관을 만들어요!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Today's Summary Section -->
+    <section id="main-content" class="todays-summary" aria-labelledby="summary-heading">
+        <div class="container">
+            <h2 id="summary-heading" class="section-title">오늘의 요약</h2>
+            
+            <div class="summary-grid">
+                <!-- Balance Card -->
+                <div class="summary-card balance-card" role="button" tabindex="0" aria-label="현재 잔액">
+                    <div class="card-header">
+                        <span class="card-icon">💰</span>
+                        <h3 class="card-title">현재 잔액</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="balance-amount" id="currentBalance" aria-live="polite">
+                            ₩<span class="amount-number">1,234,567</span>
+                        </div>
+                        <div class="balance-change positive">
+                            <span class="change-icon">↗️</span>
+                            <span class="change-text">이번 주 +5.2%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Income Card -->
+                <div class="summary-card income-card" role="button" tabindex="0" aria-label="오늘의 수입">
+                    <div class="card-header">
+                        <span class="card-icon">📈</span>
+                        <h3 class="card-title">오늘의 수입</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="income-amount" id="todayIncome" aria-live="polite">
+                            +₩<span class="amount-number">45,000</span>
+                        </div>
+                        <div class="transaction-count">
+                            <span class="count-number" id="incomeCount">3</span>건의 거래
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expense Card -->
+                <div class="summary-card expense-card" role="button" tabindex="0" aria-label="오늘의 지출">
+                    <div class="card-header">
+                        <span class="card-icon">📉</span>
+                        <h3 class="card-title">오늘의 지출</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="expense-amount" id="todayExpense" aria-live="polite">
+                            -₩<span class="amount-number">32,500</span>
+                        </div>
+                        <div class="transaction-count">
+                            <span class="count-number" id="expenseCount">5</span>건의 거래
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Actions Panel -->
+    <section class="quick-actions" aria-labelledby="actions-heading">
+        <div class="container">
+            <h2 id="actions-heading" class="visually-hidden">빠른 등록</h2>
+            
+            <div class="actions-grid">
+                <button class="action-button income-button btn btn-md transition-button" id="addIncomeBtn" aria-label="수입 추가">
+                    <div class="button-content">
+                        <span class="button-icon">
+                            <span class="icon icon-md icon-rabbit character-icon">
+                                <svg aria-hidden="true">
+                                    <use xlink:href="#rabbit-success"></use>
+                                </svg>
+                            </span>
+                            <span class="plus-icon">➕</span>
+                        </span>
+                        <div class="button-text">
+                            <span class="button-title">수입 추가</span>
+                            <span class="button-subtitle">토끼와 함께</span>
+                        </div>
+                    </div>
+                </button>
+
+                <button class="action-button expense-button btn btn-md transition-button" id="addExpenseBtn" aria-label="지출 추가">
+                    <div class="button-content">
+                        <span class="button-icon">
+                            <span class="icon icon-md icon-potato character-icon">
+                                <svg aria-hidden="true">
+                                    <use xlink:href="#potato-warning"></use>
+                                </svg>
+                            </span>
+                            <span class="minus-icon">➖</span>
+                        </span>
+                        <div class="button-text">
+                            <span class="button-title">지출 추가</span>
+                            <span class="button-subtitle">감자와 함께</span>
+                        </div>
+                    </div>
+                </button>
+
+                <button class="action-button view-all-button btn btn-md transition-button" id="viewAllBtn" aria-label="전체 거래 내역 보기">
+                    <div class="button-content">
+                        <span class="button-icon">📊</span>
+                        <div class="button-text">
+                            <span class="button-title">전체 보기</span>
+                            <span class="button-subtitle">상세 내역</span>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Transactions Section -->
+    <section class="recent-transactions" aria-labelledby="recent-heading">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="recent-heading" class="section-title">최근 거래</h2>
+                <a href="transaction-history.html" class="see-all-link" aria-label="모든 거래 내역 보기">
+                    전체 보기 →
+                </a>
+            </div>
+
+            <!-- Loading State -->
+            <div class="transactions-loading" id="transactionsLoading" aria-hidden="true">
+                <div class="loading-spinner">
+                    <span class="icon icon-md icon-potato spinner-character icon-loading">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#potato-loading"></use>
+                        </svg>
+                    </span>
+                    <span class="icon icon-md icon-rabbit spinner-character icon-loading">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#rabbit-loading"></use>
+                        </svg>
+                    </span>
+                </div>
+                <p class="loading-text">거래 내역을 불러오는 중...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div class="transactions-empty" id="transactionsEmpty" aria-hidden="true">
+                <div class="empty-illustration">
+                    <span class="icon icon-xl icon-potato empty-character">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#potato-info"></use>
+                        </svg>
+                    </span>
+                    <span class="icon icon-xl icon-rabbit empty-character">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#rabbit-info"></use>
+                        </svg>
+                    </span>
+                </div>
+                <h3 class="empty-title">아직 거래 내역이 없어요!</h3>
+                <p class="empty-description">위의 버튼을 눌러 첫 거래를 추가해보세요</p>
+            </div>
+
+            <!-- Transaction List -->
+            <div class="transaction-list" id="transactionList">
+                <!-- Transaction Item 1 -->
+                <article class="transaction-item income" tabindex="0" role="button" aria-label="용돈 수입 50000원">
+                    <div class="transaction-icon income-icon">
+                        <span class="icon icon-md icon-rabbit icon-character">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#rabbit-success"></use>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="transaction-details">
+                        <h3 class="transaction-title">용돈</h3>
+                        <p class="transaction-category">수입 • 기타</p>
+                        <time class="transaction-time" datetime="2024-03-06T14:30">오후 2:30</time>
+                    </div>
+                    <div class="transaction-amount income-amount">
+                        +₩<span class="amount-value">50,000</span>
+                    </div>
+                </article>
+
+                <!-- Transaction Item 2 -->
+                <article class="transaction-item expense" tabindex="0" role="button" aria-label="점심 지출 15000원">
+                    <div class="transaction-icon expense-icon">
+                        <span class="icon icon-md icon-potato icon-character">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#potato-neutral"></use>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="transaction-details">
+                        <h3 class="transaction-title">점심 식사</h3>
+                        <p class="transaction-category">지출 • 식비</p>
+                        <time class="transaction-time" datetime="2024-03-06T13:00">오후 1:00</time>
+                    </div>
+                    <div class="transaction-amount expense-amount">
+                        -₩<span class="amount-value">15,000</span>
+                    </div>
+                </article>
+
+                <!-- Transaction Item 3 -->
+                <article class="transaction-item expense" tabindex="0" role="button" aria-label="커피 지출 5500원">
+                    <div class="transaction-icon expense-icon">
+                        <span class="icon icon-md icon-potato icon-character">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#potato-neutral"></use>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="transaction-details">
+                        <h3 class="transaction-title">아메리카노</h3>
+                        <p class="transaction-category">지출 • 카페</p>
+                        <time class="transaction-time" datetime="2024-03-06T10:30">오전 10:30</time>
+                    </div>
+                    <div class="transaction-amount expense-amount">
+                        -₩<span class="amount-value">5,500</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-navigation" role="navigation" aria-label="주요 메뉴">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item active" aria-label="홈" aria-current="page">
+                <span class="nav-icon icon icon-sm">
+                    <svg aria-hidden="true">
+                        <use xlink:href="#potato-success"></use>
+                    </svg>
+                </span>
+                <span class="nav-label">홈</span>
+            </a>
+            <a href="transaction-history.html" class="nav-item" aria-label="거래 내역">
+                <span class="nav-icon icon icon-sm">
+                    <svg aria-hidden="true">
+                        <use xlink:href="#empty-transactions"></use>
+                    </svg>
+                </span>
+                <span class="nav-label">거래</span>
+            </a>
+            <a href="meal-planning.html" class="nav-item" aria-label="식단 계획">
+                <span class="nav-icon icon icon-sm">
+                    <svg aria-hidden="true">
+                        <use xlink:href="#empty-meals"></use>
+                    </svg>
+                </span>
+                <span class="nav-label">식단</span>
+            </a>
+            <a href="#" class="nav-item" aria-label="설정">
+                <span class="nav-icon icon icon-sm">
+                    <svg aria-hidden="true">
+                        <use xlink:href="#rabbit-neutral"></use>
+                    </svg>
+                </span>
+                <span class="nav-label">설정</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Success Toast -->
+    <div class="toast success-toast toast-success" id="successToast" role="alert" aria-live="assertive" aria-hidden="true">
+        <div class="toast-content">
+            <span class="toast-icon icon icon-sm icon-success">
+                <svg aria-hidden="true">
+                    <use xlink:href="#rabbit-success"></use>
+                </svg>
+            </span>
+            <span class="toast-message" id="successMessage">작업이 완료되었습니다!</span>
+        </div>
+        <button class="toast-close" aria-label="알림 닫기">&times;</button>
+    </div>
+
+    <!-- Error Toast -->
+    <div class="toast error-toast toast-error" id="errorToast" role="alert" aria-live="assertive" aria-hidden="true">
+        <div class="toast-content">
+            <span class="toast-icon icon icon-sm icon-error">
+                <svg aria-hidden="true">
+                    <use xlink:href="#potato-error"></use>
+                </svg>
+            </span>
+            <span class="toast-message" id="errorMessage">오류가 발생했습니다</span>
+        </div>
+        <button class="toast-close" aria-label="알림 닫기">&times;</button>
+    </div>
+
+    <!-- 📊 성능 모니터링 -->
+    <script>
+/**
+ * 감자토끼 가계부 - Performance Monitor
+ * 실시간 성능 모니터링 및 예산 검증
+ */
+
+class PerformanceMonitor {
+    constructor() {
+        this.budgets = {
+            css: {
+                critical: 15,      // KB
+                total: 60,         // KB
+                fonts: 120         // KB
+            },
+            lcp: 2500,            // ms
+            cls: 0.1,             // score
+            fid: 100,             // ms
+            fcp: 1500             // ms
+        };
+
+        this.metrics = {};
+        this.observers = [];
+    }
+
+    initializeCoreWebVitals() {
+        this.observeLCP();
+        this.observeCLS();
+        this.observeFID();
+        this.observeFCP();
+    }
+
+    observeLCP() {
+        if (!window.PerformanceObserver) return;
+
+        const observer = new PerformanceObserver((entryList) => {
+            const entries = entryList.getEntries();
+            const lastEntry = entries[entries.length - 1];
+            
+            this.metrics.lcp = {
+                value: lastEntry.startTime,
+                element: lastEntry.element?.tagName || 'unknown',
+                withinBudget: lastEntry.startTime <= this.budgets.lcp,
+                timestamp: Date.now()
+            };
+
+            this.reportMetric('LCP', this.metrics.lcp);
+        });
+
+        try {
+            observer.observe({ type: 'largest-contentful-paint', buffered: true });
+            this.observers.push(observer);
+        } catch (e) {
+            console.warn('LCP 모니터링 실패:', e);
+        }
+    }
+
+    observeCLS() {
+        if (!window.PerformanceObserver) return;
+
+        let clsValue = 0;
+
+        const observer = new PerformanceObserver((entryList) => {
+            for (const entry of entryList.getEntries()) {
+                if (!entry.hadRecentInput) {
+                    clsValue += entry.value;
+                }
+            }
+
+            this.metrics.cls = {
+                value: clsValue,
+                withinBudget: clsValue <= this.budgets.cls,
+                timestamp: Date.now()
+            };
+
+            this.reportMetric('CLS', this.metrics.cls);
+        });
+
+        try {
+            observer.observe({ type: 'layout-shift', buffered: true });
+            this.observers.push(observer);
+        } catch (e) {
+            console.warn('CLS 모니터링 실패:', e);
+        }
+    }
+
+    observeFID() {
+        if (!window.PerformanceObserver) return;
+
+        const observer = new PerformanceObserver((entryList) => {
+            for (const entry of entryList.getEntries()) {
+                this.metrics.fid = {
+                    value: entry.processingStart - entry.startTime,
+                    withinBudget: (entry.processingStart - entry.startTime) <= this.budgets.fid,
+                    timestamp: Date.now()
+                };
+
+                this.reportMetric('FID', this.metrics.fid);
+            }
+        });
+
+        try {
+            observer.observe({ type: 'first-input', buffered: true });
+            this.observers.push(observer);
+        } catch (e) {
+            console.warn('FID 모니터링 실패:', e);
+        }
+    }
+
+    observeFCP() {
+        if (!window.PerformanceObserver) return;
+
+        const observer = new PerformanceObserver((entryList) => {
+            const entries = entryList.getEntries();
+            for (const entry of entries) {
+                if (entry.name === 'first-contentful-paint') {
+                    this.metrics.fcp = {
+                        value: entry.startTime,
+                        withinBudget: entry.startTime <= this.budgets.fcp,
+                        timestamp: Date.now()
+                    };
+
+                    this.reportMetric('FCP', this.metrics.fcp);
+                }
+            }
+        });
+
+        try {
+            observer.observe({ type: 'paint', buffered: true });
+            this.observers.push(observer);
+        } catch (e) {
+            console.warn('FCP 모니터링 실패:', e);
+        }
+    }
+
+    reportMetric(name, metric) {
+        const status = metric.withinBudget ? '✅' : '❌';
+        const unit = name === 'CLS' ? '' : 'ms';
+        
+        console.log(`${status} ${name}: ${metric.value.toFixed(2)}${unit}`, metric);
+    }
+
+    start() {
+        console.log('🚀 성능 모니터링 시작 - Critical CSS 1.75KB 인라인 적용');
+        this.initializeCoreWebVitals();
+    }
+}
+
+// 자동 초기화
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => new PerformanceMonitor().start());
+} else {
+    new PerformanceMonitor().start();
+}
+    </script>
+
+    <!-- JavaScript -->
+    <script src="js/icon-helpers.js"></script>
+    <script src="js/sprite-animation-helpers.js"></script>
+    <script src="js/theme-switcher.js"></script>
+    <script src="index.js"></script>
+    
+    <!-- PWA Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('✅ SW registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.log('❌ SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+</body>
+</html>

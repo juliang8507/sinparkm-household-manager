@@ -1,0 +1,80 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <title>식사 기록 없음 - 식탁에 앉은 감자와 토끼</title>
+  
+  <!-- 식탁 -->
+  <ellipse cx="60" cy="75" rx="45" ry="15" fill="#8B4513" opacity="0.7"/>
+  <rect x="15" y="70" width="90" height="10" fill="#A0522D" rx="2"/>
+  
+  <!-- 식탁 다리 -->
+  <rect x="25" y="75" width="4" height="20" fill="#8B4513"/>
+  <rect x="91" y="75" width="4" height="20" fill="#8B4513"/>
+  
+  <!-- 빈 접시들 -->
+  <ellipse cx="40" cy="67" rx="8" ry="3" fill="white" stroke="#E0E0E0" stroke-width="1"/>
+  <ellipse cx="80" cy="67" rx="8" ry="3" fill="white" stroke="#E0E0E0" stroke-width="1"/>
+  
+  <!-- 포크와 나이프 -->
+  <g opacity="0.6">
+    <path d="M30 65 L30 72" stroke="#C0C0C0" stroke-width="1"/>
+    <path d="M28 65 L28 68 M30 65 L30 68 M32 65 L32 68" stroke="#C0C0C0" stroke-width="1"/>
+    
+    <path d="M90 65 L90 72" stroke="#C0C0C0" stroke-width="1"/>
+    <path d="M90 65 L87 67" stroke="#C0C0C0" stroke-width="1"/>
+  </g>
+  
+  <!-- 감자 캐릭터 (왼쪽 의자에) -->
+  <g transform="translate(40, 25)">
+    <!-- 감자 몸체 -->
+    <ellipse cx="0" cy="20" rx="14" ry="18" fill="#D4A574" stroke="#8B4513" stroke-width="1.5"/>
+    
+    <!-- 감자 표면 점들 -->
+    <circle cx="-6" cy="15" r="1" fill="#8B4513" opacity="0.3"/>
+    <circle cx="6" cy="17" r="0.8" fill="#8B4513" opacity="0.3"/>
+    <circle cx="-3" cy="28" r="0.9" fill="#8B4513" opacity="0.3"/>
+    
+    <!-- 기대하는 눈 -->
+    <circle cx="-4" cy="17" r="2" fill="white"/>
+    <circle cx="4" cy="17" r="2" fill="white"/>
+    <circle cx="-4" cy="17" r="1" fill="#333"/>
+    <circle cx="4" cy="17" r="1" fill="#333"/>
+    
+    <!-- 기대하는 입 -->
+    <path d="M-3 24 Q0 26 3 24" stroke="#8B4513" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  </g>
+  
+  <!-- 토끼 캐릭터 (오른쪽 의자에) -->
+  <g transform="translate(80, 20)">
+    <!-- 토끼 귀 -->
+    <ellipse cx="-6" cy="0" rx="2" ry="6" fill="#E0E0E0" stroke="#808080" stroke-width="1"/>
+    <ellipse cx="6" cy="0" rx="2" ry="6" fill="#E0E0E0" stroke="#808080" stroke-width="1"/>
+    <ellipse cx="-6" cy="0" rx="1" ry="3.5" fill="#FFB6C1" opacity="0.5"/>
+    <ellipse cx="6" cy="0" rx="1" ry="3.5" fill="#FFB6C1" opacity="0.5"/>
+    
+    <!-- 토끼 얼굴 -->
+    <circle cx="0" cy="20" r="12" fill="#E0E0E0" stroke="#808080" stroke-width="1"/>
+    
+    <!-- 기대하는 눈 -->
+    <circle cx="-4" cy="17" r="2" fill="white"/>
+    <circle cx="4" cy="17" r="2" fill="white"/>
+    <circle cx="-4" cy="17" r="1" fill="#333"/>
+    <circle cx="4" cy="17" r="1" fill="#333"/>
+    
+    <!-- 코 -->
+    <path d="M0 20 L-1.5 22 M0 20 L1.5 22" stroke="#808080" stroke-width="1" stroke-linecap="round"/>
+    
+    <!-- 기대하는 입 -->
+    <path d="M-2.5 24 Q0 26 2.5 24" stroke="#808080" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  </g>
+  
+  <!-- 의자들 (간단하게) -->
+  <rect x="32" y="50" width="16" height="3" fill="#8B4513" rx="1"/>
+  <rect x="39" y="53" width="2" height="15" fill="#8B4513"/>
+  
+  <rect x="72" y="50" width="16" height="3" fill="#8B4513" rx="1"/>
+  <rect x="79" y="53" width="2" height="15" fill="#8B4513"/>
+  
+  <!-- 텍스트 -->
+  <text x="60" y="110" text-anchor="middle" font-family="system-ui" font-size="12" fill="#888">
+    아직 식사 기록이 없어요
+  </text>
+</svg>

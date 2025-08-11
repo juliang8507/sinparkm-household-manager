@@ -1,0 +1,105 @@
+{
+  "timestamp": "2025-08-11T07:58:16.809Z",
+  "totalTests": 7,
+  "passedTests": 5,
+  "results": {
+    "responsive": [
+      {
+        "breakpoint": "Mobile",
+        "dimensions": "375x667",
+        "passed": true,
+        "details": {
+          "hasHorizontalScrollbar": false,
+          "viewportWidth": 375,
+          "bodyWidth": 358,
+          "hasMainContent": true,
+          "hasNavigation": true,
+          "headerVisible": true
+        }
+      },
+      {
+        "breakpoint": "Mobile Large",
+        "dimensions": "414x896",
+        "passed": true,
+        "details": {
+          "hasHorizontalScrollbar": false,
+          "viewportWidth": 414,
+          "bodyWidth": 397,
+          "hasMainContent": true,
+          "hasNavigation": true,
+          "headerVisible": true
+        }
+      },
+      {
+        "breakpoint": "Tablet",
+        "dimensions": "768x1024",
+        "passed": true,
+        "details": {
+          "hasHorizontalScrollbar": false,
+          "viewportWidth": 768,
+          "bodyWidth": 751,
+          "hasMainContent": true,
+          "hasNavigation": true,
+          "headerVisible": true
+        }
+      },
+      {
+        "breakpoint": "Desktop",
+        "dimensions": "1280x720",
+        "passed": true,
+        "details": {
+          "hasHorizontalScrollbar": false,
+          "viewportWidth": 1280,
+          "bodyWidth": 1263,
+          "hasMainContent": true,
+          "hasNavigation": true,
+          "headerVisible": true
+        }
+      },
+      {
+        "breakpoint": "Desktop Large",
+        "dimensions": "1920x1080",
+        "passed": true,
+        "details": {
+          "hasHorizontalScrollbar": false,
+          "viewportWidth": 1920,
+          "bodyWidth": 1903,
+          "hasMainContent": true,
+          "hasNavigation": true,
+          "headerVisible": true
+        }
+      }
+    ],
+    "accessibility": [
+      {
+        "hasSkipLinks": true,
+        "hasProperHeadings": true,
+        "ariaLabels": 22,
+        "ariaRoles": 22,
+        "altTexts": 0,
+        "totalImages": 0,
+        "focusableElements": 25,
+        "landmarks": {
+          "header": true,
+          "nav": true,
+          "main": false,
+          "footer": false
+        }
+      }
+    ],
+    "performance": [
+      {
+        "loadTime": 92,
+        "domContentLoaded": 89,
+        "firstPaint": 84.5,
+        "lcp": 0,
+        "cls": 1.8690311148501786,
+        "resourceCount": 32,
+        "transferSize": 300,
+        "domElements": 259
+      }
+    ],
+    "layout": [],
+    "errors": []
+  }
+}

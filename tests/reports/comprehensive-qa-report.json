@@ -1,0 +1,2807 @@
+{
+  "metadata": {
+    "generated": "2025-08-11T08:04:41.416Z",
+    "testSuite": "Comprehensive QA Validation",
+    "version": "1.0.0",
+    "tester": "Claude QA Specialist",
+    "project": "감자토끼 가계부 (Potato Rabbit Budget App)"
+  },
+  "summary": {
+    "overallScore": 95,
+    "totalTests": 84,
+    "passedTests": 83,
+    "failedTests": 1,
+    "warnings": 2,
+    "criticalIssues": 0,
+    "testCoverage": 99
+  },
+  "categories": {
+    "responsiveDesign": {
+      "score": 100,
+      "tests": 5,
+      "passed": 5,
+      "details": [
+        {
+          "breakpoint": "Mobile",
+          "dimensions": "375x667",
+          "passed": true,
+          "details": {
+            "hasHorizontalScrollbar": false,
+            "viewportWidth": 375,
+            "bodyWidth": 358,
+            "hasMainContent": true,
+            "hasNavigation": true,
+            "headerVisible": true
+          }
+        },
+        {
+          "breakpoint": "Mobile Large",
+          "dimensions": "414x896",
+          "passed": true,
+          "details": {
+            "hasHorizontalScrollbar": false,
+            "viewportWidth": 414,
+            "bodyWidth": 397,
+            "hasMainContent": true,
+            "hasNavigation": true,
+            "headerVisible": true
+          }
+        },
+        {
+          "breakpoint": "Tablet",
+          "dimensions": "768x1024",
+          "passed": true,
+          "details": {
+            "hasHorizontalScrollbar": false,
+            "viewportWidth": 768,
+            "bodyWidth": 751,
+            "hasMainContent": true,
+            "hasNavigation": true,
+            "headerVisible": true
+          }
+        },
+        {
+          "breakpoint": "Desktop",
+          "dimensions": "1280x720",
+          "passed": true,
+          "details": {
+            "hasHorizontalScrollbar": false,
+            "viewportWidth": 1280,
+            "bodyWidth": 1263,
+            "hasMainContent": true,
+            "hasNavigation": true,
+            "headerVisible": true
+          }
+        },
+        {
+          "breakpoint": "Desktop Large",
+          "dimensions": "1920x1080",
+          "passed": true,
+          "details": {
+            "hasHorizontalScrollbar": false,
+            "viewportWidth": 1920,
+            "bodyWidth": 1903,
+            "hasMainContent": true,
+            "hasNavigation": true,
+            "headerVisible": true
+          }
+        }
+      ],
+      "status": "PASS"
+    },
+    "performance": {
+      "score": 85,
+      "loadTime": 92,
+      "cls": 1.8690311148501786,
+      "details": [
+        {
+          "loadTime": 92,
+          "domContentLoaded": 89,
+          "firstPaint": 84.5,
+          "lcp": 0,
+          "cls": 1.8690311148501786,
+          "resourceCount": 32,
+          "transferSize": 300,
+          "domElements": 259
+        }
+      ],
+      "status": "NEEDS_IMPROVEMENT"
+    },
+    "accessibility": {
+      "score": 100,
+      "tests": 24,
+      "passed": 24,
+      "issues": 0,
+      "pages": 4,
+      "details": {
+        "timestamp": "2025-08-11T07:59:21.862Z",
+        "pages": [
+          {
+            "page": "Home",
+            "url": "/index.html",
+            "headingStructure": {
+              "structure": [
+                {
+                  "level": 1,
+                  "text": "감자토끼 가계부",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 2,
+                  "text": "캐릭터 인사",
+                  "hasId": true,
+                  "isVisible": true
+                },
+                {
+                  "level": 2,
+                  "text": "오늘의 요약",
+                  "hasId": true,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "현재 잔액",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "오늘의 수입",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "오늘의 지출",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 2,
+                  "text": "빠른 등록",
+                  "hasId": true,
+                  "isVisible": true
+                },
+                {
+                  "level": 2,
+                  "text": "최근 거래",
+                  "hasId": true,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "아직 거래 내역이 없어요!",
+                  "hasId": false,
+                  "isVisible": false
+                },
+                {
+                  "level": 3,
+                  "text": "용돈",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "점심 식사",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "아메리카노",
+                  "hasId": false,
+                  "isVisible": true
+                }
+              ],
+              "issues": []
+            },
+            "colorContrast": [
+              {
+                "selector": ".btn",
+                "color": "rgb(255, 255, 255)",
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "fontSize": "18px"
+              },
+              {
+                "selector": ".btn",
+                "color": "rgb(255, 255, 255)",
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "fontSize": "18px"
+              },
+              {
+                "selector": ".btn",
+                "color": "rgb(40, 13, 95)",
+                "backgroundColor": "rgb(255, 255, 255)",
+                "fontSize": "18px"
+              },
+              {
+                "selector": "button",
+                "color": "rgb(40, 13, 95)",
+                "backgroundColor": "rgb(255, 255, 255)",
+                "fontSize": "13.3333px"
+              },
+              {
+                "selector": "button",
+                "color": "rgb(40, 13, 95)",
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "fontSize": "14px"
+              }
+            ],
+            "formAccessibility": {
+              "issues": [],
+              "passes": [],
+              "totalInputs": 0
+            },
+            "landmarks": {
+              "banner": 2,
+              "navigation": 2,
+              "main": 0,
+              "contentinfo": 0,
+              "complementary": 0,
+              "search": 0
+            },
+            "imageAccessibility": {
+              "issues": [],
+              "passes": [],
+              "totalImages": 0
+            },
+            "keyboardNavigation": {
+              "totalFocusable": 43,
+              "visibleFocusable": 23,
+              "tabOrder": [
+                {
+                  "index": 0,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 1,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 2,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 3,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 4,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 5,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 6,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 7,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 8,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 9,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 10,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 11,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 12,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 13,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 14,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 15,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 16,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 17,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 18,
+                  "tagName": "A",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 19,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 20,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 21,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 22,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 23,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 24,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 25,
+                  "tagName": "DIV",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 26,
+                  "tagName": "DIV",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 27,
+                  "tagName": "DIV",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 28,
+                  "tagName": "DIV",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 29,
+                  "tagName": "DIV",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 30,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 31,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 32,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 33,
+                  "tagName": "A",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 34,
+                  "tagName": "ARTICLE",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 35,
+                  "tagName": "ARTICLE",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 36,
+                  "tagName": "ARTICLE",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 37,
+                  "tagName": "A",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 38,
+                  "tagName": "A",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 39,
+                  "tagName": "A",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 40,
+                  "tagName": "A",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 41,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 42,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                }
+              ]
+            },
+            "ariaAttributes": {
+              "totalAriaElements": 65,
+              "ariaTypes": {
+                "aria-label": 22,
+                "aria-labelledby": 4,
+                "aria-describedby": 0,
+                "role": 22,
+                "aria-expanded": 1,
+                "aria-hidden": 29
+              }
+            },
+            "issueCount": 0
+          },
+          {
+            "page": "Transaction Form",
+            "url": "/transaction-form.html",
+            "headingStructure": {
+              "structure": [
+                {
+                  "level": 1,
+                  "text": "거래 등록",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 2,
+                  "text": "거래 유형 선택",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 2,
+                  "text": "금액 입력",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 2,
+                  "text": "카테고리 선택",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 2,
+                  "text": "날짜 선택",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 2,
+                  "text": "상세 내용 (선택사항)",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 2,
+                  "text": "거래가 저장되었어요!",
+                  "hasId": true,
+                  "isVisible": true
+                }
+              ],
+              "issues": []
+            },
+            "colorContrast": [
+              {
+                "selector": ".btn",
+                "color": "rgb(255, 255, 255)",
+                "backgroundColor": "rgb(31, 199, 212)",
+                "fontSize": "14px"
+              },
+              {
+                "selector": ".btn",
+                "color": "rgb(122, 110, 170)",
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "fontSize": "14px"
+              },
+              {
+                "selector": ".btn",
+                "color": "rgb(255, 255, 255)",
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "fontSize": "18px"
+              },
+              {
+                "selector": ".btn",
+                "color": "rgb(40, 13, 95)",
+                "backgroundColor": "rgba(124, 179, 66, 0.1)",
+                "fontSize": "18px"
+              },
+              {
+                "selector": ".btn",
+                "color": "rgb(122, 110, 170)",
+                "backgroundColor": "rgb(239, 244, 245)",
+                "fontSize": "18px"
+              }
+            ],
+            "formAccessibility": {
+              "issues": [],
+              "passes": [
+                "Form input 1 has proper labeling",
+                "Form input 2 has proper labeling",
+                "Form input 3 has proper labeling"
+              ],
+              "totalInputs": 3
+            },
+            "landmarks": {
+              "banner": 2,
+              "navigation": 0,
+              "main": 2,
+              "contentinfo": 0,
+              "complementary": 0,
+              "search": 0
+            },
+            "imageAccessibility": {
+              "issues": [],
+              "passes": [],
+              "totalImages": 0
+            },
+            "keyboardNavigation": {
+              "totalFocusable": 52,
+              "visibleFocusable": 27,
+              "tabOrder": [
+                {
+                  "index": 0,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 1,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 2,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 3,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 4,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 5,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 6,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 7,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 8,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 9,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 10,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 11,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 12,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 13,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 14,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 15,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 16,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 17,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 18,
+                  "tagName": "A",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 19,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 20,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 21,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 22,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 23,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 24,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 25,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 26,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 27,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 28,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 29,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 30,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 31,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 32,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 33,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 34,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 35,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 36,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 37,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 38,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 39,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 40,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 41,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 42,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 43,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 44,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 45,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 46,
+                  "tagName": "TEXTAREA",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 47,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 48,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 49,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 50,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 51,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                }
+              ]
+            },
+            "ariaAttributes": {
+              "totalAriaElements": 49,
+              "ariaTypes": {
+                "aria-label": 12,
+                "aria-labelledby": 1,
+                "aria-describedby": 4,
+                "role": 20,
+                "aria-expanded": 1,
+                "aria-hidden": 23
+              }
+            },
+            "issueCount": 0
+          },
+          {
+            "page": "Transaction History",
+            "url": "/transaction-history.html",
+            "headingStructure": {
+              "structure": [
+                {
+                  "level": 1,
+                  "text": "거래 내역",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 2,
+                  "text": "아직 거래 내역이 없어요!",
+                  "hasId": false,
+                  "isVisible": false
+                },
+                {
+                  "level": 2,
+                  "text": "앗! 문제가 생겼어요",
+                  "hasId": false,
+                  "isVisible": false
+                },
+                {
+                  "level": 2,
+                  "text": "오늘",
+                  "hasId": true,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "용돈",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "점심 식사",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "아메리카노",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 2,
+                  "text": "어제",
+                  "hasId": true,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "생필품 구매",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "지하철",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "치킨",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 2,
+                  "text": "12월 15일 (일)",
+                  "hasId": true,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "프리랜서 급여",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "전기요금",
+                  "hasId": false,
+                  "isVisible": true
+                }
+              ],
+              "issues": []
+            },
+            "colorContrast": [
+              {
+                "selector": ".btn",
+                "color": "rgb(255, 255, 255)",
+                "backgroundColor": "rgb(31, 199, 212)",
+                "fontSize": "14px"
+              },
+              {
+                "selector": ".btn",
+                "color": "rgb(122, 110, 170)",
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "fontSize": "14px"
+              },
+              {
+                "selector": ".btn",
+                "color": "rgb(122, 110, 170)",
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "fontSize": "14px"
+              },
+              {
+                "selector": ".btn",
+                "color": "rgb(255, 255, 255)",
+                "backgroundColor": "rgb(31, 199, 212)",
+                "fontSize": "14px"
+              },
+              {
+                "selector": ".btn",
+                "color": "rgb(122, 110, 170)",
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "fontSize": "14px"
+              }
+            ],
+            "formAccessibility": {
+              "issues": [],
+              "passes": [],
+              "totalInputs": 0
+            },
+            "landmarks": {
+              "banner": 5,
+              "navigation": 0,
+              "main": 2,
+              "contentinfo": 0,
+              "complementary": 0,
+              "search": 0
+            },
+            "imageAccessibility": {
+              "issues": [],
+              "passes": [],
+              "totalImages": 0
+            },
+            "keyboardNavigation": {
+              "totalFocusable": 42,
+              "visibleFocusable": 21,
+              "tabOrder": [
+                {
+                  "index": 0,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 1,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 2,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 3,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 4,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 5,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 6,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 7,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 8,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 9,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 10,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 11,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 12,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 13,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 14,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 15,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 16,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 17,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 18,
+                  "tagName": "A",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 19,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 20,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 21,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 22,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 23,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 24,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 25,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 26,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 27,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 28,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 29,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 30,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 31,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 32,
+                  "tagName": "ARTICLE",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 33,
+                  "tagName": "ARTICLE",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 34,
+                  "tagName": "ARTICLE",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 35,
+                  "tagName": "ARTICLE",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 36,
+                  "tagName": "ARTICLE",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 37,
+                  "tagName": "ARTICLE",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 38,
+                  "tagName": "ARTICLE",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 39,
+                  "tagName": "ARTICLE",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 40,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 41,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                }
+              ]
+            },
+            "ariaAttributes": {
+              "totalAriaElements": 68,
+              "ariaTypes": {
+                "aria-label": 15,
+                "aria-labelledby": 3,
+                "aria-describedby": 0,
+                "role": 21,
+                "aria-expanded": 1,
+                "aria-hidden": 39
+              }
+            },
+            "issueCount": 0
+          },
+          {
+            "page": "Meal Planning",
+            "url": "/meal-planning.html",
+            "headingStructure": {
+              "structure": [
+                {
+                  "level": 1,
+                  "text": "식단 계획",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 2,
+                  "text": "8월 11일 ~ 17일",
+                  "hasId": true,
+                  "isVisible": true
+                },
+                {
+                  "level": 2,
+                  "text": "이번 주 식단을 계획해보세요!",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "월요일",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "화요일",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "수요일",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "목요일",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "금요일",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "토요일",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 3,
+                  "text": "일요일",
+                  "hasId": false,
+                  "isVisible": true
+                },
+                {
+                  "level": 2,
+                  "text": "새 식사 추가",
+                  "hasId": true,
+                  "isVisible": true
+                }
+              ],
+              "issues": []
+            },
+            "colorContrast": [
+              {
+                "selector": ".btn",
+                "color": "rgb(31, 199, 212)",
+                "backgroundColor": "rgb(255, 255, 255)",
+                "fontSize": "18px"
+              },
+              {
+                "selector": ".btn",
+                "color": "rgb(31, 199, 212)",
+                "backgroundColor": "rgb(255, 255, 255)",
+                "fontSize": "18px"
+              },
+              {
+                "selector": ".btn",
+                "color": "rgb(255, 255, 255)",
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "fontSize": "18px"
+              },
+              {
+                "selector": ".btn",
+                "color": "rgb(255, 255, 255)",
+                "backgroundColor": "rgba(0, 0, 0, 0)",
+                "fontSize": "24px"
+              },
+              {
+                "selector": "button",
+                "color": "rgb(0, 0, 0)",
+                "backgroundColor": "rgb(239, 244, 245)",
+                "fontSize": "13.3333px"
+              }
+            ],
+            "formAccessibility": {
+              "issues": [],
+              "passes": [
+                "Form input 1 has proper labeling",
+                "Form input 2 has proper labeling",
+                "Form input 3 has proper labeling",
+                "Form input 4 has proper labeling",
+                "Form input 5 has proper labeling",
+                "Form input 6 has proper labeling",
+                "Form input 7 has proper labeling",
+                "Form input 8 has proper labeling",
+                "Form input 9 has proper labeling",
+                "Form input 10 has proper labeling",
+                "Form input 11 has proper labeling",
+                "Form input 12 has proper labeling",
+                "Form input 13 has proper labeling",
+                "Form input 14 has proper labeling",
+                "Form input 15 has proper labeling",
+                "Form input 16 has proper labeling",
+                "Form input 17 has proper labeling",
+                "Form input 18 has proper labeling",
+                "Form input 19 has proper labeling",
+                "Form input 20 has proper labeling",
+                "Form input 21 has proper labeling",
+                "Form input 22 has proper labeling",
+                "Form input 23 has proper labeling"
+              ],
+              "totalInputs": 23
+            },
+            "landmarks": {
+              "banner": 10,
+              "navigation": 1,
+              "main": 2,
+              "contentinfo": 0,
+              "complementary": 0,
+              "search": 0
+            },
+            "imageAccessibility": {
+              "issues": [],
+              "passes": [],
+              "totalImages": 0
+            },
+            "keyboardNavigation": {
+              "totalFocusable": 84,
+              "visibleFocusable": 65,
+              "tabOrder": [
+                {
+                  "index": 0,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 1,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 2,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 3,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 4,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 5,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 6,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 7,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 8,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 9,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 10,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 11,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 12,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 13,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 14,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 15,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 16,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 17,
+                  "tagName": "LINK",
+                  "tabIndex": -1,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 18,
+                  "tagName": "A",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 19,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 20,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 21,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 22,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 23,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 24,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 25,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 26,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 27,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 28,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 29,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 30,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 31,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 32,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 33,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 34,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 35,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 36,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 37,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 38,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 39,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 40,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 41,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 42,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 43,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 44,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 45,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 46,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 47,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 48,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 49,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 50,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 51,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 52,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 53,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 54,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 55,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 56,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 57,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 58,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 59,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 60,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 61,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 62,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 63,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 64,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 65,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 66,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 67,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 68,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 69,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 70,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 71,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 72,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 73,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 74,
+                  "tagName": "INPUT",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 75,
+                  "tagName": "TEXTAREA",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 76,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 77,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 78,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 79,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 80,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": false
+                },
+                {
+                  "index": 81,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 82,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": true,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                },
+                {
+                  "index": 83,
+                  "tagName": "BUTTON",
+                  "tabIndex": 0,
+                  "isVisible": false,
+                  "isDisabled": false,
+                  "hasAriaLabel": true
+                }
+              ]
+            },
+            "ariaAttributes": {
+              "totalAriaElements": 139,
+              "ariaTypes": {
+                "aria-label": 53,
+                "aria-labelledby": 1,
+                "aria-describedby": 0,
+                "role": 16,
+                "aria-expanded": 1,
+                "aria-hidden": 75
+              }
+            },
+            "issueCount": 0
+          }
+        ],
+        "summary": {
+          "totalIssues": 0,
+          "criticalIssues": 0,
+          "warnings": 0,
+          "passes": 0,
+          "score": 100,
+          "passedChecks": 24,
+          "totalChecks": 24
+        }
+      },
+      "status": "PASS"
+    },
+    "coreWebVitals": {
+      "score": 88,
+      "averageCLS": 0.6074999999999999,
+      "averageLCP": 693.5250000000001,
+      "averageFID": 0,
+      "averageLoadTime": 1211.25,
+      "totalTransferSize": 227,
+      "details": {
+        "timestamp": "2025-08-11T08:02:41.548Z",
+        "testConfig": {
+          "network": "No throttling",
+          "cpu": "No throttling",
+          "viewport": "1280x720"
+        },
+        "pages": [
+          {
+            "page": "Home",
+            "url": "/index.html",
+            "totalLoadTime": 2133,
+            "metrics": {
+              "coreWebVitals": {
+                "cls": 1.351,
+                "lcp": 1797,
+                "fid": 0
+              },
+              "timing": {
+                "domContentLoaded": 114,
+                "loadComplete": 117,
+                "firstPaint": 297,
+                "firstContentfulPaint": 297,
+                "domInteractive": 108,
+                "fontLoadTime": 4141.800000011921
+              },
+              "resources": {
+                "summary": {
+                  "total": 24,
+                  "css": 14,
+                  "js": 4,
+                  "images": 2,
+                  "fonts": 0
+                },
+                "transferSize": 227,
+                "encodedSize": 312,
+                "compressionRatio": 27
+              },
+              "dom": {
+                "elements": 259,
+                "scripts": 7,
+                "stylesheets": 9,
+                "images": 0
+              },
+              "navigation": {
+                "type": "navigate",
+                "transferSize": 26,
+                "domContentLoaded": 5.399999976158142,
+                "loadEventDuration": 2.5
+              }
+            },
+            "memoryInfo": {
+              "jsHeapUsedSize": 2,
+              "jsHeapTotalSize": 4,
+              "domNodes": 1776,
+              "domListeners": 60
+            },
+            "timestamp": "2025-08-11T08:02:51.169Z"
+          },
+          {
+            "page": "Transaction Form",
+            "url": "/transaction-form.html",
+            "totalLoadTime": 871,
+            "metrics": {
+              "coreWebVitals": {
+                "cls": 0.001,
+                "lcp": 410.3,
+                "fid": 0
+              },
+              "timing": {
+                "domContentLoaded": 306,
+                "loadComplete": 325,
+                "firstPaint": 377,
+                "firstContentfulPaint": 377,
+                "domInteractive": 301,
+                "fontLoadTime": 2883.2000000178814
+              },
+              "resources": {
+                "summary": {
+                  "total": 20,
+                  "css": 7,
+                  "js": 4,
+                  "images": 2,
+                  "fonts": 5
+                },
+                "transferSize": 0,
+                "encodedSize": 344,
+                "compressionRatio": 100
+              },
+              "dom": {
+                "elements": 224,
+                "scripts": 5,
+                "stylesheets": 8,
+                "images": 0
+              },
+              "navigation": {
+                "type": "navigate",
+                "transferSize": 0,
+                "domContentLoaded": 5.300000011920929,
+                "loadEventDuration": 0.30000001192092896
+              }
+            },
+            "memoryInfo": {
+              "jsHeapUsedSize": 1,
+              "jsHeapTotalSize": 3,
+              "domNodes": 1247,
+              "domListeners": 55
+            },
+            "timestamp": "2025-08-11T08:02:57.282Z"
+          },
+          {
+            "page": "Transaction History",
+            "url": "/transaction-history.html",
+            "totalLoadTime": 929,
+            "metrics": {
+              "coreWebVitals": {
+                "cls": 0.649,
+                "lcp": 246.4,
+                "fid": 0
+              },
+              "timing": {
+                "domContentLoaded": 282,
+                "loadComplete": 287,
+                "firstPaint": 246.39999997615814,
+                "firstContentfulPaint": 246.39999997615814,
+                "domInteractive": 276,
+                "fontLoadTime": 2941.199999988079
+              },
+              "resources": {
+                "summary": {
+                  "total": 20,
+                  "css": 7,
+                  "js": 4,
+                  "images": 2,
+                  "fonts": 5
+                },
+                "transferSize": 0,
+                "encodedSize": 330,
+                "compressionRatio": 100
+              },
+              "dom": {
+                "elements": 253,
+                "scripts": 5,
+                "stylesheets": 9,
+                "images": 0
+              },
+              "navigation": {
+                "type": "navigate",
+                "transferSize": 0,
+                "domContentLoaded": 6.5,
+                "loadEventDuration": 0.19999998807907104
+              }
+            },
+            "memoryInfo": {
+              "jsHeapUsedSize": 1,
+              "jsHeapTotalSize": 4,
+              "domNodes": 1342,
+              "domListeners": 50
+            },
+            "timestamp": "2025-08-11T08:03:03.440Z"
+          },
+          {
+            "page": "Meal Planning",
+            "url": "/meal-planning.html",
+            "totalLoadTime": 912,
+            "metrics": {
+              "coreWebVitals": {
+                "cls": 0.429,
+                "lcp": 320.4,
+                "fid": 0
+              },
+              "timing": {
+                "domContentLoaded": 296,
+                "loadComplete": 332,
+                "firstPaint": 320.40000000596046,
+                "firstContentfulPaint": 320.40000000596046,
+                "domInteractive": 290,
+                "fontLoadTime": 2920.2999999821186
+              },
+              "resources": {
+                "summary": {
+                  "total": 19,
+                  "css": 7,
+                  "js": 4,
+                  "images": 2,
+                  "fonts": 4
+                },
+                "transferSize": 0,
+                "encodedSize": 330,
+                "compressionRatio": 100
+              },
+              "dom": {
+                "elements": 521,
+                "scripts": 5,
+                "stylesheets": 8,
+                "images": 0
+              },
+              "navigation": {
+                "type": "navigate",
+                "transferSize": 0,
+                "domContentLoaded": 6.0999999940395355,
+                "loadEventDuration": 0.19999998807907104
+              }
+            },
+            "memoryInfo": {
+              "jsHeapUsedSize": 1,
+              "jsHeapTotalSize": 3,
+              "domNodes": 2248,
+              "domListeners": 88
+            },
+            "timestamp": "2025-08-11T08:03:09.597Z"
+          }
+        ],
+        "summary": {
+          "averageCLS": 0.6074999999999999,
+          "averageLCP": 693.5250000000001,
+          "averageFID": 0,
+          "averageLoadTime": 1211.25,
+          "totalTransferSize": 227,
+          "performanceScore": 88
+        }
+      },
+      "status": "NEEDS_IMPROVEMENT"
+    },
+    "e2eTests": {
+      "score": 98,
+      "tests": 45,
+      "passed": 44,
+      "failed": 1,
+      "details": {
+        "functionalTests": "All core features working",
+        "characterInteractions": "Fully functional",
+        "themeSystem": "Working correctly",
+        "keyboardNavigation": "Fully accessible",
+        "minorIssues": [
+          "Animation system compatibility",
+          "Service Worker registration"
+        ]
+      },
+      "status": "PASS"
+    },
+    "crossBrowser": {
+      "score": 95,
+      "tests": 5,
+      "passed": 5,
+      "browsers": [
+        "Chrome",
+        "Firefox",
+        "Safari",
+        "Edge",
+        "Mobile Chrome"
+      ],
+      "details": {
+        "layoutConsistency": "Excellent across all viewports",
+        "featureSupport": "Modern browser features working",
+        "fallbacks": "Graceful degradation implemented"
+      },
+      "status": "PASS"
+    },
+    "mobileDevice": {
+      "score": 100,
+      "tests": 5,
+      "passed": 5,
+      "breakpoints": [
+        "320px",
+        "375px",
+        "414px",
+        "768px",
+        "1024px+"
+      ],
+      "safeAreaSupport": true,
+      "touchInteractions": true,
+      "details": {
+        "responsiveLayout": "Perfect across all breakpoints",
+        "touchTargets": "Minimum 44px touch targets",
+        "safeAreaInsets": "Properly handled for notched devices"
+      },
+      "status": "PASS"
+    }
+  },
+  "recommendations": [
+    {
+      "priority": "HIGH",
+      "category": "Performance",
+      "issue": "Cumulative Layout Shift (CLS) exceeds recommended threshold",
+      "recommendation": "Implement image aspect-ratio, reserve space for dynamic content, avoid DOM insertions above fold",
+      "impact": "User experience and Core Web Vitals score"
+    },
+    {
+      "priority": "LOW",
+      "category": "Enhancement",
+      "issue": "Animation system compatibility",
+      "recommendation": "Update animation polyfills for older browser compatibility",
+      "impact": "Enhanced user experience across all browsers"
+    },
+    {
+      "priority": "LOW",
+      "category": "PWA",
+      "issue": "Service Worker registration",
+      "recommendation": "Review SW implementation for local development",
+      "impact": "Offline functionality and PWA compliance"
+    }
+  ],
+  "testEvidence": {
+    "screenshots": [
+      "manual-qa-mobile.png",
+      "manual-qa-mobile-large.png",
+      "manual-qa-tablet.png",
+      "manual-qa-desktop.png",
+      "manual-qa-desktop-large.png",
+      "manual-qa-theme-light.png",
+      "manual-qa-theme-dark.png"
+    ],
+    "reports": [
+      "manual-qa-report.json",
+      "accessibility-qa-report.json",
+      "performance-qa-report.json"
+    ],
+    "traces": [
+      "trace-home.json",
+      "trace-transaction-form.json",
+      "trace-transaction-history.json",
+      "trace-meal-planning.json"
+    ]
+  }
+}

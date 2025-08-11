@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>다중 테마 시스템 - 테마 컨트롤</title>
+  <link rel="stylesheet" href="tokens.css">
+  <link rel="stylesheet" href="theme-controls.css">
+  <style>
+    /* Demo page styles */
+    body {
+      margin: 0;
+      padding: var(--spacing-xl);
+      font-family: var(--font-family-primary);
+      background: var(--color-background-default);
+      color: var(--color-text-primary);
+      min-height: 100vh;
+      transition: var(--theme-transition);
+    }
+
+    .demo-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: var(--spacing-xl);
+      background: var(--color-background-paper);
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow-card);
+    }
+
+    .demo-section {
+      margin-bottom: var(--spacing-2xl);
+    }
+
+    .demo-section h2 {
+      margin-bottom: var(--spacing-md);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .demo-section p {
+      margin-bottom: var(--spacing-md);
+      line-height: var(--line-height-normal);
+      color: var(--color-text-secondary);
+    }
+
+    .demo-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-md);
+      align-items: center;
+      padding: var(--spacing-lg);
+      background: var(--color-background-alternative);
+      border-radius: var(--radius-lg);
+    }
+
+    .demo-card {
+      padding: var(--spacing-lg);
+      background: var(--color-background-paper);
+      border: 1px solid var(--color-border-default);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .color-palette {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: var(--spacing-md);
+      margin-top: var(--spacing-md);
+    }
+
+    .color-item {
+      padding: var(--spacing-md);
+      border-radius: var(--radius-md);
+      text-align: center;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .color-primary { background: var(--color-primary); color: var(--color-primary-contrast); }
+    .color-secondary { background: var(--color-secondary); color: var(--color-secondary-contrast); }
+    .color-success { background: var(--color-success); color: white; }
+    .color-warning { background: var(--color-warning); color: white; }
+    .color-error { background: var(--color-error); color: white; }
+    .color-potato { background: var(--color-potato); color: var(--color-potato-accent); }
+    .color-rabbit { background: var(--color-rabbit); color: var(--color-rabbit-accent); }
+  </style>
+</head>
+<body>
+  <div class="demo-container">
+    <header class="demo-section">
+      <h1>🎨 다중 테마 시스템</h1>
+      <p>라이트, 다크, 고대비 테마를 지원하는 디자인 토큰 시스템입니다.</p>
+    </header>
+
+    <section class="demo-section">
+      <h2>테마 컨트롤</h2>
+      <div class="demo-controls">
+        <!-- Simple Theme Toggle Button -->
+        <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">
+          <span class="theme-toggle-icon" id="themeIcon">🌞</span>
+        </button>
+
+        <!-- Advanced Theme Selector -->
+        <div class="theme-selector">
+          <button class="theme-selector-button" aria-expanded="false" id="themeSelectorBtn">
+            <span class="theme-selector-icon" id="currentThemeIcon">🌞</span>
+            <span class="theme-selector-text" id="currentThemeText">라이트 테마</span>
+            <span class="theme-selector-arrow">▼</span>
+          </button>
+          <div class="theme-selector-dropdown" id="themeSelectorDropdown">
+            <button class="theme-selector-option" data-theme="light">
+              <span class="theme-selector-option-icon">🌞</span>
+              <div>
+                <div class="theme-selector-option-text">라이트 테마</div>
+                <div class="theme-selector-option-description">밝은 배경, 어두운 텍스트</div>
+              </div>
+            </button>
+            <button class="theme-selector-option" data-theme="dark">
+              <span class="theme-selector-option-icon">🌙</span>
+              <div>
+                <div class="theme-selector-option-text">다크 테마</div>
+                <div class="theme-selector-option-description">어두운 배경, 밝은 텍스트</div>
+              </div>
+            </button>
+            <button class="theme-selector-option" data-theme="hc">
+              <span class="theme-selector-option-icon">🔍</span>
+              <div>
+                <div class="theme-selector-option-text">고대비 테마</div>
+                <div class="theme-selector-option-description">WCAG AAA 기준 7:1 대비</div>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Theme Status -->
+        <div class="theme-status" id="themeStatus">
+          <span class="theme-status-icon">ℹ️</span>
+          <span id="themeStatusText">시스템 설정 따름</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>색상 팔레트 미리보기</h2>
+      <div class="color-palette">
+        <div class="color-item color-primary">Primary</div>
+        <div class="color-item color-secondary">Secondary</div>
+        <div class="color-item color-success">Success</div>
+        <div class="color-item color-warning">Warning</div>
+        <div class="color-item color-error">Error</div>
+        <div class="color-item color-potato">감자</div>
+        <div class="color-item color-rabbit">토끼</div>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>접근성 정보</h2>
+      <div class="theme-a11y-info" id="a11yInfo">
+        <div class="theme-a11y-info-title">현재 테마 접근성 정보</div>
+        <div class="theme-a11y-info-item">
+          <span class="theme-a11y-info-label">테마:</span>
+          <span class="theme-a11y-info-value" id="a11yTheme">-</span>
+        </div>
+        <div class="theme-a11y-info-item">
+          <span class="theme-a11y-info-label">WCAG 레벨:</span>
+          <span class="theme-a11y-info-value" id="a11yWcag">-</span>
+        </div>
+        <div class="theme-a11y-info-item">
+          <span class="theme-a11y-info-label">시스템 설정:</span>
+          <span class="theme-a11y-info-value" id="a11ySystem">-</span>
+        </div>
+        <div class="theme-a11y-info-item">
+          <span class="theme-a11y-info-label">애니메이션:</span>
+          <span class="theme-a11y-info-value" id="a11yMotion">-</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>컴포넌트 예제</h2>
+      <div class="demo-card">
+        <h3>가계부 카드 예제</h3>
+        <p>이 카드는 현재 테마에 따라 색상과 그림자가 자동으로 조정됩니다.</p>
+        <div style="display: flex; gap: var(--spacing-sm); margin-top: var(--spacing-md);">
+          <span style="padding: var(--spacing-xs) var(--spacing-sm); background: var(--transaction-income-bg); border: 1px solid var(--transaction-income-border); border-radius: var(--radius-sm); font-size: var(--font-size-sm);">
+            + ₩50,000 수입
+          </span>
+          <span style="padding: var(--spacing-xs) var(--spacing-sm); background: var(--transaction-expense-bg); border: 1px solid var(--transaction-expense-border); border-radius: var(--radius-sm); font-size: var(--font-size-sm);">
+            - ₩15,000 식비
+          </span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Floating Action Button (optional) -->
+  <div class="theme-controls-fab" id="themeFab">
+    <button class="theme-toggle" id="fabThemeToggle" aria-label="테마 전환">
+      <span class="theme-toggle-icon" id="fabThemeIcon">🌞</span>
+    </button>
+    <div class="theme-status">
+      <span class="theme-status-icon">🎨</span>
+      <span style="font-size: var(--font-size-xs);">테마</span>
+    </div>
+  </div>
+
+  <script src="theme-manager.js"></script>
+  <script>
+    // Theme UI Controls
+    document.addEventListener('DOMContentLoaded', () => {
+      // Theme icons mapping
+      const themeIcons = {
+        light: '🌞',
+        dark: '🌙',
+        hc: '🔍'
+      };
+
+      const themeNames = {
+        light: '라이트 테마',
+        dark: '다크 테마',
+        hc: '고대비 테마'
+      };
+
+      // Update UI elements when theme changes
+      function updateThemeUI(theme) {
+        // Update toggle buttons
+        document.querySelectorAll('.theme-toggle-icon').forEach(icon => {
+          icon.textContent = themeIcons[theme];
+        });
+
+        // Update theme selector
+        const currentThemeIcon = document.getElementById('currentThemeIcon');
+        const currentThemeText = document.getElementById('currentThemeText');
+        if (currentThemeIcon) currentThemeIcon.textContent = themeIcons[theme];
+        if (currentThemeText) currentThemeText.textContent = themeNames[theme];
+
+        // Update active option
+        document.querySelectorAll('.theme-selector-option').forEach(option => {
+          option.classList.toggle('active', option.dataset.theme === theme);
+        });
+
+        // Update status
+        const statusText = document.getElementById('themeStatusText');
+        const storedTheme = localStorage.getItem('theme');
+        if (statusText) {
+          if (storedTheme) {
+            statusText.textContent = `${themeNames[theme]} 선택됨`;
+          } else {
+            statusText.textContent = `시스템 설정: ${themeNames[theme]}`;
+          }
+        }
+
+        // Update accessibility info
+        updateA11yInfo();
+      }
+
+      // Update accessibility information
+      function updateA11yInfo() {
+        if (!window.themeManager) return;
+
+        const a11yInfo = window.themeManager.getAccessibilityInfo();
+        
+        document.getElementById('a11yTheme').textContent = themeNames[a11yInfo.theme];
+        document.getElementById('a11yWcag').textContent = a11yInfo.wcagLevel;
+        document.getElementById('a11ySystem').textContent = themeNames[a11yInfo.systemPreference];
+        
+        const motionElement = document.getElementById('a11yMotion');
+        if (a11yInfo.prefersReducedMotion) {
+          motionElement.textContent = '감소됨';
+          motionElement.className = 'theme-a11y-info-value warning';
+        } else {
+          motionElement.textContent = '일반';
+          motionElement.className = 'theme-a11y-info-value success';
+        }
+      }
+
+      // Simple toggle button handlers
+      document.querySelectorAll('.theme-toggle').forEach(button => {
+        button.addEventListener('click', () => {
+          if (window.themeManager) {
+            window.themeManager.cycleTheme();
+          }
+        });
+      });
+
+      // Theme selector dropdown
+      const selectorBtn = document.getElementById('themeSelectorBtn');
+      const selectorDropdown = document.getElementById('themeSelectorDropdown');
+
+      if (selectorBtn && selectorDropdown) {
+        selectorBtn.addEventListener('click', () => {
+          const isOpen = selectorBtn.getAttribute('aria-expanded') === 'true';
+          selectorBtn.setAttribute('aria-expanded', !isOpen);
+          selectorDropdown.classList.toggle('open', !isOpen);
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+          if (!selectorBtn.contains(e.target) && !selectorDropdown.contains(e.target)) {
+            selectorBtn.setAttribute('aria-expanded', 'false');
+            selectorDropdown.classList.remove('open');
+          }
+        });
+
+        // Handle option selection
+        selectorDropdown.addEventListener('click', (e) => {
+          const option = e.target.closest('.theme-selector-option');
+          if (option && window.themeManager) {
+            const theme = option.dataset.theme;
+            window.themeManager.setTheme(theme);
+            selectorBtn.setAttribute('aria-expanded', 'false');
+            selectorDropdown.classList.remove('open');
+          }
+        });
+      }
+
+      // Listen for theme changes
+      document.addEventListener('themechange', (e) => {
+        updateThemeUI(e.detail.theme);
+        console.log('Theme changed to:', e.detail.theme);
+      });
+
+      // Keyboard navigation for theme selector
+      if (selectorDropdown) {
+        selectorDropdown.addEventListener('keydown', (e) => {
+          const options = selectorDropdown.querySelectorAll('.theme-selector-option');
+          const currentIndex = Array.from(options).findIndex(opt => opt === document.activeElement);
+          
+          switch (e.key) {
+            case 'ArrowDown':
+              e.preventDefault();
+              const nextIndex = (currentIndex + 1) % options.length;
+              options[nextIndex].focus();
+              break;
+            case 'ArrowUp':
+              e.preventDefault();
+              const prevIndex = currentIndex <= 0 ? options.length - 1 : currentIndex - 1;
+              options[prevIndex].focus();
+              break;
+            case 'Escape':
+              selectorBtn.setAttribute('aria-expanded', 'false');
+              selectorDropdown.classList.remove('open');
+              selectorBtn.focus();
+              break;
+          }
+        });
+      }
+
+      // Initialize UI
+      setTimeout(() => {
+        if (window.themeManager) {
+          updateThemeUI(window.themeManager.getTheme());
+        }
+      }, 100);
+    });
+  </script>
+</body>
+</html>

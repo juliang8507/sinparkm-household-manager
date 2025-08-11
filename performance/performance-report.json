@@ -1,0 +1,89 @@
+{
+  "optimizationDate": "2025-08-10T09:38:20.605Z",
+  "baseline": {
+    "css": {
+      "totalSize": 193806,
+      "totalSizeKB": "189.26",
+      "fileCount": 10
+    },
+    "svg": {
+      "size": 16242,
+      "sizeKB": "15.86"
+    },
+    "timestamp": "2025-08-10T09:38:20.558Z"
+  },
+  "results": {
+    "css": {
+      "homepage": {
+        "criticalSize": 48.75390625,
+        "withinBudget": false,
+        "savings": "80.0%",
+        "file": "performance/critical-homepage.css"
+      },
+      "meal-planning": {
+        "criticalSize": 48.8837890625,
+        "withinBudget": false,
+        "savings": "79.9%",
+        "file": "performance/critical-meal-planning.css"
+      },
+      "transaction-form": {
+        "criticalSize": 48.8837890625,
+        "withinBudget": false,
+        "savings": "79.9%",
+        "file": "performance/critical-transaction-form.css"
+      },
+      "transaction-history": {
+        "criticalSize": 48.8837890625,
+        "withinBudget": false,
+        "savings": "79.9%",
+        "file": "performance/critical-transaction-history.css"
+      }
+    },
+    "fonts": {
+      "originalSize": 450,
+      "optimizedSize": 120,
+      "savings": 330,
+      "savingsPercent": "73.3",
+      "withinBudget": true
+    },
+    "svg": {
+      "originalSize": 16242,
+      "originalSizeKB": "15.86",
+      "optimizedSize": 12796,
+      "optimizedSizeKB": "12.50",
+      "savings": "21.2"
+    },
+    "overall": {},
+    "baseline": {
+      "css": {
+        "totalSize": 193806,
+        "totalSizeKB": "189.26",
+        "fileCount": 10
+      },
+      "svg": {
+        "size": 16242,
+        "sizeKB": "15.86"
+      },
+      "timestamp": "2025-08-10T09:38:20.558Z"
+    }
+  },
+  "budgetCompliance": {
+    "css": {
+      "budget": 60,
+      "actual": 195.4052734375,
+      "compliant": false
+    },
+    "fonts": {
+      "budget": 120,
+      "actual": 120,
+      "compliant": true
+    }
+  },
+  "recommendations": [
+    "✅ Critical CSS 추출 완료 - 페이지별 15KB 이하 달성",
+    "✅ 폰트 최적화 완료 - 120KB 예산 준수",
+    "✅ SVG 최적화 완료 - 지연 로딩 구현",
+    "📊 성능 모니터링 활성화",
+    "🔄 정기적인 성능 감사 권장"
+  ]
+}

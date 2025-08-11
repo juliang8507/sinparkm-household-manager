@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1FC7D4">
+    <meta name="color-scheme" content="light dark">
+    <title>식단 계획 - 감자토끼 가계부</title>
+    <meta name="description" content="감자와 토끼 테마의 친근한 주간 식단 계획 페이지">
+    
+    <!-- Performance Hints -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="preload" href="icons.svg" as="image" type="image/svg+xml">
+    <link rel="preload" href="meal-planning.css" as="style">
+    <link rel="preload" href="meal-planning.js" as="script">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Comic+Neue:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Comic+Neue:wght@400;700&display=swap"></noscript>
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/accessibility.css">
+    <link rel="stylesheet" href="css/token-integration.css">
+    <link rel="stylesheet" href="css/icon-system.css">
+    <link rel="stylesheet" href="css/svg-sprite-animations.css">
+    <link rel="stylesheet" href="css/theme-switcher.css">
+    <link rel="stylesheet" href="meal-planning.css">
+</head>
+<body>
+    <!-- Skip to Content -->
+    <a href="#main-content" class="skip-to-content">메인 콘텐츠로 건너뛰기</a>
+    <!-- Navigation Header -->
+    <header class="page-header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <button class="back-button" aria-label="뒤로 가기" title="뒤로 가기">
+                    <span class="icon icon-sm back-icon">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#rabbit-neutral"></use>
+                        </svg>
+                    </span>
+                </button>
+                
+                <h1 class="page-title">
+                    <span class="icon icon-sm title-icon">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#empty-meals"></use>
+                        </svg>
+                    </span>
+                    식단 계획
+                </h1>
+            </div>
+            
+            <!-- Week Navigation -->
+            <section class="week-selector" aria-label="주간 선택" role="navigation">
+                <button class="week-nav-button btn btn-sm transition-button" id="prevWeekBtn" aria-label="이전 주">
+                    <span class="icon icon-xs nav-icon">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#rabbit-neutral"></use>
+                        </svg>
+                    </span>
+                </button>
+                <h2 class="current-week" id="currentWeek" aria-live="polite">
+                    3월 6일 ~ 3월 12일
+                </h2>
+                <button class="week-nav-button btn btn-sm transition-button" id="nextWeekBtn" aria-label="다음 주">
+                    <span class="icon icon-xs nav-icon">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#rabbit-neutral"></use>
+                        </svg>
+                    </span>
+                </button>
+            </section>
+        </div>
+    </header>
+
+    <!-- Character Status Dashboard -->
+    <section class="character-dashboard" aria-label="캐릭터 상태">
+        <div class="container">
+            <div class="character-reactions">
+                <div class="character-status" id="potatoStatus">
+                    <span class="icon icon-2xl character-emoji" id="potatoEmoji">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#potato-neutral"></use>
+                        </svg>
+                    </span>
+                    <div class="character-message">
+                        <span class="character-name">감자</span>
+                        <p class="character-text" id="potatoMessage">든든한 식사를 기다리고 있어요!</p>
+                    </div>
+                </div>
+                
+                <div class="weekly-progress">
+                    <div class="progress-info">
+                        <span class="progress-text" id="progressText">주간 식단 진행률</span>
+                        <span class="progress-percentage" id="progressPercentage">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%; will-change: width; transition: width var(--transition-normal);"></div>
+                    </div>
+                </div>
+                
+                <div class="character-status" id="rabbitStatus">
+                    <span class="icon icon-2xl character-emoji" id="rabbitEmoji">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#rabbit-neutral"></use>
+                        </svg>
+                    </span>
+                    <div class="character-message">
+                        <span class="character-name">토끼</span>
+                        <p class="character-text" id="rabbitMessage">건강한 식사를 계획해보세요!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main id="main-content" class="main-content" role="main">
+        <div class="container">
+            
+            <!-- Loading State -->
+            <div class="loading-state" id="loadingState" aria-hidden="true">
+                <div class="loading-characters">
+                    <span class="icon icon-lg loading-emoji icon-loading">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#potato-loading"></use>
+                        </svg>
+                    </span>
+                    <span class="icon icon-lg loading-emoji icon-loading">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#rabbit-loading"></use>
+                        </svg>
+                    </span>
+                </div>
+                <p class="loading-text">식단을 불러오고 있어요...</p>
+            </div>
+
+            <!-- Empty Week State -->
+            <div class="empty-week-state" id="emptyWeekState" aria-hidden="true">
+                <div class="empty-state-illustration">
+                    <div class="empty-characters">
+                        <span class="icon icon-xl empty-potato">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#potato-info"></use>
+                            </svg>
+                        </span>
+                        <span class="icon icon-xl empty-rabbit">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#rabbit-info"></use>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+                <h2 class="empty-state-title">이번 주 식단을 계획해보세요!</h2>
+                <p class="empty-state-description">
+                    감자와 토끼가 함께<br>
+                    건강하고 맛있는 한 주를 준비할게요
+                </p>
+                <button class="start-planning-button btn btn-primary btn-lg" id="startPlanningBtn">
+                    <span class="icon icon-sm button-icon">
+                        <svg aria-hidden="true">
+                            <use xlink:href="#empty-meals"></use>
+                        </svg>
+                    </span>
+                    식단 계획 시작하기
+                </button>
+            </div>
+
+            <!-- Weekly Meal Grid -->
+            <div class="week-grid" id="weekGrid">
+                <!-- Monday -->
+                <article class="day-card" data-day="monday">
+                    <header class="day-header">
+                        <h3 class="day-title">월요일</h3>
+                        <span class="day-date" data-date="">6일</span>
+                    </header>
+                    
+                    <div class="meals-container">
+                        <!-- Breakfast -->
+                        <div class="meal-card" data-meal="breakfast">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-info"></use>
+                                        </svg>
+                                    </span>
+                                    아침
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="아침 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="monday-breakfast">
+                                <button class="add-meal-btn" aria-label="아침 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Lunch -->
+                        <div class="meal-card" data-meal="lunch">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#potato-success"></use>
+                                        </svg>
+                                    </span>
+                                    점심
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="점심 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="monday-lunch">
+                                <button class="add-meal-btn" aria-label="점심 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Dinner -->
+                        <div class="meal-card" data-meal="dinner">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-neutral"></use>
+                                        </svg>
+                                    </span>
+                                    저녁
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="저녁 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="monday-dinner">
+                                <button class="add-meal-btn" aria-label="저녁 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Tuesday -->
+                <article class="day-card" data-day="tuesday">
+                    <header class="day-header">
+                        <h3 class="day-title">화요일</h3>
+                        <span class="day-date" data-date="">7일</span>
+                    </header>
+                    
+                    <div class="meals-container">
+                        <div class="meal-card" data-meal="breakfast">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-info"></use>
+                                        </svg>
+                                    </span>
+                                    아침
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="아침 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="tuesday-breakfast">
+                                <button class="add-meal-btn" aria-label="아침 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="meal-card" data-meal="lunch">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#potato-success"></use>
+                                        </svg>
+                                    </span>
+                                    점심
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="점심 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="tuesday-lunch">
+                                <button class="add-meal-btn" aria-label="점심 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="meal-card" data-meal="dinner">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-neutral"></use>
+                                        </svg>
+                                    </span>
+                                    저녁
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="저녁 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="tuesday-dinner">
+                                <button class="add-meal-btn" aria-label="저녁 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Wednesday -->
+                <article class="day-card" data-day="wednesday">
+                    <header class="day-header">
+                        <h3 class="day-title">수요일</h3>
+                        <span class="day-date" data-date="">8일</span>
+                    </header>
+                    
+                    <div class="meals-container">
+                        <div class="meal-card" data-meal="breakfast">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-info"></use>
+                                        </svg>
+                                    </span>
+                                    아침
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="아침 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="wednesday-breakfast">
+                                <button class="add-meal-btn" aria-label="아침 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="meal-card" data-meal="lunch">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#potato-success"></use>
+                                        </svg>
+                                    </span>
+                                    점심
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="점심 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="wednesday-lunch">
+                                <button class="add-meal-btn" aria-label="점심 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="meal-card" data-meal="dinner">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-neutral"></use>
+                                        </svg>
+                                    </span>
+                                    저녁
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="저녁 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="wednesday-dinner">
+                                <button class="add-meal-btn" aria-label="저녁 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Thursday -->
+                <article class="day-card" data-day="thursday">
+                    <header class="day-header">
+                        <h3 class="day-title">목요일</h3>
+                        <span class="day-date" data-date="">9일</span>
+                    </header>
+                    
+                    <div class="meals-container">
+                        <div class="meal-card" data-meal="breakfast">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-info"></use>
+                                        </svg>
+                                    </span>
+                                    아침
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="아침 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="thursday-breakfast">
+                                <button class="add-meal-btn" aria-label="아침 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="meal-card" data-meal="lunch">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#potato-success"></use>
+                                        </svg>
+                                    </span>
+                                    점심
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="점심 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="thursday-lunch">
+                                <button class="add-meal-btn" aria-label="점심 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="meal-card" data-meal="dinner">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-neutral"></use>
+                                        </svg>
+                                    </span>
+                                    저녁
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="저녁 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="thursday-dinner">
+                                <button class="add-meal-btn" aria-label="저녁 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Friday -->
+                <article class="day-card" data-day="friday">
+                    <header class="day-header">
+                        <h3 class="day-title">금요일</h3>
+                        <span class="day-date" data-date="">10일</span>
+                    </header>
+                    
+                    <div class="meals-container">
+                        <div class="meal-card" data-meal="breakfast">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-info"></use>
+                                        </svg>
+                                    </span>
+                                    아침
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="아침 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="friday-breakfast">
+                                <button class="add-meal-btn" aria-label="아침 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="meal-card" data-meal="lunch">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#potato-success"></use>
+                                        </svg>
+                                    </span>
+                                    점심
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="점심 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="friday-lunch">
+                                <button class="add-meal-btn" aria-label="점심 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="meal-card" data-meal="dinner">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-neutral"></use>
+                                        </svg>
+                                    </span>
+                                    저녁
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="저녁 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="friday-dinner">
+                                <button class="add-meal-btn" aria-label="저녁 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Saturday -->
+                <article class="day-card" data-day="saturday">
+                    <header class="day-header">
+                        <h3 class="day-title">토요일</h3>
+                        <span class="day-date" data-date="">11일</span>
+                    </header>
+                    
+                    <div class="meals-container">
+                        <div class="meal-card" data-meal="breakfast">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-info"></use>
+                                        </svg>
+                                    </span>
+                                    아침
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="아침 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="saturday-breakfast">
+                                <button class="add-meal-btn" aria-label="아침 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="meal-card" data-meal="lunch">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#potato-success"></use>
+                                        </svg>
+                                    </span>
+                                    점심
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="점심 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="saturday-lunch">
+                                <button class="add-meal-btn" aria-label="점심 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="meal-card" data-meal="dinner">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-neutral"></use>
+                                        </svg>
+                                    </span>
+                                    저녁
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="저녁 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="saturday-dinner">
+                                <button class="add-meal-btn" aria-label="저녁 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Sunday -->
+                <article class="day-card" data-day="sunday">
+                    <header class="day-header">
+                        <h3 class="day-title">일요일</h3>
+                        <span class="day-date" data-date="">12일</span>
+                    </header>
+                    
+                    <div class="meals-container">
+                        <div class="meal-card" data-meal="breakfast">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-info"></use>
+                                        </svg>
+                                    </span>
+                                    아침
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="아침 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="sunday-breakfast">
+                                <button class="add-meal-btn" aria-label="아침 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="meal-card" data-meal="lunch">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#potato-success"></use>
+                                        </svg>
+                                    </span>
+                                    점심
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="점심 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="sunday-lunch">
+                                <button class="add-meal-btn" aria-label="점심 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="meal-card" data-meal="dinner">
+                            <div class="meal-header">
+                                <span class="meal-type">
+                                    <span class="icon icon-xs meal-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-neutral"></use>
+                                        </svg>
+                                    </span>
+                                    저녁
+                                </span>
+                                <input type="checkbox" class="meal-checkbox" aria-label="저녁 식사 완료">
+                            </div>
+                            <div class="meal-content empty" id="sunday-dinner">
+                                <button class="add-meal-btn" aria-label="저녁 식사 추가">
+                                    <span class="icon icon-xs add-icon">
+                                        <svg aria-hidden="true">
+                                            <use xlink:href="#rabbit-success"></use>
+                                        </svg>
+                                    </span>
+                                    <span class="add-text">식사 추가</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <!-- Recipe Addition Modal -->
+    <div class="modal-overlay" id="recipeModal" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-content">
+            <header class="modal-header">
+                <h2 class="modal-title" id="modalTitle">새 식사 추가</h2>
+                <button class="modal-close" aria-label="모달 닫기">&times;</button>
+            </header>
+            
+            <form class="recipe-form" id="recipeForm">
+                <!-- Meal Type Selection -->
+                <div class="form-group">
+                    <label class="form-label">식사 시간</label>
+                    <div class="meal-type-selector">
+                        <button type="button" class="meal-type-button" data-type="breakfast">
+                            <span class="icon icon-sm meal-icon">
+                                <svg aria-hidden="true">
+                                    <use xlink:href="#rabbit-info"></use>
+                                </svg>
+                            </span>
+                            <span class="meal-text">아침</span>
+                        </button>
+                        <button type="button" class="meal-type-button" data-type="lunch">
+                            <span class="icon icon-sm meal-icon">
+                                <svg aria-hidden="true">
+                                    <use xlink:href="#potato-success"></use>
+                                </svg>
+                            </span>
+                            <span class="meal-text">점심</span>
+                        </button>
+                        <button type="button" class="meal-type-button" data-type="dinner">
+                            <span class="icon icon-sm meal-icon">
+                                <svg aria-hidden="true">
+                                    <use xlink:href="#rabbit-neutral"></use>
+                                </svg>
+                            </span>
+                            <span class="meal-text">저녁</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recipe Name -->
+                <div class="form-group">
+                    <label for="recipeName" class="form-label">음식 이름</label>
+                    <input 
+                        type="text" 
+                        id="recipeName" 
+                        class="recipe-input" 
+                        placeholder="예: 김치찌개, 샐러드, 파스타..."
+                        aria-required="true"
+                        maxlength="50"
+                    >
+                </div>
+
+                <!-- Recipe Description -->
+                <div class="form-group">
+                    <label for="recipeDescription" class="form-label">메모 (선택사항)</label>
+                    <textarea 
+                        id="recipeDescription" 
+                        class="recipe-input recipe-textarea" 
+                        placeholder="재료나 특별한 메모를 남겨보세요..."
+                        rows="3"
+                        maxlength="200"
+                    ></textarea>
+                    <div class="character-counter">
+                        <span id="recipeCounter">0/200</span>
+                    </div>
+                </div>
+
+                <!-- Recipe Category -->
+                <div class="form-group">
+                    <label class="form-label">식사 스타일</label>
+                    <div class="recipe-style-selector">
+                        <button type="button" class="style-button" data-style="hearty">
+                            <span class="icon icon-sm style-icon">
+                                <svg aria-hidden="true">
+                                    <use xlink:href="#potato-success"></use>
+                                </svg>
+                            </span>
+                            <span class="style-text">든든함</span>
+                        </button>
+                        <button type="button" class="style-button" data-style="healthy">
+                            <span class="icon icon-sm style-icon">
+                                <svg aria-hidden="true">
+                                    <use xlink:href="#rabbit-success"></use>
+                                </svg>
+                            </span>
+                            <span class="style-text">건강함</span>
+                        </button>
+                        <button type="button" class="style-button" data-style="balanced">
+                            <span class="icon icon-sm style-icon">
+                                <svg aria-hidden="true">
+                                    <use xlink:href="#potato-neutral"></use>
+                                </svg>
+                            </span>
+                            <span class="style-text">균형잡힘</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="modal-actions">
+                    <button type="button" class="secondary-button" id="cancelRecipeBtn">
+                        <span class="icon icon-sm button-icon">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#potato-error"></use>
+                            </svg>
+                        </span>
+                        취소
+                    </button>
+                    <button type="submit" class="primary-button" id="saveRecipeBtn">
+                        <span class="icon icon-sm button-icon">
+                            <svg aria-hidden="true">
+                                <use xlink:href="#rabbit-success"></use>
+                            </svg>
+                        </span>
+                        저장하기
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div class="toast success-toast" id="successToast" role="alert" aria-live="assertive" aria-hidden="true">
+        <div class="toast-content">
+            <span class="icon icon-sm toast-icon">
+                <svg aria-hidden="true">
+                    <use xlink:href="#rabbit-success"></use>
+                </svg>
+            </span>
+            <span class="toast-message" id="successToastMessage">식사가 추가되었습니다!</span>
+        </div>
+        <button class="toast-close" aria-label="토스트 닫기">&times;</button>
+    </div>
+
+    <!-- Error Toast -->
+    <div class="toast error-toast" id="errorToast" role="alert" aria-live="assertive" aria-hidden="true">
+        <div class="toast-content">
+            <span class="icon icon-sm toast-icon">
+                <svg aria-hidden="true">
+                    <use xlink:href="#potato-warning"></use>
+                </svg>
+            </span>
+            <span class="toast-message" id="errorToastMessage">오류가 발생했습니다</span>
+        </div>
+        <button class="toast-close" aria-label="토스트 닫기">&times;</button>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button class="fab btn btn-primary rounded-full shadow-lg transition-button" id="fabButton" aria-label="새 식사 추가" title="새 식사 추가">
+        <span class="icon icon-sm fab-icon">
+            <svg aria-hidden="true">
+                <use xlink:href="#rabbit-success"></use>
+            </svg>
+        </span>
+    </button>
+
+    <!-- JavaScript -->
+    <script src="js/icon-helpers.js"></script>
+    <script src="js/sprite-animation-helpers.js"></script>
+    <script src="js/theme-switcher.js"></script>
+    <script src="meal-planning.js"></script>
+    
+    <!-- PWA Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('✅ SW registered: ', registration);
+            })
+            .catch(registrationError => {
+              console.log('❌ SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+</body>
+</html>

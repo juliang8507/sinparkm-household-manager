@@ -1,0 +1,107 @@
+{
+  "name": "감자토끼 가계부",
+  "short_name": "감자토끼",
+  "description": "감자와 토끼 부부의 친근한 가계부 앱",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#1FC7D4",
+  "background_color": "#FAF9FA",
+  "lang": "ko",
+  "scope": "/",
+  "categories": ["finance", "productivity"],
+  "icons": [
+    {
+      "src": "assets/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "splash_pages": null,
+  "prefer_related_applications": false,
+  "protocol_handlers": [],
+  "shortcuts": [
+    {
+      "name": "수입 추가",
+      "short_name": "수입",
+      "description": "새로운 수입 거래를 빠르게 추가",
+      "url": "/transaction-form.html?type=income",
+      "icons": [
+        {
+          "src": "assets/icons/shortcut-income.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "지출 추가",
+      "short_name": "지출",
+      "description": "새로운 지출 거래를 빠르게 추가",
+      "url": "/transaction-form.html?type=expense",
+      "icons": [
+        {
+          "src": "assets/icons/shortcut-expense.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "거래 내역",
+      "short_name": "내역",
+      "description": "모든 거래 내역 확인",
+      "url": "/transaction-history.html",
+      "icons": [
+        {
+          "src": "assets/icons/shortcut-history.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

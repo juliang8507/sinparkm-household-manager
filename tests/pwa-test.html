@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1FC7D4">
+    <title>PWA 기능 테스트 - 감자토끼 가계부</title>
+    <link rel="manifest" href="../manifest.json">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Kanit', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(139.73deg, #E5FDFF 0%, #F3EFFF 100%);
+            color: #280D5F;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1FC7D4;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            color: #7A6EAA;
+        }
+        
+        .test-section {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1FC7D4;
+            margin-bottom: 1rem;
+        }
+        
+        .test-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #EFF4F5;
+            border-radius: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .test-name {
+            font-weight: 500;
+        }
+        
+        .test-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        
+        .status-pass {
+            background: #E8F5E8;
+            color: #0E7A5D;
+        }
+        
+        .status-fail {
+            background: #FFEBF0;
+            color: #C42878;
+        }
+        
+        .status-pending {
+            background: #FFF5E6;
+            color: #D67E0A;
+        }
+        
+        .test-button {
+            background: #1FC7D4;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+        }
+        
+        .test-button:hover {
+            background: #0098A1;
+        }
+        
+        .test-button:disabled {
+            background: #BDC2C4;
+            cursor: not-allowed;
+        }
+        
+        .test-results {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: monospace;
+            font-size: 0.875rem;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .theme-controls {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .install-prompt {
+            background: #FFB237;
+            color: white;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .install-button {
+            background: white;
+            color: #FFB237;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #0E0E0E;
+                color: #FFFFFF;
+            }
+            
+            .test-section {
+                background: #1A1A1A;
+                border: 1px solid #333;
+            }
+            
+            .test-item {
+                border-color: #333;
+            }
+            
+            .section-title {
+                color: #33E1ED;
+            }
+            
+            .test-button {
+                background: #33E1ED;
+                color: #0E0E0E;
+            }
+            
+            .test-button:hover {
+                background: #1FC7D4;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- PWA 설치 프롬프트 -->
+    <div class="install-prompt" id="installPrompt">
+        <div>🥔🐰 감자토끼 가계부를 홈 화면에 설치하세요!</div>
+        <button class="install-button" id="installButton">앱 설치</button>
+    </div>
+    
+    <div class="container">
+        <div class="header">
+            <h1 class="title">PWA 기능 테스트</h1>
+            <p class="subtitle">감자토끼 가계부 Progressive Web App 검증</p>
+        </div>
+        
+        <!-- 기본 PWA 기능 테스트 -->
+        <div class="test-section">
+            <h2 class="section-title">📱 기본 PWA 기능</h2>
+            
+            <div class="test-item">
+                <span class="test-name">Service Worker 등록</span>
+                <span class="test-status status-pending" id="swStatus">대기 중</span>
+            </div>
+            
+            <div class="test-item">
+                <span class="test-name">Manifest 파일 로드</span>
+                <span class="test-status status-pending" id="manifestStatus">대기 중</span>
+            </div>
+            
+            <div class="test-item">
+                <span class="test-name">앱 설치 가능성</span>
+                <span class="test-status status-pending" id="installStatus">대기 중</span>
+            </div>
+            
+            <div class="test-item">
+                <span class="test-name">오프라인 동작</span>
+                <span class="test-status status-pending" id="offlineStatus">대기 중</span>
+            </div>
+            
+            <button class="test-button" onclick="runBasicTests()">기본 테스트 실행</button>
+        </div>
+        
+        <!-- 테마 동기화 테스트 -->
+        <div class="test-section">
+            <h2 class="section-title">🎨 테마 동기화 테스트</h2>
+            
+            <div class="test-item">
+                <span class="test-name">Meta Theme Color 업데이트</span>
+                <span class="test-status status-pending" id="themeColorStatus">대기 중</span>
+            </div>
+            
+            <div class="test-item">
+                <span class="test-name">동적 Manifest 생성</span>
+                <span class="test-status status-pending" id="dynamicManifestStatus">대기 중</span>
+            </div>
+            
+            <div class="theme-controls">
+                <button class="test-button" onclick="testTheme('light')">라이트 테마</button>
+                <button class="test-button" onclick="testTheme('dark')">다크 테마</button>
+                <button class="test-button" onclick="testTheme('hc')">고대비 테마</button>
+            </div>
+        </div>
+        
+        <!-- 캐시 테스트 -->
+        <div class="test-section">
+            <h2 class="section-title">💾 캐시 테스트</h2>
+            
+            <div class="test-item">
+                <span class="test-name">핵심 리소스 캐시</span>
+                <span class="test-status status-pending" id="cacheStatus">대기 중</span>
+            </div>
+            
+            <div class="test-item">
+                <span class="test-name">캐시 크기</span>
+                <span class="test-status status-pending" id="cacheSizeStatus">측정 중</span>
+            </div>
+            
+            <button class="test-button" onclick="testCache()">캐시 테스트</button>
+            <button class="test-button" onclick="clearCache()">캐시 삭제</button>
+        </div>
+        
+        <!-- 성능 테스트 -->
+        <div class="test-section">
+            <h2 class="section-title">⚡ 성능 테스트</h2>
+            
+            <div class="test-item">
+                <span class="test-name">페이지 로드 시간</span>
+                <span class="test-status status-pending" id="loadTimeStatus">측정 중</span>
+            </div>
+            
+            <div class="test-item">
+                <span class="test-name">First Contentful Paint</span>
+                <span class="test-status status-pending" id="fcpStatus">측정 중</span>
+            </div>
+            
+            <div class="test-item">
+                <span class="test-name">Largest Contentful Paint</span>
+                <span class="test-status status-pending" id="lcpStatus">측정 중</span>
+            </div>
+            
+            <button class="test-button" onclick="measurePerformance()">성능 측정</button>
+        </div>
+        
+        <!-- 테스트 결과 출력 -->
+        <div class="test-section">
+            <h2 class="section-title">📊 테스트 결과</h2>
+            <div class="test-results" id="testResults">테스트를 실행하면 결과가 여기에 표시됩니다.</div>
+        </div>
+    </div>
+    
+    <script>
+        // 전역 변수
+        let deferredPrompt = null;
+        let testResults = document.getElementById('testResults');
+        
+        // 페이지 로드 시 자동 초기화
+        window.addEventListener('load', () => {
+            initializeTests();
+            measureInitialPerformance();
+        });
+        
+        // PWA 설치 프롬프트 이벤트
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('installPrompt').style.display = 'block';
+            updateStatus('installStatus', 'pass', '설치 가능');
+        });
+        
+        // 앱 설치 버튼 클릭
+        document.getElementById('installButton').addEventListener('click', () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        log('사용자가 PWA 설치를 허용했습니다');
+                        document.getElementById('installPrompt').style.display = 'none';
+                    } else {
+                        log('사용자가 PWA 설치를 거부했습니다');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        });
+        
+        // 테스트 초기화
+        function initializeTests() {
+            log('PWA 기능 테스트 시작...');
+            
+            // Service Worker 상태 확인
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistration().then(registration => {
+                    if (registration) {
+                        updateStatus('swStatus', 'pass', '등록됨');
+                        log('✅ Service Worker가 등록되어 있습니다');
+                    } else {
+                        updateStatus('swStatus', 'fail', '미등록');
+                        log('❌ Service Worker가 등록되지 않았습니다');
+                    }
+                });
+            } else {
+                updateStatus('swStatus', 'fail', '지원 안함');
+                log('❌ Service Worker를 지원하지 않는 브라우저입니다');
+            }
+            
+            // Manifest 확인
+            fetch('/manifest.json')
+                .then(response => {
+                    if (response.ok) {
+                        updateStatus('manifestStatus', 'pass', '로드 성공');
+                        return response.json();
+                    } else {
+                        throw new Error('Manifest 로드 실패');
+                    }
+                })
+                .then(manifest => {
+                    log(`✅ Manifest 로드 성공: ${manifest.name}`);
+                })
+                .catch(error => {
+                    updateStatus('manifestStatus', 'fail', '로드 실패');
+                    log(`❌ Manifest 오류: ${error.message}`);
+                });
+        }
+        
+        // 기본 테스트 실행
+        async function runBasicTests() {
+            log('기본 PWA 테스트 실행 중...');
+            
+            // 오프라인 테스트
+            await testOfflineCapability();
+        }
+        
+        // 오프라인 기능 테스트
+        async function testOfflineCapability() {
+            try {
+                // Service Worker가 캐시된 리소스를 제공하는지 테스트
+                const testUrl = '/css/tokens.css';
+                const response = await fetch(testUrl);
+                
+                if (response.ok) {
+                    updateStatus('offlineStatus', 'pass', '캐시 동작');
+                    log('✅ 오프라인 리소스 로드 가능');
+                } else {
+                    updateStatus('offlineStatus', 'fail', '캐시 실패');
+                    log('❌ 캐시된 리소스 로드 실패');
+                }
+            } catch (error) {
+                updateStatus('offlineStatus', 'fail', '오류');
+                log(`❌ 오프라인 테스트 오류: ${error.message}`);
+            }
+        }
+        
+        // 테마 동기화 테스트
+        function testTheme(theme) {
+            log(`테마 변경 테스트: ${theme}`);
+            
+            // 테마 색상 정의
+            const themeColors = {
+                light: { themeColor: '#1FC7D4', name: '라이트' },
+                dark: { themeColor: '#33E1ED', name: '다크' },
+                hc: { themeColor: '#0066CC', name: '고대비' }
+            };
+            
+            const color = themeColors[theme];
+            if (!color) return;
+            
+            // Meta theme-color 업데이트 테스트
+            const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+            if (metaThemeColor) {
+                metaThemeColor.content = color.themeColor;
+                updateStatus('themeColorStatus', 'pass', `${color.name} 적용`);
+                log(`✅ Theme Color 업데이트: ${color.themeColor}`);
+            } else {
+                updateStatus('themeColorStatus', 'fail', 'Meta 태그 없음');
+            }
+            
+            // 동적 매니페스트 테스트
+            testDynamicManifest(theme, color);
+        }
+        
+        // 동적 매니페스트 테스트
+        function testDynamicManifest(theme, color) {
+            try {
+                // 기존 매니페스트 링크 찾기
+                let manifestLink = document.querySelector('link[rel="manifest"]');
+                if (!manifestLink) {
+                    manifestLink = document.createElement('link');
+                    manifestLink.rel = 'manifest';
+                    document.head.appendChild(manifestLink);
+                }
+                
+                // 동적 매니페스트 데이터 생성
+                const manifestData = {
+                    name: "감자토끼 가계부",
+                    short_name: "감자토끼",
+                    theme_color: color.themeColor,
+                    background_color: theme === 'dark' ? '#0E0E0E' : '#FAF9FA'
+                };
+                
+                // Blob URL 생성
+                const manifestBlob = new Blob([JSON.stringify(manifestData, null, 2)], {
+                    type: 'application/json'
+                });
+                const manifestUrl = URL.createObjectURL(manifestBlob);
+                
+                // 이전 URL 정리
+                if (manifestLink.dataset.prevUrl) {
+                    URL.revokeObjectURL(manifestLink.dataset.prevUrl);
+                }
+                
+                manifestLink.href = manifestUrl;
+                manifestLink.dataset.prevUrl = manifestUrl;
+                
+                updateStatus('dynamicManifestStatus', 'pass', `${color.name} 매니페스트`);
+                log(`✅ 동적 매니페스트 생성: ${theme}`);
+                
+            } catch (error) {
+                updateStatus('dynamicManifestStatus', 'fail', '생성 실패');
+                log(`❌ 동적 매니페스트 오류: ${error.message}`);
+            }
+        }
+        
+        // 캐시 테스트
+        async function testCache() {
+            log('캐시 시스템 테스트 중...');
+            
+            try {
+                const cacheNames = await caches.keys();
+                if (cacheNames.length > 0) {
+                    updateStatus('cacheStatus', 'pass', `${cacheNames.length}개 캐시`);
+                    log(`✅ 캐시 발견: ${cacheNames.join(', ')}`);
+                    
+                    // 캐시 크기 계산
+                    let totalSize = 0;
+                    for (const cacheName of cacheNames) {
+                        const cache = await caches.open(cacheName);
+                        const requests = await cache.keys();
+                        totalSize += requests.length;
+                    }
+                    
+                    updateStatus('cacheSizeStatus', 'pass', `${totalSize}개 항목`);
+                    log(`📊 총 캐시 항목: ${totalSize}개`);
+                    
+                } else {
+                    updateStatus('cacheStatus', 'fail', '캐시 없음');
+                    updateStatus('cacheSizeStatus', 'fail', '0개 항목');
+                    log('❌ 캐시가 발견되지 않았습니다');
+                }
+                
+            } catch (error) {
+                updateStatus('cacheStatus', 'fail', '오류');
+                log(`❌ 캐시 테스트 오류: ${error.message}`);
+            }
+        }
+        
+        // 캐시 삭제
+        async function clearCache() {
+            try {
+                const cacheNames = await caches.keys();
+                await Promise.all(cacheNames.map(name => caches.delete(name)));
+                
+                updateStatus('cacheStatus', 'pending', '삭제됨');
+                updateStatus('cacheSizeStatus', 'pending', '0개 항목');
+                log('🗑️ 모든 캐시가 삭제되었습니다');
+                
+            } catch (error) {
+                log(`❌ 캐시 삭제 오류: ${error.message}`);
+            }
+        }
+        
+        // 초기 성능 측정
+        function measureInitialPerformance() {
+            if ('performance' in window && 'timing' in performance) {
+                const timing = performance.timing;
+                const loadTime = timing.loadEventEnd - timing.navigationStart;
+                
+                updateStatus('loadTimeStatus', loadTime < 3000 ? 'pass' : 'fail', `${loadTime}ms`);
+                log(`📊 페이지 로드 시간: ${loadTime}ms`);
+            }
+        }
+        
+        // 성능 측정 (Performance Observer 사용)
+        function measurePerformance() {
+            log('성능 측정 시작...');
+            
+            if ('PerformanceObserver' in window) {
+                // First Contentful Paint 측정
+                const observer = new PerformanceObserver((list) => {
+                    for (const entry of list.getEntries()) {
+                        if (entry.name === 'first-contentful-paint') {
+                            const fcp = Math.round(entry.startTime);
+                            updateStatus('fcpStatus', fcp < 1500 ? 'pass' : 'fail', `${fcp}ms`);
+                            log(`📊 First Contentful Paint: ${fcp}ms`);
+                        }
+                        
+                        if (entry.entryType === 'largest-contentful-paint') {
+                            const lcp = Math.round(entry.startTime);
+                            updateStatus('lcpStatus', lcp < 2500 ? 'pass' : 'fail', `${lcp}ms`);
+                            log(`📊 Largest Contentful Paint: ${lcp}ms`);
+                        }
+                    }
+                });
+                
+                observer.observe({ entryTypes: ['paint', 'largest-contentful-paint'] });
+                
+                // 3초 후 observer 정리
+                setTimeout(() => observer.disconnect(), 3000);
+                
+            } else {
+                log('❌ Performance Observer를 지원하지 않는 브라우저입니다');
+            }
+        }
+        
+        // 상태 업데이트 헬퍼
+        function updateStatus(elementId, status, text) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.className = `test-status status-${status}`;
+                element.textContent = text;
+            }
+        }
+        
+        // 로그 출력 헬퍼
+        function log(message) {
+            const timestamp = new Date().toLocaleTimeString();
+            testResults.textContent += `[${timestamp}] ${message}\n`;
+            testResults.scrollTop = testResults.scrollHeight;
+            console.log(message);
+        }
+    </script>
+</body>
+</html>

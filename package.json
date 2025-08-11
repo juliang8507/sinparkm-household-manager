@@ -1,0 +1,61 @@
+{
+  "name": "household-manager",
+  "version": "1.0.0",
+  "description": "통합 가계부-식단표-냉장고 관리 웹앱",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "npm run build:client",
+    "build:client": "echo 'Static files ready'",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:visual": "jest --testNamePattern='Visual Regression'",
+    "test:visual:playwright": "playwright test --config=playwright.config.js",
+    "test:visual:comprehensive": "node tests/visual/run-visual-tests.js",
+    "test:visual:update-baselines": "UPDATE_BASELINES=true node tests/visual/run-visual-tests.js",
+    "test:a11y": "jest --testNamePattern='Accessibility'",
+    "test:keyboard": "jest --testNamePattern='Keyboard Navigation'",
+    "test:themes": "jest --testNamePattern='Theme Testing'",
+    "test:all": "npm run test:visual:comprehensive && npm run test:a11y && npm run test:keyboard && npm run test:themes",
+    "test:ci": "jest --ci --coverage --watchAll=false",
+    "playwright:install": "npx playwright install",
+    "playwright:install-deps": "npx playwright install-deps"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "date-fns": "^2.30.0",
+    "express": "^4.18.2",
+    "helmet": "^7.1.0",
+    "sqlite3": "^5.1.6",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@axe-core/puppeteer": "^4.8.2",
+    "@playwright/test": "^1.54.2",
+    "axe-core": "^4.8.2",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jest-html-reporters": "^3.1.7",
+    "jest-puppeteer": "^9.0.1",
+    "nodemon": "^3.1.10",
+    "pixelmatch": "^5.3.0",
+    "playwright": "^1.54.2",
+    "pngjs": "^7.0.0",
+    "puppeteer": "^21.5.2",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
+    "sharp": "^0.32.6"
+  },
+  "keywords": [
+    "household",
+    "budget",
+    "meal-plan",
+    "refrigerator",
+    "web-app"
+  ],
+  "author": "우리집매니저 개발팀",
+  "license": "MIT"
+}
