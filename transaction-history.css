@@ -1,0 +1,850 @@
+/* ====================================
+   감자토끼 거래 내역 페이지 CSS
+   Mobile-First Responsive Design
+   ==================================== */
+
+/* Reset and Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@import url('./css/tokens.css');
+
+/* Base HTML and Body */
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-md);
+    line-height: var(--line-height-normal);
+    color: var(--color-text-primary);
+    background: var(--color-background-gradient);
+    min-height: 100dvh;
+    overflow-x: hidden;
+}
+
+/* Container */
+.container {
+    max-width: var(--app-max-width);
+    margin: 0 auto;
+    padding: 0 var(--app-padding);
+}
+
+/* ====================================
+   Header Section
+   ==================================== */
+.page-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-index-sticky);
+    background: var(--nav-background);
+    box-shadow: var(--shadow-md);
+    border-bottom: var(--nav-border-bottom);
+    height: var(--header-height);
+    /* Safe area support for devices with notches */
+    padding-top: var(--safe-area-inset-top);
+    margin-top: calc(-1 * var(--safe-area-inset-top)); /* Negative margin to maintain layout */
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+    padding: var(--spacing-md) 0;
+}
+
+.header-content .theme-switcher {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.page-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin: 0;
+}
+
+.title-icon {
+    font-size: 1.75rem; /* 28px -> 1.75rem */
+    animation: gentle-bounce var(--dur-xl) var(--ease-smooth) infinite;
+    display: inline-block;
+}
+
+@keyframes gentle-bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* Filter Section */
+.filter-section {
+    padding-bottom: var(--space-lg);
+}
+
+.filter-toggle-group,
+.user-filter-group {
+    display: flex;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    background: var(--input-background);
+    border-radius: var(--badge-border-radius);
+    margin-bottom: var(--spacing-sm);
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    border: var(--card-border);
+}
+
+.filter-toggle-group::-webkit-scrollbar,
+.user-filter-group::-webkit-scrollbar {
+    display: none;
+}
+
+.filter-button,
+.user-filter-button {
+    padding: var(--badge-padding);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-family-primary);
+    font-size: var(--badge-font-size);
+    font-weight: var(--badge-font-weight);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-button);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    white-space: nowrap;
+    min-width: fit-content;
+    min-height: var(--button-height-sm);
+}
+
+.filter-button.active,
+.user-filter-button.active {
+    background: var(--color-primary);
+    color: var(--color-primary-contrast);
+    box-shadow: var(--shadow-button);
+    transform: translateY(var(--btn-hover-lift));
+}
+
+.filter-button:not(.active),
+.user-filter-button:not(.active) {
+    background: transparent;
+    color: var(--color-text-secondary);
+}
+
+.filter-button:not(.active):hover,
+.user-filter-button:not(.active):hover {
+    background: var(--color-background-alternative);
+    transform: translateY(var(--btn-hover-lift));
+}
+
+.filter-button:focus-visible,
+.user-filter-button:focus-visible {
+    outline: var(--focus-outline-width) solid var(--potato-brown);
+    outline-offset: var(--focus-outline-offset);
+}
+
+.filter-icon,
+.user-icon {
+    font-size: 1rem; /* 16px -> 1rem */
+}
+
+/* ====================================
+   Main Content
+   ==================================== */
+.main-content {
+    padding: var(--space-lg) 0;
+    min-height: calc(100dvh - 200px);
+}
+
+/* ====================================
+   Loading State
+   ==================================== */
+.loading-state {
+    text-align: center;
+    padding: var(--space-3xl) var(--space-md);
+}
+
+.loading-illustration {
+    margin-bottom: var(--space-xl);
+}
+
+.loading-characters {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.loading-potato,
+.loading-rabbit {
+    font-size: var(--font-size-6xl);
+    display: inline-block;
+    animation: loading-wiggle var(--dur-xl) var(--ease-bouncy) infinite;
+}
+
+.loading-rabbit {
+    animation-delay: 0.3s;
+}
+
+@keyframes loading-wiggle {
+    0%, 100% { transform: rotate(-3deg) scale(1); }
+    50% { transform: rotate(3deg) scale(var(--reaction-success-scale)); }
+}
+
+.loading-text {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+}
+
+/* ====================================
+   Empty State
+   ==================================== */
+.empty-state {
+    text-align: center;
+    padding: var(--spacing-3xl) var(--spacing-md);
+    max-width: var(--modal-content-max-width);
+    margin: 0 auto;
+}
+
+.empty-state-illustration {
+    margin-bottom: var(--space-xl);
+}
+
+.empty-characters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+}
+
+.empty-potato,
+.empty-rabbit {
+    font-size: var(--font-size-5xl);
+    display: inline-block;
+    animation: empty-float var(--dur-2xl) var(--ease-smooth) infinite;
+}
+
+.empty-rabbit {
+    animation-delay: 0.5s;
+}
+
+@keyframes empty-float {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+.empty-state-title {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-md);
+    font-family: var(--font-family-primary);
+}
+
+.empty-state-description {
+    font-size: var(--font-size-md);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--spacing-xl);
+}
+
+.add-transaction-button {
+    background: linear-gradient(135deg, var(--color-income) 0%, var(--color-success-light) 100%);
+    color: var(--color-primary-contrast);
+    border: none;
+    padding: var(--button-padding-md);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: var(--transition-button);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin: 0 auto;
+    box-shadow: var(--shadow-lg);
+    min-height: var(--button-height-md);
+}
+
+.add-transaction-button:hover {
+    transform: translateY(var(--card-hover-lift));
+    box-shadow: 0 6px 20px rgba(124, 179, 66, 0.4);
+}
+
+.add-transaction-button:active {
+    transform: translateY(0);
+}
+
+/* ====================================
+   Error State
+   ==================================== */
+.error-state {
+    text-align: center;
+    padding: var(--space-3xl) var(--space-md);
+    max-width: 25rem; /* 400px -> 25rem */
+    margin: 0 auto;
+}
+
+.error-illustration {
+    margin-bottom: var(--space-xl);
+}
+
+.error-characters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.error-potato,
+.error-rabbit {
+    font-size: 56px;
+    display: inline-block;
+    animation: error-shake var(--dur-xl) var(--ease-sharp) infinite;
+}
+
+.error-rabbit {
+    animation-delay: 0.2s;
+}
+
+@keyframes error-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+}
+
+.error-state-title {
+    font-size: var(--font-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--expense-red);
+    margin-bottom: var(--space-md);
+    font-family: var(--font-accent);
+}
+
+.error-state-description {
+    font-size: var(--font-base);
+    color: var(--text-medium);
+    line-height: var(--line-height-relaxed);
+    margin-bottom: var(--space-xl);
+}
+
+.retry-button {
+    background: linear-gradient(135deg, var(--expense-red) 0%, #EF5350 100%);
+    color: white;
+    border: none;
+    padding: var(--space-md) var(--space-xl);
+    border-radius: 25px;
+    font-family: var(--font-primary);
+    font-size: var(--font-base);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin: 0 auto;
+    box-shadow: 0 4px 16px rgba(229, 115, 115, 0.3);
+}
+
+.retry-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(229, 115, 115, 0.4);
+}
+
+/* ====================================
+   Transaction List
+   ==================================== */
+.transaction-list {
+    margin-top: var(--space-lg);
+}
+
+/* Date Group */
+.date-group {
+    margin-bottom: var(--space-2xl);
+}
+
+.date-group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) var(--space-lg);
+    background: var(--surface-accent);
+    border-radius: 12px;
+    margin-bottom: var(--space-md);
+    position: sticky;
+    top: calc(7.5rem + var(--safe-area-inset-top)); /* Adjust for safe area */
+    z-index: var(--z-index-dropdown);
+    box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+.date-group-title {
+    font-size: var(--font-lg);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-dark);
+}
+
+.daily-total {
+    font-size: var(--font-base);
+    font-weight: var(--font-weight-bold);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 6px;
+    background: white;
+}
+
+.daily-total.positive {
+    color: var(--income-green);
+    border: 1px solid rgba(124, 179, 66, 0.3);
+}
+
+.daily-total.negative {
+    color: var(--expense-red);
+    border: 1px solid rgba(229, 115, 115, 0.3);
+}
+
+/* Transaction Items */
+.transaction-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+/* Transaction Card */
+.transaction-card {
+    display: flex;
+    align-items: center;
+    padding: var(--card-padding);
+    background: var(--card-background);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--shadow-transaction);
+    border-left: var(--border-width-heavy) solid transparent;
+    transition: var(--transition-card);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.transaction-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--border-width-normal);
+    background: linear-gradient(90deg, transparent 0%, var(--potato-tan) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity var(--dur-xs) var(--ease-standard);
+}
+
+.transaction-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(var(--card-hover-lift));
+}
+
+.transaction-card:hover::before {
+    opacity: 1;
+}
+
+.transaction-card:focus-visible {
+    outline: var(--focus-outline-width) solid var(--potato-brown);
+    outline-offset: var(--focus-outline-offset);
+}
+
+.transaction-card.income {
+    border-left-color: var(--color-income);
+    background: var(--transaction-income-bg);
+}
+
+.transaction-card.expense {
+    border-left-color: var(--color-expense);
+    background: var(--transaction-expense-bg);
+}
+
+/* Transaction Icon */
+.transaction-icon {
+    width: 3rem; /* 48px -> 3rem */
+    height: 3rem; /* 48px -> 3rem */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem; /* 24px -> 1.5rem */
+    flex-shrink: 0;
+    aspect-ratio: var(--image-aspect-square);
+}
+
+.income-icon {
+    background: var(--transaction-income-bg);
+    border: var(--border-width-normal) solid var(--color-income);
+    box-shadow: 0 2px 8px var(--transaction-income-border);
+}
+
+.expense-icon {
+    background: var(--transaction-expense-bg);
+    border: var(--border-width-normal) solid var(--color-expense);
+    box-shadow: 0 2px 8px var(--transaction-expense-border);
+}
+
+.icon-character {
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+    aspect-ratio: var(--character-icon-aspect-ratio);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Transaction Details */
+.transaction-details {
+    flex: 1;
+    margin-left: var(--space-md);
+    margin-right: var(--space-md);
+}
+
+.transaction-description {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin-bottom: var(--border-width-normal);
+    line-height: var(--line-height-tight);
+}
+
+.transaction-category {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    font-family: var(--font-family-primary);
+}
+
+/* Transaction Amount Section */
+.transaction-amount-section {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.transaction-amount {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    font-family: var(--font-family-fallback);
+    line-height: var(--line-height-tight);
+}
+
+.transaction-amount.income {
+    color: var(--status-positive);
+}
+
+.transaction-amount.expense {
+    color: var(--status-negative);
+}
+
+.transaction-time {
+    font-size: var(--font-xs);
+    color: var(--text-light);
+    margin-top: 2px;
+    font-family: var(--font-secondary);
+}
+
+/* ====================================
+   Load More Section
+   ==================================== */
+.load-more-section {
+    text-align: center;
+    margin-top: var(--space-2xl);
+    padding: var(--space-xl) 0;
+}
+
+.load-more-button {
+    background: var(--surface-primary);
+    border: 2px solid var(--border-medium);
+    color: var(--text-medium);
+    padding: var(--space-md) var(--space-xl);
+    border-radius: 25px;
+    font-family: var(--font-primary);
+    font-size: var(--font-base);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin: 0 auto;
+}
+
+.load-more-button:hover {
+    background: var(--surface-accent);
+    border-color: var(--potato-tan);
+    color: var(--text-dark);
+    transform: translateY(-1px);
+}
+
+.button-icon {
+    font-size: 1rem; /* 16px -> 1rem */
+}
+
+/* ====================================
+   Floating Action Button
+   ==================================== */
+.floating-add-button {
+    position: fixed;
+    bottom: var(--space-xl);
+    right: var(--space-xl);
+    width: 3.5rem; /* 56px -> 3.5rem */
+    height: 3.5rem; /* 56px -> 3.5rem */
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--potato-brown) 0%, var(--potato-skin) 100%);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 16px var(--shadow-heavy);
+    transition: all 0.3s ease;
+    z-index: var(--z-index-skip-link);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-add-button:hover {
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 6px 24px var(--shadow-heavy);
+}
+
+.floating-add-button:active {
+    transform: scale(1.05);
+}
+
+.fab-icon {
+    color: white;
+    font-size: 1.5rem; /* 24px -> 1.5rem */
+    font-weight: var(--font-weight-bold);
+}
+
+/* ====================================
+   Responsive Design - Tablet
+   ==================================== */
+@media (min-width: 768px) {
+    :root {
+        --container-padding: 24px;
+    }
+
+    .container {
+        max-width: 768px;
+    }
+
+    .page-title {
+        font-size: var(--font-2xl);
+    }
+
+    .title-icon {
+        font-size: 36px;
+    }
+
+    .filter-toggle-group,
+    .user-filter-group {
+        justify-content: center;
+        overflow: visible;
+    }
+
+    .transaction-card {
+        padding: var(--space-xl);
+    }
+
+    .transaction-icon {
+        width: 3.5rem; /* 56px -> 3.5rem */
+        height: 3.5rem; /* 56px -> 3.5rem */
+        font-size: 1.75rem; /* 28px -> 1.75rem */
+    }
+
+    .date-group-header {
+        top: 140px;
+    }
+
+    .empty-potato,
+    .empty-rabbit {
+        font-size: 80px;
+    }
+
+    .loading-potato,
+    .loading-rabbit {
+        font-size: 64px;
+    }
+}
+
+/* ====================================
+   Responsive Design - Desktop
+   ==================================== */
+@media (min-width: 1024px) {
+    :root {
+        --container-padding: 32px;
+    }
+
+    .container {
+        max-width: 1200px;
+    }
+
+    .filter-section {
+        display: flex;
+        gap: var(--space-lg);
+        align-items: center;
+    }
+
+    .filter-toggle-group,
+    .user-filter-group {
+        margin-bottom: 0;
+        flex: 1;
+    }
+
+    .transaction-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-2xl);
+        max-width: none;
+    }
+
+    .date-group:nth-child(odd) {
+        margin-right: var(--space-lg);
+    }
+
+    .date-group:nth-child(even) {
+        margin-left: var(--space-lg);
+    }
+
+    /* Enhanced hover effects for desktop */
+    .transaction-card:hover .icon-character {
+        animation: desktop-wiggle 0.5s ease-in-out;
+    }
+
+    @keyframes desktop-wiggle {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(-5deg); }
+        75% { transform: rotate(5deg); }
+    }
+}
+
+/* ====================================
+   Accessibility Features Enhancement
+   ==================================== */
+@media (prefers-reduced-motion: reduce) {
+    /* Disable character animations */
+    .loading-potato, .loading-rabbit,
+    .empty-potato, .empty-rabbit,
+    .error-potato, .error-rabbit {
+        animation: none !important;
+    }
+    
+    /* Keep functional transitions minimal */
+    .filter-button, .user-filter-button,
+    .transaction-card, .add-transaction-button {
+        transition: background-color var(--dur-xs) linear,
+                   border-color var(--dur-xs) linear !important;
+    }
+    
+    /* Alternative feedback for button states */
+    .filter-button.active,
+    .user-filter-button.active {
+        border-width: 3px !important;
+        font-weight: bold !important;
+    }
+    
+    .transaction-card:hover {
+        border-left-width: 8px !important;
+        background-color: var(--color-background-alternative) !important;
+    }
+    
+    /* Enhanced focus indicators */
+    *:focus-visible {
+        outline: 3px solid var(--color-primary) !important;
+        outline-offset: 3px !important;
+        box-shadow: 0 0 0 6px rgba(31, 199, 212, 0.2) !important;
+    }
+}
+
+@media (prefers-contrast: high) {
+    :root {
+        --text-dark: #000000;
+        --text-medium: #333333;
+        --income-green: #006600;
+        --expense-red: #CC0000;
+        --border-light: #666666;
+        --border-medium: #333333;
+    }
+}
+
+/* Print styles */
+@media print {
+    .page-header,
+    .floating-add-button,
+    .load-more-section {
+        display: none;
+    }
+
+    .transaction-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid var(--border-light);
+    }
+
+    body {
+        background: white;
+    }
+}
+
+/* ====================================
+   Utility Classes
+   ==================================== */
+.sr-only {
+    position: absolute;
+    width: var(--sr-only-width);
+    height: var(--sr-only-height);
+    padding: 0;
+    margin: var(--sr-only-margin);
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+
+/* Focus management */
+.focus-trap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--z-index-overlay);
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+    .transaction-card {
+        border: 1px solid;
+    }
+    
+    .filter-button.active,
+    .user-filter-button.active {
+        forced-color-adjust: none;
+    }
+}

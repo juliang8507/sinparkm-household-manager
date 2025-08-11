@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+dist/
+build/
+.cache/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+temp-test.css
+
+# Logs
+logs/
+*.log
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Test reports
+test-results/
+jest-html-reporters-attach/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Performance files
+performance/critical-*.css
+performance/deferred-*.css
+performance/ultra-critical.css
+performance/optimized-fonts.css

@@ -1,0 +1,1949 @@
+/* 감자·토끼 가계부 - Multi-Theme Design Tokens */
+/* Based on PancakeSwap Design System with Custom Enhancements */
+/* Supports Light, Dark, and High Contrast themes */
+
+/* Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&display=swap');
+
+/* ===================================================
+   MODERN RESPONSIVE DESIGN SYSTEM ENHANCEMENTS
+   ================================================= */
+
+/*
+  Enhanced Design Tokens v2.0 - Fluid & Container Query Ready
+  
+  🎯 FEATURES:
+  • Fluid Typography with clamp() for smooth scaling across devices
+  • Responsive Spacing Tokens with viewport-based scaling
+  • Container Query Breakpoints for component-level responsiveness  
+  • Enhanced Safe-Area Support for modern devices with notches
+  • Dynamic Viewport Height (dvh) support with fallbacks
+  • Aspect Ratio Tokens for layout stability and CLS prevention
+  • Backward compatibility with existing static tokens
+  
+  📱 RESPONSIVE STRATEGY:
+  • Mobile-first approach with fluid scaling
+  • Container queries for component isolation
+  • Safe-area awareness for notched devices
+  • Progressive enhancement with feature detection
+  
+  🎨 CHARACTER INTEGRATION:
+  • Preserves all existing character-based animations
+  • Maintains 감자·토끼 theme system (light/dark/high-contrast)
+  • Character element aspect ratios for consistent rendering
+  • Responsive character sizing with clamp()
+  
+  ⚡ PERFORMANCE:
+  • Reduced media query usage through fluid tokens
+  • Container queries for component-specific breakpoints
+  • Optimized for Core Web Vitals and layout stability
+  • GPU-accelerated animations preserved
+*/
+
+/* === BASE THEME (LIGHT) === */
+:root {
+  /* Color scheme support */
+  color-scheme: light;
+  
+  /* === COLOR PALETTE === */
+  
+  /* Primary Colors */
+  --color-primary: #1FC7D4;
+  --color-primary-light: #33E1ED;
+  --color-primary-dark: #0098A1;
+  --color-primary-contrast: #FFFFFF;
+  
+  /* Secondary Colors */
+  --color-secondary: #7645D9;
+  --color-secondary-light: #9A6AFF;
+  --color-secondary-dark: #5D21B6;
+  --color-secondary-contrast: #FFFFFF;
+  
+  /* Semantic Colors */
+  --color-success: #31D0AA;
+  --color-success-light: #68FFDA;
+  --color-success-dark: #0E7A5D;
+  
+  --color-warning: #FFB237;
+  --color-warning-light: #FFD67E;
+  --color-warning-dark: #D67E0A;
+  
+  --color-error: #ED4B9E;
+  --color-error-light: #FF65B8;
+  --color-error-dark: #C42878;
+  
+  /* Background Colors */
+  --color-background-default: #FAF9FA;
+  --color-background-paper: #FFFFFF;
+  --color-background-alternative: #EFF4F5;
+  --color-background-gradient: linear-gradient(139.73deg, #E5FDFF 0%, #F3EFFF 100%);
+  
+  /* Text Colors */
+  --color-text-primary: #280D5F;
+  --color-text-secondary: #7A6EAA;
+  --color-text-disabled: #BDC2C4;
+  --color-text-inverse: #FFFFFF;
+  
+  /* Border Colors */
+  --color-border-default: #E7E3EB;
+  --color-border-light: #F4F5F6;
+  
+  /* Custom Colors for Budget App */
+  --color-income: #31D0AA;
+  --color-expense: #ED4B9E;
+  --color-savings: #1FC7D4;
+  --color-food: #FFB237;
+  --color-transport: #7645D9;
+  --color-entertainment: #FF6B9D;
+  --color-utilities: #4ECDC4;
+  --color-healthcare: #45B7D1;
+  --color-shopping: #FFA07A;
+  --color-education: #9B59B6;
+  
+  /* Character Colors */
+  --color-potato: #DEB887;
+  --color-rabbit: #F8F8FF;
+  --color-potato-accent: #CD853F;
+  --color-rabbit-accent: #FFB6C1;
+  
+  /* === TYPOGRAPHY === */
+  
+  /* Font Family */
+  --font-family-primary: 'Kanit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-fallback: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* Font Size - Fluid Typography with clamp() for responsive scaling */
+  --font-size-xs: clamp(0.75rem, 2.5vw, 0.875rem);   /* 12px-14px */
+  --font-size-sm: clamp(0.875rem, 3vw, 1rem);        /* 14px-16px */
+  --font-size-md: clamp(1rem, 4vw, 1.125rem);        /* 16px-18px */
+  --font-size-lg: clamp(1.125rem, 5vw, 1.375rem);    /* 18px-22px */
+  --font-size-xl: clamp(1.375rem, 6vw, 1.625rem);    /* 22px-26px */
+  --font-size-2xl: clamp(1.75rem, 7vw, 2.25rem);     /* 28px-36px */
+  --font-size-3xl: clamp(2.25rem, 8vw, 2.75rem);     /* 36px-44px */
+  --font-size-4xl: clamp(2.75rem, 9vw, 3.25rem);     /* 44px-52px */
+  --font-size-5xl: clamp(3.5rem, 12vw, 4.5rem);      /* 56px-72px */
+  --font-size-6xl: clamp(4.5rem, 15vw, 6rem);        /* 72px-96px */
+  
+  /* Legacy static sizes for backward compatibility */
+  --font-size-xs-static: 12px;
+  --font-size-sm-static: 14px;
+  --font-size-md-static: 16px;
+  --font-size-lg-static: 20px;
+  --font-size-xl-static: 24px;
+  --font-size-2xl-static: 32px;
+  --font-size-3xl-static: 40px;
+  --font-size-4xl-static: 48px;
+  --font-size-5xl-static: 64px;
+  --font-size-6xl-static: 88px;
+  
+  /* Font Weight */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Line Height */
+  --line-height-tight: 1.1;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* === SPACING === */
+  
+  --spacing-unit: 8px;
+  
+  /* Fluid Spacing Tokens - Responsive scaling with clamp() */
+  --spacing-fluid-xs: clamp(0.125rem, 1vw, 0.375rem);    /* 2px-6px */
+  --spacing-fluid-sm: clamp(0.25rem, 2vw, 0.75rem);      /* 4px-12px */
+  --spacing-fluid-md: clamp(0.75rem, 4vw, 1.5rem);       /* 12px-24px */
+  --spacing-fluid-lg: clamp(1rem, 5vw, 2rem);            /* 16px-32px */
+  --spacing-fluid-xl: clamp(1.5rem, 6vw, 2.5rem);        /* 24px-40px */
+  --spacing-fluid-2xl: clamp(2rem, 8vw, 3.5rem);         /* 32px-56px */
+  --spacing-fluid-3xl: clamp(2.5rem, 10vw, 4.5rem);      /* 40px-72px */
+  
+  /* Static Spacing Tokens - For precise control and backward compatibility */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+  --spacing-3xl: 64px;
+  
+  /* === BORDER RADIUS === */
+  
+  --radius-none: 0px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+  --radius-pill: 9999px;
+  --radius-circle: 50%;
+  
+  /* === SHADOWS === */
+  
+  --shadow-sm: 0px 2px 12px -8px rgba(25, 19, 38, 0.1), 0px 1px 1px rgba(25, 19, 38, 0.05);
+  --shadow-md: 0px 4px 16px rgba(25, 19, 38, 0.1);
+  --shadow-lg: 0px 8px 32px rgba(25, 19, 38, 0.12);
+  --shadow-xl: 0px 20px 36px -8px rgba(14, 14, 44, 0.1), 0px 1px 1px rgba(0, 0, 0, 0.05);
+  --shadow-inset: inset 0px -1px 0px rgba(14, 14, 44, 0.4);
+  --shadow-focus: 0 0 0 1px #7645D9;
+  --shadow-warning: 0px 0px 0px 1px #ED4B9E, 0px 0px 0px 4px rgba(237, 75, 158, 0.2);
+  --shadow-button: rgba(0, 0, 0, 0.1) 0px -2px 0px 0px inset;
+  --shadow-subtle: rgba(74, 74, 104, 0.1) 0px 2px 2px -1px inset;
+  
+  /* Custom Shadows for Cards */
+  --shadow-card: 0px 4px 12px rgba(25, 19, 38, 0.08);
+  --shadow-card-hover: 0px 8px 24px rgba(25, 19, 38, 0.12);
+  --shadow-transaction: 0px 2px 8px rgba(25, 19, 38, 0.06);
+  
+  /* === ANIMATION TOKENS === */
+  
+  /* Duration Tokens - Semantic timing for 감자·토끼 animations */
+  --dur-xxs: 100ms;   /* Ultra-fast feedback */
+  --dur-xs: 150ms;    /* Quick interactions */
+  --dur-sm: 250ms;    /* Standard interactions */
+  --dur-md: 400ms;    /* Character reactions */
+  --dur-lg: 600ms;    /* Gentle transitions */
+  --dur-xl: 800ms;    /* Smooth character animations */
+  --dur-2xl: 1200ms;  /* Celebration effects */
+
+  /* Easing Tokens - Character personality-driven curves */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);        /* Material Design standard */
+  --ease-bouncy: cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Playful bounce */
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);  /* Gentle flow */
+  --ease-sharp: cubic-bezier(0.4, 0, 1, 1);             /* Quick response */
+  --ease-potato: cubic-bezier(0.34, 1.56, 0.64, 1);     /* Potato's gentle bounce */
+  --ease-rabbit: cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Rabbit's quick hop */
+
+  /* === TRANSITIONS === */
+  
+  --transition-fast: var(--dur-xxs) var(--ease-standard);
+  --transition-normal: var(--dur-sm) var(--ease-standard);
+  --transition-slow: var(--dur-lg) var(--ease-smooth);
+  --transition-very-slow: var(--dur-xl) var(--ease-smooth);
+  --transition-default: all var(--dur-sm) var(--ease-standard);
+  
+  /* Custom Transitions */
+  --transition-button: background-color var(--dur-sm) var(--ease-standard), 
+                      transform var(--dur-xs) var(--ease-sharp), 
+                      box-shadow var(--dur-sm) var(--ease-standard);
+  --transition-card: transform var(--dur-lg) var(--ease-smooth), 
+                    box-shadow var(--dur-lg) var(--ease-smooth);
+  --transition-input: border-color var(--dur-sm) var(--ease-standard), 
+                     box-shadow var(--dur-sm) var(--ease-standard);
+
+  /* === CHARACTER REACTION ANIMATIONS === */
+  
+  /* Success Reactions - Happy bounces */
+  --reaction-success-scale: 1.05;
+  --reaction-success-duration: var(--dur-md);
+  --reaction-success-ease: var(--ease-bouncy);
+  --reaction-success-delay: 0ms;
+  
+  /* Warning Reactions - Gentle shake */
+  --reaction-warning-distance: 4px;
+  --reaction-warning-duration: var(--dur-sm);
+  --reaction-warning-ease: var(--ease-sharp);
+  --reaction-warning-cycles: 2;
+  
+  /* Info Reactions - Soft pulse */
+  --reaction-info-scale: 1.02;
+  --reaction-info-duration: var(--dur-lg);
+  --reaction-info-ease: var(--ease-smooth);
+  --reaction-info-iterations: 2;
+  
+  /* Error Reactions - Attention shake */
+  --reaction-error-distance: 6px;
+  --reaction-error-duration: var(--dur-xs);
+  --reaction-error-ease: var(--ease-sharp);
+  --reaction-error-cycles: 3;
+
+  /* === BUTTON INTERACTION TOKENS === */
+  
+  /* Button hover effects */
+  --btn-hover-lift: -2px;
+  --btn-hover-scale: 1.02;
+  --btn-active-scale: 0.98;
+  --btn-focus-ring-size: 2px;
+  
+  /* Card interaction effects */
+  --card-hover-lift: -3px;
+  --card-hover-scale: 1.01;
+  --card-press-scale: 0.99;
+  --card-expand-scale: 1.03;
+
+  /* === KEYFRAME ANIMATIONS === */
+  
+  /* Success bounce animation */
+  @keyframes success-bounce {
+    0%, 100% { 
+      transform: translateY(0) scale(1); 
+    }
+    50% { 
+      transform: translateY(-8px) scale(var(--reaction-success-scale)); 
+    }
+  }
+  
+  /* Warning shake animation */
+  @keyframes warning-shake {
+    0%, 100% { 
+      transform: translateX(0); 
+    }
+    25% { 
+      transform: translateX(calc(-1 * var(--reaction-warning-distance))); 
+    }
+    75% { 
+      transform: translateX(var(--reaction-warning-distance)); 
+    }
+  }
+  
+  /* Info pulse animation */
+  @keyframes info-pulse {
+    0%, 100% { 
+      transform: scale(1); 
+      opacity: 1; 
+    }
+    50% { 
+      transform: scale(var(--reaction-info-scale)); 
+      opacity: 0.8; 
+    }
+  }
+  
+  /* Error shake animation */
+  @keyframes error-shake {
+    0%, 100% { 
+      transform: translateX(0) rotate(0deg); 
+    }
+    25% { 
+      transform: translateX(calc(-1 * var(--reaction-error-distance))) rotate(-1deg); 
+    }
+    75% { 
+      transform: translateX(var(--reaction-error-distance)) rotate(1deg); 
+    }
+  }
+  
+  /* Float animation for decorative elements */
+  @keyframes float {
+    0%, 100% { 
+      transform: translateY(0) rotate(-2deg); 
+    }
+    50% { 
+      transform: translateY(-8px) rotate(2deg); 
+    }
+  }
+  
+  /* Shimmer effect for loading and premium elements */
+  @keyframes shimmer {
+    0% { 
+      background-position: -200% 0; 
+    }
+    100% { 
+      background-position: 200% 0; 
+    }
+  }
+  
+  /* Glow effect for important elements */
+  @keyframes glow {
+    0%, 100% { 
+      box-shadow: 0 0 5px var(--color-primary); 
+    }
+    50% { 
+      box-shadow: 0 0 20px var(--color-primary), 0 0 30px var(--color-primary); 
+    }
+  }
+  
+  /* Modal animations */
+  @keyframes modal-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes modal-scale-in {
+    from { 
+      transform: scale(0.8) translateY(20px); 
+      opacity: 0; 
+    }
+    to { 
+      transform: scale(1) translateY(0); 
+      opacity: 1; 
+    }
+  }
+  
+  @keyframes modal-bounce-in {
+    0% { 
+      transform: scale(0.8) translateY(20px); 
+      opacity: 0; 
+    }
+    60% { 
+      transform: scale(1.05) translateY(-5px); 
+      opacity: 1; 
+    }
+    100% { 
+      transform: scale(1) translateY(0); 
+      opacity: 1; 
+    }
+  }
+  
+  /* Character-specific animations */
+  @keyframes potato-gentle-bounce {
+    0%, 100% { 
+      transform: translateY(0) rotate(0deg); 
+    }
+    50% { 
+      transform: translateY(-6px) rotate(2deg); 
+    }
+  }
+  
+  @keyframes potato-happy-wiggle {
+    0%, 100% { 
+      transform: rotate(0deg) scale(1); 
+    }
+    25% { 
+      transform: rotate(-5deg) scale(1.05); 
+    }
+    75% { 
+      transform: rotate(5deg) scale(1.05); 
+    }
+  }
+  
+  @keyframes rabbit-quick-hop {
+    0%, 100% { 
+      transform: translateY(0) scale(1); 
+    }
+    50% { 
+      transform: translateY(-12px) scale(1.03); 
+    }
+  }
+  
+  @keyframes rabbit-ear-twitch {
+    0%, 100% { 
+      transform: rotate(0deg); 
+    }
+    50% { 
+      transform: rotate(3deg); 
+    }
+  }
+  --reaction-error-duration: var(--dur-xs);
+  --reaction-error-ease: var(--ease-sharp);
+  --reaction-error-cycles: 3;
+
+  /* === INTERACTION ANIMATIONS === */
+  
+  /* Button States */
+  --btn-hover-scale: 1.02;
+  --btn-hover-lift: -2px;
+  --btn-hover-shadow-grow: 1.2;
+  --btn-active-scale: 0.98;
+  --btn-focus-ring-size: 3px;
+  
+  /* Toast Animations */
+  --toast-enter-distance: 20px;
+  --toast-enter-duration: var(--dur-md);
+  --toast-enter-ease: var(--ease-bouncy);
+  --toast-exit-duration: var(--dur-sm);
+  --toast-exit-ease: var(--ease-sharp);
+  --toast-shake-distance: 3px;
+  
+  /* Card Interactions */
+  --card-hover-lift: -4px;
+  --card-hover-scale: 1.01;
+  --card-press-scale: 0.99;
+  --card-expand-scale: 1.05;
+  
+  /* Modal Animations */
+  --modal-backdrop-opacity: 0.6;
+  --modal-scale-from: 0.9;
+  --modal-scale-to: 1;
+  --modal-bounce-overshoot: 1.02;
+  
+  /* === BREAKPOINTS === */
+  
+  --breakpoint-xs: 370px;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 852px;
+  --breakpoint-lg: 968px;
+  --breakpoint-xl: 1080px;
+  --breakpoint-xxl: 1200px;
+  
+  /* Container Query Breakpoints - For component-level responsive design */
+  --container-xs: 20rem;    /* 320px - Small components */
+  --container-sm: 30rem;    /* 480px - Medium components */
+  --container-md: 45rem;    /* 720px - Large components */
+  --container-lg: 60rem;    /* 960px - Extra large components */
+  --container-xl: 75rem;    /* 1200px - Full-width layouts */
+  
+  /* Container Query Tokens - Semantic container sizes for specific use cases */
+  --container-card-min: 18rem;          /* Minimum card width */
+  --container-form-comfortable: 28rem;   /* Comfortable form width */
+  --container-dashboard-split: 48rem;    /* Dashboard layout split point */
+  --container-grid-3col: 60rem;         /* 3-column grid threshold */
+  --container-grid-7col: 84rem;         /* 7-column grid threshold (meal planning) */
+  
+  /* === Z-INDEX === */
+  
+  /* Z-index scale for consistent layering */
+  --z-index-base: 1;
+  --z-index-dropdown: 10;
+  --z-index-sticky: 20;
+  --z-index-modal: 100;
+  --z-index-popover: 200;
+  --z-index-tooltip: 300;
+  --z-index-skip-link: 1000;
+  --z-index-overlay: 9999;
+  
+  /* === COMPONENT TOKENS === */
+  
+  /* Button */
+  --button-height-sm: 32px;
+  --button-height-md: 48px;
+  --button-height-lg: 56px;
+  --button-padding-sm: 0 16px;
+  --button-padding-md: 0 24px;
+  --button-padding-lg: 0 32px;
+  --button-border-radius: var(--radius-xl);
+  
+  /* Input */
+  --input-height: 3rem; /* 48px -> 3rem */
+  --input-padding: 12px 16px;
+  --input-border-radius: var(--radius-xl);
+  --input-background: var(--color-background-alternative);
+  --input-background-focus: var(--color-background-paper);
+  --input-border-focus: var(--color-primary);
+  --input-border-error: var(--color-error);
+  
+  /* Card */
+  --card-padding: 24px;
+  --card-border-radius: var(--radius-2xl);
+  --card-background: var(--color-background-paper);
+  --card-border: 1px solid var(--color-border-default);
+  
+  /* Navigation */
+  --nav-height: 3.5rem; /* 56px -> 3.5rem */
+  --nav-padding: 0 16px;
+  --nav-background: var(--color-background-paper);
+  --nav-border-bottom: 1px solid var(--color-border-default);
+  
+  /* Modal */
+  --modal-overlay-background: rgba(0, 0, 0, 0.5);
+  --modal-overlay-backdrop-filter: blur(4px);
+  --modal-content-background: var(--color-background-paper);
+  --modal-content-border-radius: var(--radius-3xl);
+  --modal-content-padding: 32px;
+  --modal-content-max-width: 26.25rem; /* 420px -> 26.25rem */
+  
+  /* Badge */
+  --badge-padding: 4px 8px;
+  --badge-border-radius: var(--radius-lg);
+  --badge-font-size: var(--font-size-xs);
+  --badge-font-weight: var(--font-weight-semibold);
+  
+  /* === FLUID COMPONENT TOKENS === */
+  
+  /* Responsive Button Heights */
+  --button-height-fluid-sm: clamp(28px, 8vw, 36px);
+  --button-height-fluid-md: clamp(40px, 12vw, 52px);
+  --button-height-fluid-lg: clamp(48px, 14vw, 64px);
+  
+  /* Responsive Input Heights */
+  --input-height-fluid: clamp(40px, 12vw, 52px);
+  --input-padding-fluid: clamp(8px, 3vw, 16px) clamp(12px, 4vw, 20px);
+  
+  /* Responsive Card Padding */
+  --card-padding-fluid: var(--spacing-fluid-lg);
+  --card-border-radius-fluid: clamp(12px, 3vw, 24px);
+  
+  /* Responsive Modal */
+  --modal-content-padding-fluid: var(--spacing-fluid-xl);
+  --modal-content-max-width-fluid: min(420px, 90vw);
+  
+  /* Navigation Heights with Safe Area */
+  --nav-height-safe: calc(var(--nav-height) + var(--safe-area-inset-top));
+  --bottom-nav-height-safe: calc(var(--bottom-nav-height) + var(--safe-area-inset-bottom));
+  
+  /* === EFFECTS === */
+  
+  /* Blur */
+  --blur-sm: blur(4px);
+  --blur-md: blur(8px);
+  --blur-lg: blur(16px);
+  
+  /* Opacity */
+  --opacity-disabled: 0.5;
+  --opacity-hover: 0.8;
+  --opacity-focus: 1;
+  
+  /* === LAYOUT === */
+  
+  --container-max-width: 75rem; /* 1200px -> 75rem */
+  --container-padding: 0 16px;
+  --grid-gap: 16px;
+  --section-spacing: 48px;
+  
+  /* Custom Layout for Budget App - Enhanced with fluid scaling */
+  --app-max-width: min(480px, 100vw - 2rem);
+  --app-padding: var(--spacing-fluid-md);
+  --content-padding: var(--spacing-fluid-lg);
+  --bottom-nav-height: clamp(56px, 15vw, 72px);
+  --header-height: clamp(56px, 15vw, 72px);
+  
+  /* Container Layout Utilities */
+  --container-fluid-padding: clamp(1rem, 4vw, 2rem);
+  --container-safe-max-width: min(var(--container-max-width), 100vw - var(--container-fluid-padding));
+  --content-max-width: min(var(--app-max-width), 100% - 2 * var(--app-padding));
+  
+  /* Grid System Enhancements */
+  --grid-gap-fluid: var(--spacing-fluid-md);
+  --grid-gap-responsive: clamp(0.75rem, 3vw, 1.5rem);
+  --grid-auto-fit-min: min(280px, 100%);
+  --grid-auto-fill-min: min(200px, 45%);
+  
+  /* === ASPECT RATIO TOKENS === */
+  
+  /* Standard Aspect Ratios for Layout Stability */
+  --aspect-square: 1;
+  --aspect-video: 16 / 9;
+  --aspect-photo: 4 / 3;
+  --aspect-golden: 1.618;
+  --aspect-card: 5 / 4;
+  --aspect-banner: 3 / 1;
+  
+  /* Character Element Aspect Ratios */
+  --aspect-character: 1;
+  --aspect-character-card: 3 / 2;
+  --aspect-meal-card: 4 / 3;
+  --aspect-transaction-icon: 1;
+  
+  /* Progress and Interactive Elements */
+  --aspect-progress-bar: 10 / 1;
+  --aspect-toggle-switch: 2 / 1;
+  --aspect-fab-button: 1;
+  
+  /* === CUSTOM BUDGET APP TOKENS === */
+  
+  /* Transaction Colors */
+  --transaction-income-bg: rgba(49, 208, 170, 0.1);
+  --transaction-expense-bg: rgba(237, 75, 158, 0.1);
+  --transaction-income-border: rgba(49, 208, 170, 0.3);
+  --transaction-expense-border: rgba(237, 75, 158, 0.3);
+  
+  /* Category Colors with Transparency */
+  --category-food-bg: rgba(255, 178, 55, 0.1);
+  --category-transport-bg: rgba(118, 69, 217, 0.1);
+  --category-entertainment-bg: rgba(255, 107, 157, 0.1);
+  --category-utilities-bg: rgba(78, 205, 196, 0.1);
+  --category-healthcare-bg: rgba(69, 183, 209, 0.1);
+  --category-shopping-bg: rgba(255, 160, 122, 0.1);
+  --category-education-bg: rgba(155, 89, 182, 0.1);
+  
+  /* Character Specific */
+  --character-potato-shadow: 0px 4px 12px rgba(205, 133, 63, 0.3);
+  --character-rabbit-shadow: 0px 4px 12px rgba(255, 182, 193, 0.3);
+  
+  /* Progress Bar */
+  --progress-track-height: 0.5rem; /* 8px -> 0.5rem */
+  --progress-track-background: var(--color-border-default);
+  --progress-fill-background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  
+  /* Status Indicators */
+  --status-positive: var(--color-success);
+  --status-negative: var(--color-error);
+  --status-neutral: var(--color-text-secondary);
+  --status-warning: var(--color-warning);
+  
+  /* Mobile Specific & Safe Area Support */
+  --mobile-tap-target-size: 44px;
+  --mobile-scroll-padding: 20px;
+  
+  /* Enhanced Safe Area Variables - Full inset support */
+  --safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --safe-area-inset-right: env(safe-area-inset-right, 0px);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-area-inset-left: env(safe-area-inset-left, 0px);
+  
+  /* Legacy safe-area variables for backward compatibility */
+  --mobile-safe-area-bottom: var(--safe-area-inset-bottom);
+  --mobile-safe-area-top: var(--safe-area-inset-top);
+  
+  /* Compound Safe Area Utilities */
+  --safe-area-padding-vertical: var(--safe-area-inset-top) 0 var(--safe-area-inset-bottom) 0;
+  --safe-area-padding-horizontal: 0 var(--safe-area-inset-right) 0 var(--safe-area-inset-left);
+  --safe-area-padding-all: var(--safe-area-inset-top) var(--safe-area-inset-right) var(--safe-area-inset-bottom) var(--safe-area-inset-left);
+  
+  /* Dynamic Viewport Units Support */
+  --viewport-height-small: 100svh;  /* Small viewport height */
+  --viewport-height-large: 100lvh;  /* Large viewport height */
+  --viewport-height-dynamic: 100dvh; /* Dynamic viewport height */
+  --viewport-height-fallback: 100dvh; /* Dynamic viewport units for mobile browsers */
+  
+  /* CLS Prevention Heights */
+  --loading-min-height: 5rem;       /* 80px -> 5rem | Minimum height for loading states */
+  --progress-min-height: 1.25rem;   /* 20px -> 1.25rem | Minimum height for progress bars */
+  --character-min-height: 3.75rem;  /* 60px -> 3.75rem | Minimum height for character animations */
+}
+
+/* === RESPONSIVE DESIGN TOKENS === */
+
+/* Enhanced Container Query Support - Feature detection */
+@supports (container-type: inline-size) {
+  :root {
+    --supports-container-queries: 1;
+    /* Container query specific enhancements */
+    --cq-grid-columns-auto: repeat(auto-fit, minmax(min(var(--grid-auto-fit-min), 100%), 1fr));
+    --cq-grid-columns-fill: repeat(auto-fill, minmax(var(--grid-auto-fill-min), 1fr));
+  }
+}
+
+@supports not (container-type: inline-size) {
+  :root {
+    --supports-container-queries: 0;
+    /* Fallback for browsers without container query support */
+    --cq-grid-columns-auto: 1fr;
+    --cq-grid-columns-fill: 1fr;
+  }
+}
+
+/* Media Query Mixins with Fluid Token Overrides */
+@media (max-width: 576px) {
+  :root {
+    /* Legacy responsive tokens for compatibility */
+    --responsive-font-size-xs: 11px;
+    --responsive-font-size-sm: 13px;
+    --responsive-font-size-md: 15px;
+    --responsive-font-size-lg: 18px;
+    --responsive-font-size-xl: 22px;
+    --responsive-spacing-sm: 6px;
+    --responsive-spacing-md: 12px;
+    --responsive-spacing-lg: 18px;
+    --responsive-spacing-xl: 24px;
+    --responsive-card-padding: 16px;
+    --responsive-content-padding: 16px;
+    
+    /* Mobile-specific fluid adjustments */
+    --grid-gap-responsive: 0.75rem;
+    --container-fluid-padding: 1rem;
+    --mobile-optimized-tap-target: max(44px, var(--mobile-tap-target-size));
+  }
+}
+
+@media (min-width: 577px) and (max-width: 852px) {
+  :root {
+    /* Tablet adjustments */
+    --responsive-card-padding: 20px;
+    --responsive-content-padding: 18px;
+    --grid-gap-responsive: 1rem;
+    --container-fluid-padding: 1.5rem;
+  }
+}
+
+@media (min-width: 853px) {
+  :root {
+    /* Desktop adjustments */
+    --responsive-card-padding: 24px;
+    --responsive-content-padding: 20px;
+    --responsive-container-padding: 24px;
+    --grid-gap-responsive: 1.5rem;
+    --container-fluid-padding: 2rem;
+    
+    /* Desktop-specific enhancements */
+    --enhanced-hover-effects: 1; /* Flag for enhanced hover states */
+  }
+}
+
+/* === DARK THEME === */
+:root[data-theme='dark'] {
+  /* Color scheme support */
+  color-scheme: dark;
+  
+  /* Primary Colors - Adjusted for dark theme */
+  --color-primary: #33E1ED;
+  --color-primary-light: #5CEBF4;
+  --color-primary-dark: #1FC7D4;
+  --color-primary-contrast: #0E0E0E;
+  
+  /* Secondary Colors - Enhanced visibility */
+  --color-secondary: #9A6AFF;
+  --color-secondary-light: #B891FF;
+  --color-secondary-dark: #7645D9;
+  --color-secondary-contrast: #0E0E0E;
+  
+  /* Semantic Colors - Optimized for dark backgrounds */
+  --color-success: #68FFDA;
+  --color-success-light: #8AFFE6;
+  --color-success-dark: #31D0AA;
+  
+  --color-warning: #FFD67E;
+  --color-warning-light: #FFE4A3;
+  --color-warning-dark: #FFB237;
+  
+  --color-error: #FF65B8;
+  --color-error-light: #FF8AC9;
+  --color-error-dark: #ED4B9E;
+  
+  /* Background Colors - Dark theme palette */
+  --color-background-default: #0E0E0E;
+  --color-background-paper: #1A1A1A;
+  --color-background-alternative: #262626;
+  --color-background-gradient: linear-gradient(139.73deg, #0F1B1C 0%, #1A0F1F 100%);
+  
+  /* Text Colors - High contrast for readability */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B0B0B0;
+  --color-text-disabled: #666666;
+  --color-text-inverse: #0E0E0E;
+  
+  /* Border Colors */
+  --color-border-default: #333333;
+  --color-border-light: #404040;
+  
+  /* Custom Colors for Budget App - Dark variants */
+  --color-income: #68FFDA;
+  --color-expense: #FF65B8;
+  --color-savings: #33E1ED;
+  --color-food: #FFD67E;
+  --color-transport: #9A6AFF;
+  --color-entertainment: #FF8AC9;
+  --color-utilities: #7DFFF0;
+  --color-healthcare: #66D1F7;
+  --color-shopping: #FFB89A;
+  --color-education: #C593E8;
+  
+  /* Character Colors - Adjusted for dark theme */
+  --color-potato: #F4D03F;
+  --color-rabbit: #E8E8E8;
+  --color-potato-accent: #E67E22;
+  --color-rabbit-accent: #F1948A;
+  
+  /* Shadows - Enhanced for dark backgrounds */
+  --shadow-sm: 0px 2px 12px -8px rgba(0, 0, 0, 0.6), 0px 1px 1px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0px 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0px 8px 32px rgba(0, 0, 0, 0.6);
+  --shadow-xl: 0px 20px 36px -8px rgba(0, 0, 0, 0.4), 0px 1px 1px rgba(0, 0, 0, 0.2);
+  --shadow-inset: inset 0px -1px 0px rgba(255, 255, 255, 0.1);
+  --shadow-focus: 0 0 0 1px #9A6AFF;
+  --shadow-warning: 0px 0px 0px 1px #FF65B8, 0px 0px 0px 4px rgba(255, 101, 184, 0.3);
+  --shadow-button: rgba(0, 0, 0, 0.4) 0px -2px 0px 0px inset;
+  --shadow-subtle: rgba(255, 255, 255, 0.05) 0px 2px 2px -1px inset;
+  
+  /* Custom Shadows for Cards */
+  --shadow-card: 0px 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0px 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-transaction: 0px 2px 8px rgba(0, 0, 0, 0.3);
+  
+  /* Transaction Colors - Dark theme variants */
+  --transaction-income-bg: rgba(104, 255, 218, 0.15);
+  --transaction-expense-bg: rgba(255, 101, 184, 0.15);
+  --transaction-income-border: rgba(104, 255, 218, 0.4);
+  --transaction-expense-border: rgba(255, 101, 184, 0.4);
+  
+  /* Category Colors with Transparency - Dark optimized */
+  --category-food-bg: rgba(255, 214, 126, 0.15);
+  --category-transport-bg: rgba(154, 106, 255, 0.15);
+  --category-entertainment-bg: rgba(255, 138, 201, 0.15);
+  --category-utilities-bg: rgba(125, 255, 240, 0.15);
+  --category-healthcare-bg: rgba(102, 209, 247, 0.15);
+  --category-shopping-bg: rgba(255, 184, 154, 0.15);
+  --category-education-bg: rgba(197, 147, 232, 0.15);
+  
+  /* Character Specific */
+  --character-potato-shadow: 0px 4px 12px rgba(230, 126, 34, 0.4);
+  --character-rabbit-shadow: 0px 4px 12px rgba(241, 148, 138, 0.4);
+  
+  /* Progress Bar - Dark theme */
+  --progress-track-background: #404040;
+  --progress-fill-background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  
+  /* Input Components - Dark theme adjustments */
+  --input-background: #262626;
+  --input-background-focus: #333333;
+  --input-border-focus: var(--color-primary);
+  --input-border-error: var(--color-error);
+}
+
+/* === PRINT STYLES === */
+@media print {
+  :root {
+    --color-background-default: #FFFFFF;
+    --color-background-paper: #FFFFFF;
+    --color-text-primary: #000000;
+    --color-text-secondary: #333333;
+    --shadow-sm: none;
+    --shadow-md: none;
+    --shadow-lg: none;
+  }
+}
+
+/* === REDUCED MOTION === */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    /* Reset all durations to minimal values */
+    --dur-xxs: 1ms;
+    --dur-xs: 1ms;
+    --dur-sm: 1ms;
+    --dur-md: 1ms;
+    --dur-lg: 1ms;
+    --dur-xl: 1ms;
+    --dur-2xl: 1ms;
+    
+    /* Disable transition properties */
+    --transition-fast: none;
+    --transition-normal: none;
+    --transition-slow: none;
+    --transition-very-slow: none;
+    --transition-default: none;
+    --transition-button: none;
+    --transition-card: none;
+    --transition-input: none;
+    
+    /* Disable character reactions */
+    --reaction-success-scale: 1;
+    --reaction-warning-distance: 0px;
+    --reaction-info-scale: 1;
+    --reaction-error-distance: 0px;
+    
+    /* Disable interaction animations */
+    --btn-hover-scale: 1;
+    --btn-hover-lift: 0px;
+    --btn-active-scale: 1;
+    --card-hover-lift: 0px;
+    --card-hover-scale: 1;
+    --card-press-scale: 1;
+    --toast-enter-distance: 0px;
+    --toast-shake-distance: 0px;
+  }
+  
+  /* Disable all keyframe animations */
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* === HIGH CONTRAST THEME === */
+:root[data-theme='hc'] {
+  /* Color scheme support */
+  color-scheme: light;
+  
+  /* High Contrast Colors - WCAG AAA compliant (7:1 contrast ratio) */
+  --color-primary: #0066CC;
+  --color-primary-light: #0080FF;
+  --color-primary-dark: #004499;
+  --color-primary-contrast: #FFFFFF;
+  
+  --color-secondary: #6600CC;
+  --color-secondary-light: #7700FF;
+  --color-secondary-dark: #440099;
+  --color-secondary-contrast: #FFFFFF;
+  
+  /* Semantic Colors - Maximum contrast */
+  --color-success: #006600;
+  --color-success-light: #008800;
+  --color-success-dark: #004400;
+  
+  --color-warning: #CC6600;
+  --color-warning-light: #FF8800;
+  --color-warning-dark: #994400;
+  
+  --color-error: #CC0000;
+  --color-error-light: #FF0000;
+  --color-error-dark: #990000;
+  
+  /* Background Colors - Pure contrast */
+  --color-background-default: #FFFFFF;
+  --color-background-paper: #FFFFFF;
+  --color-background-alternative: #F0F0F0;
+  --color-background-gradient: linear-gradient(139.73deg, #FFFFFF 0%, #F0F0F0 100%);
+  
+  /* Text Colors - Maximum contrast */
+  --color-text-primary: #000000;
+  --color-text-secondary: #000000;
+  --color-text-disabled: #666666;
+  --color-text-inverse: #FFFFFF;
+  
+  /* Border Colors - High contrast */
+  --color-border-default: #000000;
+  --color-border-light: #333333;
+  
+  /* Custom Colors for Budget App - High contrast variants */
+  --color-income: #006600;
+  --color-expense: #CC0000;
+  --color-savings: #0066CC;
+  --color-food: #CC6600;
+  --color-transport: #6600CC;
+  --color-entertainment: #CC0066;
+  --color-utilities: #006666;
+  --color-healthcare: #0099CC;
+  --color-shopping: #CC3300;
+  --color-education: #9900CC;
+  
+  /* Character Colors - High contrast */
+  --color-potato: #996633;
+  --color-rabbit: #CCCCCC;
+  --color-potato-accent: #663300;
+  --color-rabbit-accent: #999999;
+  
+  /* Shadows - Enhanced for accessibility */
+  --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.8);
+  --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.8);
+  --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.8);
+  --shadow-xl: 0px 16px 32px rgba(0, 0, 0, 0.8);
+  --shadow-inset: inset 0px -1px 0px rgba(0, 0, 0, 1);
+  --shadow-focus: 0 0 0 3px #000000;
+  --shadow-warning: 0px 0px 0px 2px #CC0000, 0px 0px 0px 5px rgba(204, 0, 0, 0.3);
+  --shadow-button: rgba(0, 0, 0, 0.8) 0px -3px 0px 0px inset;
+  --shadow-subtle: rgba(0, 0, 0, 0.3) 0px 2px 2px -1px inset;
+  
+  /* Custom Shadows for Cards */
+  --shadow-card: 0px 4px 8px rgba(0, 0, 0, 0.8);
+  --shadow-card-hover: 0px 8px 16px rgba(0, 0, 0, 0.8);
+  --shadow-transaction: 0px 2px 4px rgba(0, 0, 0, 0.6);
+  
+  /* Transaction Colors - High contrast */
+  --transaction-income-bg: rgba(0, 102, 0, 0.1);
+  --transaction-expense-bg: rgba(204, 0, 0, 0.1);
+  --transaction-income-border: rgba(0, 102, 0, 1);
+  --transaction-expense-border: rgba(204, 0, 0, 1);
+  
+  /* Category Colors with High Contrast */
+  --category-food-bg: rgba(204, 102, 0, 0.1);
+  --category-transport-bg: rgba(102, 0, 204, 0.1);
+  --category-entertainment-bg: rgba(204, 0, 102, 0.1);
+  --category-utilities-bg: rgba(0, 102, 102, 0.1);
+  --category-healthcare-bg: rgba(0, 153, 204, 0.1);
+  --category-shopping-bg: rgba(204, 51, 0, 0.1);
+  --category-education-bg: rgba(153, 0, 204, 0.1);
+  
+  /* Character Specific */
+  --character-potato-shadow: 0px 4px 8px rgba(102, 51, 0, 0.8);
+  --character-rabbit-shadow: 0px 4px 8px rgba(153, 153, 153, 0.8);
+  
+  /* Progress Bar - High contrast */
+  --progress-track-background: #CCCCCC;
+  --progress-fill-background: linear-gradient(90deg, #0066CC 0%, #6600CC 100%);
+  
+  /* Input Components - High contrast */
+  --input-background: #FFFFFF;
+  --input-background-focus: #FFFFFF;
+  --input-border-focus: #000000;
+  --input-border-error: #CC0000;
+}
+
+/* === AUTOMATIC THEME DETECTION === */
+
+/* Auto Dark Theme - when system prefers dark and no explicit theme set */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    /* Color scheme support */
+    color-scheme: dark;
+    
+    /* Primary Colors - Adjusted for dark theme */
+    --color-primary: #33E1ED;
+    --color-primary-light: #5CEBF4;
+    --color-primary-dark: #1FC7D4;
+    --color-primary-contrast: #0E0E0E;
+    
+    /* Secondary Colors - Enhanced visibility */
+    --color-secondary: #9A6AFF;
+    --color-secondary-light: #B891FF;
+    --color-secondary-dark: #7645D9;
+    --color-secondary-contrast: #0E0E0E;
+    
+    /* Semantic Colors - Optimized for dark backgrounds */
+    --color-success: #68FFDA;
+    --color-success-light: #8AFFE6;
+    --color-success-dark: #31D0AA;
+    
+    --color-warning: #FFD67E;
+    --color-warning-light: #FFE4A3;
+    --color-warning-dark: #FFB237;
+    
+    --color-error: #FF65B8;
+    --color-error-light: #FF8AC9;
+    --color-error-dark: #ED4B9E;
+    
+    /* Background Colors - Dark theme palette */
+    --color-background-default: #0E0E0E;
+    --color-background-paper: #1A1A1A;
+    --color-background-alternative: #262626;
+    --color-background-gradient: linear-gradient(139.73deg, #0F1B1C 0%, #1A0F1F 100%);
+    
+    /* Text Colors - High contrast for readability */
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #B0B0B0;
+    --color-text-disabled: #666666;
+    --color-text-inverse: #0E0E0E;
+    
+    /* Border Colors */
+    --color-border-default: #333333;
+    --color-border-light: #404040;
+    
+    /* Custom Colors for Budget App - Dark variants */
+    --color-income: #68FFDA;
+    --color-expense: #FF65B8;
+    --color-savings: #33E1ED;
+    --color-food: #FFD67E;
+    --color-transport: #9A6AFF;
+    --color-entertainment: #FF8AC9;
+    --color-utilities: #7DFFF0;
+    --color-healthcare: #66D1F7;
+    --color-shopping: #FFB89A;
+    --color-education: #C593E8;
+    
+    /* Character Colors - Adjusted for dark theme */
+    --color-potato: #F4D03F;
+    --color-rabbit: #E8E8E8;
+    --color-potato-accent: #E67E22;
+    --color-rabbit-accent: #F1948A;
+    
+    /* Shadows - Enhanced for dark backgrounds */
+    --shadow-sm: 0px 2px 12px -8px rgba(0, 0, 0, 0.6), 0px 1px 1px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0px 4px 16px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0px 8px 32px rgba(0, 0, 0, 0.6);
+    --shadow-xl: 0px 20px 36px -8px rgba(0, 0, 0, 0.4), 0px 1px 1px rgba(0, 0, 0, 0.2);
+    --shadow-inset: inset 0px -1px 0px rgba(255, 255, 255, 0.1);
+    --shadow-focus: 0 0 0 1px #9A6AFF;
+    --shadow-warning: 0px 0px 0px 1px #FF65B8, 0px 0px 0px 4px rgba(255, 101, 184, 0.3);
+    --shadow-button: rgba(0, 0, 0, 0.4) 0px -2px 0px 0px inset;
+    --shadow-subtle: rgba(255, 255, 255, 0.05) 0px 2px 2px -1px inset;
+    
+    /* Custom Shadows for Cards */
+    --shadow-card: 0px 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-card-hover: 0px 8px 24px rgba(0, 0, 0, 0.5);
+    --shadow-transaction: 0px 2px 8px rgba(0, 0, 0, 0.3);
+    
+    /* Transaction Colors - Dark theme variants */
+    --transaction-income-bg: rgba(104, 255, 218, 0.15);
+    --transaction-expense-bg: rgba(255, 101, 184, 0.15);
+    --transaction-income-border: rgba(104, 255, 218, 0.4);
+    --transaction-expense-border: rgba(255, 101, 184, 0.4);
+    
+    /* Category Colors with Transparency - Dark optimized */
+    --category-food-bg: rgba(255, 214, 126, 0.15);
+    --category-transport-bg: rgba(154, 106, 255, 0.15);
+    --category-entertainment-bg: rgba(255, 138, 201, 0.15);
+    --category-utilities-bg: rgba(125, 255, 240, 0.15);
+    --category-healthcare-bg: rgba(102, 209, 247, 0.15);
+    --category-shopping-bg: rgba(255, 184, 154, 0.15);
+    --category-education-bg: rgba(197, 147, 232, 0.15);
+    
+    /* Character Specific */
+    --character-potato-shadow: 0px 4px 12px rgba(230, 126, 34, 0.4);
+    --character-rabbit-shadow: 0px 4px 12px rgba(241, 148, 138, 0.4);
+    
+    /* Progress Bar - Dark theme */
+    --progress-track-background: #404040;
+    --progress-fill-background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    
+    /* Input Components - Dark theme adjustments */
+    --input-background: #262626;
+    --input-background-focus: #333333;
+    --input-border-focus: var(--color-primary);
+    --input-border-error: var(--color-error);
+  }
+}
+
+/* Auto High Contrast Theme - when system prefers high contrast */
+@media (prefers-contrast: high) {
+  :root:not([data-theme]) {
+    /* Color scheme support */
+    color-scheme: light;
+    
+    /* High Contrast Colors - WCAG AAA compliant */
+    --color-primary: #0066CC;
+    --color-primary-light: #0080FF;
+    --color-primary-dark: #004499;
+    --color-primary-contrast: #FFFFFF;
+    
+    --color-secondary: #6600CC;
+    --color-secondary-light: #7700FF;
+    --color-secondary-dark: #440099;
+    --color-secondary-contrast: #FFFFFF;
+    
+    /* Semantic Colors - Maximum contrast */
+    --color-success: #006600;
+    --color-success-light: #008800;
+    --color-success-dark: #004400;
+    
+    --color-warning: #CC6600;
+    --color-warning-light: #FF8800;
+    --color-warning-dark: #994400;
+    
+    --color-error: #CC0000;
+    --color-error-light: #FF0000;
+    --color-error-dark: #990000;
+    
+    /* Background Colors - Pure contrast */
+    --color-background-default: #FFFFFF;
+    --color-background-paper: #FFFFFF;
+    --color-background-alternative: #F0F0F0;
+    --color-background-gradient: linear-gradient(139.73deg, #FFFFFF 0%, #F0F0F0 100%);
+    
+    /* Text Colors - Maximum contrast */
+    --color-text-primary: #000000;
+    --color-text-secondary: #000000;
+    --color-text-disabled: #666666;
+    --color-text-inverse: #FFFFFF;
+    
+    /* Border Colors - High contrast */
+    --color-border-default: #000000;
+    --color-border-light: #333333;
+    
+    /* Custom Colors for Budget App - High contrast variants */
+    --color-income: #006600;
+    --color-expense: #CC0000;
+    --color-savings: #0066CC;
+    --color-food: #CC6600;
+    --color-transport: #6600CC;
+    --color-entertainment: #CC0066;
+    --color-utilities: #006666;
+    --color-healthcare: #0099CC;
+    --color-shopping: #CC3300;
+    --color-education: #9900CC;
+    
+    /* Character Colors - High contrast */
+    --color-potato: #996633;
+    --color-rabbit: #CCCCCC;
+    --color-potato-accent: #663300;
+    --color-rabbit-accent: #999999;
+    
+    /* Shadows - Enhanced for accessibility */
+    --shadow-sm: 0px 2px 4px rgba(0, 0, 0, 0.8);
+    --shadow-md: 0px 4px 8px rgba(0, 0, 0, 0.8);
+    --shadow-lg: 0px 8px 16px rgba(0, 0, 0, 0.8);
+    --shadow-xl: 0px 16px 32px rgba(0, 0, 0, 0.8);
+    --shadow-inset: inset 0px -1px 0px rgba(0, 0, 0, 1);
+    --shadow-focus: 0 0 0 3px #000000;
+    --shadow-warning: 0px 0px 0px 2px #CC0000, 0px 0px 0px 5px rgba(204, 0, 0, 0.3);
+    --shadow-button: rgba(0, 0, 0, 0.8) 0px -3px 0px 0px inset;
+    --shadow-subtle: rgba(0, 0, 0, 0.3) 0px 2px 2px -1px inset;
+    
+    /* Custom Shadows for Cards */
+    --shadow-card: 0px 4px 8px rgba(0, 0, 0, 0.8);
+    --shadow-card-hover: 0px 8px 16px rgba(0, 0, 0, 0.8);
+    --shadow-transaction: 0px 2px 4px rgba(0, 0, 0, 0.6);
+    
+    /* Transaction Colors - High contrast */
+    --transaction-income-bg: rgba(0, 102, 0, 0.1);
+    --transaction-expense-bg: rgba(204, 0, 0, 0.1);
+    --transaction-income-border: rgba(0, 102, 0, 1);
+    --transaction-expense-border: rgba(204, 0, 0, 1);
+    
+    /* Category Colors with High Contrast */
+    --category-food-bg: rgba(204, 102, 0, 0.1);
+    --category-transport-bg: rgba(102, 0, 204, 0.1);
+    --category-entertainment-bg: rgba(204, 0, 102, 0.1);
+    --category-utilities-bg: rgba(0, 102, 102, 0.1);
+    --category-healthcare-bg: rgba(0, 153, 204, 0.1);
+    --category-shopping-bg: rgba(204, 51, 0, 0.1);
+    --category-education-bg: rgba(153, 0, 204, 0.1);
+    
+    /* Character Specific */
+    --character-potato-shadow: 0px 4px 8px rgba(102, 51, 0, 0.8);
+    --character-rabbit-shadow: 0px 4px 8px rgba(153, 153, 153, 0.8);
+    
+    /* Progress Bar - High contrast */
+    --progress-track-background: #CCCCCC;
+    --progress-fill-background: linear-gradient(90deg, #0066CC 0%, #6600CC 100%);
+    
+    /* Input Components - High contrast */
+    --input-background: #FFFFFF;
+    --input-background-focus: #FFFFFF;
+    --input-border-focus: #000000;
+    --input-border-error: #CC0000;
+  }
+}
+
+/* === THEME UTILITIES === */
+
+/* Focus ring auto-calculation system */
+:root[data-theme='light'] *:focus-visible,
+:root:not([data-theme]) *:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+:root[data-theme='dark'] *:focus-visible {
+  outline: 2px solid var(--color-primary-light);
+  outline-offset: 2px;
+}
+
+:root[data-theme='hc'] *:focus-visible {
+  outline: 3px solid var(--color-text-primary);
+  outline-offset: 2px;
+}
+
+/* Theme transition support */
+:root {
+  --theme-transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Apply smooth transitions when theme changes */
+* {
+  transition: var(--theme-transition);
+}
+
+/* Disable transitions during theme initialization */
+:root[data-theme-initializing] * {
+  transition: none !important;
+}
+
+/* === ANIMATION KEYFRAMES === */
+
+/* Character Reaction Keyframes */
+@keyframes success-bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(var(--reaction-success-scale)); }
+  100% { transform: scale(1); }
+}
+
+@keyframes warning-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(var(--reaction-warning-distance)); }
+  75% { transform: translateX(calc(var(--reaction-warning-distance) * -1)); }
+}
+
+@keyframes info-pulse {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% { 
+    transform: scale(var(--reaction-info-scale));
+    opacity: 0.8;
+  }
+}
+
+@keyframes error-shake {
+  0%, 100% { transform: translateX(0); }
+  16.66% { transform: translateX(var(--reaction-error-distance)); }
+  33.33% { transform: translateX(calc(var(--reaction-error-distance) * -1)); }
+  50% { transform: translateX(var(--reaction-error-distance)); }
+  66.66% { transform: translateX(calc(var(--reaction-error-distance) * -1)); }
+  83.33% { transform: translateX(var(--reaction-error-distance)); }
+}
+
+/* Toast Animation Keyframes */
+@keyframes toast-slide-in-right {
+  from {
+    transform: translateX(var(--toast-enter-distance));
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-slide-in-left {
+  from {
+    transform: translateX(calc(var(--toast-enter-distance) * -1));
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-slide-out-right {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(var(--toast-enter-distance));
+    opacity: 0;
+  }
+}
+
+@keyframes toast-slide-in-top {
+  from {
+    transform: translateY(calc(var(--toast-enter-distance) * -1));
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Modal Animation Keyframes */
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: var(--modal-backdrop-opacity);
+  }
+}
+
+@keyframes modal-scale-in {
+  from {
+    transform: scale(var(--modal-scale-from));
+    opacity: 0;
+  }
+  50% {
+    transform: scale(var(--modal-bounce-overshoot));
+  }
+  to {
+    transform: scale(var(--modal-scale-to));
+    opacity: 1;
+  }
+}
+
+@keyframes modal-bounce-in {
+  0% {
+    transform: scale(var(--modal-scale-from));
+    opacity: 0;
+  }
+  60% {
+    transform: scale(var(--modal-bounce-overshoot));
+    opacity: 1;
+  }
+  100% {
+    transform: scale(var(--modal-scale-to));
+  }
+}
+
+/* Potato Character Animations */
+@keyframes potato-gentle-bounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-4px) scale(1.02);
+  }
+}
+
+@keyframes potato-happy-wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(2deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+}
+
+/* Rabbit Character Animations */
+@keyframes rabbit-quick-hop {
+  0%, 100% {
+    transform: translateY(0) scaleY(1);
+  }
+  20% {
+    transform: translateY(-2px) scaleY(0.95);
+  }
+  40% {
+    transform: translateY(-6px) scaleY(1.05);
+  }
+  60% {
+    transform: translateY(-2px) scaleY(0.98);
+  }
+}
+
+@keyframes rabbit-ear-twitch {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+/* Button Ripple Effect */
+@keyframes ripple-effect {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Shimmer Effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Floating Animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Glow Effect */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--color-primary);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--color-primary), 0 0 30px var(--color-primary);
+  }
+}
+
+/* === ANIMATION UTILITY CLASSES === */
+
+/* Character Reaction Classes */
+.animate-success {
+  animation: success-bounce var(--reaction-success-duration) var(--reaction-success-ease);
+}
+
+.animate-warning {
+  animation: warning-shake var(--reaction-warning-duration) var(--reaction-warning-ease);
+}
+
+.animate-info {
+  animation: info-pulse var(--reaction-info-duration) var(--reaction-info-ease) var(--reaction-info-iterations);
+}
+
+.animate-error {
+  animation: error-shake var(--reaction-error-duration) var(--reaction-error-ease);
+}
+
+/* Character Specific Animations */
+.animate-potato-bounce {
+  animation: potato-gentle-bounce var(--dur-lg) var(--ease-potato) infinite;
+}
+
+.animate-potato-wiggle {
+  animation: potato-happy-wiggle var(--dur-md) var(--ease-bouncy);
+}
+
+.animate-rabbit-hop {
+  animation: rabbit-quick-hop var(--dur-md) var(--ease-rabbit);
+}
+
+.animate-rabbit-twitch {
+  animation: rabbit-ear-twitch var(--dur-xs) var(--ease-sharp) 3;
+}
+
+/* Toast Animation Classes */
+.toast-enter-right {
+  animation: toast-slide-in-right var(--toast-enter-duration) var(--toast-enter-ease);
+}
+
+.toast-enter-left {
+  animation: toast-slide-in-left var(--toast-enter-duration) var(--toast-enter-ease);
+}
+
+.toast-enter-top {
+  animation: toast-slide-in-top var(--toast-enter-duration) var(--toast-enter-ease);
+}
+
+.toast-exit-right {
+  animation: toast-slide-out-right var(--toast-exit-duration) var(--toast-exit-ease);
+}
+
+.toast-shake {
+  animation: error-shake var(--dur-sm) var(--ease-sharp);
+}
+
+/* Modal Animation Classes */
+.modal-backdrop-enter {
+  animation: modal-fade-in var(--dur-md) var(--ease-smooth);
+}
+
+.modal-content-enter {
+  animation: modal-scale-in var(--dur-md) var(--ease-bouncy);
+}
+
+.modal-content-bounce {
+  animation: modal-bounce-in var(--dur-lg) var(--ease-bouncy);
+}
+
+/* Utility Animation Classes */
+.animate-float {
+  animation: float var(--dur-2xl) var(--ease-smooth) infinite;
+}
+
+.animate-glow {
+  animation: glow var(--dur-xl) var(--ease-smooth) infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer var(--dur-xl) linear infinite;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent
+  );
+  background-size: 200% 100%;
+}
+
+/* === PERFORMANCE OPTIMIZATIONS === */
+
+/* GPU acceleration for animated elements */
+.animate-success,
+.animate-warning,
+.animate-info,
+.animate-error,
+.animate-potato-bounce,
+.animate-potato-wiggle,
+.animate-rabbit-hop,
+.animate-rabbit-twitch,
+.toast-enter-right,
+.toast-enter-left,
+.toast-enter-top,
+.toast-exit-right,
+.modal-content-enter,
+.modal-content-bounce,
+.animate-float,
+.animate-glow,
+.animate-shimmer {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Optimize animations for 60fps */
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    --animation-fill-mode: both;
+    --animation-play-state: running;
+  }
+}
+
+/* Battery-conscious animations */
+@media (prefers-reduced-motion: no-preference) and (update: fast) {
+  .animate-potato-bounce,
+  .animate-float {
+    animation-play-state: var(--animation-play-state, running);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (update: slow) {
+  .animate-potato-bounce,
+  .animate-float {
+    animation-play-state: paused;
+  }
+}
+
+/* ===================================================
+   IMAGE OPTIMIZATION TOKENS
+   =================================================== */
+
+/* Image aspect ratios for layout stability */
+:root {
+  --image-aspect-square: 1 / 1;
+  --image-aspect-landscape: 4 / 3;
+  --image-aspect-portrait: 3 / 4;
+  --image-aspect-wide: 16 / 9;
+  --image-aspect-ultrawide: 21 / 9;
+  --image-aspect-golden: 1.618 / 1;
+  
+  /* Character image ratios */
+  --character-aspect-ratio: var(--image-aspect-square);
+  --character-icon-aspect-ratio: var(--image-aspect-square);
+  
+  /* Avatar and profile image ratios */
+  --avatar-aspect-ratio: var(--image-aspect-square);
+  
+  /* Card and thumbnail image ratios */
+  --card-image-aspect-ratio: var(--image-aspect-landscape);
+  --thumbnail-aspect-ratio: var(--image-aspect-square);
+  
+  /* Object fit modes */
+  --image-fit-cover: cover;
+  --image-fit-contain: contain;
+  --image-fit-fill: fill;
+  --image-fit-scale-down: scale-down;
+  
+  /* Default image positioning */
+  --image-position-center: center;
+  --image-position-top: top;
+  --image-position-bottom: bottom;
+}
+
+/* ===================================================
+   IMAGE UTILITY CLASSES
+   =================================================== */
+
+/* Base image styles with modern optimization */
+img, 
+.image-base {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: var(--image-fit-cover);
+  object-position: var(--image-position-center);
+}
+
+/* Aspect ratio utilities */
+.image-square {
+  aspect-ratio: var(--image-aspect-square);
+}
+
+.image-landscape {
+  aspect-ratio: var(--image-aspect-landscape);
+}
+
+.image-portrait {
+  aspect-ratio: var(--image-aspect-portrait);
+}
+
+.image-wide {
+  aspect-ratio: var(--image-aspect-wide);
+}
+
+/* Character-specific image classes */
+.character-image {
+  aspect-ratio: var(--character-aspect-ratio);
+  object-fit: var(--image-fit-contain);
+  object-position: var(--image-position-center);
+}
+
+.character-icon {
+  aspect-ratio: var(--character-icon-aspect-ratio);
+  object-fit: var(--image-fit-cover);
+  object-position: var(--image-position-center);
+}
+
+/* Avatar styles */
+.avatar-image {
+  aspect-ratio: var(--avatar-aspect-ratio);
+  object-fit: var(--image-fit-cover);
+  object-position: var(--image-position-center);
+  border-radius: var(--radius-circle);
+}
+
+/* Card and thumbnail images */
+.card-image {
+  aspect-ratio: var(--card-image-aspect-ratio);
+  object-fit: var(--image-fit-cover);
+  object-position: var(--image-position-center);
+  border-radius: var(--card-border-radius);
+}
+
+.thumbnail-image {
+  aspect-ratio: var(--thumbnail-aspect-ratio);
+  object-fit: var(--image-fit-cover);
+  object-position: var(--image-position-center);
+}
+
+/* Object fit variations */
+.image-cover {
+  object-fit: var(--image-fit-cover);
+}
+
+.image-contain {
+  object-fit: var(--image-fit-contain);
+}
+
+.image-fill {
+  object-fit: var(--image-fit-fill);
+}
+
+.image-scale-down {
+  object-fit: var(--image-fit-scale-down);
+}
+
+/* Loading state for images */
+.image-loading {
+  background: var(--color-background-alternative);
+  background-image: 
+    linear-gradient(
+      45deg,
+      transparent 30%, 
+      rgba(255, 255, 255, 0.5) 50%, 
+      transparent 70%
+    );
+  background-size: 200% 200%;
+  animation: image-loading-shimmer 2s infinite ease-in-out;
+}
+
+@keyframes image-loading-shimmer {
+  0% { background-position: -200% -200%; }
+  100% { background-position: 200% 200%; }
+}
+
+/* Error state for images */
+.image-error {
+  background: var(--color-background-alternative);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.image-error::before {
+  content: '🖼️';
+  font-size: 2rem;
+  opacity: var(--opacity-disabled);
+}
+
+/* Responsive image optimizations */
+@media (max-width: 480px) {
+  .image-mobile-square {
+    aspect-ratio: var(--image-aspect-square);
+  }
+  
+  .image-mobile-wide {
+    aspect-ratio: var(--image-aspect-wide);
+  }
+}
+
+/* High contrast theme adjustments */
+:root[data-theme='hc'] {
+  .image-loading {
+    background: var(--color-border-light);
+    border: 2px solid var(--color-text-primary);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .image-loading {
+    animation: none;
+    background: var(--color-background-alternative);
+  }
+}
+
+/* === UTILITY MEASUREMENTS === */
+  
+  /* Border Width Tokens */
+  --border-width-thin: 1px;
+  --border-width-normal: 2px;
+  --border-width-thick: 3px;
+  --border-width-heavy: 4px;
+  --border-width-extra-heavy: 8px;
+  --border-width-focus-ring: 10px;
+  
+  /* Accessibility Measurements */
+  --sr-only-width: 1px;
+  --sr-only-height: 1px;
+  --sr-only-margin: -1px;
+  --skip-link-offset: -40px;
+  --skip-link-padding: 6px;
+  --focus-outline-width: 2px;
+  --focus-outline-offset: 2px;
+  --focus-ring-blur: 4px;
+  --high-contrast-outline: 3px;
+  
+  /* Arrow/Triangle Measurements */
+  --arrow-size-sm: 6px;
+  --arrow-size-md: 8px;
+  --arrow-size-lg: 10px;
+  --tooltip-arrow-outer: 10px;
+  --tooltip-arrow-inner: 8px;
+  --tooltip-offset-top: -8px;
+  --tooltip-offset-inner: -6px;
+  
+  /* Character & Icon Measurements */
+  --character-icon-size-sm: 32px;
+  --character-icon-size-md: 48px;
+  --character-icon-size-lg: 64px;
+  --character-icon-size-xl: 80px;
+  --icon-dropdown-shadow: 2px;
+  --notification-badge-size: 16px;
+  --notification-badge-offset: -8px;
+  --notification-badge-min-width: 16px;
+  
+  /* Transform & Animation Values */
+  --transform-hover-lift: -2px;
+  --transform-hover-lift-light: -1px;
+  --transform-scale-hover: 1.05;
+  --transform-scale-press: 0.98;
+  --transform-scale-character: 1.1;
+  --transform-rotate-slight: 3deg;
+  --transform-rotate-moderate: 5deg;
+  --animation-bounce-distance: -12px;
+  --animation-shake-distance: 2px;
+  --animation-wiggle-rotation: 5deg;
+  
+  /* Opacity Values */
+  --opacity-backdrop: 0.05;
+  --opacity-backdrop-hover: 0.1;
+  --opacity-backdrop-focus: 0.2;
+  --opacity-backdrop-active: 0.3;
+  --opacity-debug: 0.7;
+  --opacity-debug-high-contrast: 0.9;
+  --opacity-shadow: 0.3;
+  --opacity-shadow-hover: 0.4;
+  
+  /* Color Values for Migration */
+  --color-hardcoded-potato-brown: #996633;
+  --color-hardcoded-rabbit-gray: #CCCCCC;
+  --color-hardcoded-white-backdrop: rgba(255, 255, 255, 0.05);
+  --color-hardcoded-white-border: rgba(255, 255, 255, 0.1);
+  --color-hardcoded-white-hover: rgba(255, 255, 255, 0.1);
+  --color-hardcoded-focus-ring: rgba(31, 199, 212, 0.2);
+  --color-hardcoded-focus-ring-intense: rgba(31, 199, 212, 0.3);
+  --color-hardcoded-income-shadow: rgba(49, 208, 170, 0.3);
+  --color-hardcoded-warning-shadow: rgba(255, 178, 55, 0.3);
+  --color-hardcoded-primary-shadow: rgba(31, 199, 212, 0.3);
+  --color-hardcoded-error-shadow: rgba(237, 75, 158, 0.3);
+  
+  /* Box Shadow Values */
+  --shadow-character-drop: 0 1px 2px rgba(0, 0, 0, 0.1);
+  --shadow-notification-badge: 0 4px 16px var(--color-hardcoded-income-shadow);
+  --shadow-notification-hover: 0 6px 20px var(--color-hardcoded-income-shadow);
+  --shadow-error-button: 0 4px 16px rgba(229, 115, 115, 0.3);
+  --shadow-error-hover: 0 6px 20px rgba(229, 115, 115, 0.4);
+  --shadow-icon-income: 0 2px 8px var(--color-hardcoded-income-shadow);
+  --shadow-icon-warning: 0 2px 8px var(--color-hardcoded-warning-shadow);
+  --shadow-icon-primary: 0 2px 8px var(--color-hardcoded-primary-shadow);
+  --shadow-icon-error: 0 2px 8px var(--color-hardcoded-error-shadow);
+
+/* === THEME DEBUGGING (Remove in production) === */
+:root[data-theme='light']::before {
+  content: '🌞 Light Theme Active';
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: var(--color-background-paper);
+  color: var(--color-text-primary);
+  padding: 4px 8px;
+  font-size: 0.75rem; /* 12px -> 0.75rem */
+  border-radius: 4px;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+:root[data-theme='dark']::before {
+  content: '🌙 Dark Theme Active';
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: var(--color-background-paper);
+  color: var(--color-text-primary);
+  padding: 4px 8px;
+  font-size: 0.75rem; /* 12px -> 0.75rem */
+  border-radius: 4px;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+:root[data-theme='hc']::before {
+  content: '🔍 High Contrast Theme Active';
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: var(--color-background-paper);
+  color: var(--color-text-primary);
+  padding: 4px 8px;
+  font-size: 0.75rem; /* 12px -> 0.75rem */
+  border: 2px solid var(--color-text-primary);
+  border-radius: 4px;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.9;
+}
