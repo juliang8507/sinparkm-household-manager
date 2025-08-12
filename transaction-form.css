@@ -33,6 +33,8 @@ body {
     max-width: var(--app-max-width);
     margin: 0 auto;
     padding: 0 var(--app-padding);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Utility Classes */
@@ -75,13 +77,12 @@ body {
     padding: var(--spacing-md) 0;
     height: var(--header-height);
     position: relative;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .header-content .theme-switcher {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    /* flexbox로 정렬 처리, absolute 제거 */
 }
 
 .back-button {
@@ -120,6 +121,8 @@ body {
     gap: var(--spacing-sm);
     flex: 1;
     justify-content: center;
+    /* 높이 명시적 설정으로 정렬 문제 해결 */
+    height: var(--mobile-tap-target-size);
 }
 
 .title-icon {
@@ -197,6 +200,23 @@ body {
     display: flex;
     flex-direction: column;
     gap: var(--space-xl);
+    /* 폼 섹션 수직 정렬 강화 */
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* 모든 폼 섹션의 정렬 통일 */
+.transaction-form > .amount-section,
+.transaction-form > .category-section,
+.transaction-form > .date-section,
+.transaction-form > .description-section,
+.transaction-form > .action-section {
+    align-self: center;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .section-title {
@@ -215,6 +235,11 @@ body {
     text-align: center;
     padding: var(--space-lg) 0;
     position: relative;
+    /* 섹션 수직 정렬 일관성 */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .character-container {
@@ -277,6 +302,11 @@ body {
    ==================================== */
 .transaction-toggle-section {
     padding: 0 var(--space-md);
+    /* 섹션 수직 정렬 일관성 */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .transaction-toggle {
@@ -368,11 +398,14 @@ body {
     padding: var(--spacing-xl) var(--spacing-md);
     background: var(--color-background-gradient);
     border-radius: var(--card-border-radius);
-    margin: 0 var(--spacing-md);
+    margin: 0;
     box-shadow: var(--shadow-card);
     text-align: center;
     position: relative;
     border: var(--card-border);
+    /* 섹션 수직 정렬 일관성 */
+    width: 100%;
+    align-self: center;
 }
 
 .amount-container {
@@ -439,6 +472,11 @@ body {
    ==================================== */
 .category-section {
     padding: 0 var(--space-md);
+    /* 섹션 수직 정렬 일관성 */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .category-grid {
@@ -527,6 +565,11 @@ body {
    ==================================== */
 .date-section {
     padding: 0 var(--space-md);
+    /* 섹션 수직 정렬 일관성 */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .date-input-wrapper {
@@ -581,6 +624,11 @@ body {
    ==================================== */
 .description-section {
     padding: 0 var(--space-md);
+    /* 섹션 수직 정렬 일관성 */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .description-wrapper {
@@ -633,11 +681,24 @@ body {
 .action-section {
     padding: 0 var(--space-md);
     margin-top: var(--space-xl);
+    /* 섹션 수직 정렬 일관성 */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .button-group {
     display: flex;
-    gap: var(--space-md);
+    gap: 16px; /* 고정값으로 강제 설정 */
+    /* 버튼 간격 강화 */
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.button-group button:not(:last-child) {
+    margin-right: 16px; /* 추가 마진으로 확실히 간격 보장 */
 }
 
 .secondary-button,
@@ -835,10 +896,11 @@ body {
 .toast {
     position: fixed;
     top: var(--space-xl);
-    right: var(--space-xl);
+    right: var(--space-sm);
+    left: var(--space-sm);
     background: white;
     border-radius: 12px;
-    padding: var(--space-md) var(--space-lg);
+    padding: var(--space-sm) var(--space-md);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
     z-index: var(--z-index-skip-link);
     display: flex;
@@ -846,7 +908,14 @@ body {
     gap: var(--space-sm);
     transform: translateX(100%);
     transition: transform 0.3s var(--ease-out);
-    max-width: 300px;
+    max-width: calc(100vw - 2 * var(--space-sm));
+    min-width: 0;
+    /* 모바일 오버플로우 방지 */
+    width: auto;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    overflow: hidden;
 }
 
 .toast.show {
@@ -1027,6 +1096,19 @@ body {
 }
 
 /* ====================================
+   모바일 환경에서 Toast 오버플로우 방지
+   ==================================== */
+@media (max-width: 767px) {
+    .toast {
+        right: var(--space-xs);
+        left: var(--space-xs);
+        max-width: calc(100vw - 2 * var(--space-xs));
+        padding: var(--space-xs) var(--space-sm);
+        top: var(--space-sm);
+    }
+}
+
+/* ====================================
    Responsive Design - Tablet
    ==================================== */
 @media (min-width: 768px) {
@@ -1104,9 +1186,6 @@ body {
         --container-padding: 32px;
     }
 
-    .container {
-        max-width: 1200px;
-    }
 
     .transaction-form {
         max-width: 600px;

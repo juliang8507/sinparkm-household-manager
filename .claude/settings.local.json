@@ -38,7 +38,22 @@
       "mcp__shrimp-task-manager__split_tasks",
       "mcp__shrimp-task-manager__execute_task",
       "mcp__shrimp-task-manager__verify_task",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(PORT=5173 node test-server.js)",
+      "Bash(npx playwright test:*)",
+      "Bash(npm run test:a11y:*)",
+      "Bash(npm run test:keyboard:*)",
+      "Bash(npx lighthouse:*)",
+      "mcp__playwright-stealth__start_codegen_session",
+      "Bash(PORT=5174 node test-server.js)",
+      "mcp__playwright-stealth__playwright_console_logs",
+      "mcp__github-mcp__create_repository",
+      "mcp__github-mcp__search_repositories",
+      "mcp__windows-mcp__State-Tool",
+      "mcp__windows-mcp__Click-Tool",
+      "mcp__windows-mcp__Switch-Tool",
+      "Bash(git init:*)"
     ],
     "deny": []
   }

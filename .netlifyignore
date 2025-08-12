@@ -1,0 +1,58 @@
+# 🥔🐰 감자토끼 가계부 - Netlify 무시 파일
+
+# 개발 의존성
+node_modules/
+.git/
+.github/
+
+# 테스트 파일
+tests/
+test-report/
+playwright-report/
+coverage/
+*.test.js
+jest.config.*
+playwright.config.js
+
+# 개발 도구
+take-screenshots.js
+manual-qa-test.js
+accessibility-qa-test.js
+generate-qa-report.js
+performance-qa-test.js
+
+# 서버 파일 (정적 배포이므로 불필요)
+server.js
+*.log
+
+# 임시 파일
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# 빌드 도구 설정
+.eslintrc.*
+.prettierrc.*
+webpack.config.js
+vite.config.js
+
+# 개발 환경 파일
+.env.local
+.env.development
+.env.test
+
+# 문서 (README는 포함)
+*.md
+!README.md
+
+# 스크린샷 (너무 많은 용량)
+screenshots/
+*-screenshot.png
+*-2025-*.png
+
+# 기타 불필요한 파일
+package-lock.json
+yarn.lock
+.vscode/
+.idea/

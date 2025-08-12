@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-11T07:58:16.809Z",
+  "timestamp": "2025-08-12T10:58:54.061Z",
   "totalTests": 7,
   "passedTests": 5,
   "results": {
@@ -89,11 +89,11 @@
     ],
     "performance": [
       {
-        "loadTime": 92,
-        "domContentLoaded": 89,
-        "firstPaint": 84.5,
+        "loadTime": 31,
+        "domContentLoaded": 28,
+        "firstPaint": 50,
         "lcp": 0,
-        "cls": 1.8690311148501786,
+        "cls": 1.4408781225074478,
         "resourceCount": 32,
         "transferSize": 300,
         "domElements": 259

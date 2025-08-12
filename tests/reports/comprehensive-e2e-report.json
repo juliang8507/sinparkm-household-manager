@@ -1,0 +1,189 @@
+{
+  "timestamp": "2025-08-11T23:52:31.747Z",
+  "summary": {
+    "total": 13,
+    "passed": 13,
+    "failed": 0,
+    "successRate": "100.0"
+  },
+  "tests": [
+    {
+      "name": "홈페이지 로딩",
+      "status": "PASSED",
+      "duration": 1468,
+      "error": null
+    },
+    {
+      "name": "캐릭터 인터랙션",
+      "status": "PASSED",
+      "duration": 2328,
+      "error": null
+    },
+    {
+      "name": "요약 카드 검증",
+      "status": "PASSED",
+      "duration": 195,
+      "error": null
+    },
+    {
+      "name": "빠른 액션 버튼",
+      "status": "PASSED",
+      "duration": 164,
+      "error": null
+    },
+    {
+      "name": "거래 목록 검증",
+      "status": "PASSED",
+      "duration": 167,
+      "error": null
+    },
+    {
+      "name": "네비게이션 테스트",
+      "status": "PASSED",
+      "duration": 6531,
+      "error": null
+    },
+    {
+      "name": "반응형 디자인 테스트",
+      "status": "PASSED",
+      "duration": 4809,
+      "error": null
+    },
+    {
+      "name": "테마 전환 테스트",
+      "status": "PASSED",
+      "duration": 2187,
+      "error": null
+    },
+    {
+      "name": "접근성 테스트",
+      "status": "PASSED",
+      "duration": 546,
+      "error": null
+    },
+    {
+      "name": "키보드 내비게이션",
+      "status": "PASSED",
+      "duration": 2789,
+      "error": null
+    },
+    {
+      "name": "성능 검증",
+      "status": "PASSED",
+      "duration": 665,
+      "error": null
+    },
+    {
+      "name": "에러 처리 테스트",
+      "status": "PASSED",
+      "duration": 3048,
+      "error": null
+    },
+    {
+      "name": "데이터 지속성 테스트",
+      "status": "PASSED",
+      "duration": 4,
+      "error": null
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "homepage-loaded",
+      "description": "홈페이지 로딩 완료",
+      "filename": "e2e-homepage-loaded-2025-08-11T23-52-07-991Z.png",
+      "filepath": "tests\\screenshots\\e2e-homepage-loaded-2025-08-11T23-52-07-991Z.png"
+    },
+    {
+      "name": "character-interaction",
+      "description": "캐릭터 인터랙션 테스트",
+      "filename": "e2e-character-interaction-2025-08-11T23-52-10-447Z.png",
+      "filepath": "tests\\screenshots\\e2e-character-interaction-2025-08-11T23-52-10-447Z.png"
+    },
+    {
+      "name": "summary-cards",
+      "description": "요약 카드 검증",
+      "filename": "e2e-summary-cards-2025-08-11T23-52-10-652Z.png",
+      "filepath": "tests\\screenshots\\e2e-summary-cards-2025-08-11T23-52-10-652Z.png"
+    },
+    {
+      "name": "quick-actions",
+      "description": "빠른 액션 버튼 검증",
+      "filename": "e2e-quick-actions-2025-08-11T23-52-10-844Z.png",
+      "filepath": "tests\\screenshots\\e2e-quick-actions-2025-08-11T23-52-10-844Z.png"
+    },
+    {
+      "name": "transaction-list",
+      "description": "거래 목록 검증",
+      "filename": "e2e-transaction-list-2025-08-11T23-52-11-014Z.png",
+      "filepath": "tests\\screenshots\\e2e-transaction-list-2025-08-11T23-52-11-014Z.png"
+    },
+    {
+      "name": "transaction-history-page",
+      "description": "거래 내역 페이지",
+      "filename": "e2e-transaction-history-page-2025-08-11T23-52-13-246Z.png",
+      "filepath": "tests\\screenshots\\e2e-transaction-history-page-2025-08-11T23-52-13-246Z.png"
+    },
+    {
+      "name": "meal-planning-page",
+      "description": "식단 계획 페이지",
+      "filename": "e2e-meal-planning-page-2025-08-11T23-52-17-559Z.png",
+      "filepath": "tests\\screenshots\\e2e-meal-planning-page-2025-08-11T23-52-17-559Z.png"
+    },
+    {
+      "name": "responsive-mobile",
+      "description": "반응형 디자인 - mobile",
+      "filename": "e2e-responsive-mobile-2025-08-11T23-52-18-726Z.png",
+      "filepath": "tests\\screenshots\\e2e-responsive-mobile-2025-08-11T23-52-18-726Z.png"
+    },
+    {
+      "name": "responsive-tablet",
+      "description": "반응형 디자인 - tablet",
+      "filename": "e2e-responsive-tablet-2025-08-11T23-52-19-880Z.png",
+      "filepath": "tests\\screenshots\\e2e-responsive-tablet-2025-08-11T23-52-19-880Z.png"
+    },
+    {
+      "name": "responsive-desktop",
+      "description": "반응형 디자인 - desktop",
+      "filename": "e2e-responsive-desktop-2025-08-11T23-52-21-166Z.png",
+      "filepath": "tests\\screenshots\\e2e-responsive-desktop-2025-08-11T23-52-21-166Z.png"
+    },
+    {
+      "name": "responsive-large-desktop",
+      "description": "반응형 디자인 - large-desktop",
+      "filename": "e2e-responsive-large-desktop-2025-08-11T23-52-22-307Z.png",
+      "filepath": "tests\\screenshots\\e2e-responsive-large-desktop-2025-08-11T23-52-22-307Z.png"
+    },
+    {
+      "name": "theme-light",
+      "description": "라이트 테마",
+      "filename": "e2e-theme-light-2025-08-11T23-52-22-507Z.png",
+      "filepath": "tests\\screenshots\\e2e-theme-light-2025-08-11T23-52-22-507Z.png"
+    },
+    {
+      "name": "theme-dark",
+      "description": "다크 테마",
+      "filename": "e2e-theme-dark-2025-08-11T23-52-23-162Z.png",
+      "filepath": "tests\\screenshots\\e2e-theme-dark-2025-08-11T23-52-23-162Z.png"
+    },
+    {
+      "name": "theme-high-contrast",
+      "description": "하이 컨트라스트 테마",
+      "filename": "e2e-theme-high-contrast-2025-08-11T23-52-23-942Z.png",
+      "filepath": "tests\\screenshots\\e2e-theme-high-contrast-2025-08-11T23-52-23-942Z.png"
+    },
+    {
+      "name": "accessibility-check",
+      "description": "접근성 요소 검증",
+      "filename": "e2e-accessibility-check-2025-08-11T23-52-25-098Z.png",
+      "filepath": "tests\\screenshots\\e2e-accessibility-check-2025-08-11T23-52-25-098Z.png"
+    },
+    {
+      "name": "keyboard-navigation",
+      "description": "키보드 네비게이션 테스트",
+      "filename": "e2e-keyboard-navigation-2025-08-11T23-52-27-874Z.png",
+      "filepath": "tests\\screenshots\\e2e-keyboard-navigation-2025-08-11T23-52-27-874Z.png"
+    }
+  ],
+  "browser": "Chromium",
+  "viewport": "1280x720"
+}

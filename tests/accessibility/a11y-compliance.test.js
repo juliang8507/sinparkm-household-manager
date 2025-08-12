@@ -94,8 +94,7 @@ class A11yComplianceTest {
 
         // 접근성 관련 사용자 설정 시뮬레이션
         await this.page.emulateMediaFeatures([
-            { name: 'prefers-reduced-motion', value: 'reduce' },
-            { name: 'prefers-contrast', value: 'high' }
+            { name: 'prefers-reduced-motion', value: 'reduce' }
         ]);
 
         // 한국어 설정

@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>감자토끼 가계부 - 레이아웃 정렬 E2E 테스트 최종 보고서</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Malgun Gothic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1FC7D4 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, #FF6B6B 0%, #1FC7D4 100%);
+            color: white;
+            border-radius: 15px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .summary-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s ease;
+        }
+        
+        .summary-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .summary-card.warning {
+            border-left: 5px solid #FF9800;
+        }
+        
+        .summary-card.issues {
+            border-left: 5px solid #FF6B6B;
+        }
+        
+        .summary-card.coverage {
+            border-left: 5px solid #2196F3;
+        }
+        
+        .summary-card .metric {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .summary-card.warning .metric {
+            color: #FF9800;
+        }
+        
+        .summary-card.issues .metric {
+            color: #FF6B6B;
+        }
+        
+        .summary-card.coverage .metric {
+            color: #2196F3;
+        }
+        
+        .summary-card .label {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #FF6B6B;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .issues-list {
+            background: #fff3f3;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid #FF6B6B;
+        }
+        
+        .issue-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            gap: 1rem;
+        }
+        
+        .issue-item:last-child {
+            border-bottom: none;
+        }
+        
+        .issue-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            background: #FF6B6B;
+            color: white;
+        }
+        
+        .issue-content {
+            flex: 1;
+        }
+        
+        .issue-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .issue-description {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+        
+        .issue-details {
+            font-size: 0.9rem;
+            color: #999;
+            background: #f8f9fa;
+            padding: 0.5rem;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        
+        .test-status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .test-status-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            border-left: 4px solid #28a745;
+        }
+        
+        .test-status-card.failed {
+            border-left-color: #dc3545;
+            background: #fff5f5;
+        }
+        
+        .test-status-card h4 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .test-result {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .test-name {
+            font-weight: 500;
+        }
+        
+        .test-duration {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .recommendations {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+        
+        .recommendations h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .recommendations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .recommendation-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .recommendation-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .recommendation-item ul {
+            list-style: none;
+        }
+        
+        .recommendation-item li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        
+        .recommendation-item li::before {
+            content: "🔧";
+            font-size: 1rem;
+            margin-top: 0.1rem;
+        }
+        
+        .technical-details {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .technical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .tech-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .tech-item h4 {
+            color: #FF6B6B;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-label {
+            color: #666;
+        }
+        
+        .metric-value {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .timestamp {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .recommendations-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .technical-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🥔🐰 감자토끼 가계부</h1>
+            <div class="subtitle">레이아웃 정렬 E2E 테스트 최종 보고서</div>
+        </div>
+
+        <div class="summary-grid">
+            <div class="summary-card warning">
+                <div class="metric">64.3%</div>
+                <div class="label">테스트 성공률</div>
+            </div>
+            <div class="summary-card issues">
+                <div class="metric">10</div>
+                <div class="label">실패한 테스트</div>
+            </div>
+            <div class="summary-card coverage">
+                <div class="metric">24</div>
+                <div class="label">생성된 스크린샷</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">⚠️ 발견된 정렬 이슈</h2>
+            <div class="issues-list">
+                <div class="issue-item">
+                    <div class="issue-icon">1</div>
+                    <div class="issue-content">
+                        <div class="issue-title">컨테이너 중앙 정렬 오차</div>
+                        <div class="issue-description">페이지 전반적으로 컨테이너가 중앙에서 17px 오차</div>
+                        <div class="issue-details">영향 페이지: 홈페이지, 거래 등록, 식단 계획 | 오차범위: 17.0px</div>
+                    </div>
+                </div>
+                
+                <div class="issue-item">
+                    <div class="issue-icon">2</div>
+                    <div class="issue-content">
+                        <div class="issue-title">헤더 요소 수평 정렬 불일치</div>
+                        <div class="issue-description">하위 페이지 헤더 내 요소들이 수평으로 정렬되지 않음</div>
+                        <div class="issue-details">거래 내역: 8.5px, 거래 등록: 5.5px, 식단 계획: 10.0px 오차</div>
+                    </div>
+                </div>
+                
+                <div class="issue-item">
+                    <div class="issue-icon">3</div>
+                    <div class="issue-content">
+                        <div class="issue-title">폼 버튼 간격 문제</div>
+                        <div class="issue-description">거래 등록 폼에서 버튼들 간 적절한 간격이 없음</div>
+                        <div class="issue-details">현재 간격: 0.0px | 권장 간격: 8-32px</div>
+                    </div>
+                </div>
+                
+                <div class="issue-item">
+                    <div class="issue-icon">4</div>
+                    <div class="issue-content">
+                        <div class="issue-title">폼 섹션 수직 정렬 불일치</div>
+                        <div class="issue-description">거래 등록 폼의 섹션들이 수직으로 정렬되지 않음</div>
+                        <div class="issue-details">오차: 16.0px | 선택자: .form section, .transaction-form section</div>
+                    </div>
+                </div>
+                
+                <div class="issue-item">
+                    <div class="issue-icon">5</div>
+                    <div class="issue-content">
+                        <div class="issue-title">모바일 환경 오버플로우</div>
+                        <div class="issue-description">Toast 메시지가 모바일 화면을 벗어남</div>
+                        <div class="issue-details">거래 등록: +27px, 식단 계획: +66px 오버플로우</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">📋 페이지별 테스트 결과</h2>
+            <div class="test-status-grid">
+                <div class="test-status-card">
+                    <h4>🏠 홈페이지 (index)</h4>
+                    <div class="test-result">
+                        <span class="test-name">헤더 정렬</span>
+                        <span class="test-duration">✅ 통과 (51ms)</span>
+                    </div>
+                    <div class="test-result">
+                        <span class="test-name">네비게이션 정렬</span>
+                        <span class="test-duration">✅ 통과 (35ms)</span>
+                    </div>
+                    <div class="test-result">
+                        <span class="test-name">콘텐츠 영역</span>
+                        <span class="test-duration">❌ 실패 - 17px 오차</span>
+                    </div>
+                    <div class="test-result">
+                        <span class="test-name">반응형 디자인</span>
+                        <span class="test-duration">✅ 통과 (5999ms)</span>
+                    </div>
+                </div>
+
+                <div class="test-status-card failed">
+                    <h4>📊 거래 내역 (transaction-history)</h4>
+                    <div class="test-result">
+                        <span class="test-name">헤더 정렬</span>
+                        <span class="test-duration">❌ 실패 - 8.5px 오차</span>
+                    </div>
+                    <div class="test-result">
+                        <span class="test-name">콘텐츠 영역</span>
+                        <span class="test-duration">✅ 통과 (15ms)</span>
+                    </div>
+                    <div class="test-result">
+                        <span class="test-name">반응형 디자인</span>
+                        <span class="test-duration">✅ 통과 (5733ms)</span>
+                    </div>
+                </div>
+
+                <div class="test-status-card failed">
+                    <h4>📝 거래 등록 (transaction-form)</h4>
+                    <div class="test-result">
+                        <span class="test-name">헤더 정렬</span>
+                        <span class="test-duration">❌ 실패 - 5.5px 오차</span>
+                    </div>
+                    <div class="test-result">
+                        <span class="test-name">콘텐츠 영역</span>
+                        <span class="test-duration">❌ 실패 - 17px 오차</span>
+                    </div>
+                    <div class="test-result">
+                        <span class="test-name">버튼 요소</span>
+                        <span class="test-duration">❌ 실패 - 0px 간격</span>
+                    </div>
+                    <div class="test-result">
+                        <span class="test-name">폼 요소</span>
+                        <span class="test-duration">❌ 실패 - 16px 오차</span>
+                    </div>
+                    <div class="test-result">
+                        <span class="test-name">반응형 디자인</span>
+                        <span class="test-duration">❌ 실패 - 오버플로우</span>
+                    </div>
+                </div>
+
+                <div class="test-status-card failed">
+                    <h4>🍽️ 식단 계획 (meal-planning)</h4>
+                    <div class="test-result">
+                        <span class="test-name">헤더 정렬</span>
+                        <span class="test-duration">❌ 실패 - 10px 오차</span>
+                    </div>
+                    <div class="test-result">
+                        <span class="test-name">콘텐츠 영역</span>
+                        <span class="test-duration">❌ 실패 - 17px 오차</span>
+                    </div>
+                    <div class="test-result">
+                        <span class="test-name">반응형 디자인</span>
+                        <span class="test-duration">❌ 실패 - 오버플로우</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendations">
+            <h3>🔧 개선 권장사항</h3>
+            <div class="recommendations-grid">
+                <div class="recommendation-item">
+                    <h4>🎯 우선순위 높음</h4>
+                    <ul>
+                        <li>컨테이너 중앙 정렬 CSS 수정 (17px 오차)</li>
+                        <li>Toast 메시지 모바일 오버플로우 해결</li>
+                        <li>거래 등록 폼 버튼 간격 추가 (8-16px)</li>
+                        <li>폼 섹션들의 수직 정렬 통일</li>
+                    </ul>
+                </div>
+                <div class="recommendation-item">
+                    <h4>⚙️ 기술적 개선</h4>
+                    <ul>
+                        <li>CSS Flexbox/Grid 활용한 정렬 개선</li>
+                        <li>반응형 오버플로우 체크 추가</li>
+                        <li>헤더 레이아웃 일관성 향상</li>
+                        <li>정렬 허용 오차 범위 재검토 (현재 3-5px)</li>
+                    </ul>
+                </div>
+                <div class="recommendation-item">
+                    <h4>📏 디자인 시스템</h4>
+                    <ul>
+                        <li>일관된 간격 토큰 시스템 도입</li>
+                        <li>컴포넌트별 정렬 가이드라인 수립</li>
+                        <li>모바일 환경 최소 마진 정의</li>
+                        <li>정기적인 레이아웃 검증 자동화</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="technical-details">
+            <h2 class="section-title">🔧 기술적 세부 사항</h2>
+            <div class="technical-grid">
+                <div class="tech-item">
+                    <h4>테스트 커버리지</h4>
+                    <div class="metric-row">
+                        <span class="metric-label">테스트된 페이지</span>
+                        <span class="metric-value">4개</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">테스트된 뷰포트</span>
+                        <span class="metric-value">5개</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">실행된 테스트</span>
+                        <span class="metric-value">28개</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">생성된 스크린샷</span>
+                        <span class="metric-value">24개</span>
+                    </div>
+                </div>
+                
+                <div class="tech-item">
+                    <h4>정렬 허용 오차</h4>
+                    <div class="metric-row">
+                        <span class="metric-label">중앙 정렬</span>
+                        <span class="metric-value">5px</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">수평 정렬</span>
+                        <span class="metric-value">3px</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">수직 정렬</span>
+                        <span class="metric-value">3px</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">오버플로우 임계치</span>
+                        <span class="metric-value">20px</span>
+                    </div>
+                </div>
+                
+                <div class="tech-item">
+                    <h4>테스트 환경</h4>
+                    <div class="metric-row">
+                        <span class="metric-label">브라우저</span>
+                        <span class="metric-value">Chromium</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">테스트 프레임워크</span>
+                        <span class="metric-value">Puppeteer + Stealth</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">기본 뷰포트</span>
+                        <span class="metric-value">1280x720</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">서버 포트</span>
+                        <span class="metric-value">5174</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="timestamp">
+            보고서 생성 시간: 2025년 8월 12일 09:14 (KST)<br>
+            테스트 유형: Layout Alignment Verification | 스크린샷: 24개 | 실행 시간: ~60초
+        </div>
+    </div>
+</body>
+</html>

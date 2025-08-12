@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>감자토끼 가계부 - 종합 E2E 테스트 최종 보고서</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Malgun Gothic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            background: linear-gradient(135deg, #1FC7D4 0%, #1E88E5 100%);
+            color: white;
+            border-radius: 15px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .summary-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 1px solid #e0e0e0;
+            transition: transform 0.3s ease;
+        }
+        
+        .summary-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .summary-card.success {
+            border-left: 5px solid #4CAF50;
+        }
+        
+        .summary-card.performance {
+            border-left: 5px solid #2196F3;
+        }
+        
+        .summary-card.coverage {
+            border-left: 5px solid #FF9800;
+        }
+        
+        .summary-card .metric {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .summary-card.success .metric {
+            color: #4CAF50;
+        }
+        
+        .summary-card.performance .metric {
+            color: #2196F3;
+        }
+        
+        .summary-card.coverage .metric {
+            color: #FF9800;
+        }
+        
+        .summary-card .label {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #1FC7D4;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .test-list {
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .test-item {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
+            transition: background-color 0.3s ease;
+        }
+        
+        .test-item:last-child {
+            border-bottom: none;
+        }
+        
+        .test-item:hover {
+            background-color: #ffffff;
+        }
+        
+        .test-status {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .test-status.passed {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .test-item-content {
+            flex: 1;
+        }
+        
+        .test-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .test-duration {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .highlights {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+        
+        .highlights h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        
+        .highlight-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .highlight-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .highlight-item ul {
+            list-style: none;
+        }
+        
+        .highlight-item li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .highlight-item li::before {
+            content: "✅";
+            font-size: 1rem;
+        }
+        
+        .technical-details {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .technical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .tech-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .tech-item h4 {
+            color: #1FC7D4;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .metric-row:last-child {
+            border-bottom: none;
+        }
+        
+        .metric-label {
+            color: #666;
+        }
+        
+        .metric-value {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .recommendation {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .recommendation h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .emoji {
+            font-size: 2rem;
+            margin: 0 0.5rem;
+        }
+        
+        .timestamp {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .technical-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🥔🐰 감자토끼 가계부</h1>
+            <div class="subtitle">종합 E2E 테스트 최종 보고서</div>
+        </div>
+
+        <div class="summary-grid">
+            <div class="summary-card success">
+                <div class="metric">100%</div>
+                <div class="label">테스트 성공률</div>
+            </div>
+            <div class="summary-card performance">
+                <div class="metric">13/13</div>
+                <div class="label">통과 테스트</div>
+            </div>
+            <div class="summary-card coverage">
+                <div class="metric">16</div>
+                <div class="label">스크린샷 생성</div>
+            </div>
+        </div>
+
+        <div class="highlights">
+            <h3>🎉 주요 성과</h3>
+            <div class="highlights-grid">
+                <div class="highlight-item">
+                    <h4>🔍 전체적인 검증 완료</h4>
+                    <ul>
+                        <li>홈페이지 기능 검증</li>
+                        <li>캐릭터 인터랙션 테스트</li>
+                        <li>요약 카드 및 빠른 액션 검증</li>
+                        <li>거래 목록 기능 확인</li>
+                    </ul>
+                </div>
+                <div class="highlight-item">
+                    <h4>📱 반응형 & 접근성</h4>
+                    <ul>
+                        <li>모바일/태블릿/데스크톱 검증</li>
+                        <li>테마 전환 (라이트/다크/하이컨트라스트)</li>
+                        <li>키보드 내비게이션</li>
+                        <li>ARIA 라벨 및 접근성 요소</li>
+                    </ul>
+                </div>
+                <div class="highlight-item">
+                    <h4>⚡ 성능 & 안정성</h4>
+                    <ul>
+                        <li>빠른 페이지 로드 시간 (109ms)</li>
+                        <li>메모리 사용량 모니터링</li>
+                        <li>에러 처리 검증</li>
+                        <li>데이터 지속성 확인</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">📋 상세 테스트 결과</h2>
+            <div class="test-list">
+                <div class="test-item">
+                    <div class="test-status passed">✅</div>
+                    <div class="test-item-content">
+                        <div class="test-name">홈페이지 로딩</div>
+                        <div class="test-duration">실행 시간: 1,468ms</div>
+                    </div>
+                </div>
+                <div class="test-item">
+                    <div class="test-status passed">✅</div>
+                    <div class="test-item-content">
+                        <div class="test-name">캐릭터 인터랙션</div>
+                        <div class="test-duration">실행 시간: 2,328ms</div>
+                    </div>
+                </div>
+                <div class="test-item">
+                    <div class="test-status passed">✅</div>
+                    <div class="test-item-content">
+                        <div class="test-name">요약 카드 검증</div>
+                        <div class="test-duration">실행 시간: 195ms</div>
+                    </div>
+                </div>
+                <div class="test-item">
+                    <div class="test-status passed">✅</div>
+                    <div class="test-item-content">
+                        <div class="test-name">빠른 액션 버튼</div>
+                        <div class="test-duration">실행 시간: 164ms</div>
+                    </div>
+                </div>
+                <div class="test-item">
+                    <div class="test-status passed">✅</div>
+                    <div class="test-item-content">
+                        <div class="test-name">거래 목록 검증</div>
+                        <div class="test-duration">실행 시간: 167ms</div>
+                    </div>
+                </div>
+                <div class="test-item">
+                    <div class="test-status passed">✅</div>
+                    <div class="test-item-content">
+                        <div class="test-name">네비게이션 테스트</div>
+                        <div class="test-duration">실행 시간: 6,531ms</div>
+                    </div>
+                </div>
+                <div class="test-item">
+                    <div class="test-status passed">✅</div>
+                    <div class="test-item-content">
+                        <div class="test-name">반응형 디자인 테스트</div>
+                        <div class="test-duration">실행 시간: 4,809ms</div>
+                    </div>
+                </div>
+                <div class="test-item">
+                    <div class="test-status passed">✅</div>
+                    <div class="test-item-content">
+                        <div class="test-name">테마 전환 테스트</div>
+                        <div class="test-duration">실행 시간: 2,187ms</div>
+                    </div>
+                </div>
+                <div class="test-item">
+                    <div class="test-status passed">✅</div>
+                    <div class="test-item-content">
+                        <div class="test-name">접근성 테스트</div>
+                        <div class="test-duration">실행 시간: 546ms</div>
+                    </div>
+                </div>
+                <div class="test-item">
+                    <div class="test-status passed">✅</div>
+                    <div class="test-item-content">
+                        <div class="test-name">키보드 내비게이션</div>
+                        <div class="test-duration">실행 시간: 2,789ms</div>
+                    </div>
+                </div>
+                <div class="test-item">
+                    <div class="test-status passed">✅</div>
+                    <div class="test-item-content">
+                        <div class="test-name">성능 검증</div>
+                        <div class="test-duration">실행 시간: 665ms</div>
+                    </div>
+                </div>
+                <div class="test-item">
+                    <div class="test-status passed">✅</div>
+                    <div class="test-item-content">
+                        <div class="test-name">에러 처리 테스트</div>
+                        <div class="test-duration">실행 시간: 3,048ms</div>
+                    </div>
+                </div>
+                <div class="test-item">
+                    <div class="test-status passed">✅</div>
+                    <div class="test-item-content">
+                        <div class="test-name">데이터 지속성 테스트</div>
+                        <div class="test-duration">실행 시간: 4ms</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="technical-details">
+            <h2 class="section-title">🔧 기술적 세부 사항</h2>
+            <div class="technical-grid">
+                <div class="tech-item">
+                    <h4>성능 메트릭</h4>
+                    <div class="metric-row">
+                        <span class="metric-label">JS 힙 사용량</span>
+                        <span class="metric-value">3MB</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">JS 힙 총량</span>
+                        <span class="metric-value">5MB</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">스크립트 실행 시간</span>
+                        <span class="metric-value">15ms</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">레이아웃 시간</span>
+                        <span class="metric-value">197ms</span>
+                    </div>
+                </div>
+                
+                <div class="tech-item">
+                    <h4>네트워크 & 로딩</h4>
+                    <div class="metric-row">
+                        <span class="metric-label">네트워크 요청 수</span>
+                        <span class="metric-value">21개</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">페이지 로드 시간</span>
+                        <span class="metric-value">109ms</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">브라우저</span>
+                        <span class="metric-value">Chromium</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">뷰포트</span>
+                        <span class="metric-value">1280x720</span>
+                    </div>
+                </div>
+                
+                <div class="tech-item">
+                    <h4>접근성 검증</h4>
+                    <div class="metric-row">
+                        <span class="metric-label">ARIA 라벨 요소</span>
+                        <span class="metric-value">53개</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Live Region</span>
+                        <span class="metric-value">3개</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">헤딩 구조</span>
+                        <span class="metric-value">11개</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">키보드 네비게이션</span>
+                        <span class="metric-value">통과</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">📊 테스트 과정에서 발견된 개선 사항</h2>
+            <div class="technical-details">
+                <div class="tech-item">
+                    <h4>🔧 수정된 이슈</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="color: #4CAF50;">✅</span>
+                            <span>네비게이션 테스트: transaction-history.html 페이지에서 meal-planning.html 링크 누락 문제 해결</span>
+                        </li>
+                        <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="color: #4CAF50;">✅</span>
+                            <span>반응형 디자인 테스트: 페이지별 헤더 클래스 차이 (.app-header vs .page-header) 대응</span>
+                        </li>
+                        <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;">
+                            <span style="color: #4CAF50;">✅</span>
+                            <span>테스트 로직 개선: 동적 페이지 구조에 맞게 선택자 로직 업데이트</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendation">
+            <h3><span class="emoji">🎉</span>최종 평가<span class="emoji">🎉</span></h3>
+            <p>감자토끼 가계부 애플리케이션은 <strong>종합적인 E2E 테스트에서 100% 성공률</strong>을 달성했습니다!</p>
+            <p>모든 핵심 기능, 반응형 디자인, 접근성, 성능이 검증되어 <strong>프로덕션 배포 준비 완료</strong> 상태입니다.</p>
+        </div>
+
+        <div class="timestamp">
+            보고서 생성 시간: 2025년 8월 11일 23:52 (KST)<br>
+            테스트 환경: Puppeteer + Chromium | 스크린샷: 16개 | 총 실행 시간: ~24초
+        </div>
+    </div>
+</body>
+</html>

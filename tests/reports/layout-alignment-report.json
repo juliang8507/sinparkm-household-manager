@@ -1,0 +1,331 @@
+{
+  "timestamp": "2025-08-12T11:47:12.849Z",
+  "summary": {
+    "total": 28,
+    "passed": 28,
+    "failed": 0,
+    "successRate": "100.0",
+    "alignmentIssues": 0
+  },
+  "tests": [
+    {
+      "name": "헤더 요소 정렬 검증",
+      "status": "PASSED",
+      "duration": 32,
+      "error": null
+    },
+    {
+      "name": "네비게이션 정렬 검증",
+      "status": "PASSED",
+      "duration": 24,
+      "error": null
+    },
+    {
+      "name": "콘텐츠 영역 정렬 검증",
+      "status": "PASSED",
+      "duration": 15,
+      "error": null
+    },
+    {
+      "name": "카드 요소 정렬 검증",
+      "status": "PASSED",
+      "duration": 33,
+      "error": null
+    },
+    {
+      "name": "버튼 요소 정렬 검증",
+      "status": "PASSED",
+      "duration": 17,
+      "error": null
+    },
+    {
+      "name": "폼 요소 정렬 검증",
+      "status": "PASSED",
+      "duration": 4,
+      "error": null
+    },
+    {
+      "name": "반응형 정렬 검증",
+      "status": "PASSED",
+      "duration": 5983,
+      "error": null
+    },
+    {
+      "name": "헤더 요소 정렬 검증",
+      "status": "PASSED",
+      "duration": 22,
+      "error": null
+    },
+    {
+      "name": "네비게이션 정렬 검증",
+      "status": "PASSED",
+      "duration": 1,
+      "error": null
+    },
+    {
+      "name": "콘텐츠 영역 정렬 검증",
+      "status": "PASSED",
+      "duration": 14,
+      "error": null
+    },
+    {
+      "name": "카드 요소 정렬 검증",
+      "status": "PASSED",
+      "duration": 39,
+      "error": null
+    },
+    {
+      "name": "버튼 요소 정렬 검증",
+      "status": "PASSED",
+      "duration": 6,
+      "error": null
+    },
+    {
+      "name": "폼 요소 정렬 검증",
+      "status": "PASSED",
+      "duration": 4,
+      "error": null
+    },
+    {
+      "name": "반응형 정렬 검증",
+      "status": "PASSED",
+      "duration": 5732,
+      "error": null
+    },
+    {
+      "name": "헤더 요소 정렬 검증",
+      "status": "PASSED",
+      "duration": 28,
+      "error": null
+    },
+    {
+      "name": "네비게이션 정렬 검증",
+      "status": "PASSED",
+      "duration": 1,
+      "error": null
+    },
+    {
+      "name": "콘텐츠 영역 정렬 검증",
+      "status": "PASSED",
+      "duration": 20,
+      "error": null
+    },
+    {
+      "name": "카드 요소 정렬 검증",
+      "status": "PASSED",
+      "duration": 4,
+      "error": null
+    },
+    {
+      "name": "버튼 요소 정렬 검증",
+      "status": "PASSED",
+      "duration": 16,
+      "error": null
+    },
+    {
+      "name": "폼 요소 정렬 검증",
+      "status": "PASSED",
+      "duration": 36,
+      "error": null
+    },
+    {
+      "name": "반응형 정렬 검증",
+      "status": "PASSED",
+      "duration": 5821,
+      "error": null
+    },
+    {
+      "name": "헤더 요소 정렬 검증",
+      "status": "PASSED",
+      "duration": 38,
+      "error": null
+    },
+    {
+      "name": "네비게이션 정렬 검증",
+      "status": "PASSED",
+      "duration": 1,
+      "error": null
+    },
+    {
+      "name": "콘텐츠 영역 정렬 검증",
+      "status": "PASSED",
+      "duration": 16,
+      "error": null
+    },
+    {
+      "name": "카드 요소 정렬 검증",
+      "status": "PASSED",
+      "duration": 8,
+      "error": null
+    },
+    {
+      "name": "버튼 요소 정렬 검증",
+      "status": "PASSED",
+      "duration": 8,
+      "error": null
+    },
+    {
+      "name": "폼 요소 정렬 검증",
+      "status": "PASSED",
+      "duration": 74,
+      "error": null
+    },
+    {
+      "name": "반응형 정렬 검증",
+      "status": "PASSED",
+      "duration": 5988,
+      "error": null
+    }
+  ],
+  "screenshots": [
+    {
+      "name": "index-initial",
+      "description": "홈페이지 초기 화면",
+      "filename": "layout-index-initial-2025-08-12T11-46-39-892Z.png",
+      "filepath": "tests\\screenshots\\layout-index-initial-2025-08-12T11-46-39-892Z.png"
+    },
+    {
+      "name": "index-mobile",
+      "description": "홈페이지 - 모바일",
+      "filename": "layout-index-mobile-2025-08-12T11-46-41-329Z.png",
+      "filepath": "tests\\screenshots\\layout-index-mobile-2025-08-12T11-46-41-329Z.png"
+    },
+    {
+      "name": "index-mobile-large",
+      "description": "홈페이지 - 큰 모바일",
+      "filename": "layout-index-mobile-large-2025-08-12T11-46-42-530Z.png",
+      "filepath": "tests\\screenshots\\layout-index-mobile-large-2025-08-12T11-46-42-530Z.png"
+    },
+    {
+      "name": "index-tablet",
+      "description": "홈페이지 - 태블릿",
+      "filename": "layout-index-tablet-2025-08-12T11-46-43-670Z.png",
+      "filepath": "tests\\screenshots\\layout-index-tablet-2025-08-12T11-46-43-670Z.png"
+    },
+    {
+      "name": "index-desktop",
+      "description": "홈페이지 - 데스크톱",
+      "filename": "layout-index-desktop-2025-08-12T11-46-44-844Z.png",
+      "filepath": "tests\\screenshots\\layout-index-desktop-2025-08-12T11-46-44-844Z.png"
+    },
+    {
+      "name": "index-desktop-large",
+      "description": "홈페이지 - 큰 데스크톱",
+      "filename": "layout-index-desktop-large-2025-08-12T11-46-46-091Z.png",
+      "filepath": "tests\\screenshots\\layout-index-desktop-large-2025-08-12T11-46-46-091Z.png"
+    },
+    {
+      "name": "transaction-history-initial",
+      "description": "거래 내역 초기 화면",
+      "filename": "layout-transaction-history-initial-2025-08-12T11-46-48-971Z.png",
+      "filepath": "tests\\screenshots\\layout-transaction-history-initial-2025-08-12T11-46-48-971Z.png"
+    },
+    {
+      "name": "transaction-history-mobile",
+      "description": "거래 내역 - 모바일",
+      "filename": "layout-transaction-history-mobile-2025-08-12T11-46-50-220Z.png",
+      "filepath": "tests\\screenshots\\layout-transaction-history-mobile-2025-08-12T11-46-50-220Z.png"
+    },
+    {
+      "name": "transaction-history-mobile-large",
+      "description": "거래 내역 - 큰 모바일",
+      "filename": "layout-transaction-history-mobile-large-2025-08-12T11-46-51-346Z.png",
+      "filepath": "tests\\screenshots\\layout-transaction-history-mobile-large-2025-08-12T11-46-51-346Z.png"
+    },
+    {
+      "name": "transaction-history-tablet",
+      "description": "거래 내역 - 태블릿",
+      "filename": "layout-transaction-history-tablet-2025-08-12T11-46-52-466Z.png",
+      "filepath": "tests\\screenshots\\layout-transaction-history-tablet-2025-08-12T11-46-52-466Z.png"
+    },
+    {
+      "name": "transaction-history-desktop",
+      "description": "거래 내역 - 데스크톱",
+      "filename": "layout-transaction-history-desktop-2025-08-12T11-46-53-605Z.png",
+      "filepath": "tests\\screenshots\\layout-transaction-history-desktop-2025-08-12T11-46-53-605Z.png"
+    },
+    {
+      "name": "transaction-history-desktop-large",
+      "description": "거래 내역 - 큰 데스크톱",
+      "filename": "layout-transaction-history-desktop-large-2025-08-12T11-46-54-726Z.png",
+      "filepath": "tests\\screenshots\\layout-transaction-history-desktop-large-2025-08-12T11-46-54-726Z.png"
+    },
+    {
+      "name": "transaction-form-initial",
+      "description": "거래 등록 초기 화면",
+      "filename": "layout-transaction-form-initial-2025-08-12T11-46-57-689Z.png",
+      "filepath": "tests\\screenshots\\layout-transaction-form-initial-2025-08-12T11-46-57-689Z.png"
+    },
+    {
+      "name": "transaction-form-mobile",
+      "description": "거래 등록 - 모바일",
+      "filename": "layout-transaction-form-mobile-2025-08-12T11-46-58-987Z.png",
+      "filepath": "tests\\screenshots\\layout-transaction-form-mobile-2025-08-12T11-46-58-987Z.png"
+    },
+    {
+      "name": "transaction-form-mobile-large",
+      "description": "거래 등록 - 큰 모바일",
+      "filename": "layout-transaction-form-mobile-large-2025-08-12T11-47-00-132Z.png",
+      "filepath": "tests\\screenshots\\layout-transaction-form-mobile-large-2025-08-12T11-47-00-132Z.png"
+    },
+    {
+      "name": "transaction-form-tablet",
+      "description": "거래 등록 - 태블릿",
+      "filename": "layout-transaction-form-tablet-2025-08-12T11-47-01-243Z.png",
+      "filepath": "tests\\screenshots\\layout-transaction-form-tablet-2025-08-12T11-47-01-243Z.png"
+    },
+    {
+      "name": "transaction-form-desktop",
+      "description": "거래 등록 - 데스크톱",
+      "filename": "layout-transaction-form-desktop-2025-08-12T11-47-02-419Z.png",
+      "filepath": "tests\\screenshots\\layout-transaction-form-desktop-2025-08-12T11-47-02-419Z.png"
+    },
+    {
+      "name": "transaction-form-desktop-large",
+      "description": "거래 등록 - 큰 데스크톱",
+      "filename": "layout-transaction-form-desktop-large-2025-08-12T11-47-03-601Z.png",
+      "filepath": "tests\\screenshots\\layout-transaction-form-desktop-large-2025-08-12T11-47-03-601Z.png"
+    },
+    {
+      "name": "meal-planning-initial",
+      "description": "식단 계획 초기 화면",
+      "filename": "layout-meal-planning-initial-2025-08-12T11-47-06-580Z.png",
+      "filepath": "tests\\screenshots\\layout-meal-planning-initial-2025-08-12T11-47-06-580Z.png"
+    },
+    {
+      "name": "meal-planning-mobile",
+      "description": "식단 계획 - 모바일",
+      "filename": "layout-meal-planning-mobile-2025-08-12T11-47-07-879Z.png",
+      "filepath": "tests\\screenshots\\layout-meal-planning-mobile-2025-08-12T11-47-07-879Z.png"
+    },
+    {
+      "name": "meal-planning-mobile-large",
+      "description": "식단 계획 - 큰 모바일",
+      "filename": "layout-meal-planning-mobile-large-2025-08-12T11-47-09-040Z.png",
+      "filepath": "tests\\screenshots\\layout-meal-planning-mobile-large-2025-08-12T11-47-09-040Z.png"
+    },
+    {
+      "name": "meal-planning-tablet",
+      "description": "식단 계획 - 태블릿",
+      "filename": "layout-meal-planning-tablet-2025-08-12T11-47-10-216Z.png",
+      "filepath": "tests\\screenshots\\layout-meal-planning-tablet-2025-08-12T11-47-10-216Z.png"
+    },
+    {
+      "name": "meal-planning-desktop",
+      "description": "식단 계획 - 데스크톱",
+      "filename": "layout-meal-planning-desktop-2025-08-12T11-47-11-469Z.png",
+      "filepath": "tests\\screenshots\\layout-meal-planning-desktop-2025-08-12T11-47-11-469Z.png"
+    },
+    {
+      "name": "meal-planning-desktop-large",
+      "description": "식단 계획 - 큰 데스크톱",
+      "filename": "layout-meal-planning-desktop-large-2025-08-12T11-47-12-642Z.png",
+      "filepath": "tests\\screenshots\\layout-meal-planning-desktop-large-2025-08-12T11-47-12-642Z.png"
+    }
+  ],
+  "alignmentIssues": [],
+  "pagesTestedCount": 4,
+  "viewportsTestedCount": 5,
+  "browser": "Chromium",
+  "testType": "Layout Alignment Verification"
+}
