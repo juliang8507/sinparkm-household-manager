@@ -53,7 +53,17 @@
       "mcp__windows-mcp__State-Tool",
       "mcp__windows-mcp__Click-Tool",
       "mcp__windows-mcp__Switch-Tool",
-      "Bash(git init:*)"
+      "Bash(git init:*)",
+      "Bash(git remote add:*)",
+      "Bash(dir:*)",
+      "mcp__windows-mcp__Powershell-Tool",
+      "Bash(claude doctor)",
+      "Bash(echo $HOME)",
+      "Bash(cat:*)",
+      "Bash(claude config list)",
+      "Bash(claude --version)",
+      "Bash(npm run build:*)",
+      "mcp__github__create_repository"
     ],
     "deny": []
   }
