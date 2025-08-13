@@ -63,7 +63,16 @@
       "Bash(claude config list)",
       "Bash(claude --version)",
       "Bash(npm run build:*)",
-      "mcp__github__create_repository"
+      "mcp__github__create_repository",
+      "Bash(git remote set-url:*)",
+      "Bash(claude mcp add:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "mcp__netlify__netlify-project-services",
+      "Bash(where gh)",
+      "mcp__github__create_or_update_file",
+      "mcp__netlify__netlify-deploy-services",
+      "mcp__github__push_files"
     ],
     "deny": []
   }

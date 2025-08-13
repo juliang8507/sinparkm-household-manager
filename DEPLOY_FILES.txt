@@ -1,0 +1,53 @@
+# 🥔🐰 감자토끼 가계부 - GitHub 업로드 필수 파일 목록
+
+## 핵심 HTML/CSS/JS 파일
+- index.html
+- index.css  
+- index.js
+- transaction-form.html
+- transaction-form.css
+- transaction-form.js
+- transaction-history.html
+- transaction-history.css
+- transaction-history.js
+- meal-planning.html
+- meal-planning.css
+- meal-planning.js
+
+## 설정 파일
+- package.json
+- package-lock.json
+- netlify.toml
+- manifest.json
+- sw.js (Service Worker)
+- server.js
+
+## 스타일 및 테마
+- css/ (전체 폴더)
+- js/ (전체 폴더)
+
+## 아이콘 및 리소스
+- icons.svg
+- potato-rabbit-icons/ (전체 폴더)
+
+## React 컴포넌트 (src 폴더)
+- src/ (전체 폴더)
+
+## 성능 최적화 파일
+- performance/ (전체 폴더)
+
+## 스크립트 및 도구
+- scripts/ (전체 폴더)
+
+## 문서화 (선택)
+- README.md
+- README_budget_app_schema.md
+
+## ❌ 업로드 제외 파일
+- node_modules/
+- tests/ (테스트 스크립트 제외, 스크린샷 등 큰 파일들)
+- .git/
+- playwright-report/
+- jest-html-reporters-attach/
+- *.png (스크린샷 파일들)
+- .claude/ (Claude 설정 파일)
