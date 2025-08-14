@@ -190,18 +190,18 @@
         // 🥔🐰 감자토끼 가계부 - 접근성 최적화 버전
         
         function addIncome() {
-            alert('🐰 토끼와 함께 수입을 추가해보세요!');
-            // TODO: 수입 추가 모달/페이지 연결
+            // 수입 추가 페이지로 이동
+            window.location.href = '/transaction-form.html?type=income';
         }
         
         function addExpense() {
-            alert('🥔 감자와 함께 지출을 기록해보세요!');
-            // TODO: 지출 추가 모달/페이지 연결
+            // 지출 추가 페이지로 이동  
+            window.location.href = '/transaction-form.html?type=expense';
         }
         
         function viewAll() {
-            alert('📊 전체 거래 내역을 확인해보세요!');
-            // TODO: 전체 내역 페이지 연결
+            // 전체 내역 페이지로 이동
+            window.location.href = '/transaction-history.html';
         }
         
         // 페이지 로딩 애니메이션

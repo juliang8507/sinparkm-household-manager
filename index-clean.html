@@ -116,7 +116,7 @@
         <section class="recent-section">
             <div class="section-header">
                 <h2 class="section-title">최근 거래</h2>
-                <a href="#" class="see-all-link">전체 보기 →</a>
+                <a href="/transaction-history.html" class="see-all-link">전체 보기 →</a>
             </div>
 
             <div class="transaction-list" id="transactionList">
@@ -166,19 +166,19 @@
     <!-- 하단 네비게이션 -->
     <nav class="bottom-nav">
         <div class="nav-container">
-            <a href="#" class="nav-item active">
+            <a href="/" class="nav-item active">
                 <span class="nav-icon">🏠</span>
                 <span class="nav-label">홈</span>
             </a>
-            <a href="#" class="nav-item">
+            <a href="/transaction-history.html" class="nav-item">
                 <span class="nav-icon">📋</span>
                 <span class="nav-label">거래</span>
             </a>
-            <a href="#" class="nav-item">
+            <a href="/meal-planning.html" class="nav-item">
                 <span class="nav-icon">🍽️</span>
                 <span class="nav-label">식단</span>
             </a>
-            <a href="#" class="nav-item">
+            <a href="#settings" class="nav-item">
                 <span class="nav-icon">⚙️</span>
                 <span class="nav-label">설정</span>
             </a>
@@ -190,18 +190,18 @@
         // 🥔🐰 감자토끼 가계부 - 기본 기능
         
         function addIncome() {
-            alert('🐰 토끼와 함께 수입을 추가해보세요!');
-            // TODO: 수입 추가 모달/페이지 연결
+            // 수입 추가 페이지로 이동
+            window.location.href = '/transaction-form.html?type=income';
         }
         
         function addExpense() {
-            alert('🥔 감자와 함께 지출을 기록해보세요!');
-            // TODO: 지출 추가 모달/페이지 연결
+            // 지출 추가 페이지로 이동  
+            window.location.href = '/transaction-form.html?type=expense';
         }
         
         function viewAll() {
-            alert('📊 전체 거래 내역을 확인해보세요!');
-            // TODO: 전체 내역 페이지 연결
+            // 전체 내역 페이지로 이동
+            window.location.href = '/transaction-history.html';
         }
         
         // 페이지 로딩 애니메이션
