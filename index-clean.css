@@ -97,6 +97,7 @@
 /* === 📊 요약 카드들 === */
 .summary-grid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--space-md);
   margin-bottom: var(--space-xl);
 }
@@ -174,7 +175,7 @@
 
 .actions-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--space-md);
   margin-bottom: var(--space-md);
 }
@@ -231,7 +232,6 @@
 }
 
 .view-all-btn {
-  grid-column: 1 / -1;
   background: var(--primary);
   color: white;
   border: none;
@@ -422,9 +422,13 @@
 }
 
 /* === 📱 반응형 === */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .container {
     padding: 0 var(--space-sm);
+  }
+  
+  .summary-grid {
+    grid-template-columns: 1fr;
   }
   
   .character-section {
@@ -439,9 +443,21 @@
   .actions-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* === 🖥️ 데스크톱 추가 스타일 === */
+@media (min-width: 769px) {
+  .summary-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
   
-  .view-all-btn {
-    grid-column: 1;
+  .actions-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .character-section {
+    justify-content: center;
+    gap: var(--space-xl);
   }
 }
 

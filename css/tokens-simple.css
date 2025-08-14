@@ -57,7 +57,7 @@
   --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
   
   /* === 📱 반응형 === */
-  --container-max-width: 480px;
+  --container-max-width: 1200px;
   --container-padding: var(--space-md);
 }
 
