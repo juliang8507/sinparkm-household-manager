@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0F7B71">
+    <meta name="theme-color" content="#20B2AA">
     <title>🥔🐰 감자토끼 가계부</title>
-    <meta name="description" content="감자와 토끼가 함께하는 귀여운 가계부 - WCAG AA 접근성 준수">
+    <meta name="description" content="감자와 토끼가 함께하는 귀여운 가계부">
     
     <!-- PWA -->
     <link rel="manifest" href="manifest.json">
@@ -187,7 +187,7 @@
 
     <!-- JavaScript -->
     <script>
-        // 🥔🐰 감자토끼 가계부 - 접근성 최적화 버전
+        // 🥔🐰 감자토끼 가계부 - 기본 기능
         
         function addIncome() {
             alert('🐰 토끼와 함께 수입을 추가해보세요!');
@@ -206,10 +206,10 @@
         
         // 페이지 로딩 애니메이션
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🥔🐰 감자토끼 가계부 - WCAG AA 준수 버전 로딩 완료!');
+            console.log('🥔🐰 감자토끼 가계부 로딩 완료!');
             
             // 카드들에 순차 애니메이션 적용
-            const cards = document.querySelectorAll('.summary-card, .transaction-item');
+            const cards = document.querySelectorAll('.card, .transaction-item');
             cards.forEach((card, index) => {
                 card.style.animationDelay = `${index * 0.1}s`;
             });

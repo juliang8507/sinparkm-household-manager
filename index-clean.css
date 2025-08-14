@@ -1,0 +1,476 @@
+/* 🥔🐰 감자토끼 가계부 - 깔끔한 메인 스타일 */
+
+@import url('./css/tokens-simple.css');
+
+/* === 📱 헤더 === */
+.header {
+  background: var(--bg-card);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  margin-bottom: var(--space-lg);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-md) 0;
+}
+
+.app-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.settings-btn {
+  background: none;
+  border: none;
+  font-size: var(--font-size-lg);
+  cursor: pointer;
+  padding: var(--space-sm);
+  border-radius: var(--border-radius-sm);
+  transition: background 0.2s ease;
+}
+
+.settings-btn:hover {
+  background: var(--bg-accent);
+}
+
+/* === 👋 인사말 섹션 === */
+.greeting {
+  margin-bottom: var(--space-xl);
+}
+
+.character-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+}
+
+.character {
+  text-align: center;
+  flex: 1;
+}
+
+.character-emoji {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-sm);
+}
+
+.character-name {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.greeting-bubble {
+  background: var(--primary);
+  color: white;
+  padding: var(--space-lg);
+  border-radius: var(--border-radius-lg);
+  text-align: center;
+  font-weight: var(--font-weight-medium);
+  position: relative;
+  margin: 0 var(--space-lg);
+}
+
+.greeting-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid var(--primary);
+}
+
+/* === 📊 요약 카드들 === */
+.summary-grid {
+  display: grid;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.summary-card {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.summary-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.card-icon {
+  font-size: var(--font-size-lg);
+}
+
+.card-title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-secondary);
+}
+
+.balance-amount {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.income-amount {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--income);
+}
+
+.expense-amount {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--expense);
+}
+
+.transaction-count {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.balance-change {
+  font-size: var(--font-size-sm);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.balance-change.positive {
+  color: var(--income);
+}
+
+/* === ⚡ 빠른 액션 버튼들 === */
+.quick-actions {
+  margin-bottom: var(--space-xl);
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.action-btn {
+  background: var(--bg-card);
+  border: 2px solid transparent;
+  border-radius: var(--border-radius);
+  padding: var(--space-lg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.action-btn:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.income-btn {
+  border-color: var(--income);
+}
+
+.income-btn:hover {
+  background: var(--income);
+  color: white;
+}
+
+.expense-btn {
+  border-color: var(--expense);
+}
+
+.expense-btn:hover {
+  background: var(--expense);
+  color: white;
+}
+
+.btn-icon {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-sm);
+  display: block;
+}
+
+.btn-title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-xs);
+}
+
+.btn-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
+
+.view-all-btn {
+  grid-column: 1 / -1;
+  background: var(--primary);
+  color: white;
+  border: none;
+}
+
+.view-all-btn:hover {
+  background: var(--primary-dark);
+  color: white;
+}
+
+/* === 📋 최근 거래 목록 === */
+.recent-section {
+  margin-bottom: var(--space-xl);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+}
+
+.section-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+}
+
+.see-all-link {
+  font-size: var(--font-size-sm);
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+}
+
+.see-all-link:hover {
+  text-decoration: underline;
+}
+
+.transaction-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.transaction-item {
+  background: var(--bg-card);
+  border-radius: var(--border-radius);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.transaction-item:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-1px);
+}
+
+.transaction-icon {
+  font-size: var(--font-size-xl);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.income-icon {
+  background: rgba(46, 204, 113, 0.1);
+  color: var(--income);
+}
+
+.expense-icon {
+  background: rgba(231, 76, 60, 0.1);
+  color: var(--expense);
+}
+
+.transaction-details {
+  flex: 1;
+}
+
+.transaction-title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-xs);
+}
+
+.transaction-category {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+}
+
+.transaction-time {
+  font-size: var(--font-size-sm);
+  color: var(--text-light);
+}
+
+.transaction-amount {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  text-align: right;
+}
+
+.transaction-amount.income {
+  color: var(--income);
+}
+
+.transaction-amount.expense {
+  color: var(--expense);
+}
+
+/* === 📱 하단 네비게이션 === */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border-top: 1px solid var(--bg-accent);
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-around;
+  padding: var(--space-sm) 0;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+}
+
+.nav-item {
+  text-decoration: none;
+  color: var(--text-secondary);
+  text-align: center;
+  padding: var(--space-sm);
+  border-radius: var(--border-radius-sm);
+  transition: all 0.2s ease;
+  min-width: 60px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: var(--primary);
+  background: rgba(32, 178, 170, 0.1);
+}
+
+.nav-icon {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-xs);
+  display: block;
+}
+
+.nav-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+/* === 🌙 빈 상태 메시지 === */
+.empty-state {
+  text-align: center;
+  padding: var(--space-xl);
+  color: var(--text-secondary);
+}
+
+.empty-icon {
+  font-size: 48px;
+  margin-bottom: var(--space-lg);
+  opacity: 0.6;
+}
+
+.empty-title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-sm);
+}
+
+.empty-description {
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+/* === 📱 반응형 === */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-sm);
+  }
+  
+  .character-section {
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+  
+  .greeting-bubble {
+    margin: 0;
+  }
+  
+  .actions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .view-all-btn {
+    grid-column: 1;
+  }
+}
+
+/* === 💫 애니메이션 === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card,
+.transaction-item {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+/* === 🎯 포커스 스타일 === */
+button:focus,
+.nav-item:focus,
+.transaction-item:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* === 🌊 바디 여백 (하단 네비 공간) === */
+body {
+  padding-bottom: 80px;
+}

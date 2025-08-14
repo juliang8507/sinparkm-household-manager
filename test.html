@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>감자토끼 가계부 - 테스트</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1FC7D4, #9A9FD0);
+            color: #280D5F;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 50px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #1FC7D4;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .characters {
+            font-size: 4em;
+            margin: 30px 0;
+        }
+        .message {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        .status {
+            background: #1FC7D4;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: bold;
+        }
+        .links {
+            margin-top: 30px;
+        }
+        .links a {
+            color: #1FC7D4;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 15px;
+            padding: 10px 20px;
+            border: 2px solid #1FC7D4;
+            border-radius: 10px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        .links a:hover {
+            background: #1FC7D4;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🥔🐰 감자토끼 가계부</h1>
+        <div class="characters">🥔 + 🐰</div>
+        <div class="message">
+            <strong>배포 성공!</strong><br>
+            감자토끼 가계부가 정상적으로 배포되었습니다.
+        </div>
+        <div class="status">✅ Netlify 배포 완료</div>
+        <div class="links">
+            <a href="index.html">메인 페이지</a>
+            <a href="transaction-form.html">가계부 입력</a>
+            <a href="meal-planning.html">식단 관리</a>
+        </div>
+    </div>
+
+    <script>
+        console.log('🥔🐰 감자토끼 가계부 테스트 페이지 로드 완료!');
+        
+        // 간단한 애니메이션
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.container');
+            container.style.opacity = '0';
+            container.style.transform = 'translateY(50px)';
+            
+            setTimeout(() => {
+                container.style.transition = 'all 0.6s ease';
+                container.style.opacity = '1';
+                container.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body>
+</html>
