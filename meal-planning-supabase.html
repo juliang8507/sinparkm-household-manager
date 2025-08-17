@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#20B2AA">
+    <title>식단 계획 - 🥔🐰 감자토끼 가계부</title>
+    <meta name="description" content="감자토끼와 함께하는 스마트한 식단 관리">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- CSS 변수 정의 (인라인) -->
+    <style>
+        :root {
+            /* === 🎨 감자토끼 컬러 팔레트 === */
+            --potato-brown: #8B7355;
+            --rabbit-white: #F8F8FF;
+            --primary: #0F7B71;
+            --primary-dark: #0A5B54;
+            
+            /* 기능 컬러 */
+            --income: #1E8449;
+            --expense: #C0392B;
+            --neutral: #566573;
+            
+            /* 배경 컬러 */
+            --bg-main: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --bg-accent: #F7F9FC;
+            --bg-secondary: #F8F9FA;
+            
+            /* 텍스트 컬러 */
+            --text-primary: #212529;
+            --text-secondary: #495057;
+            --text-light: #6C757D;
+            
+            /* === 📏 스페이싱 === */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            
+            /* === ✏️ 타이포그래피 === */
+            --font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+            --font-size-sm: 14px;
+            --font-size-md: 16px;
+            --font-size-lg: 20px;
+            --font-size-xl: 24px;
+            --font-size-2xl: 32px;
+            
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-bold: 700;
+            
+            /* === 📐 레이아웃 === */
+            --border-radius: 12px;
+            --border-radius-sm: 8px;
+            --border-radius-lg: 16px;
+            
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+            
+            /* === 📱 반응형 === */
+            --container-max-width: 1200px;
+            --container-padding: var(--space-md);
+        }
+        
+        /* 기본 리셋 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            font-size: var(--font-size-md);
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--bg-main);
+        }
+        
+        .container {
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+        
+        /* 헤더 스타일 */
+        .header {
+            background: var(--bg-card);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: var(--space-md) 0;
+        }
+        
+        .app-title {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-bold);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .settings-btn {
+            background: none;
+            border: none;
+            font-size: var(--font-size-lg);
+            cursor: pointer;
+            padding: var(--space-md);
+            border-radius: var(--border-radius-sm);
+            transition: background 0.2s ease;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .settings-btn:hover {
+            background: var(--bg-accent);
+        }
+        
+        /* 하단 네비게이션 */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-card);
+            border-top: 1px solid var(--bg-accent);
+            box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: var(--space-sm) 0;
+            max-width: var(--container-max-width);
+            margin: 0 auto;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+            padding: var(--space-sm);
+            border-radius: var(--border-radius-sm);
+            transition: all 0.2s ease;
+            min-width: 44px;
+            min-height: 44px;
+            justify-content: center;
+        }
+        
+        .nav-item:hover {
+            background: var(--bg-accent);
+            color: var(--text-primary);
+        }
+        
+        .nav-item.active {
+            color: var(--primary);
+            font-weight: var(--font-weight-medium);
+        }
+        
+        .nav-icon {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .nav-label {
+            font-size: var(--font-size-sm);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* 캐릭터 대시보드 스타일 - 개선된 레이아웃 */
+        .character-reactions {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: var(--space-md);
+            padding: var(--space-lg);
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--space-lg);
+            min-height: 120px;
+        }
+        
+        .character-status {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            flex: 0 1 30%;
+            min-width: 0;
+        }
+        
+        .character-emoji {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-sm);
+            display: block;
+        }
+        
+        .character-message {
+            text-align: center;
+            width: 100%;
+        }
+        
+        .character-name {
+            font-weight: var(--font-weight-bold);
+            color: var(--text-primary);
+            margin-bottom: var(--space-xs);
+            display: block;
+            font-size: var(--font-size-sm);
+        }
+        
+        .character-text {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+        
+        .weekly-progress {
+            flex: 0 1 40%;
+            min-width: 0;
+            padding: var(--space-md);
+            background: var(--bg-accent);
+            border-radius: var(--border-radius-sm);
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+        }
+        
+        .progress-text {
+            font-weight: var(--font-weight-medium);
+            color: var(--text-primary);
+        }
+        
+        .progress-percentage {
+            font-weight: var(--font-weight-bold);
+            color: var(--primary);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--bg-accent);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        /* 아이콘 스타일 */
+        .icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+        }
+        
+        .icon-2xl {
+            width: 3rem;
+            height: 3rem;
+        }
+        
+        /* SVG 폴백 */
+        svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+        
+        /* 반응형 캐릭터 영역 - 개선된 모바일 레이아웃 */
+        @media (max-width: 767px) {
+            .character-reactions {
+                flex-direction: column;
+                gap: var(--space-lg);
+                padding: var(--space-md);
+                min-height: auto;
+            }
+            
+            .character-status {
+                flex-direction: row;
+                align-items: center;
+                text-align: left;
+                flex: none;
+                width: 100%;
+                gap: var(--space-md);
+                padding: var(--space-md);
+                background: var(--bg-accent);
+                border-radius: var(--border-radius-sm);
+            }
+            
+            .character-emoji {
+                font-size: 2rem;
+                margin-bottom: 0;
+                flex-shrink: 0;
+            }
+            
+            .character-message {
+                text-align: left;
+                flex: 1;
+                width: auto;
+            }
+            
+            .character-name {
+                margin-bottom: var(--space-xs);
+            }
+            
+            .character-text {
+                font-size: var(--font-size-sm);
+                line-height: 1.3;
+            }
+            
+            .weekly-progress {
+                flex: none;
+                width: 100%;
+                max-width: none;
+                margin: 0;
+                order: -1; /* 위쪽으로 이동 */
+            }
+        }
+        
+        /* 더 작은 모바일 화면 */
+        @media (max-width: 479px) {
+            .character-reactions {
+                padding: var(--space-sm);
+                gap: var(--space-md);
+            }
+            
+            .character-status {
+                padding: var(--space-sm);
+            }
+            
+            .character-emoji {
+                font-size: 1.8rem;
+            }
+            
+            .character-text {
+                font-size: 13px;
+            }
+        }
+    </style>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="index-clean.css">
+    
+    <!-- CDN 폴백 시스템 -->
+    <script src="vendor/fallbacks/cdn-fallback.js"></script>
+    
+    <!-- Supabase CDN with Fallback -->
+    <script>
+        // CDN 폴백 등록 - Supabase
+        window.CDNFallback.register(
+            'supabase',
+            'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js',
+            '/vendor/supabase/supabase.js',
+            'script',
+            {
+                testFunction: window.CDNFallback.helpers.testSupabase,
+                onLoad: () => console.log('🥔🐰 Supabase 라이브러리 로드 완료'),
+                onError: (error) => console.error('❌ Supabase 라이브러리 로드 실패:', error)
+            }
+        );
+        
+        // CDN 폴백 시스템 초기화
+        window.CDNFallback.loadAll().then(() => {
+            console.log('🥔🐰 모든 CDN 리소스 로딩 완료');
+            // Supabase 설정 로드
+            const script = document.createElement('script');
+            script.src = 'supabase-config.js';
+            script.onload = () => console.log('🥔🐰 Supabase 설정 로드 완료');
+            document.head.appendChild(script);
+        }).catch(error => {
+            console.error('❌ CDN 리소스 로딩 실패:', error);
+        });
+    </script>
+    
+    <style>
+        .meal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-md);
+            background: var(--primary);
+            color: white;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+        }
+        
+        .week-selector {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-md);
+            background: var(--bg-card);
+            margin-bottom: var(--space-lg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .week-nav-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            font-weight: var(--font-weight-medium);
+            transition: background 0.2s ease;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .week-nav-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .week-nav-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .current-week {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-bold);
+            color: var(--text-primary);
+        }
+        
+        .meal-grid {
+            display: grid;
+            gap: var(--space-lg);
+        }
+        
+        .day-section {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+        
+        .day-header {
+            padding: var(--space-md);
+            background: var(--bg-accent);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .day-title {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-bold);
+            color: var(--text-primary);
+        }
+        
+        .day-date {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+        }
+        
+        .meals-container {
+            padding: var(--space-md);
+            display: grid;
+            gap: var(--space-md);
+        }
+        
+        .meal-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-sm);
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius-sm);
+            border-left: 4px solid;
+        }
+        
+        .meal-item.breakfast {
+            border-left-color: #f39c12;
+        }
+        
+        .meal-item.lunch {
+            border-left-color: #e74c3c;
+        }
+        
+        .meal-item.dinner {
+            border-left-color: #8e44ad;
+        }
+        
+        .meal-info {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .meal-icon {
+            font-size: 1.5rem;
+        }
+        
+        .meal-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-height: 40px;
+            justify-content: center;
+        }
+        
+        .meal-name {
+            font-weight: var(--font-weight-medium);
+            color: var(--text-primary);
+            line-height: 1.3;
+            margin: 0;
+        }
+        
+        .meal-type {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+            text-transform: capitalize;
+            line-height: 1.2;
+            margin-top: 2px;
+        }
+        
+        .meal-cost {
+            font-weight: var(--font-weight-bold);
+            color: var(--primary);
+        }
+        
+        .empty-meal {
+            text-align: center;
+            padding: var(--space-lg);
+            color: var(--text-secondary);
+        }
+        
+        .add-meal-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            font-size: var(--font-size-sm);
+            transition: background 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            min-width: 44px;
+            min-height: 44px;
+        }
+        
+        .add-meal-btn:hover {
+            background: var(--primary-dark);
+        }
+        
+        .loading {
+            text-align: center;
+            padding: var(--space-xl);
+            color: var(--text-secondary);
+        }
+        
+        .error-state {
+            text-align: center;
+            padding: var(--space-xl);
+            color: var(--text-secondary);
+        }
+        
+        .error-icon {
+            font-size: 3rem;
+            margin-bottom: var(--space-md);
+        }
+        
+        .weekly-summary {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .summary-title {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-bold);
+            color: var(--text-primary);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+        
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: var(--space-md);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--primary);
+            margin-bottom: var(--space-xs);
+        }
+        
+        .stat-label {
+            font-size: var(--font-size-sm);
+            color: var(--text-secondary);
+        }
+        
+        /* 모달 스타일 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: var(--space-lg);
+            width: 90%;
+            max-width: 500px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-title {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--text-primary);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .form-group {
+            margin-bottom: var(--space-lg);
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: var(--font-weight-medium);
+            margin-bottom: var(--space-sm);
+            color: var(--text-primary);
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: var(--space-md);
+            border: 2px solid var(--bg-accent);
+            border-radius: var(--border-radius-sm);
+            font-family: var(--font-family);
+            font-size: var(--font-size-md);
+            transition: border-color 0.2s ease;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: var(--space-md);
+            justify-content: flex-end;
+        }
+        
+        .btn-secondary {
+            background: var(--bg-accent);
+            color: var(--text-primary);
+            border: none;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            font-weight: var(--font-weight-medium);
+            transition: background 0.2s ease;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--bg-secondary);
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            font-weight: var(--font-weight-medium);
+            transition: background 0.2s ease;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .fab {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.2s ease;
+            z-index: 100;
+        }
+        
+        .fab:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+        
+        /* === 🎯 포커스 스타일 === */
+        button:focus,
+        .nav-item:focus,
+        .form-input:focus,
+        select:focus,
+        .fab:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        /* === 📝 폼 힌트 스타일 === */
+        .form-hint {
+            display: block;
+            margin-top: var(--space-xs);
+            color: var(--text-secondary);
+            font-size: var(--font-size-sm);
+        }
+        
+        /* === 🔍 스크린 리더 전용 === */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* === 🍽️ 주간 그리드 및 레이아웃 === */
+        .week-grid {
+            display: grid;
+            gap: var(--space-lg);
+            grid-template-columns: repeat(7, 1fr);
+            margin-bottom: var(--space-lg);
+        }
+        
+        /* 반응형 그리드 */
+        @media (max-width: 1023px) {
+            .week-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .week-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 479px) {
+            .week-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .day-card {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+            min-height: 320px;
+        }
+        
+        .meal-card {
+            padding: var(--space-md);
+            border: 1px solid var(--bg-accent);
+            border-radius: var(--border-radius-sm);
+            margin-bottom: var(--space-sm);
+            min-height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .character-dashboard {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-lg);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        
+        .weekly-progress {
+            background: var(--bg-card);
+            border-radius: var(--border-radius);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-lg);
+            box-shadow: var(--shadow-sm);
+        }
+    </style>
+</head>
+<body>
+    <!-- 헤더 -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <button onclick="history.back()" class="settings-btn" aria-label="뒤로가기">
+                    <span role="img" aria-label="뒤로가기 화살표">←</span>
+                </button>
+                <h1 class="app-title">
+                    <span role="img" aria-label="식당">🍽️</span> 식단 계획
+                </h1>
+                <div style="width: 40px;"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container" role="main">
+        <!-- 주간 선택 -->
+        <section class="week-selector" role="group" aria-labelledby="week-selector-title">
+            <h2 class="sr-only" id="week-selector-title">주간 선택</h2>
+            <button class="week-nav-btn" id="prevWeekBtn" aria-label="이전 주로 이동" type="button">
+                <span role="img" aria-label="이전 화살표">←</span> 이전 주
+            </button>
+            <h3 class="current-week" id="currentWeek" aria-live="polite">이번 주</h3>
+            <button class="week-nav-btn" id="nextWeekBtn" aria-label="다음 주로 이동" type="button">
+                다음 주 <span role="img" aria-label="다음 화살표">→</span>
+            </button>
+        </section>
+
+        <!-- 주간 요약 -->
+        <section class="weekly-summary" id="weeklySummary" aria-labelledby="summary-title">
+            <h3 class="summary-title" id="summary-title">
+                <span role="img" aria-label="감자">🥔</span><span role="img" aria-label="토끼">🐰</span> 이번 주 식단 요약
+            </h3>
+            <div class="summary-stats" role="group" aria-label="주간 식단 통계">
+                <div class="stat-item">
+                    <div class="stat-value" id="plannedMeals" aria-live="polite">0</div>
+                    <div class="stat-label">계획된 식사</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="estimatedCost" aria-live="polite">₩0</div>
+                    <div class="stat-label">예상 비용</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="mealTypes" aria-live="polite">0</div>
+                    <div class="stat-label">식사 종류</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 로딩 상태 -->
+        <div class="loading hidden" id="loadingState" role="status" aria-live="polite">
+            <div>
+                <span role="img" aria-label="감자">🥔</span><span role="img" aria-label="토끼">🐰</span> 식단을 불러오는 중...
+            </div>
+        </div>
+
+        <!-- 에러 상태 -->
+        <div class="error-state hidden" id="errorState" role="alert" aria-live="assertive">
+            <div class="error-icon" role="img" aria-label="에러">❌</div>
+            <h3>데이터를 불러올 수 없습니다</h3>
+            <p>잠시 후 다시 시도해주세요</p>
+            <button onclick="location.reload()" class="add-meal-btn" type="button" aria-label="페이지 새로고침">
+                새로고침
+            </button>
+        </div>
+
+        <!-- 캐릭터 대시보드 -->
+        <div class="character-dashboard">
+            <div class="character-reactions">
+                <div class="character-status" id="potatoStatus">
+                    <span class="character-emoji" id="potatoEmoji" role="img" aria-label="감자">🥔</span>
+                    <div class="character-message">
+                        <span class="character-name">감자</span>
+                        <p class="character-text" id="potatoMessage">든든한 식사를 기다리고 있어요!</p>
+                    </div>
+                </div>
+                
+                <div class="weekly-progress">
+                    <div class="progress-info">
+                        <span class="progress-text" id="progressText">주간 식단 진행률</span>
+                        <span class="progress-percentage" id="progressPercentage">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                    </div>
+                </div>
+                
+                <div class="character-status" id="rabbitStatus">
+                    <span class="character-emoji" id="rabbitEmoji" role="img" aria-label="토끼">🐰</span>
+                    <div class="character-message">
+                        <span class="character-name">토끼</span>
+                        <p class="character-text" id="rabbitMessage">건강한 식사를 계획해보세요!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 주간 그리드 -->
+        <div class="week-grid" id="weekGrid">
+            <!-- 일별 카드들이 여기에 렌더링됩니다 -->
+        </div>
+
+        <!-- 식단 목록 -->
+        <div class="meal-grid" id="mealGrid" role="main" aria-label="주간 식단 목록"></div>
+    </main>
+
+    <!-- 하단 네비게이션 -->
+    <nav class="bottom-nav" role="navigation" aria-label="주요 메뉴">
+        <div class="nav-container">
+            <a href="/" class="nav-item" aria-label="홈 페이지로 이동">
+                <span class="nav-icon" role="img" aria-label="집">🏠</span>
+                <span class="nav-label">홈</span>
+            </a>
+            <a href="/transaction-history-supabase.html" class="nav-item" aria-label="거래 내역 페이지로 이동">
+                <span class="nav-icon" role="img" aria-label="문서">📋</span>
+                <span class="nav-label">거래</span>
+            </a>
+            <a href="/meal-planning-supabase.html" class="nav-item active" aria-current="page" aria-label="식단 계획 페이지 (현재 페이지)">
+                <span class="nav-icon" role="img" aria-label="식당">🍽️</span>
+                <span class="nav-label">식단</span>
+            </a>
+            <a href="/statistics.html" class="nav-item" aria-label="통계 페이지로 이동">
+                <span class="nav-icon" role="img" aria-label="차트">📊</span>
+                <span class="nav-label">통계</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- 플로팅 액션 버튼 -->
+    <button class="fab" id="addMealFab" type="button" aria-label="새 식사 추가">
+        <span role="img" aria-label="플러스">➕</span>
+    </button>
+
+    <!-- 식사 추가 모달 -->
+    <div class="modal-overlay hidden" id="mealModal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <h2 class="modal-title" id="modal-title">새 식사 추가</h2>
+            <form id="mealForm" novalidate>
+                <div class="form-group">
+                    <label for="mealDate" class="form-label">날짜 *</label>
+                    <input type="date" id="mealDate" class="form-input" required 
+                           aria-describedby="mealDate-desc">
+                    <small id="mealDate-desc" class="form-hint">식사를 계획할 날짜를 선택해주세요</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="mealType" class="form-label">식사 시간 *</label>
+                    <select id="mealType" class="form-input" required aria-describedby="mealType-desc">
+                        <option value="">선택하세요</option>
+                        <option value="breakfast">🌅 아침</option>
+                        <option value="lunch">☀️ 점심</option>
+                        <option value="dinner">🌙 저녁</option>
+                    </select>
+                    <small id="mealType-desc" class="form-hint">아침, 점심, 저녁 중 선택해주세요</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dishName" class="form-label">음식 이름 *</label>
+                    <input type="text" id="dishName" class="form-input" 
+                           placeholder="예: 김치찌개, 샐러드, 파스타..." required
+                           aria-describedby="dishName-desc">
+                    <small id="dishName-desc" class="form-hint">계획하는 음식의 이름을 입력해주세요</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="estimatedCost" class="form-label">예상 비용 (선택사항)</label>
+                    <input type="number" id="estimatedCost" class="form-input" 
+                           placeholder="0" min="0" step="100" aria-describedby="cost-desc">
+                    <small id="cost-desc" class="form-hint">예상되는 비용을 원 단위로 입력해주세요</small>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelBtn" aria-label="모달 닫기">취소</button>
+                    <button type="submit" class="btn-primary" aria-label="식사 계획 저장">저장</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        let currentWeekStart = new Date();
+        let weeklyMeals = [];
+
+        // 페이지 로딩
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('🥔🐰 식단 계획 페이지 로딩!');
+            
+            // 이번 주의 시작일 계산 (월요일)
+            const today = new Date();
+            const dayOfWeek = today.getDay();
+            const daysToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+            currentWeekStart.setDate(today.getDate() + daysToMonday);
+            
+            // Supabase 초기화
+            try {
+                await window.SupabaseServices.initSupabase();
+                await loadWeeklyMeals();
+            } catch (error) {
+                console.error('초기화 실패:', error);
+                showError();
+            }
+            
+            // 이벤트 리스너 설정
+            setupEventListeners();
+        });
+
+        // 이벤트 리스너 설정
+        function setupEventListeners() {
+            // 주간 네비게이션
+            document.getElementById('prevWeekBtn').addEventListener('click', () => {
+                currentWeekStart.setDate(currentWeekStart.getDate() - 7);
+                loadWeeklyMeals();
+            });
+            
+            document.getElementById('nextWeekBtn').addEventListener('click', () => {
+                currentWeekStart.setDate(currentWeekStart.getDate() + 7);
+                loadWeeklyMeals();
+            });
+            
+            // FAB 버튼
+            document.getElementById('addMealFab').addEventListener('click', () => {
+                showMealModal();
+            });
+            
+            // 모달 취소 버튼
+            document.getElementById('cancelBtn').addEventListener('click', () => {
+                hideMealModal();
+            });
+            
+            // 모달 외부 클릭
+            document.getElementById('mealModal').addEventListener('click', (e) => {
+                if (e.target.id === 'mealModal') {
+                    hideMealModal();
+                }
+            });
+            
+            // 폼 제출
+            document.getElementById('mealForm').addEventListener('submit', handleMealSubmit);
+        }
+
+        // 주간 식단 로딩
+        async function loadWeeklyMeals() {
+            const loadingState = document.getElementById('loadingState');
+            const errorState = document.getElementById('errorState');
+            const mealGrid = document.getElementById('mealGrid');
+            
+            loadingState.classList.remove('hidden');
+            errorState.classList.add('hidden');
+            
+            try {
+                // 주간 범위 계산
+                const weekEnd = new Date(currentWeekStart);
+                weekEnd.setDate(weekEnd.getDate() + 6);
+                
+                // 주간 제목 업데이트
+                updateWeekTitle();
+                
+                // Supabase에서 주간 식단 조회
+                weeklyMeals = await fetchWeeklyMeals(currentWeekStart, weekEnd);
+                
+                // UI 렌더링
+                renderWeeklyMeals();
+                renderWeekGrid();
+                updateWeeklySummary();
+                
+                loadingState.classList.add('hidden');
+                
+            } catch (error) {
+                console.error('주간 식단 로딩 실패:', error);
+                loadingState.classList.add('hidden');
+                errorState.classList.remove('hidden');
+            }
+        }
+
+        // Supabase에서 주간 식단 데이터 가져오기
+        async function fetchWeeklyMeals(startDate, endDate) {
+            const client = await window.SupabaseServices.initSupabase();
+            if (!client) return [];
+            
+            const { data, error } = await client
+                .from('meal_plans')
+                .select('*')
+                .gte('date', startDate.toISOString().split('T')[0])
+                .lte('date', endDate.toISOString().split('T')[0])
+                .order('date')
+                .order('meal_type');
+            
+            if (error) throw error;
+            return data || [];
+        }
+
+        // 주간 제목 업데이트
+        function updateWeekTitle() {
+            const weekEnd = new Date(currentWeekStart);
+            weekEnd.setDate(weekEnd.getDate() + 6);
+            
+            const startStr = `${currentWeekStart.getMonth() + 1}/${currentWeekStart.getDate()}`;
+            const endStr = `${weekEnd.getMonth() + 1}/${weekEnd.getDate()}`;
+            
+            document.getElementById('currentWeek').textContent = `${startStr} ~ ${endStr}`;
+        }
+
+        // 주간 식단 렌더링
+        function renderWeeklyMeals() {
+            const mealGrid = document.getElementById('mealGrid');
+            mealGrid.innerHTML = '';
+            
+            const dayNames = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'];
+            
+            for (let i = 0; i < 7; i++) {
+                const currentDate = new Date(currentWeekStart);
+                currentDate.setDate(currentDate.getDate() + i);
+                
+                const dayMeals = weeklyMeals.filter(meal => 
+                    meal.date === currentDate.toISOString().split('T')[0]
+                );
+                
+                const daySection = createDaySection(dayNames[i], currentDate, dayMeals);
+                mealGrid.appendChild(daySection);
+            }
+        }
+
+        // 주간 그리드 렌더링
+        function renderWeekGrid() {
+            const weekGrid = document.getElementById('weekGrid');
+            if (!weekGrid) return;
+            
+            weekGrid.innerHTML = '';
+            
+            const dayNames = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일'];
+            
+            for (let i = 0; i < 7; i++) {
+                const currentDate = new Date(currentWeekStart);
+                currentDate.setDate(currentDate.getDate() + i);
+                
+                let dayMeals = weeklyMeals.filter(meal => 
+                    meal.date === currentDate.toISOString().split('T')[0]
+                );
+                
+                // 테스트 환경에서 데모 데이터 제공 (빈 식단일 때)
+                if (dayMeals.length === 0 && window.location.hostname === 'localhost') {
+                    dayMeals = generateSampleMeals(currentDate, i);
+                }
+                
+                const dayCard = createDayCard(dayNames[i], currentDate, dayMeals);
+                weekGrid.appendChild(dayCard);
+            }
+        }
+
+        // 테스트용 샘플 식사 데이터 생성
+        function generateSampleMeals(date, dayIndex) {
+            if (dayIndex % 3 === 0) { // 3일마다 샘플 데이터
+                return [
+                    {
+                        date: date.toISOString().split('T')[0],
+                        meal_type: 'breakfast',
+                        dish_name: '토스트',
+                        estimated_cost: 5000
+                    },
+                    {
+                        date: date.toISOString().split('T')[0],
+                        meal_type: 'lunch',
+                        dish_name: '김치찌개',
+                        estimated_cost: 8000
+                    }
+                ];
+            }
+            return [];
+        }
+
+        // 일별 카드 생성
+        function createDayCard(dayName, date, meals) {
+            const card = document.createElement('div');
+            card.className = 'day-card';
+            
+            const dateStr = `${date.getMonth() + 1}/${date.getDate()}`;
+            
+            card.innerHTML = `
+                <div class="day-header">
+                    <h3 class="day-title">${dayName}</h3>
+                    <span class="day-date">${dateStr}</span>
+                </div>
+                <div class="meals-container">
+                    ${meals.length > 0 ? renderMealCards(meals) : '<div class="empty-meal">식단 없음</div>'}
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // 식사 카드들 렌더링
+        function renderMealCards(meals) {
+            return meals.map(meal => `
+                <div class="meal-card">
+                    <div class="meal-info">
+                        <span class="meal-icon">${getMealIcon(meal.meal_type)}</span>
+                        <span class="meal-name">${meal.dish_name}</span>
+                    </div>
+                    ${meal.estimated_cost ? `<span class="meal-cost">₩${Number(meal.estimated_cost).toLocaleString()}</span>` : ''}
+                </div>
+            `).join('');
+        }
+
+        // 일별 섹션 생성
+        function createDaySection(dayName, date, meals) {
+            const section = document.createElement('section');
+            section.className = 'day-section';
+            section.setAttribute('aria-labelledby', `day-title-${date.getTime()}`);
+            
+            const dateStr = `${date.getMonth() + 1}/${date.getDate()}`;
+            
+            section.innerHTML = `
+                <div class="day-header">
+                    <h3 class="day-title" id="day-title-${date.getTime()}">${dayName}</h3>
+                    <span class="day-date" aria-label="${date.getFullYear()}년 ${date.getMonth() + 1}월 ${date.getDate()}일">${dateStr}</span>
+                </div>
+                <div class="meals-container" id="meals-${date.toISOString().split('T')[0]}" 
+                     role="region" aria-label="${dayName} 식단 목록">
+                    ${meals.length > 0 ? renderMeals(meals) : renderEmptyDay()}
+                </div>
+            `;
+            
+            return section;
+        }
+
+        // 식사 목록 렌더링
+        function renderMeals(meals) {
+            return meals.map(meal => `
+                <article class="meal-item ${meal.meal_type}" 
+                         role="article" 
+                         tabindex="0"
+                         aria-label="${getMealTypeText(meal.meal_type)} - ${meal.dish_name}${meal.estimated_cost ? `, 예상 비용 ${Number(meal.estimated_cost).toLocaleString()}원` : ''}">
+                    <div class="meal-info">
+                        <div class="meal-icon" role="img" aria-label="${getMealTypeText(meal.meal_type)}">
+                            ${getMealIcon(meal.meal_type)}
+                        </div>
+                        <div class="meal-details">
+                            <div class="meal-name">${meal.dish_name}</div>
+                            <div class="meal-type">${getMealTypeText(meal.meal_type)}</div>
+                        </div>
+                    </div>
+                    ${meal.estimated_cost ? `<div class="meal-cost" aria-label="예상 비용">₩${Number(meal.estimated_cost).toLocaleString()}</div>` : ''}
+                </article>
+            `).join('');
+        }
+
+        // 빈 날 렌더링
+        function renderEmptyDay() {
+            return `
+                <div class="empty-meal" role="region" aria-label="빈 식단 상태">
+                    <p><span role="img" aria-label="감자">🥔</span><span role="img" aria-label="토끼">🐰</span></p>
+                    <p>아직 식단이 없어요</p>
+                </div>
+            `;
+        }
+
+        // 식사 타입 아이콘
+        function getMealIcon(mealType) {
+            const icons = {
+                breakfast: '🌅',
+                lunch: '☀️', 
+                dinner: '🌙'
+            };
+            return icons[mealType] || '🍽️';
+        }
+
+        // 식사 타입 텍스트
+        function getMealTypeText(mealType) {
+            const texts = {
+                breakfast: '아침',
+                lunch: '점심',
+                dinner: '저녁'
+            };
+            return texts[mealType] || mealType;
+        }
+
+        // 주간 요약 업데이트
+        function updateWeeklySummary() {
+            const totalMeals = weeklyMeals.length;
+            const totalCost = weeklyMeals.reduce((sum, meal) => 
+                sum + (parseFloat(meal.estimated_cost) || 0), 0
+            );
+            const uniqueTypes = new Set(weeklyMeals.map(meal => meal.meal_type)).size;
+            
+            document.getElementById('plannedMeals').textContent = totalMeals;
+            document.getElementById('estimatedCost').textContent = `₩${totalCost.toLocaleString()}`;
+            document.getElementById('mealTypes').textContent = uniqueTypes;
+        }
+
+        // 모달 표시
+        function showMealModal() {
+            const modal = document.getElementById('mealModal');
+            modal.classList.remove('hidden');
+            document.getElementById('mealDate').value = new Date().toISOString().split('T')[0];
+            
+            // 포커스 관리 - 첫 번째 입력 필드로 포커스 이동
+            setTimeout(() => {
+                document.getElementById('mealDate').focus();
+            }, 100);
+            
+            // 모달 외부 스크롤 방지
+            document.body.style.overflow = 'hidden';
+            
+            // ESC 키 이벤트 리스너 추가
+            document.addEventListener('keydown', handleModalKeydown);
+        }
+
+        // 모달 숨기기
+        function hideMealModal() {
+            const modal = document.getElementById('mealModal');
+            modal.classList.add('hidden');
+            document.getElementById('mealForm').reset();
+            
+            // 스크롤 복원
+            document.body.style.overflow = '';
+            
+            // 포커스를 FAB 버튼으로 되돌리기
+            document.getElementById('addMealFab').focus();
+            
+            // ESC 키 이벤트 리스너 제거
+            document.removeEventListener('keydown', handleModalKeydown);
+        }
+        
+        // 모달 ESC 키 처리
+        function handleModalKeydown(e) {
+            if (e.key === 'Escape') {
+                hideMealModal();
+            }
+        }
+
+        // 식사 추가 처리
+        async function handleMealSubmit(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const mealData = {
+                date: formData.get('mealDate'),
+                meal_type: formData.get('mealType'),
+                dish_name: formData.get('dishName'),
+                estimated_cost: formData.get('estimatedCost') || null
+            };
+            
+            try {
+                // Supabase에 저장
+                const result = await window.SupabaseServices.MealPlanService.addMealPlan(mealData);
+                
+                if (result) {
+                    alert('🥔🐰 식사가 추가되었습니다!');
+                    hideMealModal();
+                    loadWeeklyMeals(); // 새로고침
+                } else {
+                    throw new Error('식사 저장 실패');
+                }
+                
+            } catch (error) {
+                console.error('식사 추가 실패:', error);
+                alert('❌ 식사 추가 중 오류가 발생했습니다.');
+            }
+        }
+
+        // 에러 상태 표시
+        function showError() {
+            const errorState = document.getElementById('errorState');
+            const loadingState = document.getElementById('loadingState');
+            
+            if (errorState) errorState.classList.remove('hidden');
+            if (loadingState) loadingState.classList.add('hidden');
+            
+            // 캐릭터 메시지도 에러 상태로 변경
+            updateCharacterMessages('error');
+        }
+
+        // 캐릭터 메시지 업데이트
+        function updateCharacterMessages(state = 'normal') {
+            const potatoMessage = document.getElementById('potatoMessage');
+            const rabbitMessage = document.getElementById('rabbitMessage');
+            
+            if (state === 'error') {
+                if (potatoMessage) potatoMessage.textContent = '연결에 문제가 있어요. 새로고침을 시도해보세요!';
+                if (rabbitMessage) rabbitMessage.textContent = '잠시 후 다시 시도해주세요!';
+            } else {
+                if (potatoMessage) potatoMessage.textContent = '든든한 식사를 기다리고 있어요!';
+                if (rabbitMessage) rabbitMessage.textContent = '건강한 식사를 계획해보세요!';
+            }
+        }
+
+        // PWA 서비스워커 등록
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('✅ SW registered');
+                    })
+                    .catch(error => {
+                        console.log('❌ SW registration failed');
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
