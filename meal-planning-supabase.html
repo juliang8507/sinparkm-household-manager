@@ -877,7 +877,7 @@
                     <span role="img" aria-label="뒤로가기 화살표">←</span>
                 </button>
                 <h1 class="app-title">
-                    <span role="img" aria-label="식당">🍽️</span> 식단 계획
+                    <span role="img" aria-label="식단">🍽️</span> 식단 계획
                 </h1>
                 <div style="width: 40px;"></div>
             </div>
@@ -900,7 +900,7 @@
         <!-- 주간 요약 -->
         <section class="weekly-summary" id="weeklySummary" aria-labelledby="summary-title">
             <h3 class="summary-title" id="summary-title">
-                <span role="img" aria-label="감자">🥔</span><span role="img" aria-label="토끼">🐰</span> 이번 주 식단 요약
+                📊 이번 주 식단 요약
             </h3>
             <div class="summary-stats" role="group" aria-label="주간 식단 통계">
                 <div class="stat-item">
@@ -921,7 +921,7 @@
         <!-- 로딩 상태 -->
         <div class="loading hidden" id="loadingState" role="status" aria-live="polite">
             <div>
-                <span role="img" aria-label="감자">🥔</span><span role="img" aria-label="토끼">🐰</span> 식단을 불러오는 중...
+                ⏳ 식단을 불러오는 중...
             </div>
         </div>
 
@@ -1320,7 +1320,7 @@
         function renderEmptyDay() {
             return `
                 <div class="empty-meal" role="region" aria-label="빈 식단 상태">
-                    <p><span role="img" aria-label="감자">🥔</span><span role="img" aria-label="토끼">🐰</span></p>
+                    <p><span role="img" aria-label="빈 접시">🍽️</span></p>
                     <p>아직 식단이 없어요</p>
                 </div>
             `;
@@ -1417,7 +1417,7 @@
                 const result = await window.SupabaseServices.MealPlanService.addMealPlan(mealData);
                 
                 if (result) {
-                    alert('🥔🐰 식사가 추가되었습니다!');
+                    alert('✅ 식사가 추가되었습니다!');
                     hideMealModal();
                     loadWeeklyMeals(); // 새로고침
                 } else {
